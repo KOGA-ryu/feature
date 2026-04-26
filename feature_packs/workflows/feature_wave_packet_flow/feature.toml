@@ -1,0 +1,17 @@
+id = "workflow.feature_wave_packet_flow"
+name = "feature_wave_packet_flow"
+kind = "workflow"
+status = "experimental"
+summary = "Builds an ordered multi-feature worker wave plus shared integrator and reviewer packets from a spec selection result."
+tags = ["workflow", "prompt", "wave", "lanes", "selection", "codex_reference"]
+dependencies = ["feature_core", "logic.spec_selector", "logic.prompt_generator"]
+compatible_features = ["logic.spec_selector", "logic.prompt_generator", "workflow.feature_build_packet_flow", "workflow.lineage_tracker"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["project", "branch_name", "max_workers", "selection_result"]
+
+[outputs]
+items = ["feature_wave_packet_bundle", "feature_wave_packet_validation", "worker_bundles", "integrator_packet", "reviewer_packet", "lane_assignments", "deferred_feature_ids", "rejected_feature_ids", "upstream_findings"]

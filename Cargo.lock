@@ -633,6 +633,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "compatibility_matrix"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "concurrent-queue"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1748,6 +1757,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "lineage_tracker"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "feature_extraction_flow",
+ "prompt_generator",
+ "review_packet_flow",
+ "serde",
+ "serde_json",
+ "spec_generator",
+]
+
+[[package]]
 name = "linux-raw-sys"
 version = "0.4.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2559,6 +2581,15 @@ name = "renderdoc-sys"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "19b30a45b0cd0bcca8037f3d0dc3421eaf95327a17cad11964fb8179b4fc4832"
+
+[[package]]
+name = "reuse_score"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "review_packet_flow"

@@ -6,6 +6,8 @@ members = [
   "crates/feature_lab_ui",
   "crates/feature_runner",
   "feature_packs/logic/search_index",
+  "feature_packs/logic/spec_generator",
+  "feature_packs/logic/prompt_generator",
   "feature_packs/logic/theme_token_generator",
   "feature_packs/logic/validation_pipeline",
   "feature_packs/ui/activity_stream",
@@ -13,6 +15,7 @@ members = [
   "feature_packs/ui/left_rail",
   "feature_packs/ui/right_inspector",
   "feature_packs/ui/theme_editor",
+  "feature_packs/workflows/feature_extraction_flow",
   "feature_packs/workflows/review_packet_flow",
 ]
 resolver = "2"

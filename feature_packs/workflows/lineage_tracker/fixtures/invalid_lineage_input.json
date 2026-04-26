@@ -1,0 +1,29 @@
+{
+  "project": null,
+  "idea_id": "idea.theme-editor",
+  "branch_name": "codex/theme-editor-lineage",
+  "app_idea": {
+    "product_intent": "Build a reusable theme editor for the Rust feature lab.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "selected_features": [
+      {
+        "feature_id": "ui.theme_editor",
+        "kind": "ui",
+        "summary": "Theme editor state and preview model."
+      }
+    ],
+    "data_models": [
+      "theme_config"
+    ],
+    "first_vertical_slice": [
+      "Edit accent."
+    ],
+    "out_of_scope": [
+      "No persistence layer yet."
+    ]
+  },
+  "generated_spec": null,
+  "prompt_packets": [],
+  "review_packet": null,
+  "extraction_packet": null
+}

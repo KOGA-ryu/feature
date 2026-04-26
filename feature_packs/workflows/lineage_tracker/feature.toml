@@ -1,0 +1,17 @@
+id = "workflow.lineage_tracker"
+name = "lineage_tracker"
+kind = "workflow"
+status = "experimental"
+summary = "Deterministic chain-of-custody tracking from idea intake through spec, prompt, review, and extraction artifacts."
+tags = ["workflow", "lineage", "provenance", "reuse", "codex_reference"]
+dependencies = ["feature_core", "logic.spec_generator", "logic.prompt_generator", "workflow.review_packet_flow", "workflow.feature_extraction_flow"]
+compatible_features = ["logic.spec_generator", "logic.prompt_generator", "workflow.review_packet_flow", "workflow.feature_extraction_flow", "logic.compatibility_matrix", "logic.reuse_score"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["project", "idea_id", "branch_name", "app_idea", "generated_spec", "prompt_packets", "review_packet", "extraction_packet"]
+
+[outputs]
+items = ["lineage_record", "lineage_validation", "stage_summaries"]

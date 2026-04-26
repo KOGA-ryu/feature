@@ -1,0 +1,107 @@
+{
+  "project": "features",
+  "idea_id": "idea.theme-editor",
+  "branch_name": "codex/theme-editor-lineage",
+  "app_idea": {
+    "product_intent": "Build a reusable theme editor for the Rust feature lab.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "selected_features": [
+      {
+        "feature_id": "ui.theme_editor",
+        "kind": "ui",
+        "summary": "Theme editor state and preview model."
+      },
+      {
+        "feature_id": "logic.theme_token_generator",
+        "kind": "logic",
+        "summary": "Semantic token derivation from compact theme config."
+      },
+      {
+        "feature_id": "workflow.review_packet_flow",
+        "kind": "workflow",
+        "summary": "Structured review packet handoff after each task."
+      }
+    ],
+    "data_models": [
+      "theme_config",
+      "theme_tokens",
+      "review_packet"
+    ],
+    "first_vertical_slice": [
+      "Edit accent, background, and foreground.",
+      "Preview token-driven surfaces.",
+      "Export one theme payload."
+    ],
+    "out_of_scope": [
+      "No persistence layer yet."
+    ]
+  },
+  "generated_spec": {
+    "product_intent": "Build a reusable theme editor for the Rust feature lab.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "required_surfaces": [
+      "ui.theme_editor"
+    ],
+    "selected_patterns": [
+      "ui.theme_editor"
+    ],
+    "selected_logic": [
+      "logic.theme_token_generator"
+    ],
+    "selected_workflows": [
+      "workflow.review_packet_flow"
+    ],
+    "data_models": [
+      "theme_config",
+      "theme_tokens",
+      "review_packet"
+    ],
+    "folder_structure": [
+      "Cargo.toml",
+      "README.md",
+      "docs/contract.md",
+      "docs/roadmap.md",
+      "docs/decisions.md",
+      "src/app/",
+      "src/components/",
+      "src/features/",
+      "src/lib/",
+      "src/data/",
+      "src/schemas/",
+      "tests/"
+    ],
+    "first_vertical_slice": [
+      "Edit accent, background, and foreground.",
+      "Preview token-driven surfaces.",
+      "Export one theme payload."
+    ],
+    "out_of_scope": [
+      "No persistence layer yet."
+    ],
+    "dex_prompt_seed": "Build for a solo builder: theme editor with semantic token preview.",
+    "review_checklist": [
+      "Preview uses derived tokens only.",
+      "Import and export remain deterministic."
+    ],
+    "selected_features": [
+      {
+        "feature_id": "ui.theme_editor",
+        "kind": "ui",
+        "summary": "Theme editor state and preview model."
+      },
+      {
+        "feature_id": "logic.theme_token_generator",
+        "kind": "logic",
+        "summary": "Semantic token derivation from compact theme config."
+      },
+      {
+        "feature_id": "workflow.review_packet_flow",
+        "kind": "workflow",
+        "summary": "Structured review packet handoff after each task."
+      }
+    ]
+  },
+  "prompt_packets": [],
+  "review_packet": null,
+  "extraction_packet": null
+}

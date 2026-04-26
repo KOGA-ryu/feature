@@ -1,0 +1,13 @@
+[package]
+name = "lineage_tracker"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+feature_extraction_flow = { path = "../feature_extraction_flow" }
+prompt_generator = { path = "../../logic/prompt_generator" }
+review_packet_flow = { path = "../review_packet_flow" }
+serde.workspace = true
+serde_json.workspace = true
+spec_generator = { path = "../../logic/spec_generator" }

@@ -1,0 +1,41 @@
+{
+  "product_intent": "Build a local-first feature planning console for reusable Rust features.",
+  "audience": "Solo builder orchestrating Dex feature work.",
+  "selected_features": [
+    {
+      "feature_id": "ui.left_rail",
+      "kind": "ui",
+      "summary": "Navigation rail for feature packs and operational views."
+    },
+    {
+      "feature_id": "ui.theme_editor",
+      "kind": "ui",
+      "summary": "Compact theme editor with live semantic token preview."
+    },
+    {
+      "feature_id": "logic.search_index",
+      "kind": "logic",
+      "summary": "In-memory metadata search for reusable feature discovery."
+    },
+    {
+      "feature_id": "workflow.review_packet_flow",
+      "kind": "workflow",
+      "summary": "Structured review packet handoff after each task."
+    }
+  ],
+  "data_models": [
+    "feature_item",
+    "review_packet",
+    "prompt_packet"
+  ],
+  "first_vertical_slice": [
+    "List feature packs.",
+    "Open one feature detail.",
+    "Generate one worker prompt.",
+    "Emit one review packet."
+  ],
+  "out_of_scope": [
+    "No remote sync.",
+    "No multi-Dex monitor yet."
+  ]
+}

@@ -1,0 +1,17 @@
+id = "logic.spec_generator"
+name = "spec_generator"
+kind = "logic_pattern"
+status = "experimental"
+summary = "Deterministic app spec assembly from structured idea intake and explicitly selected reusable features."
+tags = ["logic", "spec", "assembly", "planning", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.prompt_generator", "workflow.feature_extraction_flow", "workflow.review_packet_flow", "logic.validation_pipeline"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["product_intent", "audience", "selected_features", "data_models", "first_vertical_slice", "out_of_scope"]
+
+[outputs]
+items = ["generated_spec", "spec_generation_validation", "dex_prompt_seed"]

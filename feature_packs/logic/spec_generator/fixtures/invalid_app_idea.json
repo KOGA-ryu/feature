@@ -1,0 +1,12 @@
+{
+  "product_intent": "   ",
+  "audience": "  ",
+  "selected_features": [],
+  "data_models": [
+    "feature_item"
+  ],
+  "first_vertical_slice": [
+    "Generate something."
+  ],
+  "out_of_scope": []
+}

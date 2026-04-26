@@ -1,0 +1,24 @@
+[workspace]
+members = [
+  "crates/feature_core",
+  "crates/feature_registry",
+  "crates/feature_cli",
+  "crates/feature_lab_ui",
+  "crates/feature_runner",
+  "feature_packs/logic/validation_pipeline",
+  "feature_packs/ui/activity_stream",
+  "feature_packs/ui/command_palette",
+  "feature_packs/ui/left_rail",
+  "feature_packs/ui/right_inspector",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+version = "0.1.0"
+
+[workspace.dependencies]
+eframe = "0.33"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.9"

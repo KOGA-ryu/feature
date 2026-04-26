@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "id": "logic.validation_pipeline",
+      "title": "Validation Pipeline",
+      "summary": "Validate manifests and structured inputs before reuse.",
+      "kind": "logic_pattern",
+      "tags": ["logic", "validation", "contracts"],
+      "dependencies": ["feature_core"],
+      "compatible_features": ["logic.search_index", "workflow.review_packet_flow"]
+    },
+    {
+      "id": "ui.command_palette",
+      "title": "Command Palette",
+      "summary": "Search commands and activate actions from a compact UI surface.",
+      "kind": "ui_pattern",
+      "tags": ["ui", "search", "commands"],
+      "dependencies": ["feature_core"],
+      "compatible_features": ["ui.left_rail", "ui.right_inspector"]
+    },
+    {
+      "id": "ui.activity_stream",
+      "title": "Activity Stream",
+      "summary": "Track recent build events in a chronological feed.",
+      "kind": "ui_pattern",
+      "tags": ["ui", "timeline", "events"],
+      "dependencies": ["feature_core"],
+      "compatible_features": ["ui.left_rail", "ui.command_palette"]
+    },
+    {
+      "id": "logic.search_index",
+      "title": "Search Index",
+      "summary": "Index library items for predictable local discovery.",
+      "kind": "logic_pattern",
+      "tags": ["logic", "search", "index"],
+      "dependencies": ["feature_core"],
+      "compatible_features": ["logic.validation_pipeline", "ui.command_palette"]
+    },
+    {
+      "id": "workflow.review_packet_flow",
+      "title": "Review Packet Flow",
+      "summary": "Generate post-task review packets and route them for inspection.",
+      "kind": "workflow_pattern",
+      "tags": ["workflow", "review", "handoff"],
+      "dependencies": ["feature_core"],
+      "compatible_features": ["ui.activity_stream", "logic.validation_pipeline"]
+    }
+  ]
+}

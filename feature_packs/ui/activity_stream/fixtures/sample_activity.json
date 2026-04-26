@@ -1,0 +1,59 @@
+{
+  "entries": [
+    {
+      "id": "activity.review_packet_completed",
+      "title": "Review packet completed",
+      "detail": "Command palette checks passed and the review packet was emitted.",
+      "kind": "review",
+      "status": "success",
+      "actor": "dex-17",
+      "timestamp": "2026-04-26T16:40:00Z",
+      "unread": true,
+      "actionable": true
+    },
+    {
+      "id": "activity.tests_failed",
+      "title": "Workspace tests failed",
+      "detail": "A left rail contract regression was detected before merge.",
+      "kind": "test",
+      "status": "error",
+      "actor": "cargo",
+      "timestamp": "2026-04-26T16:32:00Z",
+      "unread": true,
+      "actionable": true
+    },
+    {
+      "id": "activity.spec_generated",
+      "title": "Spec sheet generated",
+      "detail": "A new build spec was assembled for the review console slice.",
+      "kind": "spec",
+      "status": "info",
+      "actor": "dex-11",
+      "timestamp": "2026-04-26T16:10:00Z",
+      "unread": false,
+      "actionable": true
+    },
+    {
+      "id": "activity.snapshot_exported",
+      "title": "Snapshot exported",
+      "detail": "A PNG artifact was saved for the latest harness preview.",
+      "kind": "artifact",
+      "status": "success",
+      "actor": "render-queue",
+      "timestamp": "2026-04-26T15:48:00Z",
+      "unread": false,
+      "actionable": false
+    },
+    {
+      "id": "activity.feature_registered",
+      "title": "Feature registered",
+      "detail": "The registry discovered ui.activity_stream during workspace scan.",
+      "kind": "registry",
+      "status": "info",
+      "actor": "feature_registry",
+      "timestamp": "2026-04-26T15:30:00Z",
+      "unread": true,
+      "actionable": true
+    }
+  ]
+}

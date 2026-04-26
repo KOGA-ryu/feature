@@ -1,0 +1,17 @@
+{
+  "selected_object": {
+    "id": "mesh_001",
+    "name": "Neuron Mesh",
+    "kind": "mesh"
+  },
+  "metadata": {
+    "vertex_count": 4096,
+    "material": "glass",
+    "last_render": "2026-04-26T00:00:00Z"
+  },
+  "linked_artifacts": [
+    "render_preview.png",
+    "preset_neon_glass.json",
+    "review_packet_2026_04_26.md"
+  ]
+}

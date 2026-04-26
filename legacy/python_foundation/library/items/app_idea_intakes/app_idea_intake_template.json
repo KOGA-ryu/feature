@@ -1,0 +1,103 @@
+{
+  "app_archetypes": [],
+  "app_idea_intake": {
+    "capture_fields": [
+      {
+        "description": "State the app idea in plain language.",
+        "name": "idea",
+        "required": true
+      },
+      {
+        "description": "State the intended user or operator.",
+        "name": "users",
+        "required": true
+      },
+      {
+        "description": "State the main workflows.",
+        "name": "core_workflows",
+        "required": true
+      },
+      {
+        "description": "State hard constraints, risks, or non-goals.",
+        "name": "constraints",
+        "required": true
+      }
+    ],
+    "output_targets": [
+      "spec_sheet",
+      "build_recipe",
+      "dex_prompt"
+    ],
+    "required_constraints": [
+      "data_shape",
+      "surfaces",
+      "non_goals",
+      "success_signal"
+    ]
+  },
+  "compatible_features": [
+    "spec_sheet_template",
+    "app_archetype_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [],
+  "example_projects": [
+    "new_project_queue",
+    "automation_dashboard"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated app idea intake template for App Idea Intake Template.",
+      "name": "app_idea_intake",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Capture workflows, surfaces, data, and constraints before turning the intake into a spec.",
+    "Intake should reduce ambiguity, not preserve it."
+  ],
+  "known_failure_modes": [
+    "App Idea Intake Template captures excitement but not constraints, data, or workflows.",
+    "The intake jumps to implementation before the idea is structurally understood."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "App Idea Intake Template",
+  "problem_solved": "Turns vague ideas about App Idea Intake Template into structured build inputs.",
+  "required_inputs": [
+    {
+      "description": "Working name of the app idea.",
+      "name": "idea_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Known constraints, users, and workflow requirements.",
+      "name": "constraints",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "app_idea_intake_template",
+  "status": "template",
+  "summary": "Machine-first template for turning vague app ideas into structured intake.",
+  "tags": [
+    "app_idea_intake",
+    "template"
+  ],
+  "template": true,
+  "type": "app_idea_intake",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when App Idea Intake Template is already a locked spec and no intake ambiguity remains.",
+    "Do not use when the intake would omit key constraints like data, surfaces, or users."
+  ],
+  "when_to_use": [
+    "Use when App Idea Intake Template starts as a vague app idea that needs structure before spec work.",
+    "Use when Dex should capture surfaces, workflows, data, and constraints up front."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "required_fields": [
+    {
+      "path": "manifest.id",
+      "value": ""
+    },
+    {
+      "path": "manifest.name",
+      "value": null
+    }
+  ],
+  "collections": [
+    {
+      "path": "manifest.tags",
+      "items": []
+    }
+  ],
+  "timestamps": [
+    {
+      "path": "manifest.created_at",
+      "value": "2026-04-26"
+    },
+    {
+      "path": "manifest.updated_at",
+      "value": "not-a-timestamp"
+    }
+  ],
+  "dependencies": ["feature_core", "missing_crate"],
+  "compatible_features": [
+    "ui.command_palette",
+    "ui.ghost_surface"
+  ],
+  "available_dependencies": ["feature_core"],
+  "available_features": ["ui.command_palette", "ui.left_rail"]
+}

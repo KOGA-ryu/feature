@@ -1,0 +1,9 @@
+[package]
+name = "feature_cli"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_registry = { path = "../feature_registry" }
+feature_runner = { path = "../feature_runner" }
+serde_json.workspace = true

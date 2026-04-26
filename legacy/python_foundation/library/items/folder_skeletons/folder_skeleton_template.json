@@ -1,0 +1,113 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "spec_sheet_template",
+    "feature_card_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "review_packet_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated folder skeleton for Folder Skeleton Template.",
+      "name": "folder_skeleton",
+      "type": "library_item"
+    }
+  ],
+  "folder_skeleton": {
+    "directories": [
+      "features_tool",
+      "library/items",
+      "library/schemas",
+      "tests",
+      "docs",
+      "state"
+    ],
+    "files": [
+      {
+        "path": "README.md",
+        "purpose": "High-level repo entry point and launch commands."
+      },
+      {
+        "path": "pyproject.toml",
+        "purpose": "Packaging and CLI entrypoint."
+      },
+      {
+        "path": "docs/contract.md",
+        "purpose": "Lock interface and metadata contracts before growth."
+      },
+      {
+        "path": "docs/roadmap.md",
+        "purpose": "Track phases and what is intentionally deferred."
+      },
+      {
+        "path": "docs/decisions.md",
+        "purpose": "Record key design decisions and reversal conditions."
+      },
+      {
+        "path": "tests/test_library.py",
+        "purpose": "Minimal proof that the library foundation works."
+      }
+    ],
+    "first_vertical_slice": [
+      "Lock the schema and template set.",
+      "Provide create-item, validate-library, list, and search CLI commands.",
+      "Prove the repo with tests before adding richer content or UI layers."
+    ],
+    "root": "."
+  },
+  "frameworks": [],
+  "implementation_notes": [
+    "Treat this as the canonical repo shape, not a hand-wavy suggestion.",
+    "Include docs and tests from the start so future generators do not bolt them on later."
+  ],
+  "known_failure_modes": [
+    "Folder Skeleton Template is too vague to drive consistent repo setup.",
+    "The skeleton ignores docs or tests, so later tasks reintroduce ad hoc sprawl."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Folder Skeleton Template",
+  "problem_solved": "Prevents repo sprawl when building Folder Skeleton Template by locking structure up front.",
+  "required_inputs": [
+    {
+      "description": "Name of the repo shape the skeleton targets.",
+      "name": "repo_shape",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Core surfaces or artifacts the structure must accommodate.",
+      "name": "required_surfaces",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "folder_skeleton_template",
+  "status": "template",
+  "summary": "Machine-first template for standard repo skeletons.",
+  "tags": [
+    "folder_skeleton",
+    "template",
+    "repo_shape"
+  ],
+  "template": true,
+  "type": "folder_skeleton",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Folder Skeleton Template needs a domain-specific layout that would instantly violate the skeleton.",
+    "Do not use when reorganizing a mature repo with already-locked structure."
+  ],
+  "when_to_use": [
+    "Use when Folder Skeleton Template is a good starting repo shape for a new feature-library or app project.",
+    "Use when structure should be created before code generation begins."
+  ]
+}

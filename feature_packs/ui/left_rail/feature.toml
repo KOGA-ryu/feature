@@ -1,0 +1,17 @@
+id = "ui.left_rail"
+name = "left_rail"
+kind = "ui_pattern"
+status = "experimental"
+summary = "Sectioned left-side navigation rail state with collapse, selection, badges, and activation rules."
+tags = ["ui", "navigation", "left_rail", "layout", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.command_palette", "ui.right_inspector", "ui.activity_stream", "workflow.review_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["navigation_items", "selected_index", "collapsed"]
+
+[outputs]
+items = ["grouped_navigation", "active_item_id", "collapsed_state"]

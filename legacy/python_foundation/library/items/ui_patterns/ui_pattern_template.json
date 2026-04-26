@@ -1,0 +1,93 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "feature_card_template",
+    "component_contract_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "feature_card_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated UI pattern for UI Pattern Template.",
+      "name": "ui_pattern_card",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Record the data needed to make the pattern useful, not just visually complete.",
+    "Name surfaces consistently across specs, prompts, and component contracts."
+  ],
+  "known_failure_modes": [
+    "UI Pattern Template describes appearance but not navigation, data, or collapse behavior.",
+    "The pattern is reused in a context where density or device constraints make it hostile."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "UI Pattern Template",
+  "problem_solved": "Explain the interface problem that UI Pattern Template solves and why this surface exists.",
+  "required_inputs": [
+    {
+      "description": "Stable pattern name used in specs and contracts.",
+      "name": "surface_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Required data the surface needs to render useful state.",
+      "name": "data_dependencies",
+      "required": true,
+      "type": "object_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "ui_pattern_template",
+  "status": "template",
+  "summary": "Machine-first template for reusable UI pattern cards.",
+  "tags": [
+    "ui_pattern",
+    "template"
+  ],
+  "template": true,
+  "type": "ui_pattern",
+  "ui_pattern": {
+    "accessibility_notes": [
+      "Describe focus order, labels, and keyboard affordances."
+    ],
+    "data_needs": [
+      {
+        "description": "Current selection or focus target required by the surface.",
+        "name": "selection",
+        "required": true,
+        "type": "object"
+      }
+    ],
+    "interaction_notes": [
+      "Describe primary interactions, collapse behavior, and navigation flow."
+    ],
+    "layout_regions": [
+      "primary_region",
+      "secondary_region"
+    ],
+    "why_exists": "Describe why the pattern exists and what interface pressure it relieves."
+  },
+  "ui_surfaces": [
+    "surface_template"
+  ],
+  "when_not_to_use": [
+    "Do not use when UI Pattern Template is only cosmetic and does not affect navigation, density, or workflow.",
+    "Do not use when device constraints make the pattern actively hostile."
+  ],
+  "when_to_use": [
+    "Use when UI Pattern Template is a recurring surface or layout decision across tools.",
+    "Use when Dex should reuse layout law instead of re-inventing navigation from scratch."
+  ]
+}

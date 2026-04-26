@@ -1,0 +1,11 @@
+/target
+**/target/
+feature_packs/**/Cargo.lock
+
+.DS_Store
+__pycache__/
+.pytest_cache/
+.venv/
+
+/state/*
+!/state/.gitkeep

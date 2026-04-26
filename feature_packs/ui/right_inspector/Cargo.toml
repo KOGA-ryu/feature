@@ -1,0 +1,8 @@
+[package]
+name = "right_inspector"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+serde_json.workspace = true

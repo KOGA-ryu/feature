@@ -1,0 +1,130 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "decision_log_template",
+    "component_contract_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "dex_prompt_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated review packet template for Review Packet Template.",
+      "name": "review_packet_template",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Keep evidence fields stable across tasks so review packets can be compared automatically later.",
+    "Do not let screenshots replace commands, tests, or stated risks."
+  ],
+  "known_failure_modes": [
+    "Review Packet Template packets omit tests or commands, so review turns into archaeology.",
+    "Merge readiness is stated without enough evidence to justify it."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Review Packet Template",
+  "problem_solved": "Standardizes how work built around Review Packet Template is reviewed and handed back.",
+  "required_inputs": [
+    {
+      "description": "Clear statement of what the completed task aimed to achieve.",
+      "name": "task_goal",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Commands, tests, screenshots, or notes captured during execution.",
+      "name": "evidence_bundle",
+      "required": true,
+      "type": "object_list"
+    }
+  ],
+  "reusability": "high",
+  "review_packet": {
+    "merge_recommendation_values": [
+      "merge",
+      "hold",
+      "needs_follow_up"
+    ],
+    "required_artifacts": [
+      "files_changed",
+      "commands_run",
+      "tests_run",
+      "merge_recommendation"
+    ],
+    "sections": [
+      {
+        "description": "State the completed task goal.",
+        "name": "goal",
+        "required": true
+      },
+      {
+        "description": "List the files changed.",
+        "name": "files_changed",
+        "required": true
+      },
+      {
+        "description": "List the commands executed.",
+        "name": "commands_run",
+        "required": true
+      },
+      {
+        "description": "List tests executed and outcomes.",
+        "name": "tests_run",
+        "required": true
+      },
+      {
+        "description": "List screenshot evidence or explicitly say none.",
+        "name": "screenshots",
+        "required": true
+      },
+      {
+        "description": "Capture shipping risks.",
+        "name": "risks",
+        "required": true
+      },
+      {
+        "description": "Capture known unresolved issues.",
+        "name": "known_issues",
+        "required": true
+      },
+      {
+        "description": "Capture immediate next tasks.",
+        "name": "follow_up_tasks",
+        "required": true
+      },
+      {
+        "description": "State whether the change is ready to merge.",
+        "name": "merge_recommendation",
+        "required": true
+      }
+    ]
+  },
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "review_packet_template",
+  "status": "template",
+  "summary": "Standard review packet template for completed Dex or Codex tasks.",
+  "tags": [
+    "review_packet_template",
+    "template"
+  ],
+  "template": true,
+  "type": "review_packet_template",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Review Packet Template work is still exploratory and no deliverable boundary exists.",
+    "Do not use when the report would repeat richer domain-specific audit artifacts."
+  ],
+  "when_to_use": [
+    "Use when work touching Review Packet Template should always return with the same audit fields.",
+    "Use when completed Dex tasks need comparable evidence across projects."
+  ]
+}

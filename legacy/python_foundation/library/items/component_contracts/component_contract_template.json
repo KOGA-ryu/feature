@@ -1,0 +1,113 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "ui_pattern_template",
+    "logic_pattern_template"
+  ],
+  "complexity": "medium",
+  "component_contract": {
+    "accessibility_rules": [
+      "Describe labels, roles, announcements, and focus expectations."
+    ],
+    "empty_state": "Describe the empty state and what the user should understand from it.",
+    "error_state": "Describe the error state and available recovery path.",
+    "events_emitted": [
+      {
+        "description": "Primary event the component emits to its owner.",
+        "name": "on_submit",
+        "type": "event"
+      }
+    ],
+    "keyboard_behavior": [
+      "Describe keyboard shortcuts, focus movement, and submit/cancel behavior."
+    ],
+    "loading_state": "Describe the loading state and any placeholders or disabled actions.",
+    "props_needed": [
+      {
+        "description": "Primary props required to render the component.",
+        "name": "value",
+        "required": true,
+        "type": "object"
+      }
+    ],
+    "responsive_behavior": [
+      "Describe breakpoint, pane-collapse, or overflow behavior."
+    ],
+    "state_needed": [
+      {
+        "description": "Primary state required to drive view behavior.",
+        "name": "view_state",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "test_cases": [
+      "Component renders with valid props."
+    ]
+  },
+  "dependencies": [
+    "feature_card_template",
+    "ui_pattern_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "review_console"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated component contract for Component Contract Template.",
+      "name": "component_contract",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Keep the contract specific enough that Dex can implement without inventing behavior.",
+    "State empty, loading, error, keyboard, and accessibility rules explicitly."
+  ],
+  "known_failure_modes": [
+    "Component Contract Template omits state or event contracts, so the implementation guesses behavior.",
+    "Keyboard or accessibility rules are left implicit and regress later."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Component Contract Template",
+  "problem_solved": "Turns Component Contract Template into a buildable contract instead of a vague component request.",
+  "required_inputs": [
+    {
+      "description": "Stable component identifier.",
+      "name": "component_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "State and signals required to render and act.",
+      "name": "state_dependencies",
+      "required": true,
+      "type": "object_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "component_contract_template",
+  "status": "template",
+  "summary": "Machine-first template for buildable component contracts.",
+  "tags": [
+    "component_contract",
+    "template"
+  ],
+  "template": true,
+  "type": "component_contract",
+  "ui_surfaces": [
+    "component_surface"
+  ],
+  "when_not_to_use": [
+    "Do not use when Component Contract Template is too vague to state props, state, and emitted events.",
+    "Do not use when the true contract belongs at a larger feature boundary instead."
+  ],
+  "when_to_use": [
+    "Use when Component Contract Template must be built from a concrete contract rather than a vague component request.",
+    "Use when props, state, events, keyboard rules, and tests need to be locked before coding."
+  ]
+}

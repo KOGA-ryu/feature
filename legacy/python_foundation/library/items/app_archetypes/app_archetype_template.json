@@ -1,0 +1,93 @@
+{
+  "app_archetype": {
+    "common_risks": [
+      "Describe a common overbuild or workflow mismatch risk."
+    ],
+    "intent": "Describe the product category and why this archetype exists.",
+    "primary_surfaces": [
+      "left_rail",
+      "main_workspace",
+      "right_inspector"
+    ],
+    "primary_workflows": [
+      "Describe one core workflow the archetype supports well."
+    ],
+    "suggested_logic": [
+      "settings_persistence"
+    ],
+    "suggested_patterns": [
+      "command_palette"
+    ]
+  },
+  "app_archetypes": [
+    "archetype_template"
+  ],
+  "compatible_features": [
+    "build_recipe_template",
+    "spec_sheet_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "ui_pattern_template",
+    "logic_pattern_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "dashboard_suite"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated app archetype for App Archetype Template.",
+      "name": "app_archetype",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Keep the archetype focused on recurring shell shape and workflows, not one project's branding.",
+    "Use the archetype to narrow choice, not to force decorative sameness."
+  ],
+  "known_failure_modes": [
+    "App Archetype Template is too vague to guide shell or workflow selection.",
+    "The archetype smuggles project-specific decoration instead of reusable structure."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "App Archetype Template",
+  "problem_solved": "Defines the recurring product shape that App Archetype Template represents.",
+  "required_inputs": [
+    {
+      "description": "Canonical name for the archetype.",
+      "name": "app_shape_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Primary workflows the archetype must support.",
+      "name": "core_workflows",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "app_archetype_template",
+  "status": "template",
+  "summary": "Machine-first template for recurring app shapes.",
+  "tags": [
+    "app_archetype",
+    "template"
+  ],
+  "template": true,
+  "type": "app_archetype",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when App Archetype Template is too specific to one project to act as a recurring app shape.",
+    "Do not use when the product is still too undefined to choose a stable shell."
+  ],
+  "when_to_use": [
+    "Use when App Archetype Template is a common app shape that should replace blank-page project starts.",
+    "Use when Dex should begin from a known dashboard, creative tool, browser, or workstation structure."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "dex_prompt_template",
+    "app_idea_intake_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "feature_card_template",
+    "build_recipe_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "scanner_console"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated spec sheet for Spec Sheet Template.",
+      "name": "spec_sheet",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Lock the first vertical slice and out-of-scope list so prompts stay bounded.",
+    "Make sections stable enough that generators can fill them without rethinking the structure."
+  ],
+  "known_failure_modes": [
+    "Spec Sheet Template leaves core decisions unstated, so downstream prompts grow vague again.",
+    "Out-of-scope boundaries are missing, so work expands unpredictably."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Spec Sheet Template",
+  "problem_solved": "Locks the sections and decisions needed to turn Spec Sheet Template into a buildable spec.",
+  "required_inputs": [
+    {
+      "description": "Initial idea or request being transformed into a build spec.",
+      "name": "idea_or_request",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Items chosen to shape the spec.",
+      "name": "selected_library_items",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "spec_sheet_template",
+  "spec_sheet": {
+    "acceptance_gates": [
+      "Describe the evidence required before the spec is considered implementation-ready."
+    ],
+    "forbidden_drift": [
+      "Describe a class of spec drift the implementation must not introduce."
+    ],
+    "required_decisions": [
+      "surfaces",
+      "data_model",
+      "first_vertical_slice",
+      "out_of_scope"
+    ],
+    "sections": [
+      {
+        "description": "Describe the user-facing purpose of the app.",
+        "name": "product_intent",
+        "required": true
+      },
+      {
+        "description": "List the required surfaces.",
+        "name": "required_surfaces",
+        "required": true
+      },
+      {
+        "description": "List selected patterns and why they are included.",
+        "name": "selected_patterns",
+        "required": true
+      },
+      {
+        "description": "Describe the narrowest end-to-end slice.",
+        "name": "first_vertical_slice",
+        "required": true
+      },
+      {
+        "description": "State what this spec intentionally excludes.",
+        "name": "out_of_scope",
+        "required": true
+      }
+    ]
+  },
+  "status": "template",
+  "summary": "Machine-first template for implementation-ready app specs.",
+  "tags": [
+    "spec_sheet",
+    "template"
+  ],
+  "template": true,
+  "type": "spec_sheet",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Spec Sheet Template is still pure brainstorming and no build boundary exists.",
+    "Do not use when the spec would duplicate an existing locked contract without adding structure."
+  ],
+  "when_to_use": [
+    "Use when Spec Sheet Template must turn an idea into a bounded product/build contract before implementation.",
+    "Use when Dex needs a stable spec shape that can later feed prompt generation."
+  ]
+}

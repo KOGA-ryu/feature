@@ -1,0 +1,92 @@
+{
+  "app_archetypes": [
+    "archetype_template"
+  ],
+  "build_recipe": {
+    "guardrails": [
+      "Describe one incompatibility or anti-pattern the recipe should avoid."
+    ],
+    "outputs": [
+      "Describe the starter app or asset bundle this recipe should yield."
+    ],
+    "recipe_goal": "Describe the app or workflow this recipe assembles.",
+    "uses_features": [
+      "feature_card_template"
+    ],
+    "uses_logic_patterns": [
+      "logic_pattern_template"
+    ],
+    "uses_ui_patterns": [
+      "ui_pattern_template"
+    ]
+  },
+  "compatible_features": [
+    "app_archetype_template",
+    "spec_sheet_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "feature_card_template",
+    "ui_pattern_template",
+    "logic_pattern_template"
+  ],
+  "example_projects": [
+    "visual_lab",
+    "automation_dashboard"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated build recipe for Build Recipe Template.",
+      "name": "build_recipe",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "List the exact pieces being bundled so assembly can be automated later.",
+    "Document guardrails so recipes do not produce Franken-apps with incompatible seams."
+  ],
+  "known_failure_modes": [
+    "Build Recipe Template bundles pieces that fight each other and still calls itself reusable.",
+    "The recipe omits guardrails, so generators produce incompatible starters."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Build Recipe Template",
+  "problem_solved": "Bundles reusable library pieces so Build Recipe Template can assemble a coherent app starter.",
+  "required_inputs": [
+    {
+      "description": "Stable recipe name.",
+      "name": "recipe_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Library items to compose into the recipe.",
+      "name": "selected_items",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "build_recipe_template",
+  "status": "template",
+  "summary": "Machine-first template for bundling reusable app pieces.",
+  "tags": [
+    "build_recipe",
+    "template"
+  ],
+  "template": true,
+  "type": "build_recipe",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Build Recipe Template combines incompatible patterns just to look comprehensive.",
+    "Do not use when the recipe cannot yet state its guardrails and expected outputs."
+  ],
+  "when_to_use": [
+    "Use when Build Recipe Template should bundle multiple patterns into a reusable starter for an app family.",
+    "Use when Dex should auto-select compatible pieces instead of hand-assembling them each time."
+  ]
+}

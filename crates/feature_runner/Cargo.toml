@@ -1,0 +1,8 @@
+[package]
+name = "feature_runner"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../feature_core" }
+feature_registry = { path = "../feature_registry" }

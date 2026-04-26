@@ -1,0 +1,17 @@
+id = "ui.command_palette"
+name = "command_palette"
+kind = "ui_pattern"
+status = "experimental"
+summary = "Searchable command palette state for filtering, selecting, and activating command items."
+tags = ["ui", "command_palette", "search", "keyboard", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.right_inspector", "ui.left_rail", "ui.activity_stream", "workflow.review_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["query", "command_items", "selected_index"]
+
+[outputs]
+items = ["filtered_commands", "grouped_results", "activated_command_id"]

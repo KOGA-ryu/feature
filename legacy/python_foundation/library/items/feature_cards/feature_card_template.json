@@ -1,0 +1,71 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "ui_pattern_template",
+    "logic_pattern_template",
+    "component_contract_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "library_item_schema_v1"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated feature card for Feature Card Template.",
+      "name": "feature_card",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Keep the card machine-first and bounded; do not hide key decisions in prose-only notes.",
+    "Treat Feature Card Template as reusable only if its inputs, outputs, and failure modes are explicit."
+  ],
+  "known_failure_modes": [
+    "Feature Card Template becomes a junk-drawer card because the problem boundary is still vague.",
+    "Inputs or outputs are missing, so Dex has to invent behavior during implementation."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Feature Card Template",
+  "problem_solved": "Describe the reusable product problem that Feature Card Template solves.",
+  "required_inputs": [
+    {
+      "description": "Stable reusable feature name.",
+      "name": "feature_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Concise statement of the problem the feature solves.",
+      "name": "problem_boundary",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "feature_card_template",
+  "status": "template",
+  "summary": "Machine-first template for reusable feature cards.",
+  "tags": [
+    "feature_card",
+    "template"
+  ],
+  "template": true,
+  "type": "feature_card",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Feature Card Template is one-off glue with no reuse value.",
+    "Do not use when the problem or outputs are still too vague to capture structurally."
+  ],
+  "when_to_use": [
+    "Use when Feature Card Template is a reusable feature that should survive beyond one repo.",
+    "Use when Dex needs explicit problem boundaries, dependencies, and expected outputs."
+  ]
+}

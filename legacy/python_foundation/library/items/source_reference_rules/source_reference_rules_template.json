@@ -1,0 +1,88 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "teardown_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [],
+  "example_projects": [
+    "codex_shell",
+    "figma_study"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated source reference rules template for Source Reference Rules Template.",
+      "name": "source_reference_rules",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Keep the rules operational so Dex can tell what is allowed without human interpretation.",
+    "Explicitly forbid copying branding, proprietary copy, or protected assets."
+  ],
+  "known_failure_modes": [
+    "Source Reference Rules Template is too vague to constrain real reference extraction work.",
+    "The rule set forgets to forbid copying brand assets or proprietary copy."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Source Reference Rules Template",
+  "problem_solved": "Defines what Source Reference Rules Template may reference, adapt, or forbid when mining external sources.",
+  "required_inputs": [
+    {
+      "description": "Type of reference source being governed.",
+      "name": "source_kind",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Explicit boundaries for what may not be copied.",
+      "name": "copy_boundaries",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "source_reference_rules_template",
+  "source_reference_rules": {
+    "allowed_reference_types": [
+      "layout_structure",
+      "workflow_logic",
+      "navigation_model",
+      "state_patterns"
+    ],
+    "attribution_rules": [
+      "Record source product and purpose of the teardown or reference."
+    ],
+    "forbidden_copying": [
+      "branding",
+      "logos",
+      "illustrations",
+      "proprietary_copy",
+      "source_code"
+    ],
+    "review_triggers": [
+      "Escalate when a reference risks copying protected assets or distinctive branding."
+    ]
+  },
+  "status": "template",
+  "summary": "Machine-first template for reference and adaptation boundaries.",
+  "tags": [
+    "source_reference_rules",
+    "template"
+  ],
+  "template": true,
+  "type": "source_reference_rules",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Source Reference Rules Template tries to legalize direct copying of brand assets or proprietary code.",
+    "Do not use when the rule set is too vague for Dex to act on deterministically."
+  ],
+  "when_to_use": [
+    "Use when Source Reference Rules Template needs explicit rules for what reference material may be adapted or only studied.",
+    "Use when Dex should avoid copying protected branding, assets, or code."
+  ]
+}

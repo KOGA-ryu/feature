@@ -1,0 +1,47 @@
+{
+  "required_fields": [
+    {
+      "path": "manifest.id",
+      "value": "logic.validation_pipeline"
+    },
+    {
+      "path": "manifest.name",
+      "value": "validation_pipeline"
+    },
+    {
+      "path": "manifest.summary",
+      "value": "Structured validation pipeline for rule-based findings."
+    }
+  ],
+  "collections": [
+    {
+      "path": "manifest.tags",
+      "items": ["logic", "validation", "pipeline"]
+    },
+    {
+      "path": "manifest.inputs",
+      "items": ["required_fields", "timestamps"]
+    }
+  ],
+  "timestamps": [
+    {
+      "path": "manifest.created_at",
+      "value": "2026-04-26T00:00:00Z"
+    },
+    {
+      "path": "manifest.updated_at",
+      "value": "2026-04-26T00:00:00Z"
+    }
+  ],
+  "dependencies": ["feature_core"],
+  "compatible_features": [
+    "ui.command_palette",
+    "workflow.review_packet_flow"
+  ],
+  "available_dependencies": ["feature_core", "serde_json"],
+  "available_features": [
+    "ui.command_palette",
+    "ui.left_rail",
+    "workflow.review_packet_flow"
+  ]
+}

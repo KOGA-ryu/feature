@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "id": "workspace_home",
+      "title": "Workspace Home",
+      "section": "Workspace",
+      "icon": "H",
+      "badge_count": null,
+      "enabled": true
+    },
+    {
+      "id": "feature_library",
+      "title": "Feature Library",
+      "section": "Workspace",
+      "icon": "L",
+      "badge_count": 4,
+      "enabled": true
+    },
+    {
+      "id": "review_queue",
+      "title": "Review Queue",
+      "section": "Build",
+      "icon": "R",
+      "badge_count": 2,
+      "enabled": true
+    },
+    {
+      "id": "artifact_store",
+      "title": "Artifact Store",
+      "section": "Build",
+      "icon": "A",
+      "badge_count": 7,
+      "enabled": false
+    },
+    {
+      "id": "activity_history",
+      "title": "Activity History",
+      "section": "History",
+      "icon": "T",
+      "badge_count": null,
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "ui_pattern_template",
+    "app_archetype_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "source_reference_rules_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "figma_study"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated teardown template for Teardown Template.",
+      "name": "teardown",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Extract reusable layout, state, and workflow decisions instead of copying a product's surface style wholesale.",
+    "Always pair teardown notes with source-reference rules to reduce copying drift."
+  ],
+  "known_failure_modes": [
+    "Teardown Template collapses into screenshots and vibes instead of reusable extracted decisions.",
+    "Source boundaries are unclear, so copied assets slip in with the teardown."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Teardown Template",
+  "problem_solved": "Captures reusable decisions from Teardown Template without cloning branding or assets.",
+  "required_inputs": [
+    {
+      "description": "Product or site being studied.",
+      "name": "source_product",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Which reusable decisions the teardown must extract.",
+      "name": "capture_scope",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "teardown_template",
+  "status": "template",
+  "summary": "Machine-first template for extracting reusable decisions from reference products.",
+  "tags": [
+    "teardown",
+    "template"
+  ],
+  "teardown": {
+    "capture_fields": [
+      {
+        "description": "Describe pane structure and hierarchy.",
+        "name": "layout",
+        "required": true
+      },
+      {
+        "description": "Describe how users move through the product.",
+        "name": "navigation_model",
+        "required": true
+      },
+      {
+        "description": "Describe selection, collapse, and inspector behavior.",
+        "name": "state_behavior",
+        "required": true
+      },
+      {
+        "description": "Describe how preferences are organized.",
+        "name": "settings_structure",
+        "required": true
+      }
+    ],
+    "do_not_copy": [
+      "List branding, copy, visual assets, or code that must not be copied."
+    ],
+    "reusable_decisions": [
+      "Describe one reusable decision extracted from the teardown."
+    ],
+    "source_reference_rules": [
+      "Reference the rule set that governs this teardown."
+    ]
+  },
+  "template": true,
+  "type": "teardown",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Teardown Template is just a screenshot dump with no reusable decisions extracted.",
+    "Do not use when source-reference rules are unclear and copying risk is unresolved."
+  ],
+  "when_to_use": [
+    "Use when Teardown Template should be dissected into reusable workflow and layout decisions.",
+    "Use when Dex needs reference mining without cargo-culting whole products."
+  ]
+}

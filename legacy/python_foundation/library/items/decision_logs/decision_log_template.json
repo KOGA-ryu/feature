@@ -1,0 +1,100 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "spec_sheet_template",
+    "feature_card_template"
+  ],
+  "complexity": "medium",
+  "decision_log": {
+    "decision_fields": [
+      {
+        "description": "State the decision.",
+        "name": "decision",
+        "required": true
+      },
+      {
+        "description": "State why the decision was made.",
+        "name": "reason",
+        "required": true
+      },
+      {
+        "description": "List rejected alternatives.",
+        "name": "alternatives_rejected",
+        "required": true
+      },
+      {
+        "description": "State when the decision should be revisited.",
+        "name": "reversal_condition",
+        "required": true
+      }
+    ],
+    "evidence_expectations": [
+      "Each entry should reference the feature, project, and affected surfaces."
+    ],
+    "reversal_conditions": [
+      "A real blocker appears, or new evidence invalidates the original choice."
+    ]
+  },
+  "dependencies": [
+    "review_packet_template"
+  ],
+  "example_projects": [
+    "skynet_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated decision log template for Decision Log Template.",
+      "name": "decision_log",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Record the reason and reversal condition in the same artifact so future agents can audit the choice.",
+    "Rejected alternatives matter; otherwise the log becomes decorative metadata."
+  ],
+  "known_failure_modes": [
+    "Decision Log Template records the decision but not the reason, so future agents reverse it casually.",
+    "No reversal condition is captured, so the log cannot age gracefully."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Decision Log Template",
+  "problem_solved": "Prevents architectural archaeology when Decision Log Template changes over time.",
+  "required_inputs": [
+    {
+      "description": "The choice being locked.",
+      "name": "decision",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Meaningful rejected alternatives.",
+      "name": "alternatives_rejected",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "decision_log_template",
+  "status": "template",
+  "summary": "Machine-first template for durable design decisions.",
+  "tags": [
+    "decision_log",
+    "template"
+  ],
+  "template": true,
+  "type": "decision_log",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Decision Log Template is trivial and no meaningful alternative or reversal condition exists.",
+    "Do not use when a locked project-level decision log already captures the same choice."
+  ],
+  "when_to_use": [
+    "Use when Decision Log Template introduces a choice that future agents might otherwise unknowingly reverse.",
+    "Use when the reason, rejected alternatives, and reversal condition need to remain queryable."
+  ]
+}

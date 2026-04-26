@@ -1,0 +1,49 @@
+{
+  "commands": [
+    {
+      "id": "toggle_right_inspector",
+      "title": "Toggle Right Inspector",
+      "subtitle": "Show or hide the detail panel",
+      "category": "View",
+      "keywords": ["inspector", "details", "panel"],
+      "enabled": true,
+      "shortcut": "Cmd+I"
+    },
+    {
+      "id": "open_settings",
+      "title": "Open Settings",
+      "subtitle": "Adjust workspace behavior",
+      "category": "Workspace",
+      "keywords": ["preferences", "config", "options"],
+      "enabled": true,
+      "shortcut": "Cmd+,"
+    },
+    {
+      "id": "open_review_queue",
+      "title": "Open Review Queue",
+      "subtitle": "Jump to pending review work",
+      "category": "Review",
+      "keywords": ["approval", "packets", "triage"],
+      "enabled": true,
+      "shortcut": "Cmd+Shift+R"
+    },
+    {
+      "id": "export_snapshot",
+      "title": "Export Snapshot",
+      "subtitle": "Create a captured output artifact",
+      "category": "Artifacts",
+      "keywords": ["png", "capture", "image"],
+      "enabled": false,
+      "shortcut": null
+    },
+    {
+      "id": "open_activity_stream",
+      "title": "Open Activity Stream",
+      "subtitle": "Inspect recent workspace events",
+      "category": "View",
+      "keywords": ["telemetry", "events", "history"],
+      "enabled": true,
+      "shortcut": "Cmd+Shift+A"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "feature_card_template",
+    "component_contract_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "feature_card_template"
+  ],
+  "example_projects": [
+    "codex_shell",
+    "automation_dashboard"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated logic pattern for Logic Pattern Template.",
+      "name": "logic_pattern_card",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Capture invariants and failure signals before implementation details drift across repos.",
+    "Prefer deterministic state and error boundaries over ambient side effects."
+  ],
+  "known_failure_modes": [
+    "Logic Pattern Template is treated as generic infrastructure even though product rules are embedded inside it.",
+    "Failure modes are undocumented, so validation and retries diverge between repos."
+  ],
+  "languages": [],
+  "logic_pattern": {
+    "data_flow": [
+      "Describe the ordered data flow through the pattern."
+    ],
+    "extension_points": [
+      "Describe where the pattern is safe to extend without breaking contract."
+    ],
+    "failure_signals": [
+      "Describe how the pattern reports invalid input or downstream failure."
+    ],
+    "invariants": [
+      "Describe one invariant the implementation must preserve."
+    ],
+    "trigger_points": [
+      "Describe where the pattern starts or is invoked."
+    ]
+  },
+  "logic_patterns": [
+    "pipeline_template"
+  ],
+  "name": "Logic Pattern Template",
+  "problem_solved": "Explain the repeatable plumbing or control-flow problem that Logic Pattern Template solves.",
+  "required_inputs": [
+    {
+      "description": "Where the pattern enters the system.",
+      "name": "trigger_points",
+      "required": true,
+      "type": "string_list"
+    },
+    {
+      "description": "Rules the implementation must preserve.",
+      "name": "invariants",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "logic_pattern_template",
+  "status": "template",
+  "summary": "Machine-first template for reusable logic pattern cards.",
+  "tags": [
+    "logic_pattern",
+    "template"
+  ],
+  "template": true,
+  "type": "logic_pattern",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Logic Pattern Template hides product-specific rules that belong in a dedicated feature module.",
+    "Do not use when a linear local function is enough and no reuse seam exists."
+  ],
+  "when_to_use": [
+    "Use when Logic Pattern Template is repeatable plumbing that appears across projects.",
+    "Use when Dex needs stable logic seams for validators, queues, state machines, or indexing."
+  ]
+}

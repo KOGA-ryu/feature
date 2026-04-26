@@ -1,0 +1,14 @@
+[package]
+name = "feature_lab_ui"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+activity_stream = { path = "../../feature_packs/ui/activity_stream" }
+command_palette = { path = "../../feature_packs/ui/command_palette" }
+eframe.workspace = true
+feature_registry = { path = "../feature_registry" }
+feature_runner = { path = "../feature_runner" }
+left_rail = { path = "../../feature_packs/ui/left_rail" }
+serde_json.workspace = true
+validation_pipeline = { path = "../../feature_packs/logic/validation_pipeline" }

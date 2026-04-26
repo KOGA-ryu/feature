@@ -1,0 +1,590 @@
+{
+  "$defs": {
+    "app_archetype": {
+      "required": [
+        "intent",
+        "primary_surfaces",
+        "primary_workflows",
+        "suggested_patterns",
+        "suggested_logic",
+        "common_risks"
+      ],
+      "type": "object"
+    },
+    "app_idea_intake": {
+      "required": [
+        "capture_fields",
+        "required_constraints",
+        "output_targets"
+      ],
+      "type": "object"
+    },
+    "build_recipe": {
+      "required": [
+        "recipe_goal",
+        "uses_features",
+        "uses_ui_patterns",
+        "uses_logic_patterns",
+        "outputs",
+        "guardrails"
+      ],
+      "type": "object"
+    },
+    "component_contract": {
+      "required": [
+        "props_needed",
+        "state_needed",
+        "events_emitted",
+        "empty_state",
+        "loading_state",
+        "error_state",
+        "keyboard_behavior",
+        "responsive_behavior",
+        "accessibility_rules",
+        "test_cases"
+      ],
+      "type": "object"
+    },
+    "decision_log": {
+      "required": [
+        "decision_fields",
+        "reversal_conditions",
+        "evidence_expectations"
+      ],
+      "type": "object"
+    },
+    "dex_prompt": {
+      "required": [
+        "prompt_kinds",
+        "required_fields",
+        "acceptance_rules",
+        "forbidden_work"
+      ],
+      "type": "object"
+    },
+    "folder_skeleton": {
+      "required": [
+        "root",
+        "directories",
+        "files",
+        "first_vertical_slice"
+      ],
+      "type": "object"
+    },
+    "input_field": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "required",
+        "description"
+      ],
+      "type": "object"
+    },
+    "logic_pattern": {
+      "required": [
+        "trigger_points",
+        "data_flow",
+        "invariants",
+        "extension_points",
+        "failure_signals"
+      ],
+      "type": "object"
+    },
+    "output_field": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "description"
+      ],
+      "type": "object"
+    },
+    "review_packet": {
+      "required": [
+        "sections",
+        "required_artifacts",
+        "merge_recommendation_values"
+      ],
+      "type": "object"
+    },
+    "source_reference_rules": {
+      "required": [
+        "allowed_reference_types",
+        "forbidden_copying",
+        "attribution_rules",
+        "review_triggers"
+      ],
+      "type": "object"
+    },
+    "spec_sheet": {
+      "required": [
+        "sections",
+        "required_decisions",
+        "acceptance_gates",
+        "forbidden_drift"
+      ],
+      "type": "object"
+    },
+    "teardown": {
+      "required": [
+        "capture_fields",
+        "reusable_decisions",
+        "do_not_copy",
+        "source_reference_rules"
+      ],
+      "type": "object"
+    },
+    "ui_pattern": {
+      "required": [
+        "why_exists",
+        "data_needs",
+        "layout_regions",
+        "interaction_notes",
+        "accessibility_notes"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "library_item_schema_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ui_pattern"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "ui_pattern"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "logic_pattern"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "logic_pattern"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "component_contract"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "component_contract"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "app_archetype"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "app_archetype"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "build_recipe"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "build_recipe"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "spec_sheet"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "spec_sheet"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "dex_prompt"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "dex_prompt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "review_packet_template"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "review_packet"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "decision_log"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "decision_log"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "teardown"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "teardown"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "source_reference_rules"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "source_reference_rules"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "app_idea_intake"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "app_idea_intake"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "folder_skeleton"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "folder_skeleton"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "app_archetype": {
+      "$ref": "#/$defs/app_archetype"
+    },
+    "app_archetypes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "app_idea_intake": {
+      "$ref": "#/$defs/app_idea_intake"
+    },
+    "build_recipe": {
+      "$ref": "#/$defs/build_recipe"
+    },
+    "compatible_features": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "complexity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "component_contract": {
+      "$ref": "#/$defs/component_contract"
+    },
+    "decision_log": {
+      "$ref": "#/$defs/decision_log"
+    },
+    "dependencies": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "dex_prompt": {
+      "$ref": "#/$defs/dex_prompt"
+    },
+    "example_projects": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "expected_outputs": {
+      "items": {
+        "$ref": "#/$defs/output_field"
+      },
+      "type": "array"
+    },
+    "folder_skeleton": {
+      "$ref": "#/$defs/folder_skeleton"
+    },
+    "frameworks": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "implementation_notes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "known_failure_modes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "languages": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "logic_pattern": {
+      "$ref": "#/$defs/logic_pattern"
+    },
+    "logic_patterns": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "problem_solved": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "required_inputs": {
+      "items": {
+        "$ref": "#/$defs/input_field"
+      },
+      "type": "array"
+    },
+    "reusability": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "review_packet": {
+      "$ref": "#/$defs/review_packet"
+    },
+    "risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "schema_version": {
+      "const": "feature_library_item.v1"
+    },
+    "slug": {
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "source_reference_rules": {
+      "$ref": "#/$defs/source_reference_rules"
+    },
+    "spec_sheet": {
+      "$ref": "#/$defs/spec_sheet"
+    },
+    "status": {
+      "enum": [
+        "template",
+        "draft",
+        "tested",
+        "stable",
+        "experimental",
+        "deprecated"
+      ]
+    },
+    "summary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "teardown": {
+      "$ref": "#/$defs/teardown"
+    },
+    "template": {
+      "type": "boolean"
+    },
+    "type": {
+      "enum": [
+        "feature_card",
+        "ui_pattern",
+        "logic_pattern",
+        "component_contract",
+        "app_archetype",
+        "build_recipe",
+        "spec_sheet",
+        "dex_prompt",
+        "review_packet_template",
+        "decision_log",
+        "teardown",
+        "source_reference_rules",
+        "app_idea_intake",
+        "folder_skeleton"
+      ]
+    },
+    "ui_pattern": {
+      "$ref": "#/$defs/ui_pattern"
+    },
+    "ui_surfaces": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "when_not_to_use": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "when_to_use": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "name",
+    "slug",
+    "type",
+    "template",
+    "status",
+    "summary",
+    "problem_solved",
+    "when_to_use",
+    "when_not_to_use",
+    "required_inputs",
+    "expected_outputs",
+    "dependencies",
+    "compatible_features",
+    "implementation_notes",
+    "known_failure_modes",
+    "example_projects",
+    "tags",
+    "ui_surfaces",
+    "logic_patterns",
+    "app_archetypes",
+    "languages",
+    "frameworks",
+    "complexity",
+    "reusability",
+    "risk"
+  ],
+  "title": "Dex Feature Library Item",
+  "type": "object"
+}

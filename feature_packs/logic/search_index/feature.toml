@@ -1,0 +1,17 @@
+id = "logic.search_index"
+name = "search_index"
+kind = "logic_pattern"
+status = "experimental"
+summary = "In-memory search index for library items with simple query and metadata filters."
+tags = ["logic", "search", "index", "discovery", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.validation_pipeline", "ui.command_palette", "ui.activity_stream", "workflow.review_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["search_items", "query", "filters"]
+
+[outputs]
+items = ["search_results", "result_count", "applied_filters"]

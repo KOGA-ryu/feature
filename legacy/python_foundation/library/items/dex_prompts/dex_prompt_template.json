@@ -1,0 +1,108 @@
+{
+  "app_archetypes": [],
+  "compatible_features": [
+    "review_packet_template",
+    "spec_sheet_template"
+  ],
+  "complexity": "medium",
+  "dependencies": [
+    "spec_sheet_template"
+  ],
+  "dex_prompt": {
+    "acceptance_rules": [
+      "Every prompt should define files, checks, and bounded outcomes."
+    ],
+    "forbidden_work": [
+      "Do not spill into adjacent features or repos without being asked."
+    ],
+    "prompt_kinds": [
+      "repo_skeleton",
+      "ui_fixture_prototype",
+      "component_build",
+      "logic_module",
+      "test_hardening",
+      "review_pass"
+    ],
+    "required_fields": [
+      {
+        "description": "State the exact task goal.",
+        "name": "goal",
+        "required": true
+      },
+      {
+        "description": "State the allowed paths and responsibility boundary.",
+        "name": "scope",
+        "required": true
+      },
+      {
+        "description": "State what done looks like.",
+        "name": "acceptance",
+        "required": true
+      },
+      {
+        "description": "State what the agent must not touch.",
+        "name": "forbidden_work",
+        "required": true
+      }
+    ]
+  },
+  "example_projects": [
+    "codex_shell",
+    "wiki_browser"
+  ],
+  "expected_outputs": [
+    {
+      "description": "Validated Dex prompt template for Dex Prompt Template.",
+      "name": "dex_prompt",
+      "type": "library_item"
+    }
+  ],
+  "frameworks": [],
+  "implementation_notes": [
+    "Prompt templates should define exact scope, acceptance, and forbidden work rather than motivational prose.",
+    "Keep prompts short enough that Dex can act, not reinterpret a novel."
+  ],
+  "known_failure_modes": [
+    "Dex Prompt Template still requires heroic interpretation because acceptance criteria are weak.",
+    "Forbidden work is absent, so prompt-driven edits drift into adjacent lanes."
+  ],
+  "languages": [],
+  "logic_patterns": [],
+  "name": "Dex Prompt Template",
+  "problem_solved": "Defines bounded prompt structure so Dex Prompt Template can drive narrow Dex or Codex tasks.",
+  "required_inputs": [
+    {
+      "description": "Prompt type such as skeleton, component, logic, test, or review.",
+      "name": "task_kind",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "description": "Non-negotiable outcomes the prompt must enforce.",
+      "name": "acceptance_criteria",
+      "required": true,
+      "type": "string_list"
+    }
+  ],
+  "reusability": "high",
+  "risk": "low",
+  "schema_version": "feature_library_item.v1",
+  "slug": "dex_prompt_template",
+  "status": "template",
+  "summary": "Machine-first template for bounded Dex or Codex prompts.",
+  "tags": [
+    "dex_prompt",
+    "template"
+  ],
+  "template": true,
+  "type": "dex_prompt",
+  "ui_surfaces": [],
+  "when_not_to_use": [
+    "Do not use when Dex Prompt Template would still require heroic interpretation from Dex.",
+    "Do not use when the prompt cannot yet state acceptance criteria or forbidden work."
+  ],
+  "when_to_use": [
+    "Use when Dex Prompt Template should produce bounded implementation prompts instead of monster briefs.",
+    "Use when Dex needs explicit scope, allowed files, acceptance criteria, and forbidden work."
+  ]
+}

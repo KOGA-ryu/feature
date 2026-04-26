@@ -1,0 +1,10 @@
+[package]
+name = "packet_archive_index"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+packet_archive_writer = { path = "../packet_archive_writer" }
+serde.workspace = true
+serde_json.workspace = true

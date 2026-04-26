@@ -1,0 +1,17 @@
+id = "workflow.packet_archive_index"
+name = "packet_archive_index"
+kind = "workflow"
+status = "experimental"
+summary = "Indexes archived packet waves and reports archive completeness for fresh ChatGPT or Dex handoff."
+tags = ["workflow", "packet", "archive", "index", "chatgpt", "codex_reference"]
+dependencies = ["feature_core", "workflow.packet_archive_writer"]
+compatible_features = ["workflow.packet_archive_writer", "workflow.feature_wave_packet_flow", "workflow.feature_build_packet_flow", "workflow.lineage_tracker"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["archive_root"]
+
+[outputs]
+items = ["packet_archive_index_report", "archived_wave_summaries", "archive_findings"]

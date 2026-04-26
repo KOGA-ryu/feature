@@ -19,6 +19,7 @@ members = [
   "feature_packs/ui/right_inspector",
   "feature_packs/ui/theme_editor",
   "feature_packs/workflows/feature_build_packet_flow",
+  "feature_packs/workflows/packet_archive_writer",
   "feature_packs/workflows/feature_wave_packet_flow",
   "feature_packs/workflows/feature_extraction_flow",
   "feature_packs/workflows/lineage_tracker",

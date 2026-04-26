@@ -2317,6 +2317,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "packet_archive_writer"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "feature_wave_packet_flow",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "parking"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

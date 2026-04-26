@@ -1,0 +1,62 @@
+{
+  "app_idea": {
+    "product_intent": "Build a local-first theme workbench for feature previews.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "selected_features": [
+      {
+        "feature_id": "ui.right_inspector",
+        "kind": "ui",
+        "summary": "Persistent right-side detail panel."
+      },
+      {
+        "feature_id": "ui.theme_editor",
+        "kind": "ui",
+        "summary": "Compact theme editor with live semantic token preview."
+      }
+    ],
+    "data_models": [
+      "theme_config",
+      "selection_context"
+    ],
+    "first_vertical_slice": [
+      "Open a selected object.",
+      "Edit theme controls beside it."
+    ],
+    "out_of_scope": [
+      "No persistence layer yet."
+    ]
+  },
+  "reuse_inputs": [
+    {
+      "feature_id": "ui.right_inspector",
+      "status": "experimental",
+      "usage_count": 1,
+      "has_tests": true,
+      "has_docs": true,
+      "has_examples": false,
+      "has_fixtures": true,
+      "reviewed_recently": false,
+      "failure_count": 1
+    },
+    {
+      "feature_id": "ui.theme_editor",
+      "status": "stable",
+      "usage_count": 2,
+      "has_tests": true,
+      "has_docs": true,
+      "has_examples": true,
+      "has_fixtures": true,
+      "reviewed_recently": true,
+      "failure_count": 0
+    }
+  ],
+  "compatibility_rules": [
+    {
+      "left_feature_id": "ui.right_inspector",
+      "right_feature_id": "ui.theme_editor",
+      "status": "incompatible",
+      "rationale": "Two competing right-side editing surfaces overload the same layout slot."
+    }
+  ],
+  "minimum_score": 20
+}

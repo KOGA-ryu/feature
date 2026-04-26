@@ -1,0 +1,42 @@
+{
+  "app_idea": {
+    "product_intent": "Build a local-first feature planning console for reusable Rust features.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "selected_features": [
+      {
+        "feature_id": "ui.left_rail",
+        "kind": "ui",
+        "summary": "Navigation rail for feature packs and operational views."
+      },
+      {
+        "feature_id": "logic.search_index",
+        "kind": "logic",
+        "summary": "In-memory metadata search for reusable feature discovery."
+      }
+    ],
+    "data_models": [
+      "feature_item"
+    ],
+    "first_vertical_slice": [
+      "List feature packs."
+    ],
+    "out_of_scope": [
+      "No remote sync."
+    ]
+  },
+  "reuse_inputs": [
+    {
+      "feature_id": "ui.left_rail",
+      "status": "tested",
+      "usage_count": 2,
+      "has_tests": true,
+      "has_docs": true,
+      "has_examples": false,
+      "has_fixtures": true,
+      "reviewed_recently": true,
+      "failure_count": 1
+    }
+  ],
+  "compatibility_rules": [],
+  "minimum_score": 25
+}

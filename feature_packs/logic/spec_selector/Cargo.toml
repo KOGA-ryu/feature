@@ -1,0 +1,12 @@
+[package]
+name = "spec_selector"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+compatibility_matrix = { path = "../compatibility_matrix" }
+feature_core = { path = "../../../crates/feature_core" }
+reuse_score = { path = "../reuse_score" }
+serde.workspace = true
+serde_json.workspace = true
+spec_generator = { path = "../spec_generator" }

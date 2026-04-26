@@ -1,0 +1,17 @@
+id = "logic.spec_selector"
+name = "spec_selector"
+kind = "logic_pattern"
+status = "experimental"
+summary = "Selection pass that filters and orders candidate features using reuse scoring and explicit compatibility before spec generation."
+tags = ["logic", "selection", "spec", "compatibility", "reuse", "codex_reference"]
+dependencies = ["feature_core", "logic.spec_generator", "logic.compatibility_matrix", "logic.reuse_score"]
+compatible_features = ["logic.spec_generator", "logic.prompt_generator", "logic.compatibility_matrix", "logic.reuse_score", "workflow.lineage_tracker"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["app_idea", "reuse_inputs", "compatibility_rules", "minimum_score"]
+
+[outputs]
+items = ["generated_spec", "compatibility_report", "reuse_report", "selection_decisions"]

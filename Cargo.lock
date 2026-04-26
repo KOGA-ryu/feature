@@ -2317,6 +2317,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "packet_archive_index"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "packet_archive_writer",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "packet_archive_writer"
 version = "0.1.0"
 dependencies = [

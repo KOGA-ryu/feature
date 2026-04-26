@@ -1,0 +1,73 @@
+{
+  "target_kind": "integrator",
+  "spec": {
+    "product_intent": "Build the assembly slice for the Rust feature lab.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "required_surfaces": [],
+    "selected_patterns": [
+      "workflow.feature_extraction_flow"
+    ],
+    "selected_logic": [
+      "logic.spec_generator",
+      "logic.prompt_generator"
+    ],
+    "selected_workflows": [
+      "workflow.feature_extraction_flow"
+    ],
+    "data_models": [
+      "generated_spec",
+      "prompt_packet",
+      "extraction_packet"
+    ],
+    "folder_structure": [
+      "Cargo.toml",
+      "README.md",
+      "docs/contract.md",
+      "docs/roadmap.md",
+      "docs/decisions.md",
+      "src/app/",
+      "src/components/",
+      "src/features/",
+      "src/lib/",
+      "src/data/",
+      "src/schemas/",
+      "tests/"
+    ],
+    "first_vertical_slice": [
+      "Generate one app spec.",
+      "Generate one worker prompt.",
+      "Extract one reusable feature packet."
+    ],
+    "out_of_scope": [
+      "No wiki browser UI."
+    ],
+    "dex_prompt_seed": "Build the assembly slice for the Rust feature lab. Use selected features in the declared order.",
+    "review_checklist": [
+      "Generated spec contains every required section.",
+      "Selected feature order is preserved."
+    ],
+    "selected_features": [
+      {
+        "feature_id": "logic.spec_generator",
+        "kind": "logic",
+        "summary": "Deterministic app spec assembly."
+      },
+      {
+        "feature_id": "logic.prompt_generator",
+        "kind": "logic",
+        "summary": "Bounded Dex task prompt generation."
+      },
+      {
+        "feature_id": "workflow.feature_extraction_flow",
+        "kind": "workflow",
+        "summary": "Reusable feature extraction from completed work."
+      }
+    ]
+  },
+  "target_feature_id": null,
+  "wave_feature_ids": [
+    "logic.spec_generator",
+    "logic.prompt_generator",
+    "workflow.feature_extraction_flow"
+  ]
+}

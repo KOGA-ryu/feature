@@ -1,0 +1,11 @@
+[package]
+name = "feature_build_packet_flow"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+prompt_generator = { path = "../../logic/prompt_generator" }
+serde.workspace = true
+serde_json.workspace = true
+spec_selector = { path = "../../logic/spec_selector" }

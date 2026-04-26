@@ -1,0 +1,211 @@
+{
+  "project": "features",
+  "branch_name": "codex/theme-foundation-cleanup",
+  "selection_result": {
+    "generated_spec": {
+      "product_intent": "Build a local-first feature planning console for reusable Rust features.",
+      "audience": "Solo builder orchestrating Dex feature work.",
+      "required_surfaces": [
+        "ui.left_rail"
+      ],
+      "selected_patterns": [
+        "ui.left_rail",
+        "workflow.review_packet_flow"
+      ],
+      "selected_logic": [
+        "logic.search_index"
+      ],
+      "selected_workflows": [
+        "workflow.review_packet_flow"
+      ],
+      "data_models": [
+        "feature_item",
+        "review_packet",
+        "prompt_packet"
+      ],
+      "folder_structure": [
+        "Cargo.toml",
+        "README.md",
+        "docs/contract.md",
+        "docs/roadmap.md",
+        "docs/decisions.md",
+        "src/app/",
+        "src/components/",
+        "src/features/",
+        "src/lib/",
+        "src/data/",
+        "src/schemas/",
+        "tests/"
+      ],
+      "first_vertical_slice": [
+        "List feature packs.",
+        "Open one feature detail.",
+        "Generate one worker prompt.",
+        "Emit one review packet."
+      ],
+      "out_of_scope": [
+        "No remote sync.",
+        "No multi-Dex monitor yet."
+      ],
+      "dex_prompt_seed": "Build for a solo builder: feature planning console with selected reusable features.",
+      "review_checklist": [
+        "Generated spec contains every required section.",
+        "Selected feature order is preserved.",
+        "Folder structure matches feature-lab conventions.",
+        "First vertical slice is bounded and testable.",
+        "Out-of-scope items remain explicit."
+      ],
+      "selected_features": [
+        {
+          "feature_id": "ui.left_rail",
+          "kind": "ui",
+          "summary": "Navigation rail for feature packs and operational views."
+        },
+        {
+          "feature_id": "logic.search_index",
+          "kind": "logic",
+          "summary": "In-memory metadata search for reusable feature discovery."
+        },
+        {
+          "feature_id": "workflow.review_packet_flow",
+          "kind": "workflow",
+          "summary": "Structured review packet handoff after each task."
+        }
+      ]
+    },
+    "compatibility_report": {
+      "pairings": [
+        {
+          "left_feature_id": "ui.left_rail",
+          "right_feature_id": "logic.search_index",
+          "status": "compatible",
+          "rationale": "Navigation and search reinforce feature discovery."
+        },
+        {
+          "left_feature_id": "ui.left_rail",
+          "right_feature_id": "workflow.review_packet_flow",
+          "status": "compatible",
+          "rationale": "Navigation context helps route review work."
+        },
+        {
+          "left_feature_id": "logic.search_index",
+          "right_feature_id": "workflow.review_packet_flow",
+          "status": "risky",
+          "rationale": "Search shortcuts can expose review artifacts before workflow context is visible."
+        }
+      ],
+      "missing_rules": [],
+      "compatible_pairs": [
+        "ui.left_rail + logic.search_index",
+        "ui.left_rail + workflow.review_packet_flow"
+      ],
+      "risky_pairs": [
+        "logic.search_index + workflow.review_packet_flow"
+      ],
+      "incompatible_pairs": [],
+      "findings": []
+    },
+    "reuse_report": {
+      "cards": [
+        {
+          "feature_id": "logic.search_index",
+          "score": 100,
+          "band": "preferred",
+          "reasons": [
+            "status stable (+40)",
+            "usage count bonus (+32)",
+            "tests evidence (+15)",
+            "docs evidence (+10)",
+            "examples evidence (+10)",
+            "fixtures evidence (+5)",
+            "recent review (+10)"
+          ]
+        },
+        {
+          "feature_id": "workflow.review_packet_flow",
+          "score": 61,
+          "band": "high",
+          "reasons": [
+            "status tested (+25)",
+            "usage count bonus (+16)",
+            "tests evidence (+15)",
+            "docs evidence (+10)",
+            "fixtures evidence (+5)",
+            "recent review (+10)",
+            "failure penalty (-5)"
+          ]
+        },
+        {
+          "feature_id": "ui.left_rail",
+          "score": 51,
+          "band": "high",
+          "reasons": [
+            "status tested (+25)",
+            "usage count bonus (+16)",
+            "tests evidence (+15)",
+            "docs evidence (+10)",
+            "fixtures evidence (+5)",
+            "recent review (+10)",
+            "failure penalty (-5)"
+          ]
+        }
+      ],
+      "findings": []
+    },
+    "decisions": [
+      {
+        "feature_id": "ui.left_rail",
+        "selected": true,
+        "score": 51,
+        "band": "high",
+        "reasons": [
+          "Reuse score 51 (high) with reasons: status tested (+25), usage count bonus (+16), tests evidence (+15), docs evidence (+10), fixtures evidence (+5), recent review (+10), failure penalty (-5)"
+        ]
+      },
+      {
+        "feature_id": "logic.search_index",
+        "selected": true,
+        "score": 100,
+        "band": "preferred",
+        "reasons": [
+          "Reuse score 100 (preferred) with reasons: status stable (+40), usage count bonus (+32), tests evidence (+15), docs evidence (+10), examples evidence (+10), fixtures evidence (+5), recent review (+10)"
+        ]
+      },
+      {
+        "feature_id": "workflow.review_packet_flow",
+        "selected": true,
+        "score": 61,
+        "band": "high",
+        "reasons": [
+          "Reuse score 61 (high) with reasons: status tested (+25), usage count bonus (+16), tests evidence (+15), docs evidence (+10), fixtures evidence (+5), recent review (+10), failure penalty (-5)",
+          "Risky pairing with logic.search_index: Search shortcuts can expose review artifacts before workflow context is visible."
+        ]
+      },
+      {
+        "feature_id": "ui.command_palette",
+        "selected": false,
+        "score": 12,
+        "band": "low",
+        "reasons": [
+          "Excluded because score 12 is below minimum 25."
+        ]
+      }
+    ],
+    "selected_feature_ids": [
+      "ui.left_rail",
+      "logic.search_index",
+      "workflow.review_packet_flow"
+    ],
+    "rejected_feature_ids": [
+      "ui.command_palette"
+    ],
+    "findings": [
+      {
+        "severity": "warning",
+        "code": "missing_rule",
+        "path": "logic.search_index + workflow.review_packet_flow",
+        "message": "No explicit compatibility rule exists for this feature pair."
+      }
+    ]
+  }
+}

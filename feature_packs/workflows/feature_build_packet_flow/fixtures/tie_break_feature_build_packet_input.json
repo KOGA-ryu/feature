@@ -1,0 +1,135 @@
+{
+  "project": "features",
+  "branch_name": "codex/theme-foundation-cleanup",
+  "selection_result": {
+    "generated_spec": {
+      "product_intent": "Build a compact planning shell for Rust feature work.",
+      "audience": "Solo builder orchestrating Dex feature work.",
+      "required_surfaces": [
+        "ui.left_rail",
+        "ui.activity_stream"
+      ],
+      "selected_patterns": [
+        "ui.left_rail",
+        "ui.activity_stream"
+      ],
+      "selected_logic": [],
+      "selected_workflows": [],
+      "data_models": [
+        "feature_item",
+        "activity_event"
+      ],
+      "folder_structure": [
+        "Cargo.toml",
+        "README.md",
+        "docs/contract.md",
+        "docs/roadmap.md",
+        "docs/decisions.md",
+        "src/app/",
+        "src/components/",
+        "src/features/",
+        "src/lib/",
+        "src/data/",
+        "src/schemas/",
+        "tests/"
+      ],
+      "first_vertical_slice": [
+        "Show navigation.",
+        "Show recent activity."
+      ],
+      "out_of_scope": [
+        "No multi-pane editor yet."
+      ],
+      "dex_prompt_seed": "Build for a solo builder: compact planning shell.",
+      "review_checklist": [
+        "Generated spec contains every required section."
+      ],
+      "selected_features": [
+        {
+          "feature_id": "ui.left_rail",
+          "kind": "ui",
+          "summary": "Navigation rail for feature packs and operational views."
+        },
+        {
+          "feature_id": "ui.activity_stream",
+          "kind": "ui",
+          "summary": "Chronological activity stream state."
+        }
+      ]
+    },
+    "compatibility_report": {
+      "pairings": [
+        {
+          "left_feature_id": "ui.left_rail",
+          "right_feature_id": "ui.activity_stream",
+          "status": "compatible",
+          "rationale": "Navigation and activity history complement each other."
+        }
+      ],
+      "missing_rules": [],
+      "compatible_pairs": [
+        "ui.left_rail + ui.activity_stream"
+      ],
+      "risky_pairs": [],
+      "incompatible_pairs": [],
+      "findings": []
+    },
+    "reuse_report": {
+      "cards": [
+        {
+          "feature_id": "ui.left_rail",
+          "score": 60,
+          "band": "high",
+          "reasons": [
+            "status tested (+25)",
+            "usage count bonus (+16)",
+            "tests evidence (+15)",
+            "docs evidence (+10)",
+            "fixtures evidence (+5)",
+            "failure penalty (-11)"
+          ]
+        },
+        {
+          "feature_id": "ui.activity_stream",
+          "score": 60,
+          "band": "high",
+          "reasons": [
+            "status tested (+25)",
+            "usage count bonus (+16)",
+            "tests evidence (+15)",
+            "docs evidence (+10)",
+            "fixtures evidence (+5)",
+            "failure penalty (-11)"
+          ]
+        }
+      ],
+      "findings": []
+    },
+    "decisions": [
+      {
+        "feature_id": "ui.left_rail",
+        "selected": true,
+        "score": 60,
+        "band": "high",
+        "reasons": [
+          "Reuse score 60 (high) with reasons: stable navigation surface."
+        ]
+      },
+      {
+        "feature_id": "ui.activity_stream",
+        "selected": true,
+        "score": 60,
+        "band": "high",
+        "reasons": [
+          "Reuse score 60 (high) with reasons: stable activity surface."
+        ]
+      }
+    ],
+    "selected_feature_ids": [
+      "ui.left_rail",
+      "ui.activity_stream"
+    ],
+    "rejected_feature_ids": [],
+    "findings": []
+  }
+}

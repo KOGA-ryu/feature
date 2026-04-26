@@ -1,0 +1,17 @@
+id = "workflow.feature_build_packet_flow"
+name = "feature_build_packet_flow"
+kind = "workflow"
+status = "experimental"
+summary = "Single-feature packet bundle generation from spec selection results."
+tags = ["workflow", "prompt", "selection", "build", "codex_reference"]
+dependencies = ["feature_core", "logic.spec_selector", "logic.prompt_generator"]
+compatible_features = ["logic.spec_selector", "logic.prompt_generator", "workflow.lineage_tracker"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["project", "branch_name", "selection_result"]
+
+[outputs]
+items = ["feature_build_packet_bundle", "feature_build_packet_validation", "worker_packet", "integrator_packet", "reviewer_packet"]

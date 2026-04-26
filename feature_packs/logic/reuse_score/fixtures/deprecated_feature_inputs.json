@@ -1,0 +1,13 @@
+[
+  {
+    "feature_id": "ui.legacy_theme_picker",
+    "status": "deprecated",
+    "usage_count": 2,
+    "has_tests": true,
+    "has_docs": true,
+    "has_examples": false,
+    "has_fixtures": true,
+    "reviewed_recently": false,
+    "failure_count": 0
+  }
+]

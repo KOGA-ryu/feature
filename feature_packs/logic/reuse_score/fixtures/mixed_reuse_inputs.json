@@ -1,0 +1,35 @@
+[
+  {
+    "feature_id": "logic.search_index",
+    "status": "stable",
+    "usage_count": 4,
+    "has_tests": true,
+    "has_docs": true,
+    "has_examples": true,
+    "has_fixtures": true,
+    "reviewed_recently": true,
+    "failure_count": 0
+  },
+  {
+    "feature_id": "workflow.review_packet_flow",
+    "status": "tested",
+    "usage_count": 2,
+    "has_tests": true,
+    "has_docs": true,
+    "has_examples": false,
+    "has_fixtures": true,
+    "reviewed_recently": true,
+    "failure_count": 1
+  },
+  {
+    "feature_id": "ui.right_inspector",
+    "status": "experimental",
+    "usage_count": 1,
+    "has_tests": true,
+    "has_docs": true,
+    "has_examples": false,
+    "has_fixtures": true,
+    "reviewed_recently": false,
+    "failure_count": 1
+  }
+]

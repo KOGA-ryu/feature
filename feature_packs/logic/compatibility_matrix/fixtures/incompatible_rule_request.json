@@ -1,0 +1,14 @@
+{
+  "selected_feature_ids": [
+    "ui.theme_editor",
+    "ui.right_inspector"
+  ],
+  "rules": [
+    {
+      "left_feature_id": "ui.theme_editor",
+      "right_feature_id": "ui.right_inspector",
+      "status": "incompatible",
+      "rationale": "Two competing right-side detail surfaces overload the same layout slot."
+    }
+  ]
+}

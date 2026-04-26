@@ -1,0 +1,27 @@
+{
+  "selected_feature_ids": [
+    "ui.command_palette",
+    "ui.left_rail",
+    "workflow.review_packet_flow"
+  ],
+  "rules": [
+    {
+      "left_feature_id": "ui.left_rail",
+      "right_feature_id": "ui.command_palette",
+      "status": "compatible",
+      "rationale": "Navigation rail and command palette reinforce discoverability."
+    },
+    {
+      "left_feature_id": "ui.command_palette",
+      "right_feature_id": "workflow.review_packet_flow",
+      "status": "risky",
+      "rationale": "Palette shortcuts can outpace workflow state if review actions are exposed too early."
+    },
+    {
+      "left_feature_id": "workflow.review_packet_flow",
+      "right_feature_id": "ui.left_rail",
+      "status": "compatible",
+      "rationale": "Review workflow benefits from persistent navigation context."
+    }
+  ]
+}

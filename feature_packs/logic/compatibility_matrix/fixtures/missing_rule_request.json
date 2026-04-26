@@ -1,0 +1,21 @@
+{
+  "selected_feature_ids": [
+    "ui.left_rail",
+    "ui.activity_stream",
+    "workflow.review_packet_flow"
+  ],
+  "rules": [
+    {
+      "left_feature_id": "ui.left_rail",
+      "right_feature_id": "ui.activity_stream",
+      "status": "compatible",
+      "rationale": "Navigation context and activity history complement each other."
+    },
+    {
+      "left_feature_id": "ui.activity_stream",
+      "right_feature_id": "workflow.review_packet_flow",
+      "status": "compatible",
+      "rationale": "Activity history helps explain workflow state changes."
+    }
+  ]
+}

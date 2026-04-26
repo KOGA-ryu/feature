@@ -1,6 +1,7 @@
 use eframe::egui;
 use feature_registry::{FeatureRegistry, RegisteredFeature, default_workspace_root};
 use feature_runner::{open_path_in_file_browser, run_feature_tests};
+use theme_editor::ThemeEditor;
 
 use crate::panels::{activity_log, demo_panel, feature_detail, feature_list, test_runner};
 
@@ -49,6 +50,8 @@ pub struct FeatureLabApp {
     pub(crate) left_rail_demo_selected_index: usize,
     pub(crate) left_rail_demo_collapsed: bool,
     pub(crate) left_rail_last_activation: String,
+    pub(crate) theme_editor_demo: ThemeEditor,
+    pub(crate) theme_editor_last_action: String,
 }
 
 impl FeatureLabApp {
@@ -76,6 +79,8 @@ impl FeatureLabApp {
                     left_rail_demo_selected_index: 0,
                     left_rail_demo_collapsed: false,
                     left_rail_last_activation: "No navigation item activated yet.".into(),
+                    theme_editor_demo: ThemeEditor::default(),
+                    theme_editor_last_action: "No theme action yet.".into(),
                 }
             }
             Err(error) => Self {
@@ -95,6 +100,8 @@ impl FeatureLabApp {
                 left_rail_demo_selected_index: 0,
                 left_rail_demo_collapsed: false,
                 left_rail_last_activation: "No navigation item activated yet.".into(),
+                theme_editor_demo: ThemeEditor::default(),
+                theme_editor_last_action: "No theme action yet.".into(),
             },
         }
     }

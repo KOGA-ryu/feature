@@ -1,0 +1,10 @@
+{
+  "mode": "dark",
+  "accent": "#FF66D4",
+  "background": "#181A20",
+  "foreground": "#E8ECF4",
+  "contrast": 84,
+  "translucent_sidebar": true,
+  "ui_font": "Geist",
+  "code_font": "Geist Mono"
+}

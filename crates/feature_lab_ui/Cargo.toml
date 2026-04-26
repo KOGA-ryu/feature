@@ -11,4 +11,5 @@ feature_registry = { path = "../feature_registry" }
 feature_runner = { path = "../feature_runner" }
 left_rail = { path = "../../feature_packs/ui/left_rail" }
 serde_json.workspace = true
+theme_editor = { path = "../../feature_packs/ui/theme_editor" }
 validation_pipeline = { path = "../../feature_packs/logic/validation_pipeline" }

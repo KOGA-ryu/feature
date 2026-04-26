@@ -12,6 +12,7 @@ members = [
   "feature_packs/ui/command_palette",
   "feature_packs/ui/left_rail",
   "feature_packs/ui/right_inspector",
+  "feature_packs/ui/theme_editor",
 ]
 resolver = "2"
 

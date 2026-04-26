@@ -1,0 +1,135 @@
+{
+  "wave_label": "planning_wave_a",
+  "overwrite_existing": false,
+  "wave_bundle": {
+    "project": "features",
+    "branch_name": "codex/theme-foundation-cleanup",
+    "max_workers": 2,
+    "wave_feature_ids": [
+      "ui.left_rail",
+      "logic.search_index"
+    ],
+    "worker_bundles": [
+      {
+        "feature_id": "ui.left_rail",
+        "selection_reason": "Chosen for navigation coverage.",
+        "packet": {
+          "target_kind": "feature_worker",
+          "title": "Feature Worker Packet: ui.left_rail",
+          "prompt_text": "Implement ui.left_rail.\nKeep the crate isolated.",
+          "verification_commands": [
+            "cargo test --manifest-path /Users/kogaryu/dev/features/feature_packs/ui/left_rail/Cargo.toml",
+            "cargo run -p feature_cli -- show ui.left_rail",
+            "cargo run -p feature_cli -- test ui.left_rail"
+          ],
+          "allowed_writes": [
+            "/Users/kogaryu/dev/features/feature_packs/ui/left_rail/**"
+          ],
+          "forbidden_writes": [
+            "/Users/kogaryu/dev/features/Cargo.toml",
+            "/Users/kogaryu/dev/features/Cargo.lock",
+            "/Users/kogaryu/dev/features/crates/**"
+          ]
+        }
+      },
+      {
+        "feature_id": "logic.search_index",
+        "selection_reason": "Chosen for searchable metadata coverage.",
+        "packet": {
+          "target_kind": "feature_worker",
+          "title": "Feature Worker Packet: logic.search_index",
+          "prompt_text": "Implement logic.search_index.\nDo not touch shared files.",
+          "verification_commands": [
+            "cargo test --manifest-path /Users/kogaryu/dev/features/feature_packs/logic/search_index/Cargo.toml",
+            "cargo run -p feature_cli -- show logic.search_index",
+            "cargo run -p feature_cli -- test logic.search_index"
+          ],
+          "allowed_writes": [
+            "/Users/kogaryu/dev/features/feature_packs/logic/search_index/**"
+          ],
+          "forbidden_writes": [
+            "/Users/kogaryu/dev/features/Cargo.toml",
+            "/Users/kogaryu/dev/features/Cargo.lock",
+            "/Users/kogaryu/dev/features/crates/**"
+          ]
+        }
+      }
+    ],
+    "integrator_packet": {
+      "target_kind": "integrator",
+      "title": "Integrator Packet: Planning Wave A",
+      "prompt_text": "Integrate the completed wave.\nFeatures to integrate:\n- ui.left_rail\n- logic.search_index",
+      "verification_commands": [
+        "cargo fmt --all --check",
+        "cargo test --workspace",
+        "cargo run -p feature_cli -- list"
+      ],
+      "allowed_writes": [
+        "/Users/kogaryu/dev/features/Cargo.toml",
+        "/Users/kogaryu/dev/features/Cargo.lock"
+      ],
+      "forbidden_writes": [
+        "/Users/kogaryu/dev/features/crates/feature_lab_ui/**",
+        "/Users/kogaryu/dev/features/crates/feature_registry/**"
+      ]
+    },
+    "reviewer_packet": {
+      "target_kind": "reviewer",
+      "title": "Reviewer Packet: Planning Wave A",
+      "prompt_text": "Review the integrated wave.\nDo not modify files.",
+      "verification_commands": [
+        "cargo fmt --all --check",
+        "cargo test --workspace",
+        "cargo run -p feature_cli -- show ui.left_rail",
+        "cargo run -p feature_cli -- show logic.search_index",
+        "cargo run -p feature_cli -- test ui.left_rail",
+        "cargo run -p feature_cli -- test logic.search_index",
+        "cargo run -p feature_lab_ui"
+      ],
+      "allowed_writes": [],
+      "forbidden_writes": [
+        "all repo files"
+      ]
+    },
+    "lane_assignments": [
+      {
+        "lane_name": "lane_01",
+        "feature_id": "ui.left_rail",
+        "allowed_writes": [
+          "/Users/kogaryu/dev/features/feature_packs/ui/left_rail/**"
+        ],
+        "forbidden_writes": [
+          "/Users/kogaryu/dev/features/Cargo.toml",
+          "/Users/kogaryu/dev/features/Cargo.lock",
+          "/Users/kogaryu/dev/features/crates/**"
+        ]
+      },
+      {
+        "lane_name": "lane_02",
+        "feature_id": "logic.search_index",
+        "allowed_writes": [
+          "/Users/kogaryu/dev/features/feature_packs/logic/search_index/**"
+        ],
+        "forbidden_writes": [
+          "/Users/kogaryu/dev/features/Cargo.toml",
+          "/Users/kogaryu/dev/features/Cargo.lock",
+          "/Users/kogaryu/dev/features/crates/**"
+        ]
+      }
+    ],
+    "deferred_feature_ids": [
+      "workflow.review_packet_flow"
+    ],
+    "rejected_feature_ids": [
+      "ui.command_palette"
+    ],
+    "upstream_findings": [
+      {
+        "severity": "warning",
+        "code": "missing_rule",
+        "path": "logic.search_index + workflow.review_packet_flow",
+        "message": "No explicit compatibility rule exists for this feature pair."
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+id = "workflow.packet_archive_writer"
+name = "packet_archive_writer"
+kind = "workflow"
+status = "experimental"
+summary = "Writes launch-ready packet wave archives for ChatGPT or Dex coding windows."
+tags = ["workflow", "packet", "archive", "chatgpt", "wave", "codex_reference"]
+dependencies = ["feature_core", "workflow.feature_wave_packet_flow"]
+compatible_features = ["workflow.feature_wave_packet_flow", "workflow.feature_build_packet_flow", "workflow.review_packet_flow", "workflow.lineage_tracker"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["wave_label", "overwrite_existing", "wave_bundle"]
+
+[outputs]
+items = ["packet_archive_write_report", "packet_archive_validation", "wave_manifest", "worker_files", "integrator_file", "reviewer_file"]

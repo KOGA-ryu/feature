@@ -1,0 +1,10 @@
+[package]
+name = "packet_archive_writer"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+feature_wave_packet_flow = { path = "../feature_wave_packet_flow" }
+serde.workspace = true
+serde_json.workspace = true

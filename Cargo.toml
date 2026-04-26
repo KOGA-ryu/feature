@@ -8,6 +8,7 @@ members = [
   "feature_packs/logic/search_index",
   "feature_packs/logic/compatibility_matrix",
   "feature_packs/logic/spec_generator",
+  "feature_packs/logic/spec_selector",
   "feature_packs/logic/prompt_generator",
   "feature_packs/logic/reuse_score",
   "feature_packs/logic/theme_token_generator",

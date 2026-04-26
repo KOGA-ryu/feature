@@ -13,3 +13,8 @@ left_rail = { path = "../../feature_packs/ui/left_rail" }
 serde_json.workspace = true
 theme_editor = { path = "../../feature_packs/ui/theme_editor" }
 validation_pipeline = { path = "../../feature_packs/logic/validation_pipeline" }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6.4"
+objc2-app-kit = { version = "0.3.2", features = ["NSColor", "NSWindow", "NSView"] }
+raw-window-handle = "0.6.2"

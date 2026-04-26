@@ -1,6 +1,7 @@
 use activity_stream::sample_stream;
 use command_palette::sample_palette;
 use eframe::egui;
+use feature_registry::RegisteredFeature;
 use left_rail::sample_rail;
 use theme_editor::{
     ThemeMode, ThemePreset, sample_invalid_fixture, sample_light_fixture,
@@ -13,7 +14,8 @@ use validation_pipeline::{
 use crate::app::FeatureLabApp;
 
 pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
-    ui.heading("Demo / Documentation");
+    ui.heading("Workbench");
+    ui.small("Live demo surfaces, contract context, and preview assets.");
     ui.separator();
 
     let Some(feature) = app.selected_feature() else {
@@ -21,72 +23,109 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
         return;
     };
 
-    ui.heading(&feature.manifest.name);
-    ui.label(&feature.manifest.summary);
-    ui.add_space(8.0);
+    egui::ScrollArea::vertical()
+        .id_salt("workbench_scroll")
+        .auto_shrink([false, false])
+        .show(ui, |ui| {
+            hero_card(ui, &feature);
+            ui.add_space(12.0);
 
-    if feature.manifest.id == "logic.validation_pipeline" {
-        show_validation_pipeline_demo(ui, app);
-        ui.add_space(12.0);
-    } else if feature.manifest.id == "ui.activity_stream" {
-        show_activity_stream_demo(ui, app);
-        ui.add_space(12.0);
-    } else if feature.manifest.id == "ui.command_palette" {
-        show_command_palette_demo(ui, app);
-        ui.add_space(12.0);
-    } else if feature.manifest.id == "ui.left_rail" {
-        show_left_rail_demo(ui, app);
-        ui.add_space(12.0);
-    } else if feature.manifest.id == "ui.theme_editor" {
-        show_theme_editor_demo(ui, app);
-        ui.add_space(12.0);
-    } else if feature.manifest.id == "ui.right_inspector" {
-        ui.group(|ui| {
-            ui.strong("Demo placeholder");
-            ui.label("This feature represents a persistent right-side inspector.");
-            ui.label("Expected actions:");
-            for action in [
-                "inspect selected object",
-                "show linked artifacts",
-                "surface contextual actions",
-            ] {
-                ui.label(format!("- {action}"));
-            }
-        });
-        ui.add_space(12.0);
-    }
+            section_card(
+                ui,
+                "Demo bench",
+                if has_live_demo(&feature.manifest.id) {
+                    "Interactive feature-specific harness wired into the lab."
+                } else {
+                    "Documentation-driven preview for a reusable feature without a dedicated live harness yet."
+                },
+                |ui| {
+                    if feature.manifest.id == "logic.validation_pipeline" {
+                        show_validation_pipeline_demo(ui, app);
+                    } else if feature.manifest.id == "ui.activity_stream" {
+                        show_activity_stream_demo(ui, app);
+                    } else if feature.manifest.id == "ui.command_palette" {
+                        show_command_palette_demo(ui, app);
+                    } else if feature.manifest.id == "ui.left_rail" {
+                        show_left_rail_demo(ui, app);
+                    } else if feature.manifest.id == "ui.theme_editor" {
+                        show_theme_editor_demo(ui, app);
+                    } else if feature.manifest.id == "ui.right_inspector" {
+                        ui.strong("Right inspector placeholder");
+                        ui.label("Persistent right-side detail panel for the current selection.");
+                        ui.add_space(6.0);
+                        for action in [
+                            "Inspect selected object identity and metadata",
+                            "Show linked artifacts and related context",
+                            "Surface contextual actions for the current selection",
+                        ] {
+                            ui.label(format!("• {action}"));
+                        }
+                    } else {
+                        ui.label("No live demo surface is wired for this feature yet.");
+                    }
+                },
+            );
 
-    egui::CollapsingHeader::new("README preview")
-        .default_open(true)
-        .show(ui, |ui| match feature.readme_text() {
-            Ok(readme) => {
-                egui::ScrollArea::vertical()
-                    .max_height(260.0)
-                    .show(ui, |ui| {
-                        ui.monospace(readme);
-                    });
-            }
-            Err(error) => {
-                ui.label(error.to_string());
-            }
-        });
+            ui.add_space(12.0);
+            section_card(
+                ui,
+                "README preview",
+                "Human-facing contract and implementation notes from the feature crate.",
+                |ui| match feature.readme_text() {
+                    Ok(readme) => {
+                        ui.small(
+                            egui::RichText::new(
+                                feature.feature_dir.join("README.md").display().to_string(),
+                            )
+                            .monospace()
+                            .color(egui::Color32::from_gray(170)),
+                        );
+                        ui.add_space(6.0);
+                        egui::ScrollArea::vertical()
+                            .max_height(260.0)
+                            .show(ui, |ui| {
+                                ui.monospace(readme);
+                            });
+                    }
+                    Err(error) => {
+                        ui.label(error.to_string());
+                    }
+                },
+            );
 
-    egui::CollapsingHeader::new("Fixture preview")
-        .default_open(true)
-        .show(ui, |ui| match feature.first_fixture_preview() {
-            Ok(Some(fixture)) => {
-                egui::ScrollArea::vertical()
-                    .max_height(220.0)
-                    .show(ui, |ui| {
-                        ui.monospace(fixture);
-                    });
-            }
-            Ok(None) => {
-                ui.label("No fixture files found.");
-            }
-            Err(error) => {
-                ui.label(error.to_string());
-            }
+            ui.add_space(12.0);
+            section_card(
+                ui,
+                "Fixture preview",
+                "First available sample payload from the feature crate fixtures directory.",
+                |ui| match feature.first_fixture_preview() {
+                    Ok(Some(fixture)) => {
+                        ui.small(
+                            egui::RichText::new(
+                                feature
+                                    .feature_dir
+                                    .join("fixtures")
+                                    .display()
+                                    .to_string(),
+                            )
+                            .monospace()
+                            .color(egui::Color32::from_gray(170)),
+                        );
+                        ui.add_space(6.0);
+                        egui::ScrollArea::vertical()
+                            .max_height(220.0)
+                            .show(ui, |ui| {
+                                ui.monospace(fixture);
+                            });
+                    }
+                    Ok(None) => {
+                        ui.label("No fixture files found.");
+                    }
+                    Err(error) => {
+                        ui.label(error.to_string());
+                    }
+                },
+            );
         });
 }
 
@@ -814,5 +853,184 @@ fn color_from_hex(raw: &str, fallback: egui::Color32) -> egui::Color32 {
     match (red, green, blue) {
         (Some(red), Some(green), Some(blue)) => egui::Color32::from_rgb(red, green, blue),
         _ => fallback,
+    }
+}
+
+fn hero_card(ui: &mut egui::Ui, feature: &RegisteredFeature) {
+    let interactive_label = if has_live_demo(&feature.manifest.id) {
+        "interactive bench"
+    } else {
+        "documentation preview"
+    };
+
+    egui::Frame::group(ui.style())
+        .fill(egui::Color32::from_rgba_unmultiplied(255, 255, 255, 10))
+        .stroke(egui::Stroke::new(
+            1.0,
+            egui::Color32::from_rgba_unmultiplied(255, 255, 255, 28),
+        ))
+        .corner_radius(18.0)
+        .inner_margin(egui::Margin::symmetric(18, 16))
+        .show(ui, |ui| {
+            ui.horizontal_wrapped(|ui| {
+                ui.vertical(|ui| {
+                    ui.heading(&feature.manifest.name);
+                    ui.small(egui::RichText::new(&feature.manifest.id).monospace());
+                });
+                ui.add_space(12.0);
+                status_chip(
+                    ui,
+                    &feature.manifest.kind.to_string(),
+                    kind_color(&feature.manifest.id),
+                );
+                status_chip(
+                    ui,
+                    &feature.manifest.status.to_string(),
+                    lifecycle_color(&feature.manifest.status.to_string()),
+                );
+                status_chip(
+                    ui,
+                    interactive_label,
+                    egui::Color32::from_rgb(176, 197, 255),
+                );
+            });
+
+            ui.add_space(10.0);
+            ui.label(&feature.manifest.summary);
+            ui.add_space(10.0);
+
+            ui.horizontal_wrapped(|ui| {
+                metric_tile(
+                    ui,
+                    "tags",
+                    feature.manifest.tags.len(),
+                    egui::Color32::from_rgb(126, 188, 255),
+                );
+                metric_tile(
+                    ui,
+                    "deps",
+                    feature.manifest.dependencies.len(),
+                    egui::Color32::from_rgb(255, 201, 110),
+                );
+                metric_tile(
+                    ui,
+                    "inputs",
+                    feature.manifest.inputs.items.len(),
+                    egui::Color32::from_rgb(126, 217, 140),
+                );
+                metric_tile(
+                    ui,
+                    "outputs",
+                    feature.manifest.outputs.items.len(),
+                    egui::Color32::from_rgb(220, 168, 255),
+                );
+                metric_tile(
+                    ui,
+                    "compatible",
+                    feature.manifest.compatible_features.len(),
+                    egui::Color32::from_rgb(255, 150, 195),
+                );
+            });
+
+            if !feature.manifest.tags.is_empty() {
+                ui.add_space(10.0);
+                ui.small(egui::RichText::new("Tags").strong());
+                ui.add_space(4.0);
+                ui.horizontal_wrapped(|ui| {
+                    for tag in &feature.manifest.tags {
+                        status_chip(ui, tag, egui::Color32::from_rgb(180, 188, 204));
+                    }
+                });
+            }
+        });
+}
+
+fn section_card(
+    ui: &mut egui::Ui,
+    title: &str,
+    subtitle: &str,
+    add_contents: impl FnOnce(&mut egui::Ui),
+) {
+    egui::Frame::group(ui.style())
+        .fill(egui::Color32::from_rgba_unmultiplied(255, 255, 255, 8))
+        .stroke(egui::Stroke::new(
+            1.0,
+            egui::Color32::from_rgba_unmultiplied(255, 255, 255, 22),
+        ))
+        .corner_radius(16.0)
+        .inner_margin(egui::Margin::symmetric(16, 14))
+        .show(ui, |ui| {
+            ui.strong(title);
+            ui.small(subtitle);
+            ui.add_space(10.0);
+            add_contents(ui);
+        });
+}
+
+fn status_chip(ui: &mut egui::Ui, text: &str, color: egui::Color32) {
+    egui::Frame::new()
+        .fill(egui::Color32::from_rgba_unmultiplied(
+            color.r(),
+            color.g(),
+            color.b(),
+            22,
+        ))
+        .stroke(egui::Stroke::new(1.0, color))
+        .corner_radius(999.0)
+        .inner_margin(egui::Margin::symmetric(10, 5))
+        .show(ui, |ui| {
+            ui.small(egui::RichText::new(text).color(color).strong());
+        });
+}
+
+fn metric_tile(ui: &mut egui::Ui, label: &str, value: usize, color: egui::Color32) {
+    egui::Frame::new()
+        .fill(egui::Color32::from_rgba_unmultiplied(255, 255, 255, 8))
+        .stroke(egui::Stroke::new(
+            1.0,
+            egui::Color32::from_rgba_unmultiplied(255, 255, 255, 18),
+        ))
+        .corner_radius(14.0)
+        .inner_margin(egui::Margin::symmetric(12, 10))
+        .show(ui, |ui| {
+            ui.small(egui::RichText::new(label).color(color).strong());
+            ui.label(
+                egui::RichText::new(value.to_string())
+                    .heading()
+                    .color(color),
+            );
+        });
+}
+
+fn has_live_demo(feature_id: &str) -> bool {
+    matches!(
+        feature_id,
+        "logic.validation_pipeline"
+            | "ui.activity_stream"
+            | "ui.command_palette"
+            | "ui.left_rail"
+            | "ui.theme_editor"
+    )
+}
+
+fn kind_color(feature_id: &str) -> egui::Color32 {
+    if feature_id.starts_with("ui.") {
+        egui::Color32::from_rgb(126, 188, 255)
+    } else if feature_id.starts_with("logic.") {
+        egui::Color32::from_rgb(255, 201, 110)
+    } else if feature_id.starts_with("workflow.") {
+        egui::Color32::from_rgb(177, 150, 255)
+    } else {
+        egui::Color32::from_gray(190)
+    }
+}
+
+fn lifecycle_color(status: &str) -> egui::Color32 {
+    match status {
+        "stable" => egui::Color32::from_rgb(126, 217, 140),
+        "tested" => egui::Color32::from_rgb(126, 188, 255),
+        "experimental" => egui::Color32::from_rgb(255, 201, 110),
+        "deprecated" => egui::Color32::from_rgb(255, 133, 133),
+        _ => egui::Color32::from_gray(190),
     }
 }

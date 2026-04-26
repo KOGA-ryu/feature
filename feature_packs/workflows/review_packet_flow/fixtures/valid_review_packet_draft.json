@@ -1,0 +1,38 @@
+{
+  "task_id": "task.theme-editor-demo",
+  "project": "features",
+  "feature_id": "ui.theme_editor",
+  "generated_at": "2026-04-26T12:00:00Z",
+  "goal": "Add the ui.theme_editor feature and a minimal harness demo.",
+  "files_changed": [
+    "feature_packs/ui/theme_editor/src/lib.rs",
+    "feature_packs/ui/theme_editor/tests/contract_tests.rs",
+    "crates/feature_lab_ui/src/panels/demo_panel.rs"
+  ],
+  "commands_run": [
+    "cargo fmt --all --check",
+    "cargo test --workspace",
+    "cargo run -p feature_cli -- test ui.theme_editor"
+  ],
+  "tests_run": [
+    {
+      "command": "cargo test --workspace",
+      "status": "passed",
+      "details": "workspace tests passed after theme editor integration"
+    },
+    {
+      "command": "cargo run -p feature_cli -- test ui.theme_editor",
+      "status": "passed",
+      "details": "theme_editor feature tests passed"
+    }
+  ],
+  "risks": [
+    "No persistence layer yet for saved themes."
+  ],
+  "known_issues": [],
+  "follow_up_tasks": [
+    "Implement workflow.review_packet_flow visual inspector later.",
+    "Add clipboard integration for exported themes."
+  ],
+  "merge_recommendation": "merge_with_followups"
+}

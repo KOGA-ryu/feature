@@ -13,6 +13,7 @@ members = [
   "feature_packs/ui/left_rail",
   "feature_packs/ui/right_inspector",
   "feature_packs/ui/theme_editor",
+  "feature_packs/workflows/review_packet_flow",
 ]
 resolver = "2"
 

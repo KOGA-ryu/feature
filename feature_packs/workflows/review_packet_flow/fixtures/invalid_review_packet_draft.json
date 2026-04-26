@@ -1,0 +1,18 @@
+{
+  "task_id": "task.incomplete-review-packet",
+  "project": "features",
+  "feature_id": "workflow.review_packet_flow",
+  "generated_at": "2026-04-26 12:00:00",
+  "goal": "   ",
+  "files_changed": [],
+  "commands_run": null,
+  "tests_run": [
+    {
+      "command": "",
+      "status": "failed",
+      "details": ""
+    }
+  ],
+  "risks": null,
+  "follow_up_tasks": null
+}

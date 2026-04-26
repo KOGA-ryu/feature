@@ -1,0 +1,17 @@
+id = "workflow.review_packet_flow"
+name = "review_packet_flow"
+kind = "workflow"
+status = "experimental"
+summary = "Structured review packet workflow for task summaries, required sections, and merge recommendations."
+tags = ["workflow", "review_packet", "reporting", "handoff", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.validation_pipeline", "logic.search_index", "workflow.feature_extraction_flow", "ui.activity_stream"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["task_metadata", "review_packet_draft", "files_changed", "commands_run", "tests_run", "merge_recommendation"]
+
+[outputs]
+items = ["review_packet", "review_packet_validation", "merge_recommendation"]

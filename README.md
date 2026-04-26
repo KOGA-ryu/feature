@@ -38,3 +38,11 @@ cargo run -p feature_cli -- show ui.right_inspector
 cargo run -p feature_cli -- test ui.right_inspector
 cargo run -p feature_lab_ui
 ```
+
+## ChatGPT Coding Windows
+
+Use these when opening a fresh ChatGPT coding window against this repo:
+
+- [AGENTS.md](/Users/kogaryu/dev/features/AGENTS.md)
+- [Bootstrap Packet](/Users/kogaryu/dev/features/docs/chatgpt_coding_window_bootstrap.md)
+- [Feature Packets](/Users/kogaryu/dev/features/docs/chatgpt_feature_packets.md)

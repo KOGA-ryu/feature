@@ -1,0 +1,11 @@
+[package]
+name = "feature_extraction_flow"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+review_packet_flow = { path = "../review_packet_flow" }
+serde.workspace = true
+serde_json.workspace = true
+spec_generator = { path = "../../logic/spec_generator" }

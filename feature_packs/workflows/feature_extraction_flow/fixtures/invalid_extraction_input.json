@@ -1,0 +1,73 @@
+{
+  "feature_id": "ui.theme_editor",
+  "generated_spec": {
+    "product_intent": "Build a reusable theme editor for the Rust feature lab.",
+    "audience": "Solo builder orchestrating Dex feature work.",
+    "required_surfaces": [
+      "ui.theme_editor"
+    ],
+    "selected_patterns": [
+      "ui.theme_editor"
+    ],
+    "selected_logic": [
+      "logic.theme_token_generator"
+    ],
+    "selected_workflows": [
+      "workflow.review_packet_flow"
+    ],
+    "data_models": [
+      "theme_config",
+      "theme_tokens",
+      "review_packet"
+    ],
+    "folder_structure": [
+      "Cargo.toml",
+      "README.md"
+    ],
+    "first_vertical_slice": [
+      "Edit accent."
+    ],
+    "out_of_scope": [
+      "No persistence layer yet."
+    ],
+    "dex_prompt_seed": "Build theme editor.",
+    "review_checklist": [
+      "Preview uses derived tokens only."
+    ],
+    "selected_features": [
+      {
+        "feature_id": "ui.theme_editor",
+        "kind": "ui",
+        "summary": "Theme editor state and preview model."
+      }
+    ]
+  },
+  "review_packet": null,
+  "review_packet_draft": {
+    "task_id": "task.bad-review-packet",
+    "project": "features",
+    "feature_id": "ui.theme_editor",
+    "generated_at": "2026-04-26 12:00:00",
+    "goal": "",
+    "files_changed": [],
+    "commands_run": null,
+    "tests_run": [
+      {
+        "command": "",
+        "status": "failed",
+        "details": ""
+      }
+    ],
+    "risks": null,
+    "known_issues": null,
+    "follow_up_tasks": null,
+    "merge_recommendation": null
+  },
+  "files_changed": [
+    "feature_packs/ui/theme_editor/src/lib.rs"
+  ],
+  "reusable_discoveries": [],
+  "failure_notes": [
+    "Review packet was incomplete."
+  ]
+}

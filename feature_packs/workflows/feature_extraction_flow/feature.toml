@@ -1,0 +1,17 @@
+id = "workflow.feature_extraction_flow"
+name = "feature_extraction_flow"
+kind = "workflow"
+status = "experimental"
+summary = "Workflow for extracting reusable library artifacts from completed feature work."
+tags = ["workflow", "extraction", "library", "reuse", "codex_reference"]
+dependencies = ["feature_core", "workflow.review_packet_flow", "logic.spec_generator"]
+compatible_features = ["workflow.review_packet_flow", "logic.spec_generator", "logic.prompt_generator", "ui.activity_stream"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["feature_id", "generated_spec", "review_packet", "files_changed", "reusable_discoveries", "failure_notes"]
+
+[outputs]
+items = ["extraction_packet", "extraction_validation", "proposed_library_paths"]

@@ -1,5 +1,5 @@
 [package]
-name = "search_index"
+name = "theme_token_generator"
 version.workspace = true
 edition.workspace = true
 

@@ -1,0 +1,17 @@
+id = "logic.theme_token_generator"
+name = "theme_token_generator"
+kind = "logic_pattern"
+status = "experimental"
+summary = "Deterministic theme token derivation from compact user-owned theme config."
+tags = ["logic", "theme", "tokens", "appearance", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.theme_editor", "ui.left_rail", "ui.right_inspector", "ui.command_palette", "workflow.theme_import_export"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["theme_config", "theme_mode", "accent", "background", "foreground", "contrast", "translucent_sidebar"]
+
+[outputs]
+items = ["theme_tokens", "theme_validation_findings", "theme_generation_result"]

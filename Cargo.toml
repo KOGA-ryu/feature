@@ -5,6 +5,8 @@ members = [
   "crates/feature_cli",
   "crates/feature_lab_ui",
   "crates/feature_runner",
+  "feature_packs/logic/search_index",
+  "feature_packs/logic/theme_token_generator",
   "feature_packs/logic/validation_pipeline",
   "feature_packs/ui/activity_stream",
   "feature_packs/ui/command_palette",

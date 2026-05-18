@@ -1,0 +1,17 @@
+id = "ui.text_editor_actions"
+name = "text_editor_actions"
+kind = "ui_pattern"
+status = "tested"
+summary = "Headless text editor action registry with stable action ids, labels, icons, enabled rules, and deterministic dispatch over text_editor_plain."
+tags = ["subject:notes_and_productivity", "ui", "utility", "editor", "text", "actions", "command_registry"]
+dependencies = ["feature_core", "ui.text_editor_plain"]
+compatible_features = ["ui.text_editor_plain", "ui.command_palette", "ui.right_inspector", "ui.left_rail"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["editor_state", "text_action_id", "text_action_input"]
+
+[outputs]
+items = ["text_action_records", "text_action_output", "enabled_state"]

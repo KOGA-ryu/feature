@@ -103,8 +103,34 @@ host proof is marked `needs verification`.
   `text.copy_prompt_block`.
 - The default hotkey profile is Linux desktop editor unless a host profile
   overrides it.
-- The first graphical proof host is Qt.
+- The first graphical proof host is Qt, with `QPlainTextEdit` as the first
+  practical editor surface.
+- Qt consumes editor actions; Qt does not own editor behavior.
 - Terminal and web host proof come later.
+
+## Current Host Decision
+
+Decision:
+
+```text
+Core behavior lives in Rust/headless feature crates.
+Qt is the first desktop host.
+QPlainTextEdit is the first Qt text surface.
+Custom editor rendering is deferred.
+```
+
+Why:
+
+- `QPlainTextEdit` already solves native text input, selection, scrolling,
+  keyboard focus, and platform integration well enough for early proof.
+- Headless Rust crates keep copy/export/action behavior reusable by Dex Home,
+  feature-lab UI, future egui hosts, terminal helpers, and web surfaces.
+- A custom renderer would force us to own cursor math, IME, accessibility,
+  scrolling, hit testing, font metrics, and selection before the action system
+  has proven value.
+
+This means the first UI host should feel practical, but the reusable feature
+library must remain host-agnostic.
 
 ## Reference anchors
 

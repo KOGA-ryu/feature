@@ -1,0 +1,11 @@
+{
+  "actions": [
+    "text.copy_plain",
+    "text.copy_markdown_block",
+    "text.copy_prompt_block",
+    "text.select_all",
+    "text.current_line_text",
+    "text.line_range_text",
+    "text.trim_trailing_whitespace"
+  ]
+}

@@ -74,6 +74,46 @@ editor engine.
 Linux desktop hotkeys fit Qt proof better than terminal shortcuts because they
 avoid shell process-control conflicts.
 
+## Host Choice Decision
+
+The chosen shape is:
+
+```text
+Text editor core: Rust/headless feature crates
+First desktop host: Qt
+First Qt text surface: QPlainTextEdit
+Future hosts: egui, terminal, web, and native platform adapters as needed
+```
+
+Why this exists:
+
+- Qt already fits the Dex Home native desktop lane.
+- `QPlainTextEdit` gives us practical editing behavior without custom rendering.
+- Rust/headless crates keep behavior reusable outside Qt.
+- A host adapter can prove action rendering without owning the editor engine.
+
+Common failure mode:
+
+```text
+Qt button works -> behavior gets buried in clicked handler -> no other host can
+reuse it.
+```
+
+The host contract exists to prevent that failure. Qt should render and call
+`text.*` actions; it should not define the meaning of those actions.
+
+## Host Options And Current Policy
+
+| Host | Use | Current policy |
+| --- | --- | --- |
+| Qt + `QPlainTextEdit` | first native proof surface | first graphical host |
+| Qt + `QTextEdit` | rich text | defer unless rich text becomes the target |
+| Custom Qt widget | full editor rendering | defer until Track A engine work |
+| egui | Rust-native demos/tools | later adapter |
+| terminal TUI | keyboard-heavy helper | later adapter after conflict review |
+| web/CodeMirror/Monaco | browser or webview editor | later adapter |
+| native macOS/AppKit | Mac-only polish | not first because portability matters |
+
 ## Host Responsibilities
 
 Hosts own:
@@ -117,7 +157,7 @@ Every host adapter should render from action records:
 - `default_hotkeys` maps to host shortcuts
 - `enabled_rule` controls enabled state
 - `disabled_reason` explains disabled state when possible
-- `ui_placement` controls toolbar/menu/context placement
+- typed host placement metadata controls toolbar/menu/context placement
 
 ## Disabled Actions
 
@@ -177,6 +217,7 @@ Headless crates may operate on text provided by the host.
 - Do not hardcode icons in host code.
 - Do not implement formatting behavior in host widgets.
 - Do not assign host shortcuts outside hotkey profiles.
+- Do not invent local placement names outside the action registry vocabulary.
 - Do not call system clipboard APIs from headless crates.
 - Do not make unsupported actions look enabled.
 - Do not let a host silently reinterpret an action.

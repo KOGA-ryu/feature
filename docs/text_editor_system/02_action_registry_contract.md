@@ -126,6 +126,45 @@ tests
 Do not treat this as final Rust syntax yet. It is the required information
 contract.
 
+## Object Sheet Pattern
+
+Every reusable editor object should be documented before it is implemented.
+
+Use this shape:
+
+```text
+object:
+kind:
+purpose:
+why_this_exists:
+owned_by:
+used_by:
+functions:
+inputs:
+outputs:
+state_changed:
+undo_behavior:
+host_access:
+tests:
+acceptance:
+decision_notes:
+```
+
+This keeps the feature library from becoming a pile of functions with unclear
+ownership. The object sheet says what the thing is, what it owns, which actions
+it exposes, and which hosts are allowed to do with it.
+
+Example object:
+
+```text
+object: TextActionRegistry
+kind: action metadata and dispatch boundary
+purpose: expose editor commands through stable action records
+owned_by: text_editor_actions
+used_by: Qt host, egui host, command palette, tests, future AI packets
+state_changed: none except when an action explicitly routes to a mutating editor command
+```
+
 ## Required Fields
 
 ### `action_id`
@@ -251,6 +290,81 @@ input: selected_text_or_all + format_options
 output: formatted prompt block
 ```
 
+## First V1 Action Object
+
+The first implementation object is:
+
+```text
+object: TextActionRegistry
+kind: headless action catalog and execution boundary
+owned_by: text_editor_actions
+depends_on: text_editor_plain
+host_dependency: none
+```
+
+It starts with these actions only:
+
+```text
+text.copy_plain
+text.copy_markdown_block
+text.copy_prompt_block
+text.select_all
+text.current_line_text
+text.line_range_text
+text.trim_trailing_whitespace
+```
+
+Why these actions first:
+
+- they are useful immediately for prompt drafting, specs, notes, and receipts
+- they exercise metadata, hotkeys, icons, enabled rules, and output contracts
+- most are pure export actions, so they are easy to test exactly
+- `text.select_all` proves the registry can route a controlled mutating command
+  without becoming a UI toolkit
+
+What this object must not do:
+
+- call the system clipboard
+- create Qt, egui, terminal, or web widgets
+- own file I/O
+- invent new text-buffer behavior already owned by `text_editor_plain`
+- trigger cloud AI, local AI, or background automation
+
+Future AI automation may call these action IDs, but V1 action execution remains
+local, explicit, and deterministic.
+
+## First V1 Runtime Shape
+
+The first Rust shape should stay boring and inspectable:
+
+```text
+TextActionId
+TextActionRecord
+TextActionInput
+TextActionOutput
+TextEnabledRule
+TextUndoBehavior
+TextHostPlacement
+all_text_actions()
+parse_text_action_id()
+execute_text_action()
+```
+
+The registry should prefer deterministic enum dispatch over dynamic plugins in
+V1. Plugin registration, user-defined actions, macros, and AI-composed actions
+come later.
+
+Recommended V1 output rule:
+
+```text
+copy/export/line/cleanup actions return Text(String)
+select_all returns None and changes selection only
+disabled actions return Disabled with an action id and reason
+```
+
+The reason to return disabled output instead of panicking is simple: hosts and
+future agent calls need honest feedback when an action cannot run.
+
 ## Examples
 
 These examples show the expected level of detail for concrete actions.
@@ -307,14 +421,25 @@ acceptance: UI can call the action without knowing formatting internals
 
 ## Host Placement Metadata
 
-Every action should declare where it may appear:
+Every action should declare where it may appear.
 
-- command palette
-- menu
-- toolbar
-- context menu
-- status strip
-- right context panel
+V1 uses a typed placement vocabulary instead of raw strings:
+
+```text
+command_palette
+clipboard_menu
+context_menu
+toolbar
+edit_menu
+cleanup_menu
+```
+
+Why this is typed:
+
+- host adapters should not drift between names like `toolbar`, `tool_bar`, and
+  `top_toolbar`
+- tests can prove exact placement without string spelling mistakes
+- future hosts can map one stable enum to their own UI primitives
 
 Default rule:
 

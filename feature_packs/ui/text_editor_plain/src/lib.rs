@@ -152,6 +152,51 @@ impl TextEditorPlain {
         Some(self.slice_text(start, end).to_owned())
     }
 
+    pub fn selected_text_or_all(&self) -> String {
+        self.selected_text().unwrap_or_else(|| self.text.clone())
+    }
+
+    pub fn copy_plain(&self) -> String {
+        self.selected_text_or_all()
+    }
+
+    pub fn copy_markdown_block(&self, language: Option<&str>) -> String {
+        fenced_block(language.unwrap_or_default(), &self.selected_text_or_all())
+    }
+
+    pub fn copy_prompt_block(&self, source: Option<&str>) -> String {
+        let source = source
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("unknown");
+        format!(
+            "source: {source}\ncontent:\n{}",
+            fenced_block("text", &self.selected_text_or_all())
+        )
+    }
+
+    pub fn current_line_text(&self) -> String {
+        self.line_text(self.cursor().line).unwrap_or_default()
+    }
+
+    pub fn line_text(&self, index: usize) -> Option<String> {
+        self.lines().get(index).map(|value| (*value).to_owned())
+    }
+
+    pub fn line_range_text(&self, start: usize, end_inclusive: usize) -> String {
+        let lines = self.lines();
+        if lines.is_empty() || start >= lines.len() {
+            return String::new();
+        }
+
+        let end = end_inclusive.min(lines.len() - 1);
+        if start > end {
+            return String::new();
+        }
+
+        lines[start..=end].join("\n")
+    }
+
     pub fn line_count(&self) -> usize {
         self.lines().len()
     }
@@ -484,6 +529,30 @@ fn default_history_limit() -> usize {
 
 fn normalize_line_endings(raw: &str) -> String {
     raw.replace("\r\n", "\n").replace('\r', "\n")
+}
+
+pub fn trim_trailing_whitespace_text(input: &str) -> String {
+    normalize_line_endings(input)
+        .split('\n')
+        .map(|line| line.trim_end_matches([' ', '\t']))
+        .collect::<Vec<_>>()
+        .join("\n")
+}
+
+fn fenced_block(language: &str, content: &str) -> String {
+    let language = language.trim();
+    let mut output = if language.is_empty() {
+        "```".to_string()
+    } else {
+        format!("```{language}")
+    };
+    output.push('\n');
+    output.push_str(content);
+    if !content.is_empty() && !content.ends_with('\n') {
+        output.push('\n');
+    }
+    output.push_str("```");
+    output
 }
 
 fn char_index_to_byte_index(text: &str, char_index: usize) -> usize {

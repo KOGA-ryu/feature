@@ -1,7 +1,7 @@
 use feature_core::parse_feature_manifest;
 use text_editor_plain::{
     EditorCommand, EditorPosition, EditorSelection, FEATURE_ID, SampleDocumentFixture,
-    TextEditorPlain, sample_document_text, sample_fixture,
+    TextEditorPlain, sample_document_text, sample_fixture, trim_trailing_whitespace_text,
 };
 
 #[test]
@@ -19,7 +19,13 @@ fn feature_manifest_matches_contract() {
     );
     assert_eq!(
         manifest.outputs.items,
-        vec!["document_text", "selection", "dirty_state", "history_state"]
+        vec![
+            "document_text",
+            "selection",
+            "dirty_state",
+            "history_state",
+            "export_text"
+        ]
     );
 }
 
@@ -184,4 +190,126 @@ fn sample_document_text_loads() {
     let document = sample_document_text().expect("sample document should load");
     assert!(document.contains("Feature Lab text editor sample."));
     assert!(document.contains("Cmd/Ctrl + Z"));
+}
+
+#[test]
+fn selected_text_or_all_prefers_non_empty_selection() {
+    let mut editor = TextEditorPlain::from_text("alpha\nbeta\ngamma".into());
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 1, column: 0 },
+        caret: EditorPosition { line: 1, column: 4 },
+    }));
+
+    assert_eq!(editor.selected_text_or_all(), "beta");
+    assert_eq!(editor.copy_plain(), "beta");
+}
+
+#[test]
+fn selected_text_or_all_falls_back_to_full_document() {
+    let editor = TextEditorPlain::from_text("alpha\nbeta".into());
+
+    assert_eq!(editor.selected_text(), None);
+    assert_eq!(editor.selected_text_or_all(), "alpha\nbeta");
+    assert_eq!(editor.copy_plain(), "alpha\nbeta");
+}
+
+#[test]
+fn empty_document_export_is_deterministic() {
+    let editor = TextEditorPlain::new();
+
+    assert_eq!(editor.copy_plain(), "");
+    assert_eq!(editor.copy_markdown_block(Some("text")), "```text\n```");
+    assert_eq!(
+        editor.copy_prompt_block(None),
+        "source: unknown\ncontent:\n```text\n```"
+    );
+}
+
+#[test]
+fn markdown_block_preserves_exact_selected_content() {
+    let mut editor = TextEditorPlain::from_text("fn main() {\n    println!(\"hi\");\n}\n".into());
+    editor.apply(EditorCommand::SelectAll);
+
+    assert_eq!(
+        editor.copy_markdown_block(Some("rust")),
+        "```rust\nfn main() {\n    println!(\"hi\");\n}\n```"
+    );
+    assert_eq!(
+        editor.copy_markdown_block(None),
+        "```\nfn main() {\n    println!(\"hi\");\n}\n```"
+    );
+}
+
+#[test]
+fn prompt_block_includes_source_or_unknown() {
+    let mut editor = TextEditorPlain::from_text("one\ntwo".into());
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 0, column: 0 },
+        caret: EditorPosition { line: 0, column: 3 },
+    }));
+
+    assert_eq!(
+        editor.copy_prompt_block(Some("notes/session.md")),
+        "source: notes/session.md\ncontent:\n```text\none\n```"
+    );
+    assert_eq!(
+        editor.copy_prompt_block(Some("   ")),
+        "source: unknown\ncontent:\n```text\none\n```"
+    );
+}
+
+#[test]
+fn line_helpers_return_current_single_and_clamped_ranges() {
+    let mut editor = TextEditorPlain::from_text("zero\none\ntwo\nthree".into());
+    editor.apply(EditorCommand::SetSelection(EditorSelection::collapsed(
+        EditorPosition { line: 2, column: 1 },
+    )));
+
+    assert_eq!(editor.current_line_text(), "two");
+    assert_eq!(editor.line_text(1).as_deref(), Some("one"));
+    assert_eq!(editor.line_text(99), None);
+    assert_eq!(editor.line_range_text(1, 2), "one\ntwo");
+    assert_eq!(editor.line_range_text(2, 99), "two\nthree");
+    assert_eq!(editor.line_range_text(99, 100), "");
+    assert_eq!(editor.line_range_text(3, 2), "");
+}
+
+#[test]
+fn trim_trailing_whitespace_preserves_blank_lines_and_normalizes_endings() {
+    assert_eq!(
+        trim_trailing_whitespace_text("alpha  \r\n\t\r\nbeta\t \n\n"),
+        "alpha\n\nbeta\n\n"
+    );
+}
+
+#[test]
+fn export_helpers_do_not_mutate_editor_state() {
+    let mut editor = TextEditorPlain::from_text("alpha\nbeta\n".into());
+    editor.apply(EditorCommand::MoveDown { extend: false });
+    editor.apply(EditorCommand::MoveRight { extend: false });
+    editor.apply(EditorCommand::InsertText("!".into()));
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 1, column: 0 },
+        caret: EditorPosition { line: 1, column: 2 },
+    }));
+
+    let text = editor.text().to_owned();
+    let selection = editor.selection();
+    let dirty = editor.is_dirty();
+    let undo_depth = editor.undo_depth();
+    let redo_depth = editor.redo_depth();
+
+    let _ = editor.selected_text_or_all();
+    let _ = editor.copy_plain();
+    let _ = editor.copy_markdown_block(Some("text"));
+    let _ = editor.copy_prompt_block(Some("fixture"));
+    let _ = editor.current_line_text();
+    let _ = editor.line_text(0);
+    let _ = editor.line_range_text(0, 2);
+
+    assert_eq!(editor.text(), text);
+    assert_eq!(editor.selection(), selection);
+    assert_eq!(editor.is_dirty(), dirty);
+    assert_eq!(editor.undo_depth(), undo_depth);
+    assert_eq!(editor.redo_depth(), redo_depth);
 }

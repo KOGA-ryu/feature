@@ -2,7 +2,7 @@ id = "ui.text_editor_plain"
 name = "text_editor_plain"
 kind = "ui_pattern"
 status = "tested"
-summary = "Headless plain-text editor state with multi-line document editing, selection, navigation, undo/redo, and dirty tracking."
+summary = "Headless plain-text editor state with editing, selection, navigation, undo/redo, dirty tracking, and copy/export helpers."
 tags = ["subject:notes_and_productivity", "ui", "utility", "editor", "text"]
 dependencies = ["feature_core"]
 compatible_features = ["ui.scratchpad", "ui.command_palette", "ui.right_inspector", "ui.left_rail"]
@@ -14,4 +14,4 @@ updated_at = "2026-04-27T00:00:00Z"
 items = ["document_text", "editor_commands"]
 
 [outputs]
-items = ["document_text", "selection", "dirty_state", "history_state"]
+items = ["document_text", "selection", "dirty_state", "history_state", "export_text"]

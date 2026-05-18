@@ -1,6 +1,7 @@
 /target
 **/target/
 feature_packs/**/Cargo.lock
+feature_packs/by_subject/
 
 .DS_Store
 __pycache__/

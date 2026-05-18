@@ -11,7 +11,7 @@ capability families with explicit Track placement.
 | State & Helpers | headless text operations and selection-aware helpers | `text_editor_plain` |
 | Actions | action metadata and command registration | `text_editor_actions` |
 | Export & Cleanup | copy formats, paste cleanup, terminal cleanup transforms | `text_editor_clipboard` |
-| Host Adapters | map action metadata into toolkit controls | `text_editor_host_qt` now, other hosts later |
+| Host Adapters | map action metadata into host models, then toolkit controls | `text_editor_host_adapter` now, `text_editor_host_qt` next |
 | Testing & Review | contract tests and spark/release gate artifacts | per crate tests + `41_...` + `42_...` |
 
 ## Capability families
@@ -33,7 +33,9 @@ capability families with explicit Track placement.
 | Action registry records | `text_editor_actions` | V1 |
 | Action execution contract | `text_editor_actions` | V1 |
 | Action id/version policy | `text_editor_actions` | early |
-| Host hotkey profile mapping | `text_editor_host_qt` + docs | early |
+| Neutral host action item mapping | `text_editor_host_adapter` | V1 |
+| Host result and receipt summary mapping | `text_editor_host_adapter` | V1 |
+| Host hotkey profile mapping | `text_editor_host_adapter` + docs | early |
 | Host menu/toolbar/context wiring | `text_editor_host_qt` | early |
 | Undo/redo command model | `text_editor_plain` | later |
 | Navigation command helpers | `text_editor_plain` | later |
@@ -68,6 +70,7 @@ These are in Track A/future scope and must not block Track B slices.
   - `text_editor_actions`
 - Early post-V1 families remain in the same three plus:
   - `text_editor_clipboard`
+  - `text_editor_host_adapter`
   - `text_editor_host_qt`
 - Later and future families are held behind explicit gates in `90_build_order.md`.
 
@@ -76,6 +79,8 @@ These are in Track A/future scope and must not block Track B slices.
 `text_editor_plain` owns primitive pure text helpers used by the first tests.
 `text_editor_clipboard` owns richer clipboard/export policy and host-facing
 clipboard transforms after those primitives are stable.
+`text_editor_host_adapter` owns framework-neutral render/result models. It does
+not own widgets, OS clipboard calls, or text cleanup behavior.
 
 Action IDs use the `text.*` namespace.
 

@@ -80,6 +80,7 @@ The chosen shape is:
 
 ```text
 Text editor core: Rust/headless feature crates
+Neutral host model: text_editor_host_adapter
 First desktop host: Qt
 First Qt text surface: QPlainTextEdit
 Future hosts: egui, terminal, web, and native platform adapters as needed
@@ -90,7 +91,8 @@ Why this exists:
 - Qt already fits the Dex Home native desktop lane.
 - `QPlainTextEdit` gives us practical editing behavior without custom rendering.
 - Rust/headless crates keep behavior reusable outside Qt.
-- A host adapter can prove action rendering without owning the editor engine.
+- The neutral host adapter proves action rendering and result summaries before
+  any framework-specific adapter owns widgets.
 
 Common failure mode:
 
@@ -159,6 +161,19 @@ Every host adapter should render from action records:
 - `disabled_reason` explains disabled state when possible
 - typed host placement metadata controls toolbar/menu/context placement
 
+The first implemented host layer is `ui.text_editor_host_adapter`. It is not a
+Qt, egui, terminal, or web implementation. It produces framework-neutral action
+items and action results:
+
+```text
+HostActionItem
+HostActionResult
+ClipboardReceiptSummary
+```
+
+Framework-specific hosts should consume those shapes instead of reinterpreting
+raw action records independently.
+
 ## Disabled Actions
 
 Disabled behavior must be honest.
@@ -218,6 +233,9 @@ Headless crates may operate on text provided by the host.
 - Do not implement formatting behavior in host widgets.
 - Do not assign host shortcuts outside hotkey profiles.
 - Do not invent local placement names outside the action registry vocabulary.
+- Do not turn the neutral host adapter into a widget toolkit.
+- Do not put text cleanup, OS clipboard calls, or file dialogs in the neutral
+  host adapter.
 - Do not call system clipboard APIs from headless crates.
 - Do not make unsupported actions look enabled.
 - Do not let a host silently reinterpret an action.

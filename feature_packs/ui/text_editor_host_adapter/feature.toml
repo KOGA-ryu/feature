@@ -1,0 +1,17 @@
+id = "ui.text_editor_host_adapter"
+name = "text_editor_host_adapter"
+kind = "ui_pattern"
+status = "tested"
+summary = "Framework-neutral host adapter models for rendering text editor actions and summarizing action outputs without owning UI or clipboard side effects."
+tags = ["subject:notes_and_productivity", "ui", "utility", "editor", "text", "host_adapter", "command_registry"]
+dependencies = ["feature_core", "ui.text_editor_plain", "ui.text_editor_actions", "ui.text_editor_clipboard"]
+compatible_features = ["ui.text_editor_actions", "ui.text_editor_clipboard", "ui.command_palette", "ui.right_inspector", "ui.left_rail", "ui.text_editor_host_qt"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["editor_state", "text_action_records", "text_action_input", "host_profile"]
+
+[outputs]
+items = ["host_action_items", "host_action_result", "clipboard_receipt_summary"]

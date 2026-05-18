@@ -26,7 +26,7 @@ Track B-first is mandatory. Track A is documented but not started.
 - All required docs explicitly show Track B first and Track A deferred.
 - All families in the map are marked with placement (`V1/early/later/future`)
   and owner.
-- `text_editor_plain → text_editor_actions → text_editor_clipboard → text_editor_host_qt`
+- `text_editor_plain → text_editor_actions → text_editor_clipboard → text_editor_host_adapter → text_editor_host_qt`
   sequence is explicit.
 - Postponed Track A families are listed by name.
 
@@ -154,13 +154,14 @@ Ownership note:
 
 ---
 
-## Phase 4 — Qt host adapter slice
+## Phase 4 — Neutral host adapter slice
 
 ### Scope
 
-- Implement `text_editor_host_qt` as a thin adapter.
-- Map action metadata to host controls (menus, toolbars, hotkeys, context actions).
-- Qt is the first graphical proof host.
+- Implement `text_editor_host_adapter` as a framework-neutral adapter.
+- Map action metadata to host-facing records that Qt, egui, terminal, or web can render later.
+- Summarize `TextActionOutput` values into host-facing results.
+- Preserve clipboard transform receipts for cleanup/export actions.
 
 ### Inputs / Dependencies
 
@@ -168,15 +169,43 @@ Ownership note:
 
 ### Exact acceptance
 
-- Host behavior is driven from action metadata, not custom command logic.
+- Host action items are driven from action metadata, not custom command logic.
+- Disabled actions expose deterministic disabled reasons.
+- Clipboard transform outputs become receipt summaries without OS clipboard calls.
+- Hotkey labels are conservative and profile-aware.
+- No Qt, egui, terminal, web, or system clipboard code is introduced.
+
+### Stop gate G4
+
+- Do not proceed to framework-specific hosts before this adapter demonstrates
+  stable and bounded action rendering/result routing.
+
+---
+
+## Phase 4B — Qt host adapter slice
+
+### Scope
+
+- Implement `text_editor_host_qt` as a thin adapter over the neutral host model.
+- Map host action items to controls (menus, toolbars, hotkeys, context actions).
+- Qt is the first graphical proof host.
+
+### Inputs / Dependencies
+
+- Phase 4 completed.
+
+### Exact acceptance
+
+- Qt behavior is driven from `HostActionItem` and `HostActionResult`, not custom
+  command logic.
 - Unsupported actions are hidden/disabled from explicit metadata.
 - Host behavior not yet proven in a running app is labeled `needs verification`.
 - Terminal and web hosts remain later proof targets.
 
-### Stop gate G4
+### Stop gate G4B
 
-- Do not proceed to extra hosts before this adapter demonstrates stable and bounded
-  action routing.
+- Do not proceed to extra hosts before the Qt adapter demonstrates stable and
+  bounded action routing.
 
 ---
 
@@ -189,7 +218,7 @@ Ownership note:
 
 ### Inputs / Dependencies
 
-- Phase 4 accepted and reviewed.
+- Phase 4B accepted and reviewed.
 
 ### Exact acceptance
 
@@ -229,8 +258,8 @@ Ownership note:
 
 ## Dependency summary
 
-- `Phase 1 -> Phase 2 -> Phase 3 -> Phase 4`
-- `Phase 5` only after `Phase 4` review.
+- `Phase 1 -> Phase 2 -> Phase 3 -> Phase 4 -> Phase 4B`
+- `Phase 5` only after `Phase 4B` review.
 - `Phase 6` only when `Phase 5` is approved and there is explicit app demand.
 
 ## Review loop

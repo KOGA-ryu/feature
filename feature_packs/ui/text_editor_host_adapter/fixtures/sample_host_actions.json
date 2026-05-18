@@ -1,0 +1,14 @@
+{
+  "profiles": [
+    "linux_desktop",
+    "terminal",
+    "macos",
+    "web",
+    "ai_prompt_box"
+  ],
+  "outputs": [
+    "host_action_items",
+    "host_action_result",
+    "clipboard_receipt_summary"
+  ]
+}

@@ -1,0 +1,12 @@
+[package]
+name = "text_editor_host_adapter"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+text_editor_actions = { path = "../text_editor_actions" }
+text_editor_clipboard = { path = "../text_editor_clipboard" }
+text_editor_plain = { path = "../text_editor_plain" }
+serde.workspace = true
+serde_json.workspace = true

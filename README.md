@@ -47,6 +47,9 @@ Reusable operator utilities live here, not in app-specific sidecars.
   - `ui.quick_capture_inbox`
   - `logic.document_history`
   - `ui.session_notes_panel`
+  - `ui.text_editor_actions`
+  - `ui.text_editor_clipboard`
+  - `ui.text_editor_host_adapter`
 
 Each utility remains headless-first, testable, documented, searchable, and demoable through `feature_lab_ui`.
 
@@ -96,6 +99,9 @@ cargo run -p feature_cli -- show ui.scratchpad
 cargo run -p feature_cli -- show ui.calculator_basic
 cargo run -p feature_cli -- show ui.checklist_single
 cargo run -p feature_cli -- show ui.text_editor_plain
+cargo run -p feature_cli -- show ui.text_editor_actions
+cargo run -p feature_cli -- show ui.text_editor_clipboard
+cargo run -p feature_cli -- show ui.text_editor_host_adapter
 cargo run -p feature_cli -- show ui.timer_basic
 cargo run -p feature_cli -- show ui.runbook_panel
 cargo run -p feature_cli -- show logic.session_notes
@@ -123,6 +129,9 @@ cargo run -p feature_cli -- test ui.scratchpad
 cargo run -p feature_cli -- test ui.calculator_basic
 cargo run -p feature_cli -- test ui.checklist_single
 cargo run -p feature_cli -- test ui.text_editor_plain
+cargo run -p feature_cli -- test ui.text_editor_actions
+cargo run -p feature_cli -- test ui.text_editor_clipboard
+cargo run -p feature_cli -- test ui.text_editor_host_adapter
 cargo run -p feature_cli -- test ui.timer_basic
 cargo run -p feature_cli -- test ui.runbook_panel
 cargo run -p feature_cli -- test logic.session_notes

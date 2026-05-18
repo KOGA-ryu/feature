@@ -3427,6 +3427,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "text_editor_host_adapter"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+ "text_editor_actions",
+ "text_editor_clipboard",
+ "text_editor_plain",
+]
+
+[[package]]
 name = "text_editor_plain"
 version = "0.1.0"
 dependencies = [

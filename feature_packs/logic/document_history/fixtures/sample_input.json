@@ -1,0 +1,20 @@
+{
+  "working_text": "Lock the contract.\nImplement the feature.\nRun isolated proof.\nRecord the receipt.",
+  "revisions": [
+    {
+      "id": 1,
+      "label": "Initial brief",
+      "text": "Lock the contract.\nImplement the feature.",
+      "recorded_at": "2026-04-27T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "label": "Proof-ready draft",
+      "text": "Lock the contract.\nImplement the feature.\nRun isolated proof.",
+      "recorded_at": "2026-04-27T09:20:00Z"
+    }
+  ],
+  "selected_revision_index": 1,
+  "next_id": 3,
+  "clean_text": "Lock the contract.\nImplement the feature.\nRun isolated proof."
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Feature Wave Runbook",
+  "selected_index": 1,
+  "steps": [
+    {
+      "id": "read_contract",
+      "title": "Read contract",
+      "detail": "Review the feature contract, fixture shape, and proof commands before editing.",
+      "status": "pending"
+    },
+    {
+      "id": "implement",
+      "title": "Implement",
+      "detail": "Build the feature crate inside the owned path without touching shared integration files.",
+      "status": "active"
+    },
+    {
+      "id": "local_proof",
+      "title": "Local proof",
+      "detail": "Run crate-local tests and feature_cli show output for the new feature.",
+      "status": "pending"
+    },
+    {
+      "id": "integrate",
+      "title": "Integrate",
+      "detail": "Hand the crate to the shared integrator once local proof is green.",
+      "status": "pending"
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "detail": "Run the read-only reviewer pass and capture any residual risks.",
+      "status": "pending"
+    },
+    {
+      "id": "receipt",
+      "title": "Receipt",
+      "detail": "Record files changed, commands run, proof status, and shared blockers.",
+      "status": "pending"
+    }
+  ]
+}

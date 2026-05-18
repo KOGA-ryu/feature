@@ -1,0 +1,17 @@
+id = "logic.actor_state"
+name = "actor_state"
+kind = "logic_pattern"
+status = "tested"
+summary = "Shared actor state for single-player brawler and runner segments with health, lives, facing, and recovery timers."
+tags = ["subject:state", "logic", "gameplay", "actor", "state", "combat"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.hit_resolution", "sim.beat_em_up_plane", "ui.health_hud"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["health", "lives", "position", "action_state", "timer_ticks"]
+
+[outputs]
+items = ["actor_state", "defeat_state", "invulnerability_state", "recovery_state"]

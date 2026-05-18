@@ -1,0 +1,8 @@
+{
+  "stay_coarse": false,
+  "offer_zoom": true,
+  "force_zoom": false,
+  "next_layer": "duel_arena",
+  "reward_modifier": 1,
+  "reason": "high_skill_read"
+}

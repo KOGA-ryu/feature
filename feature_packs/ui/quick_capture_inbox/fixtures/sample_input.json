@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "text": "Capture the next feature queue before touching shared integration.",
+      "captured_at": "2026-04-27T09:10:00Z",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "text": "Confirm reviewer receipts are attached after local proof.",
+      "captured_at": "2026-04-27T09:12:00Z",
+      "status": "processed"
+    },
+    {
+      "id": 3,
+      "text": "Archive stale setup notes once the new runbook lands.",
+      "captured_at": "2026-04-27T09:15:00Z",
+      "status": "archived"
+    }
+  ],
+  "draft_text": "  ",
+  "query": "",
+  "selected_index": 1,
+  "next_id": 4
+}

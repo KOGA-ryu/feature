@@ -1,0 +1,10 @@
+[package]
+name = "beat_em_up_plane"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+actor_state = { path = "../../logic/actor_state" }
+feature_core = { path = "../../../crates/feature_core" }
+serde.workspace = true
+serde_json.workspace = true

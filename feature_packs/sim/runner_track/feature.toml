@@ -1,0 +1,17 @@
+id = "sim.runner_track"
+name = "runner_track"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Lane-based runner segment state with forward distance, obstacle stream, and deterministic collision detection."
+tags = ["subject:simulation", "sim", "gameplay", "racing", "runner", "track"]
+dependencies = ["feature_core"]
+compatible_features = ["sim.crash_recovery", "sim.checkpoint_flow", "ui.health_hud"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["lane_commands", "speed_state", "forward_distance", "obstacles"]
+
+[outputs]
+items = ["current_lane", "distance_travelled", "collisions", "remaining_obstacles"]

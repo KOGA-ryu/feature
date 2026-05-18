@@ -1,0 +1,40 @@
+{
+  "arena_min_x": 0,
+  "arena_max_x": 12,
+  "player": {
+    "id": 1,
+    "label": "player",
+    "actor": {
+      "max_health": 5,
+      "health": 5,
+      "lives": 1,
+      "position_x": 0,
+      "position_depth": 0,
+      "facing": "right",
+      "action_state": "idle",
+      "invulnerable_ticks": 0,
+      "recovery_ticks": 0
+    },
+    "position_x": 4,
+    "velocity_x": 0
+  },
+  "target": {
+    "id": 2,
+    "label": "duelist",
+    "actor": {
+      "max_health": 4,
+      "health": 4,
+      "lives": 1,
+      "position_x": 0,
+      "position_depth": 0,
+      "facing": "left",
+      "action_state": "idle",
+      "invulnerable_ticks": 0,
+      "recovery_ticks": 0
+    },
+    "position_x": 6,
+    "velocity_x": 0
+  },
+  "elapsed_ticks": 0,
+  "last_outcome": null
+}

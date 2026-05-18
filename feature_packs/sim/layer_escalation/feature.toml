@@ -1,0 +1,17 @@
+id = "sim.layer_escalation"
+name = "layer_escalation"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Deterministic simulation-zoom escalation decision from AI interaction grades and poor-read suppression."
+tags = ["subject:simulation", "sim", "gameplay", "ai", "zoom", "escalation"]
+dependencies = ["feature_core", "logic.ai_interaction_grader"]
+compatible_features = ["logic.ai_interaction_grader", "sim.duel_arena", "sim.beat_em_up_plane", "sim.runner_track"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["grade_card"]
+
+[outputs]
+items = ["stay_coarse", "offer_zoom", "force_zoom", "next_layer", "reward_modifier"]

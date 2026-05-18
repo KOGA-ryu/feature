@@ -1,0 +1,17 @@
+id = "logic.hit_resolution"
+name = "hit_resolution"
+kind = "logic_pattern"
+status = "tested"
+summary = "Deterministic hit application over actor state with invulnerability checks, hitstun, knockdown, crash, and defeat outcomes."
+tags = ["subject:combat", "logic", "gameplay", "combat", "damage", "brawler"]
+dependencies = ["feature_core", "logic.actor_state"]
+compatible_features = ["logic.actor_state", "sim.beat_em_up_plane", "ui.health_hud"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["target_actor", "hit_request"]
+
+[outputs]
+items = ["target_actor", "hit_result"]

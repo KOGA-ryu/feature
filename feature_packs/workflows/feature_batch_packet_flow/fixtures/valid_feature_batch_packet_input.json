@@ -1,0 +1,82 @@
+{
+  "project": "feature_lab",
+  "branch_name": "codex/sequential-batch-demo",
+  "spec": {
+    "product_intent": "Build reusable sequential execution packet flows for the Rust feature lab.",
+    "audience": "Solo operator running one-feature-at-a-time Dex queues.",
+    "required_surfaces": [
+      "ui.left_rail"
+    ],
+    "selected_patterns": [
+      "ui.left_rail",
+      "workflow.review_packet_flow",
+      "workflow.feature_build_packet_flow"
+    ],
+    "selected_logic": [
+      "logic.search_index",
+      "logic.prompt_generator"
+    ],
+    "selected_workflows": [
+      "workflow.review_packet_flow",
+      "workflow.feature_build_packet_flow"
+    ],
+    "data_models": [
+      "generated_spec",
+      "feature_batch_packet_bundle",
+      "review_packet"
+    ],
+    "folder_structure": [
+      "Cargo.toml",
+      "README.md",
+      "docs/contract.md",
+      "docs/roadmap.md",
+      "docs/decisions.md",
+      "src/app/",
+      "src/components/",
+      "src/features/",
+      "src/lib/",
+      "src/data/",
+      "src/schemas/",
+      "tests/"
+    ],
+    "first_vertical_slice": [
+      "Queue one logic feature and one workflow feature.",
+      "Emit step-scoped worker, integrator, and reviewer packets.",
+      "Emit deterministic review contracts for every step."
+    ],
+    "out_of_scope": [
+      "No automated batch runner."
+    ],
+    "dex_prompt_seed": "Build reusable sequential execution packet flows for the Rust feature lab. Use selected features in the declared order.",
+    "review_checklist": [
+      "Ordered feature queues remain deterministic.",
+      "Each step yields worker, integrator, reviewer, and review-contract outputs."
+    ],
+    "selected_features": [
+      {
+        "feature_id": "ui.left_rail",
+        "kind": "ui",
+        "summary": "Left navigation rail for browsing reusable features."
+      },
+      {
+        "feature_id": "logic.search_index",
+        "kind": "logic",
+        "summary": "Search reusable features by contract metadata."
+      },
+      {
+        "feature_id": "workflow.review_packet_flow",
+        "kind": "workflow",
+        "summary": "Structured review packet contract and validation flow."
+      },
+      {
+        "feature_id": "workflow.feature_build_packet_flow",
+        "kind": "workflow",
+        "summary": "Single-feature isolated build packet flow."
+      }
+    ]
+  },
+  "ordered_feature_ids": [
+    "logic.search_index",
+    "workflow.review_packet_flow"
+  ]
+}

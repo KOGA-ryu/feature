@@ -1,0 +1,17 @@
+id = "logic.ai_intent_model"
+name = "ai_intent_model"
+kind = "logic_pattern"
+status = "tested"
+summary = "Deterministic authored AI intent state with telegraph, committed, and recovery phases for readable target behavior."
+tags = ["subject:ai", "logic", "gameplay", "ai", "intent", "telegraph"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.ai_target_state", "logic.ai_perception_model", "logic.ai_interaction_event", "logic.hit_resolution"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["perception_snapshot", "intent_choice", "phase_ticks"]
+
+[outputs]
+items = ["intent_state", "commitment_phase", "readable_intent"]

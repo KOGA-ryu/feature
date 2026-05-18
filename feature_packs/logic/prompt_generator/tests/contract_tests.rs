@@ -38,6 +38,27 @@ fn integrator_prompt_includes_only_shared_choke_points() {
             .iter()
             .any(|path| path.contains("feature_lab_ui"))
     );
+    assert!(packet.prompt_text.contains("demo wiring is optional"));
+}
+
+#[test]
+fn integrator_prompt_optionally_allows_feature_lab_ui_writes() {
+    let mut request = sample_integrator_request().expect("integrator fixture should parse");
+    request.allow_feature_lab_ui_writes = true;
+    let packet = generate_prompt(request).expect("integrator prompt should generate");
+
+    assert!(
+        packet
+            .allowed_writes
+            .iter()
+            .any(|path| path.contains("feature_lab_ui"))
+    );
+    assert!(
+        !packet
+            .forbidden_writes
+            .iter()
+            .any(|path| path.contains("feature_lab_ui"))
+    );
 }
 
 #[test]
@@ -63,6 +84,7 @@ fn missing_spec_input_fails() {
         spec: None,
         target_feature_id: None,
         wave_feature_ids: vec!["logic.spec_generator".into()],
+        allow_feature_lab_ui_writes: false,
     };
     let validation = generate_prompt(request).expect_err("missing spec should fail");
 
@@ -90,6 +112,6 @@ fn manifest_contract_matches_expected_shape() {
 
     assert_eq!(manifest.id, FEATURE_ID);
     assert_eq!(manifest.name, "prompt_generator");
-    assert_eq!(manifest.inputs.items.len(), 4);
+    assert_eq!(manifest.inputs.items.len(), 5);
     assert_eq!(manifest.outputs.items.len(), 3);
 }

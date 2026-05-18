@@ -1,0 +1,23 @@
+{
+  "checkpoints": [
+    {
+      "id": 1,
+      "label": "street fight",
+      "mode": "brawler"
+    },
+    {
+      "id": 2,
+      "label": "tunnel escape",
+      "mode": "racing"
+    },
+    {
+      "id": 3,
+      "label": "bridge ambush",
+      "mode": "brawler"
+    }
+  ],
+  "current_checkpoint_index": 0,
+  "current_mode": "brawler",
+  "completed_checkpoint_ids": [],
+  "pending_transition": null
+}

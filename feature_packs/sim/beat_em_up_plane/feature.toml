@@ -1,0 +1,17 @@
+id = "sim.beat_em_up_plane"
+name = "beat_em_up_plane"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Bounded side-view combat plane with horizontal movement, depth spacing, and deterministic engagement queries."
+tags = ["subject:simulation", "sim", "gameplay", "brawler", "encounter", "plane"]
+dependencies = ["feature_core", "logic.actor_state"]
+compatible_features = ["logic.actor_state", "logic.hit_resolution", "sim.checkpoint_flow"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["bounds", "actors", "movement_commands", "depth_threshold"]
+
+[outputs]
+items = ["actors", "bounded_positions", "engagement_candidates"]

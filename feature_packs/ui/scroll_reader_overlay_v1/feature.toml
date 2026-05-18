@@ -1,0 +1,17 @@
+id = "ui.scroll_reader_overlay_v1"
+name = "scroll_reader_overlay_v1"
+kind = "ui_pattern"
+status = "draft"
+summary = "Headless scroll-reader overlay state for selected text, with a contrast lens, word tape, wheel scrubbing, playback, close, and speed commands."
+tags = ["subject:notes_and_productivity", "ui", "utility", "reader", "overlay", "selected_text"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.text_editor_plain", "ui.timer_basic", "ui.command_palette"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["selected_text", "launch_command", "overlay_commands", "wheel_delta", "elapsed_ms"]
+
+[outputs]
+items = ["normalized_text", "reader_tokens", "lens_token", "fade_tokens", "playback_status", "words_per_minute"]

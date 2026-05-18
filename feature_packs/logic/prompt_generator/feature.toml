@@ -3,15 +3,15 @@ name = "prompt_generator"
 kind = "logic_pattern"
 status = "experimental"
 summary = "Deterministic Dex task prompt generation from a structured generated spec."
-tags = ["logic", "prompt", "dex", "handoff", "codex_reference"]
+tags = ["subject:selection_and_spec", "logic", "prompt", "dex", "handoff", "codex_reference"]
 dependencies = ["feature_core", "logic.spec_generator"]
 compatible_features = ["logic.spec_generator", "workflow.feature_extraction_flow", "workflow.review_packet_flow"]
 owner = "feature_lab"
 created_at = "2026-04-26T00:00:00Z"
-updated_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
 
 [inputs]
-items = ["target_kind", "generated_spec", "target_feature_id", "wave_feature_ids"]
+items = ["target_kind", "generated_spec", "target_feature_id", "wave_feature_ids", "allow_feature_lab_ui_writes"]
 
 [outputs]
 items = ["generated_prompt_packet", "prompt_generation_validation", "verification_commands"]

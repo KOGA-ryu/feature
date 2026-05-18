@@ -1,0 +1,3 @@
+{
+  "document_text": "Feature Lab text editor sample.\n- Type directly into the demo surface.\n- Use Shift + arrows to extend selection.\n- Use Cmd/Ctrl + Z to undo.\n\nThis crate owns the document state; the host only forwards commands."
+}

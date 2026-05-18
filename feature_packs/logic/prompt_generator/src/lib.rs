@@ -31,6 +31,8 @@ pub struct PromptRequest {
     pub spec: Option<GeneratedSpec>,
     pub target_feature_id: Option<String>,
     pub wave_feature_ids: Vec<String>,
+    #[serde(default)]
+    pub allow_feature_lab_ui_writes: bool,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -152,33 +154,43 @@ pub fn generate_prompt(
         PromptTargetKind::Integrator => {
             let spec = request.spec.expect("validated spec should exist");
             let wave_feature_ids = request.wave_feature_ids;
+            let allow_feature_lab_ui_writes = request.allow_feature_lab_ui_writes;
             let verification_commands = vec![
                 "cargo fmt --all --check".into(),
                 "cargo test --workspace".into(),
                 "cargo run -p feature_cli -- list".into(),
             ];
+            let mut allowed_writes = vec![
+                format!("{REPO_ROOT}/Cargo.toml"),
+                format!("{REPO_ROOT}/Cargo.lock"),
+            ];
+            let mut forbidden_writes = vec![
+                format!("{REPO_ROOT}/crates/feature_registry/**"),
+                "worker feature crate internals unless a compile fix is absolutely required".into(),
+            ];
+            let feature_lab_rule = if allow_feature_lab_ui_writes {
+                allowed_writes.push(format!("{REPO_ROOT}/crates/feature_lab_ui/**"));
+                "Optional shared writes when the active feature needs a live demo surface:\n- /Users/kogaryu/dev/features/crates/feature_lab_ui/**".to_string()
+            } else {
+                forbidden_writes.push(format!("{REPO_ROOT}/crates/feature_lab_ui/**"));
+                "Forbidden writes:\n- /Users/kogaryu/dev/features/crates/feature_lab_ui/**"
+                    .to_string()
+            };
             Ok(GeneratedPromptPacket {
                 target_kind: PromptTargetKind::Integrator,
                 title: "Integrator Packet: Assembly Slice".into(),
                 prompt_text: format!(
-                    "Integrate the completed assembly slice in {REPO_ROOT}.\n\nGoal:\n{}\n\nFeatures to integrate:\n- {}\n\nAllowed writes:\n- {REPO_ROOT}/Cargo.toml\n- {REPO_ROOT}/Cargo.lock\n\nForbidden writes:\n- {REPO_ROOT}/crates/feature_lab_ui/**\n- {REPO_ROOT}/crates/feature_registry/**\n- worker feature crate internals unless a compile fix is absolutely required\n\nRules:\n- do not redesign worker crates\n- batch workspace member additions once\n- preserve isolated feature contracts\n\nVerification:\n- {}\n- {}\n- {}\n",
+                    "Integrate the completed assembly slice in {REPO_ROOT}.\n\nGoal:\n{}\n\nFeatures to integrate:\n- {}\n\nAllowed writes:\n- {REPO_ROOT}/Cargo.toml\n- {REPO_ROOT}/Cargo.lock\n{}\n\nForbidden writes:\n- {REPO_ROOT}/crates/feature_registry/**\n- worker feature crate internals unless a compile fix is absolutely required\n\nRules:\n- do not redesign worker crates\n- batch workspace member additions once\n- preserve isolated feature contracts\n- demo wiring is optional and only done when the current feature needs a live harness surface\n\nVerification:\n- {}\n- {}\n- {}\n",
                     spec.product_intent,
                     wave_feature_ids.join("\n- "),
+                    feature_lab_rule,
                     verification_commands[0],
                     verification_commands[1],
                     verification_commands[2],
                 ),
                 verification_commands,
-                allowed_writes: vec![
-                    format!("{REPO_ROOT}/Cargo.toml"),
-                    format!("{REPO_ROOT}/Cargo.lock"),
-                ],
-                forbidden_writes: vec![
-                    format!("{REPO_ROOT}/crates/feature_lab_ui/**"),
-                    format!("{REPO_ROOT}/crates/feature_registry/**"),
-                    "worker feature crate internals unless a compile fix is absolutely required"
-                        .into(),
-                ],
+                allowed_writes,
+                forbidden_writes,
             })
         }
         PromptTargetKind::Reviewer => {
@@ -250,7 +262,7 @@ pub fn validate_prompt_request(request: &PromptRequest) -> PromptGenerationValid
                     severity: PromptGenerationSeverity::Error,
                     code: "invalid_feature_id".into(),
                     path: "target_feature_id".into(),
-                    message: "Feature id must match ui.*, logic.*, or workflow.*".into(),
+                    message: "Feature id must match ui.*, logic.*, sim.*, or workflow.*".into(),
                 });
             }
         }
@@ -310,6 +322,7 @@ fn feature_path_and_package(feature_id: &str) -> Option<(String, String)> {
     let directory = match category {
         "ui" => "ui",
         "logic" => "logic",
+        "sim" => "sim",
         "workflow" => "workflows",
         _ => return None,
     };

@@ -1,0 +1,17 @@
+id = "sim.checkpoint_flow"
+name = "checkpoint_flow"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Linear checkpoint progression and restart law across alternating brawler and runner stage modes."
+tags = ["subject:simulation", "sim", "gameplay", "checkpoint", "stage", "transition"]
+dependencies = ["feature_core"]
+compatible_features = ["sim.beat_em_up_plane", "sim.runner_track", "logic.actor_state"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["checkpoints", "stage_events", "restart_commands"]
+
+[outputs]
+items = ["current_checkpoint", "current_mode", "pending_transition", "completed_checkpoints"]

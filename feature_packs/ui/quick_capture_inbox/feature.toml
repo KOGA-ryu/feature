@@ -1,0 +1,17 @@
+id = "ui.quick_capture_inbox"
+name = "quick_capture_inbox"
+kind = "ui_pattern"
+status = "tested"
+summary = "Headless quick-capture inbox state with draft capture, filtered visibility, and stable status transitions."
+tags = ["subject:notes_and_productivity", "ui", "utility", "capture", "inbox"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.scratchpad", "ui.checklist_single", "logic.session_notes", "ui.command_palette"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["items", "draft_text", "query", "selection", "capture_actions"]
+
+[outputs]
+items = ["visible_items", "selected_item", "inbox_counts", "draft_text"]

@@ -1,0 +1,17 @@
+id = "ui.timer_basic"
+name = "timer_basic"
+kind = "ui_pattern"
+status = "tested"
+summary = "Deterministic countdown timer state driven entirely by explicit tick commands."
+tags = ["subject:notes_and_productivity", "ui", "utility", "timer", "countdown"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.scratchpad", "ui.calculator_basic", "ui.command_palette", "ui.right_inspector"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["duration_seconds", "timer_commands", "elapsed_seconds"]
+
+[outputs]
+items = ["total_seconds", "remaining_seconds", "status", "progress_ratio", "formatted_remaining"]

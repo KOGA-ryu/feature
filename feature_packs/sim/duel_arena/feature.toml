@@ -1,0 +1,17 @@
+id = "sim.duel_arena"
+name = "duel_arena"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Headless duel zoom simulation with richer positional response, exchanges, and deterministic outcome reporting."
+tags = ["subject:simulation", "sim", "gameplay", "ai", "duel", "zoom"]
+dependencies = ["feature_core", "logic.actor_state", "logic.ai_interaction_event"]
+compatible_features = ["logic.ai_target_state", "logic.ai_interaction_grader", "sim.layer_escalation", "sim.beat_em_up_plane"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["arena_actors", "exchange_events", "push_impulses", "tick_events"]
+
+[outputs]
+items = ["duel_state", "contact_response", "duel_outcome"]

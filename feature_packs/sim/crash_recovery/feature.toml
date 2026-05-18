@@ -1,0 +1,17 @@
+id = "sim.crash_recovery"
+name = "crash_recovery"
+kind = "simulation_pattern"
+status = "tested"
+summary = "Deterministic crash lockout and recovery cycle for lane-based runner segments."
+tags = ["subject:simulation", "sim", "gameplay", "racing", "crash", "recovery"]
+dependencies = ["feature_core"]
+compatible_features = ["sim.runner_track", "sim.checkpoint_flow", "ui.health_hud"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["crash_events", "recovery_ticks"]
+
+[outputs]
+items = ["crash_state", "steer_eligibility", "collision_eligibility"]

@@ -1,0 +1,17 @@
+id = "logic.session_notes"
+name = "session_notes"
+kind = "logic_pattern"
+status = "tested"
+summary = "Headless session-note ledger with filtered visibility, pinning, selection, and deterministic ordering."
+tags = ["subject:notes", "logic", "notes", "session", "operator", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.scratchpad", "ui.text_editor_plain", "ui.activity_stream", "workflow.review_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["entries", "query", "selection", "note_actions"]
+
+[outputs]
+items = ["visible_entries", "selected_entry", "session_notes_counts", "latest_entry"]

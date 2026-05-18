@@ -5,14 +5,41 @@ edition.workspace = true
 
 [dependencies]
 activity_stream = { path = "../../feature_packs/ui/activity_stream" }
+ai_grade_hud = { path = "../../feature_packs/ui/ai_grade_hud" }
+ai_intent_model = { path = "../../feature_packs/logic/ai_intent_model" }
+ai_interaction_event = { path = "../../feature_packs/logic/ai_interaction_event" }
+ai_interaction_grader = { path = "../../feature_packs/logic/ai_interaction_grader" }
+ai_perception_model = { path = "../../feature_packs/logic/ai_perception_model" }
+ai_target_state = { path = "../../feature_packs/logic/ai_target_state" }
+actor_state = { path = "../../feature_packs/logic/actor_state" }
+beat_em_up_plane = { path = "../../feature_packs/sim/beat_em_up_plane" }
+calculator_basic = { path = "../../feature_packs/ui/calculator_basic" }
+checklist_single = { path = "../../feature_packs/ui/checklist_single" }
+checkpoint_flow = { path = "../../feature_packs/sim/checkpoint_flow" }
 command_palette = { path = "../../feature_packs/ui/command_palette" }
+crash_recovery = { path = "../../feature_packs/sim/crash_recovery" }
+document_history = { path = "../../feature_packs/logic/document_history" }
+duel_arena = { path = "../../feature_packs/sim/duel_arena" }
 eframe.workspace = true
+feature_core = { path = "../feature_core" }
 feature_registry = { path = "../feature_registry" }
 feature_runner = { path = "../feature_runner" }
+health_hud = { path = "../../feature_packs/ui/health_hud" }
+hit_resolution = { path = "../../feature_packs/logic/hit_resolution" }
+layer_escalation = { path = "../../feature_packs/sim/layer_escalation" }
 left_rail = { path = "../../feature_packs/ui/left_rail" }
+quick_capture_inbox = { path = "../../feature_packs/ui/quick_capture_inbox" }
+runner_track = { path = "../../feature_packs/sim/runner_track" }
+runbook_panel = { path = "../../feature_packs/ui/runbook_panel" }
+scratchpad = { path = "../../feature_packs/ui/scratchpad" }
 serde_json.workspace = true
+session_notes = { path = "../../feature_packs/logic/session_notes" }
+session_notes_panel = { path = "../../feature_packs/ui/session_notes_panel" }
+text_editor_plain = { path = "../../feature_packs/ui/text_editor_plain" }
+timer_basic = { path = "../../feature_packs/ui/timer_basic" }
 theme_editor = { path = "../../feature_packs/ui/theme_editor" }
 validation_pipeline = { path = "../../feature_packs/logic/validation_pipeline" }
+wiki_browser = { path = "../../feature_packs/ui/wiki_browser" }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 objc2 = "0.6.4"

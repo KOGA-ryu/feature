@@ -1,0 +1,19 @@
+{
+  "target": {
+    "max_health": 3,
+    "health": 3,
+    "lives": 1,
+    "position_x": 8,
+    "position_depth": 0,
+    "facing": "left",
+    "action_state": "idle",
+    "invulnerable_ticks": 0,
+    "recovery_ticks": 0
+  },
+  "request": {
+    "damage": 1,
+    "class": "heavy",
+    "invulnerability_ticks": 2,
+    "recovery_ticks": 3
+  }
+}

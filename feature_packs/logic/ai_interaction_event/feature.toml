@@ -1,0 +1,17 @@
+id = "logic.ai_interaction_event"
+name = "ai_interaction_event"
+kind = "logic_pattern"
+status = "tested"
+summary = "Canonical AI interaction event vocabulary for readable target encounters and later simulation zoom decisions."
+tags = ["subject:ai", "logic", "gameplay", "ai", "grading", "events"]
+dependencies = ["feature_core", "logic.ai_intent_model"]
+compatible_features = ["logic.ai_intent_model", "logic.ai_interaction_grader", "sim.layer_escalation", "sim.duel_arena"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["interaction_observations", "intent_context", "timeline_ticks"]
+
+[outputs]
+items = ["interaction_events", "interaction_outcomes", "poor_read_streak"]

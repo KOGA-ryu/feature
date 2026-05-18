@@ -1,0 +1,17 @@
+id = "ui.wiki_browser"
+name = "wiki_browser"
+kind = "ui_pattern"
+status = "experimental"
+summary = "Browseable feature-library state for filtering registered features and reading manifest, README, and fixture previews."
+tags = ["subject:interface", "ui", "browser", "metadata", "fixtures", "readme", "codex_reference"]
+dependencies = ["feature_core", "feature_registry"]
+compatible_features = ["ui.left_rail", "ui.right_inspector", "ui.command_palette", "logic.search_index"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["browser_entries", "query", "filters", "selected_index"]
+
+[outputs]
+items = ["visible_entries", "selected_manifest", "selected_preview_assets"]

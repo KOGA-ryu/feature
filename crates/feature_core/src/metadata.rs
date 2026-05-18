@@ -9,6 +9,7 @@ use crate::{FeatureLabError, FeatureLabResult};
 pub enum FeatureKind {
     UiPattern,
     LogicPattern,
+    SimulationPattern,
     Workflow,
 }
 
@@ -104,6 +105,7 @@ impl Display for FeatureKind {
         let label = match self {
             Self::UiPattern => "ui_pattern",
             Self::LogicPattern => "logic_pattern",
+            Self::SimulationPattern => "simulation_pattern",
             Self::Workflow => "workflow",
         };
         write!(f, "{label}")

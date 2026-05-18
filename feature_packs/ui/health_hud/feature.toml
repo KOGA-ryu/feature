@@ -1,0 +1,17 @@
+id = "ui.health_hud"
+name = "health_hud"
+kind = "ui_pattern"
+status = "tested"
+summary = "Headless HUD-state adapter for segmented health, lives, and brief damage flash timing."
+tags = ["subject:gameplay_ui", "ui", "gameplay", "hud", "health", "status"]
+dependencies = ["feature_core", "logic.actor_state"]
+compatible_features = ["logic.actor_state", "logic.hit_resolution", "sim.checkpoint_flow"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["actor_state", "damage_events", "tick_events"]
+
+[outputs]
+items = ["health_segments", "lives", "damage_flash_state"]

@@ -1,0 +1,11 @@
+{
+  "max_health": 5,
+  "health": 4,
+  "lives": 2,
+  "position_x": 12,
+  "position_depth": 1,
+  "facing": "right",
+  "action_state": "idle",
+  "invulnerable_ticks": 0,
+  "recovery_ticks": 0
+}

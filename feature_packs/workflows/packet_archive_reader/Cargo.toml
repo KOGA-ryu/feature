@@ -1,0 +1,13 @@
+[package]
+name = "packet_archive_reader"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+feature_core = { path = "../../../crates/feature_core" }
+feature_wave_packet_flow = { path = "../feature_wave_packet_flow" }
+packet_archive_writer = { path = "../packet_archive_writer" }
+prompt_generator = { path = "../../logic/prompt_generator" }
+serde.workspace = true
+serde_json.workspace = true
+spec_selector = { path = "../../logic/spec_selector" }

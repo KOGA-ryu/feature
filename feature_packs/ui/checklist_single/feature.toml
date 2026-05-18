@@ -1,0 +1,17 @@
+id = "ui.checklist_single"
+name = "checklist_single"
+kind = "ui_pattern"
+status = "tested"
+summary = "Single durable checklist state with trimmed adds, stable ordering, and simple item actions."
+tags = ["subject:notes_and_productivity", "ui", "utility", "checklist", "tasks"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.scratchpad", "ui.calculator_basic", "ui.command_palette", "ui.right_inspector"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["title", "toggle_item_id", "delete_item_id", "clear_completed"]
+
+[outputs]
+items = ["items", "has_completed_items"]

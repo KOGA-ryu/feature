@@ -23,6 +23,7 @@ Then read:
 3. `/Users/kogaryu/dev/features/docs/feature_contract.md`
 4. `/Users/kogaryu/dev/features/docs/testing_ground_rules.md`
 5. `/Users/kogaryu/dev/features/docs/chatgpt_feature_packets.md`
+6. `/Users/kogaryu/dev/features/docs/terminal_first_proof.md`
 
 ## What The Repo Is
 
@@ -36,7 +37,7 @@ Core pieces:
 - `crates/feature_core`: manifest parsing and shared types
 - `crates/feature_registry`: filesystem-based feature discovery
 - `crates/feature_cli`: `list`, `show`, and `test`
-- `crates/feature_lab_ui`: browse and smoke-test harness
+- `crates/feature_lab_ui`: browse and optional smoke-test harness
 - `feature_packs/`: one crate per feature
 
 ## Choose The Right Mode
@@ -59,6 +60,11 @@ Use reviewer mode when the task is:
 - run workspace commands
 - report findings and risks
 
+Default proof rule:
+
+- prove features in the terminal first
+- use `feature_lab_ui` only when the task explicitly needs a live harness smoke
+
 ## Worker Acceptance Checklist
 
 Before stopping, the coding window should ensure:
@@ -80,6 +86,7 @@ Before stopping, the coding window should ensure:
 - `cargo test --workspace` passes
 - `cargo run -p feature_cli -- show <feature_id>` passes
 - `cargo run -p feature_cli -- test <feature_id>` passes
+- `git diff --check` passes
 
 ## Fresh-Window Prompt Stub
 

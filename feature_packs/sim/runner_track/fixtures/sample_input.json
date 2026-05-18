@@ -1,0 +1,28 @@
+{
+  "current_lane": "center",
+  "speed_state": "cruising",
+  "distance_travelled": 0,
+  "obstacles": [
+    {
+      "id": 1,
+      "label": "trash can",
+      "lane": "center",
+      "distance": 5,
+      "resolved": false
+    },
+    {
+      "id": 2,
+      "label": "billboard edge",
+      "lane": "left",
+      "distance": 8,
+      "resolved": false
+    },
+    {
+      "id": 3,
+      "label": "road spike",
+      "lane": "right",
+      "distance": 12,
+      "resolved": false
+    }
+  ]
+}

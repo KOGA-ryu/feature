@@ -1,0 +1,17 @@
+id = "logic.document_history"
+name = "document_history"
+kind = "logic_pattern"
+status = "tested"
+summary = "Headless single-document history with working text, named snapshots, revision restore, and clean-baseline dirty tracking."
+tags = ["subject:notes", "logic", "document", "history", "revisions", "codex_reference"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.text_editor_plain", "ui.scratchpad", "logic.session_notes", "workflow.review_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["working_text", "revisions", "selected_revision_index", "history_actions"]
+
+[outputs]
+items = ["working_text", "selected_revision", "document_history_counts", "dirty_state"]

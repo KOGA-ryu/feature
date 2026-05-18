@@ -20,6 +20,7 @@ Operating rules:
 - if a worker needs shared-file changes, stop and emit the escalation packet
 - do not let workers edit each other’s crates
 - do not start reviewer proof until the integrator finishes
+- keep proof terminal-first unless a feature explicitly needs live harness smoke
 ```
 
 ## Worker Packet Template
@@ -135,6 +136,7 @@ Verification:
 - cargo fmt --all --check
 - cargo test --workspace
 - cargo run -p feature_cli -- list
+- git diff --check
 
 Final report:
 1. shared files changed
@@ -172,7 +174,10 @@ Run:
 - cargo run -p feature_cli -- test logic.spec_generator
 - cargo run -p feature_cli -- test logic.prompt_generator
 - cargo run -p feature_cli -- test workflow.feature_extraction_flow
-- cargo run -p feature_lab_ui
+- git diff --check
+
+Optional manual smoke only if a wave feature explicitly depends on live harness behavior:
+- scripts/launch_feature_lab_ui_app.sh
 
 Report:
 1. findings by severity

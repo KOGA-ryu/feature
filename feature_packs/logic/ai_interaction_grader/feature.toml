@@ -1,0 +1,17 @@
+id = "logic.ai_interaction_grader"
+name = "ai_interaction_grader"
+kind = "logic_pattern"
+status = "tested"
+summary = "Deterministic grading over AI interaction events with stable skill bands, confidence, and per-dimension feedback."
+tags = ["subject:ai", "logic", "gameplay", "ai", "grading", "skill"]
+dependencies = ["feature_core", "logic.ai_interaction_event"]
+compatible_features = ["logic.ai_interaction_event", "sim.layer_escalation", "ui.ai_grade_hud", "sim.duel_arena"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["interaction_events"]
+
+[outputs]
+items = ["grade_card", "skill_band", "grade_confidence", "poor_read_streak"]

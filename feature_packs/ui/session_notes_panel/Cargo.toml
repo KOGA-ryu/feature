@@ -1,0 +1,12 @@
+[package]
+name = "session_notes_panel"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+document_history = { path = "../../logic/document_history" }
+feature_core = { path = "../../../crates/feature_core" }
+serde.workspace = true
+serde_json.workspace = true
+session_notes = { path = "../../logic/session_notes" }
+text_editor_plain = { path = "../text_editor_plain" }

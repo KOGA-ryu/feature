@@ -1,0 +1,17 @@
+id = "ui.runbook_panel"
+name = "runbook_panel"
+kind = "ui_pattern"
+status = "tested"
+summary = "Headless runbook state with a single selected step, explicit status transitions, and stable status counts."
+tags = ["subject:operations", "ui", "utility", "runbook", "operations"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.command_palette", "ui.right_inspector", "ui.scratchpad", "ui.checklist_single"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["title", "steps", "selected_index", "status_action"]
+
+[outputs]
+items = ["selected_step", "steps", "counts"]

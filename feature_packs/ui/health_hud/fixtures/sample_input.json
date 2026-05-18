@@ -1,0 +1,28 @@
+{
+  "segments": [
+    {
+      "index": 0,
+      "filled": true
+    },
+    {
+      "index": 1,
+      "filled": true
+    },
+    {
+      "index": 2,
+      "filled": true
+    },
+    {
+      "index": 3,
+      "filled": true
+    },
+    {
+      "index": 4,
+      "filled": false
+    }
+  ],
+  "lives": 2,
+  "current_health": 4,
+  "max_health": 5,
+  "damage_flash_ticks": 0
+}

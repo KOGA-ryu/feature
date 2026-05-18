@@ -1,0 +1,55 @@
+{
+  "bounds": {
+    "min_x": -20,
+    "max_x": 30,
+    "min_depth": -4,
+    "max_depth": 4
+  },
+  "actors": [
+    {
+      "id": 1,
+      "label": "rash",
+      "state": {
+        "max_health": 5,
+        "health": 5,
+        "lives": 2,
+        "position_x": 0,
+        "position_depth": 0,
+        "facing": "right",
+        "action_state": "idle",
+        "invulnerable_ticks": 0,
+        "recovery_ticks": 0
+      }
+    },
+    {
+      "id": 2,
+      "label": "rat trooper",
+      "state": {
+        "max_health": 3,
+        "health": 3,
+        "lives": 1,
+        "position_x": 9,
+        "position_depth": 1,
+        "facing": "left",
+        "action_state": "moving",
+        "invulnerable_ticks": 0,
+        "recovery_ticks": 0
+      }
+    },
+    {
+      "id": 3,
+      "label": "club brute",
+      "state": {
+        "max_health": 4,
+        "health": 4,
+        "lives": 1,
+        "position_x": 14,
+        "position_depth": 4,
+        "facing": "left",
+        "action_state": "idle",
+        "invulnerable_ticks": 0,
+        "recovery_ticks": 0
+      }
+    }
+  ]
+}

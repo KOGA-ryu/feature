@@ -7,10 +7,11 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
     ui.small("Contract, ownership, and reusable shape.");
     ui.separator();
 
-    let Some(feature) = app.selected_feature() else {
+    let Some(feature) = app.selected_browser_entry() else {
         ui.label("Select a feature to inspect metadata.");
         return;
     };
+    let manifest = &feature.manifest;
 
     egui::ScrollArea::vertical()
         .id_salt("metadata_inspector_scroll")
@@ -22,21 +23,13 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
                 "Canonical metadata and ownership fields from feature.toml.",
                 |ui| {
                     ui.horizontal_wrapped(|ui| {
+                        info_chip(ui, &manifest.kind.to_string(), kind_color(&manifest.id));
                         info_chip(
                             ui,
-                            &feature.manifest.kind.to_string(),
-                            kind_color(&feature.manifest.id),
+                            &manifest.status.to_string(),
+                            lifecycle_color(&manifest.status.to_string()),
                         );
-                        info_chip(
-                            ui,
-                            &feature.manifest.status.to_string(),
-                            lifecycle_color(&feature.manifest.status.to_string()),
-                        );
-                        info_chip(
-                            ui,
-                            &feature.manifest.owner,
-                            egui::Color32::from_rgb(188, 199, 220),
-                        );
+                        info_chip(ui, &manifest.owner, egui::Color32::from_rgb(188, 199, 220));
                     });
                     ui.add_space(10.0);
                     egui::Grid::new("feature_metadata_grid")
@@ -44,9 +37,9 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
                         .spacing([12.0, 8.0])
                         .striped(true)
                         .show(ui, |ui| {
-                            metadata_row(ui, "id", &feature.manifest.id);
-                            metadata_row(ui, "created", &feature.manifest.created_at);
-                            metadata_row(ui, "updated", &feature.manifest.updated_at);
+                            metadata_row(ui, "id", &manifest.id);
+                            metadata_row(ui, "created", &manifest.created_at);
+                            metadata_row(ui, "updated", &manifest.updated_at);
                             metadata_row(ui, "crate", &feature.package_name);
                         });
                     ui.add_space(10.0);
@@ -61,10 +54,7 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
                         .corner_radius(12.0)
                         .inner_margin(egui::Margin::symmetric(10, 8))
                         .show(ui, |ui| {
-                            ui.small(
-                                egui::RichText::new(feature.feature_dir.display().to_string())
-                                    .monospace(),
-                            );
+                            ui.small(egui::RichText::new(feature.feature_dir.as_str()).monospace());
                         });
                 },
             );
@@ -75,11 +65,11 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
                 "Signals",
                 "Inputs, outputs, dependencies, compatibility, and reusable tags.",
                 |ui| {
-                    chip_group(ui, "tags", &feature.manifest.tags);
-                    chip_group(ui, "dependencies", &feature.manifest.dependencies);
-                    chip_group(ui, "compatible", &feature.manifest.compatible_features);
-                    chip_group(ui, "inputs", &feature.manifest.inputs.items);
-                    chip_group(ui, "outputs", &feature.manifest.outputs.items);
+                    chip_group(ui, "tags", &manifest.tags);
+                    chip_group(ui, "dependencies", &manifest.dependencies);
+                    chip_group(ui, "compatible", &manifest.compatible_features);
+                    chip_group(ui, "inputs", &manifest.inputs.items);
+                    chip_group(ui, "outputs", &manifest.outputs.items);
                 },
             );
 
@@ -89,9 +79,10 @@ pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
                 "JSON manifest",
                 "Raw machine-readable payload used by registry and CLI tooling.",
                 |ui| {
-                    let metadata_json = serde_json::to_string_pretty(&feature.manifest)
+                    let metadata_json = serde_json::to_string_pretty(manifest)
                         .unwrap_or_else(|error| error.to_string());
                     egui::ScrollArea::vertical()
+                        .id_salt("metadata_manifest_scroll")
                         .max_height(280.0)
                         .show(ui, |ui| {
                             ui.monospace(metadata_json);
@@ -176,6 +167,8 @@ fn kind_color(feature_id: &str) -> egui::Color32 {
         egui::Color32::from_rgb(126, 188, 255)
     } else if feature_id.starts_with("logic.") {
         egui::Color32::from_rgb(255, 201, 110)
+    } else if feature_id.starts_with("sim.") {
+        egui::Color32::from_rgb(110, 214, 188)
     } else if feature_id.starts_with("workflow.") {
         egui::Color32::from_rgb(177, 150, 255)
     } else {

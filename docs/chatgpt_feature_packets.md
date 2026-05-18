@@ -2,6 +2,17 @@
 
 These are copy-paste packets for a fresh ChatGPT coding window.
 
+For multi-feature queues that should run one feature at a time, end-to-end, use
+[docs/sequential_dex_prompt_packets.md](/Users/kogaryu/dev/features/docs/sequential_dex_prompt_packets.md).
+
+For parallel multi-worker waves, use
+[docs/parallel_dex_prompt_packets.md](/Users/kogaryu/dev/features/docs/parallel_dex_prompt_packets.md).
+
+Default proof policy:
+
+- terminal-first through `cargo` and `feature_cli`
+- `feature_lab_ui` only when the task explicitly requires a live harness smoke
+
 ## Isolated Feature Worker Packet
 
 ```text
@@ -127,6 +138,7 @@ Verification:
 - cargo test --workspace
 - cargo run -p feature_cli -- show {feature_id}
 - cargo run -p feature_cli -- test {feature_id}
+- git diff --check
 
 Final report:
 1. shared files changed
@@ -151,7 +163,10 @@ Run:
 - cargo test --workspace
 - cargo run -p feature_cli -- show {feature_id}
 - cargo run -p feature_cli -- test {feature_id}
-- cargo run -p feature_lab_ui
+- git diff --check
+
+Optional manual smoke only if the task explicitly depends on the harness:
+- scripts/launch_feature_lab_ui_app.sh
 
 Report:
 1. findings by severity

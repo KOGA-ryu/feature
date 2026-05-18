@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Confirm capture preview",
+      "is_completed": false,
+      "created_at_order": 1
+    },
+    {
+      "id": 2,
+      "title": "Bind source preset",
+      "is_completed": true,
+      "created_at_order": 2
+    },
+    {
+      "id": 3,
+      "title": "Run a short local recording",
+      "is_completed": false,
+      "created_at_order": 3
+    }
+  ]
+}

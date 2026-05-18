@@ -3,10 +3,7 @@ use eframe::egui;
 use crate::app::FeatureLabApp;
 
 pub fn show(ui: &mut egui::Ui, app: &mut FeatureLabApp) {
-    let selected_feature = app
-        .selected_feature_id
-        .as_deref()
-        .unwrap_or("No feature selected");
+    let selected_feature = app.selected_feature_id().unwrap_or("No feature selected");
     let selected_feature = selected_feature.to_owned();
     let line_count = app.test_output.lines().count();
     let (state_label, state_color) = app.test_output_state();

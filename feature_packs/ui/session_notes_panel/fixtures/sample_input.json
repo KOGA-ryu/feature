@@ -1,0 +1,19 @@
+{
+  "notes": {
+    "entries": [
+      {
+        "id": 1,
+        "text": "Lock the feature contract before wiring the demo shell.",
+        "created_at": "2026-04-27T09:00:00Z",
+        "pinned": true
+      },
+      {
+        "id": 2,
+        "text": "Review receipt after workspace proof.",
+        "created_at": "2026-04-27T09:12:00Z",
+        "pinned": false
+      }
+    ]
+  },
+  "selected_index": 1
+}

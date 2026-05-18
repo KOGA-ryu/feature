@@ -118,6 +118,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "actor_state"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "adler2"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -134,6 +143,63 @@ dependencies = [
  "once_cell",
  "version_check",
  "zerocopy",
+]
+
+[[package]]
+name = "ai_grade_hud"
+version = "0.1.0"
+dependencies = [
+ "ai_interaction_grader",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ai_intent_model"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ai_interaction_event"
+version = "0.1.0"
+dependencies = [
+ "ai_intent_model",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ai_interaction_grader"
+version = "0.1.0"
+dependencies = [
+ "ai_interaction_event",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ai_perception_model"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ai_target_state"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -417,6 +483,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
+name = "beat_em_up_plane"
+version = "0.1.0"
+dependencies = [
+ "actor_state",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "bit-set"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -519,6 +595,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e748733b7cbc798e1434b6ac524f0c1ff2ab456fe201501e6497c8417a4fc33"
 
 [[package]]
+name = "calculator_basic"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "calloop"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -600,6 +685,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0ced0551234e87afee12411d535648dd89d2e7f34c78b753395567aff3d447ff"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "checklist_single"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "checkpoint_flow"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -721,6 +824,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "crash_recovery"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "crc32fast"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -793,6 +905,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "document_history"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "downcast-rs"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -803,6 +924,17 @@ name = "dpi"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76"
+
+[[package]]
+name = "duel_arena"
+version = "0.1.0"
+dependencies = [
+ "actor_state",
+ "ai_interaction_event",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "ecolor"
@@ -1065,6 +1197,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "feature_batch_packet_flow"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "prompt_generator",
+ "serde",
+ "serde_json",
+ "spec_generator",
+]
+
+[[package]]
 name = "feature_build_packet_flow"
 version = "0.1.0"
 dependencies = [
@@ -1108,17 +1251,44 @@ name = "feature_lab_ui"
 version = "0.1.0"
 dependencies = [
  "activity_stream",
+ "actor_state",
+ "ai_grade_hud",
+ "ai_intent_model",
+ "ai_interaction_event",
+ "ai_interaction_grader",
+ "ai_perception_model",
+ "ai_target_state",
+ "beat_em_up_plane",
+ "calculator_basic",
+ "checklist_single",
+ "checkpoint_flow",
  "command_palette",
+ "crash_recovery",
+ "document_history",
+ "duel_arena",
  "eframe",
+ "feature_core",
  "feature_registry",
  "feature_runner",
+ "health_hud",
+ "hit_resolution",
+ "layer_escalation",
  "left_rail",
  "objc2 0.6.4",
  "objc2-app-kit 0.3.2",
+ "quick_capture_inbox",
  "raw-window-handle",
+ "runbook_panel",
+ "runner_track",
+ "scratchpad",
  "serde_json",
+ "session_notes",
+ "session_notes_panel",
+ "text_editor_plain",
  "theme_editor",
+ "timer_basic",
  "validation_pipeline",
+ "wiki_browser",
 ]
 
 [[package]]
@@ -1480,6 +1650,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4f467dd6dccf739c208452f8014c75c18bb8301b050ad1cfb27153803edb0f51"
 
 [[package]]
+name = "health_hud"
+version = "0.1.0"
+dependencies = [
+ "actor_state",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "heck"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1502,6 +1682,16 @@ name = "hexf-parse"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df"
+
+[[package]]
+name = "hit_resolution"
+version = "0.1.0"
+dependencies = [
+ "actor_state",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "icu_collections"
@@ -1740,6 +1930,16 @@ name = "khronos_api"
 version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2db585e1d738fc771bf08a151420d3ed193d9d895a36df7f6f8a9456b911ddc"
+
+[[package]]
+name = "layer_escalation"
+version = "0.1.0"
+dependencies = [
+ "ai_interaction_grader",
+ "feature_core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "leb128fmt"
@@ -2415,6 +2615,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "packet_archive_reader"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "feature_wave_packet_flow",
+ "packet_archive_writer",
+ "prompt_generator",
+ "serde",
+ "serde_json",
+ "spec_selector",
+]
+
+[[package]]
 name = "packet_archive_writer"
 version = "0.1.0"
 dependencies = [
@@ -2647,6 +2860,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "quick_capture_inbox"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2739,6 +2961,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "runbook_panel"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "runner_track"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "rustc-hash"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2811,6 +3051,24 @@ name = "scopeguard"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
+
+[[package]]
+name = "scratchpad"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "scroll_reader_overlay_v1"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "sctk-adwaita"
@@ -2901,6 +3159,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6662b5879511e06e8999a8a235d848113e942c9124f211511b16466ee2995f26"
 dependencies = [
  "serde_core",
+]
+
+[[package]]
+name = "session_notes"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "session_notes_panel"
+version = "0.1.0"
+dependencies = [
+ "document_history",
+ "feature_core",
+ "serde",
+ "serde_json",
+ "session_notes",
+ "text_editor_plain",
 ]
 
 [[package]]
@@ -3127,6 +3406,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "text_editor_plain"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "theme_editor"
 version = "0.1.0"
 dependencies = [
@@ -3197,6 +3485,15 @@ dependencies = [
  "quick-error",
  "weezl",
  "zune-jpeg",
+]
+
+[[package]]
+name = "timer_basic"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -3863,6 +4160,16 @@ dependencies = [
  "log",
  "thiserror 2.0.18",
  "web-sys",
+]
+
+[[package]]
+name = "wiki_browser"
+version = "0.1.0"
+dependencies = [
+ "feature_core",
+ "feature_registry",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

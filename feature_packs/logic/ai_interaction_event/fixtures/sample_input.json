@@ -1,0 +1,22 @@
+[
+  {
+    "outcome": "baited_commit",
+    "intent": "overcommit_lunge",
+    "tick": 1
+  },
+  {
+    "outcome": "correct_dodge",
+    "intent": "overcommit_lunge",
+    "tick": 2
+  },
+  {
+    "outcome": "punish_window_hit",
+    "intent": "overcommit_lunge",
+    "tick": 3
+  },
+  {
+    "outcome": "pattern_adapted",
+    "intent": "guard_break_windup",
+    "tick": 4
+  }
+]

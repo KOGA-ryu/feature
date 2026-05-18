@@ -130,6 +130,7 @@ pub fn build_feature_wave_packets(
                 spec: Some(generated_spec.clone()),
                 target_feature_id: Some(feature_id.clone()),
                 wave_feature_ids: Vec::new(),
+                allow_feature_lab_ui_writes: false,
             })
             .map_err(convert_prompt_validation)?;
             Ok(FeatureWaveWorkerBundle {
@@ -164,6 +165,7 @@ pub fn build_feature_wave_packets(
         spec: Some(generated_spec.clone()),
         target_feature_id: None,
         wave_feature_ids: wave_feature_ids.clone(),
+        allow_feature_lab_ui_writes: false,
     })
     .map_err(convert_prompt_validation)?;
     let reviewer_packet = generate_prompt(PromptRequest {
@@ -171,6 +173,7 @@ pub fn build_feature_wave_packets(
         spec: Some(generated_spec),
         target_feature_id: None,
         wave_feature_ids: wave_feature_ids.clone(),
+        allow_feature_lab_ui_writes: false,
     })
     .map_err(convert_prompt_validation)?;
 

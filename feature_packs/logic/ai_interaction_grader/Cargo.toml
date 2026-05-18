@@ -1,0 +1,10 @@
+[package]
+name = "ai_interaction_grader"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+ai_interaction_event = { path = "../ai_interaction_event" }
+feature_core = { path = "../../../crates/feature_core" }
+serde.workspace = true
+serde_json.workspace = true

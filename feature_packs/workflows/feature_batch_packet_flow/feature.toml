@@ -1,0 +1,17 @@
+id = "workflow.feature_batch_packet_flow"
+name = "feature_batch_packet_flow"
+kind = "workflow"
+status = "tested"
+summary = "Builds an ordered sequential feature queue into per-step worker, integrator, reviewer, and review-contract packets."
+tags = ["subject:packet_workflows", "workflow", "prompt", "batch", "sequential", "review", "codex_reference"]
+dependencies = ["feature_core", "logic.spec_generator", "logic.prompt_generator"]
+compatible_features = ["workflow.feature_build_packet_flow", "workflow.feature_wave_packet_flow", "workflow.review_packet_flow", "logic.prompt_generator"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["project", "branch_name", "generated_spec", "ordered_feature_ids"]
+
+[outputs]
+items = ["feature_batch_packet_bundle", "feature_batch_packet_validation", "step_bundles", "deferred_feature_ids", "review_contracts"]

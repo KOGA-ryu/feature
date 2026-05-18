@@ -1,0 +1,17 @@
+id = "workflow.packet_archive_reader"
+name = "packet_archive_reader"
+kind = "workflow"
+status = "experimental"
+summary = "Reads archived packet waves back into typed packet documents and rehydrated wave bundles."
+tags = ["subject:archive", "workflow", "packet", "archive", "reader", "chatgpt", "codex_reference"]
+dependencies = ["feature_core", "workflow.packet_archive_writer", "workflow.feature_wave_packet_flow", "logic.prompt_generator", "logic.spec_selector"]
+compatible_features = ["workflow.packet_archive_writer", "workflow.packet_archive_index", "workflow.feature_wave_packet_flow", "workflow.feature_build_packet_flow"]
+owner = "feature_lab"
+created_at = "2026-04-26T00:00:00Z"
+updated_at = "2026-04-26T00:00:00Z"
+
+[inputs]
+items = ["wave_label", "archive_root"]
+
+[outputs]
+items = ["packet_archive_read_report", "packet_archive_reader_validation", "archive_manifest", "wave_bundle", "worker_documents", "integrator_document", "reviewer_document"]

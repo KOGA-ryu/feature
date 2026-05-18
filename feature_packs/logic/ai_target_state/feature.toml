@@ -1,0 +1,17 @@
+id = "logic.ai_target_state"
+name = "ai_target_state"
+kind = "logic_pattern"
+status = "tested"
+summary = "Readable AI target state with telegraph posture, awareness, pressure, and explicit commitment or vulnerability windows."
+tags = ["subject:ai", "logic", "gameplay", "ai", "target", "telegraph"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.ai_perception_model", "logic.ai_intent_model", "logic.ai_interaction_event", "logic.actor_state", "sim.duel_arena"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["telegraph_inputs", "awareness_updates", "pressure_updates", "tick_events"]
+
+[outputs]
+items = ["target_state", "commitment_window", "vulnerability_window", "readability_hints"]

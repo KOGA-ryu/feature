@@ -1,0 +1,17 @@
+id = "logic.ai_perception_model"
+name = "ai_perception_model"
+kind = "logic_pattern"
+status = "tested"
+summary = "Deterministic perception snapshot for what an AI target noticed, missed, or misread."
+tags = ["subject:ai", "logic", "gameplay", "ai", "perception", "telegraph"]
+dependencies = ["feature_core"]
+compatible_features = ["logic.ai_target_state", "logic.ai_intent_model", "logic.ai_interaction_event", "logic.ai_interaction_grader"]
+owner = "feature_lab"
+created_at = "2026-04-27T00:00:00Z"
+updated_at = "2026-04-27T00:00:00Z"
+
+[inputs]
+items = ["perception_events", "signal_reads", "tick_events"]
+
+[outputs]
+items = ["perception_snapshot", "certainty_state", "misread_state"]

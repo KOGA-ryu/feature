@@ -221,7 +221,7 @@ fn empty_document_export_is_deterministic() {
     assert_eq!(editor.copy_markdown_block(Some("text")), "```text\n```");
     assert_eq!(
         editor.copy_prompt_block(None),
-        "source: unknown\ncontent:\n```text\n```"
+        "Source: unknown\n\n```text\n```"
     );
 }
 
@@ -250,11 +250,11 @@ fn prompt_block_includes_source_or_unknown() {
 
     assert_eq!(
         editor.copy_prompt_block(Some("notes/session.md")),
-        "source: notes/session.md\ncontent:\n```text\none\n```"
+        "Source: notes/session.md\n\n```text\none\n```"
     );
     assert_eq!(
         editor.copy_prompt_block(Some("   ")),
-        "source: unknown\ncontent:\n```text\none\n```"
+        "Source: unknown\n\n```text\none\n```"
     );
 }
 

@@ -170,7 +170,7 @@ impl TextEditorPlain {
             .filter(|value| !value.is_empty())
             .unwrap_or("unknown");
         format!(
-            "source: {source}\ncontent:\n{}",
+            "Source: {source}\n\n{}",
             fenced_block("text", &self.selected_text_or_all())
         )
     }

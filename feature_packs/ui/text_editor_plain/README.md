@@ -36,7 +36,7 @@ strings on a clipboard later, but this crate does not call the system clipboard.
 - `selected_text_or_all()`: selected text, or full document when no text is selected
 - `copy_plain()`: exact selected-or-all text
 - `copy_markdown_block(language)`: selected-or-all text wrapped in a Markdown fence
-- `copy_prompt_block(source)`: source line plus fenced exact text for AI prompts
+- `copy_prompt_block(source)`: Markdown-style source header plus fenced exact text for AI prompts
 - `current_line_text()`, `line_text(index)`, `line_range_text(start, end)`: line reads
 - `trim_trailing_whitespace_text(input)`: pure cleanup helper for imported text
 

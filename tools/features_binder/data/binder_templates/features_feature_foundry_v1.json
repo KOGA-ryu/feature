@@ -1,0 +1,339 @@
+{
+    "context_lines": [
+        "template {{project.binder_template}}",
+        "feature packs {{features.feature_pack_total}}",
+        "groups {{features.feature_pack_groups}}",
+        "safe surface feature_packs/logic | sim | ui | workflows",
+        "generated index feature_packs/by_subject/** | feature_packs/*/*/target",
+        "protected integration Cargo.toml | Cargo.lock | AGENTS.md"
+    ],
+    "detail_lenses": {
+        "Inventory": [
+            "Dashboard",
+            "Tree",
+            "Files",
+            "Folders",
+            "Unknown",
+            "Detail"
+        ],
+        "Profile": [
+            "Dashboard",
+            "Identity",
+            "Team",
+            "Commands",
+            "Boundaries"
+        ],
+        "Quality": [
+            "Dashboard",
+            "Tests",
+            "Warnings",
+            "Grade",
+            "Stats",
+            "Proof"
+        ]
+    },
+    "display_name": "Features Feature Foundry Binder",
+    "record_version": 1,
+    "sections": [
+        {
+            "lenses": [
+                "Dashboard",
+                "Identity"
+            ],
+            "rows": [
+                [
+                    "binder template",
+                    "{{project.binder_template}}",
+                    "feature packs",
+                    "{{features.feature_pack_total}}",
+                    "source",
+                    "registry metadata"
+                ],
+                [
+                    "groups",
+                    "{{features.feature_pack_groups}}",
+                    "foundry role",
+                    "reusable app feature library",
+                    "reuse rule",
+                    "contract before reuse"
+                ],
+                {
+                    "cells": [
+                        "protected integration",
+                        "Cargo.toml",
+                        "Cargo.lock",
+                        "AGENTS.md",
+                        "authority docs",
+                        "README.md",
+                        "docs/contract.md",
+                        "docs/feature_contract.md"
+                    ],
+                    "risk": true
+                }
+            ],
+            "subtle": false,
+            "tab": "Profile",
+            "title": "feature foundry identity"
+        },
+        {
+            "lenses": [
+                "Dashboard",
+                "Team"
+            ],
+            "rows": [
+                [
+                    "organizer",
+                    "maintains feature map and boundaries",
+                    "planner",
+                    "turns waves into buildable packets",
+                    "stager",
+                    "prepares proof-ready slices"
+                ],
+                [
+                    "worker source",
+                    "data/projects.json",
+                    "visibility",
+                    "repo-scoped only",
+                    "execution",
+                    "not launched by binder"
+                ]
+            ],
+            "subtle": true,
+            "tab": "Profile",
+            "title": "repo worker team"
+        },
+        {
+            "lenses": [
+                "Dashboard",
+                "Tree",
+                "Files"
+            ],
+            "rows": [
+                [
+                    "total packs",
+                    "{{features.feature_pack_total}}",
+                    "logic",
+                    "{{features.feature_pack_logic}}",
+                    "sim",
+                    "{{features.feature_pack_sim}}"
+                ],
+                [
+                    "ui",
+                    "{{features.feature_pack_ui}}",
+                    "workflows",
+                    "{{features.feature_pack_workflows}}",
+                    "scanner",
+                    "registry metadata only"
+                ],
+                [
+                    "logic examples",
+                    "actor_state",
+                    "ai_intent_model",
+                    "ai_interaction_event",
+                    "ai_interaction_grader",
+                    "ai_perception_model"
+                ],
+                [
+                    "logic examples",
+                    "ai_target_state",
+                    "compatibility_matrix",
+                    "document_history",
+                    "hit_resolution",
+                    "prompt_generator"
+                ],
+                [
+                    "logic examples",
+                    "reuse_score",
+                    "search_index",
+                    "session_notes",
+                    "spec_generator",
+                    "spec_selector"
+                ],
+                [
+                    "logic examples",
+                    "theme_token_generator",
+                    "validation_pipeline"
+                ],
+                [
+                    "sim examples",
+                    "beat_em_up_plane",
+                    "checkpoint_flow",
+                    "crash_recovery",
+                    "duel_arena",
+                    "layer_escalation",
+                    "runner_track"
+                ],
+                [
+                    "ui examples",
+                    "activity_stream",
+                    "ai_grade_hud",
+                    "calculator_basic",
+                    "checklist_single",
+                    "command_palette"
+                ],
+                [
+                    "ui examples",
+                    "health_hud",
+                    "left_rail",
+                    "quick_capture_inbox",
+                    "right_inspector",
+                    "runbook_panel"
+                ],
+                [
+                    "ui examples",
+                    "scratchpad",
+                    "session_notes_panel",
+                    "text_editor_plain",
+                    "theme_editor",
+                    "timer_basic"
+                ],
+                [
+                    "ui examples",
+                    "wiki_browser"
+                ],
+                [
+                    "workflow examples",
+                    "feature_batch_packet_flow",
+                    "feature_build_packet_flow",
+                    "feature_extraction_flow",
+                    "feature_wave_packet_flow"
+                ],
+                [
+                    "workflow examples",
+                    "lineage_tracker",
+                    "packet_archive_index",
+                    "packet_archive_reader",
+                    "packet_archive_writer",
+                    "review_packet_flow"
+                ],
+                {
+                    "cells": [
+                        "generated index",
+                        "feature_packs/by_subject/**, feature_packs/logic/document_history/target, feature_packs/ui/quick_capture_inbox/target",
+                        "safe action",
+                        "regenerate by scanner, do not hand-edit"
+                    ],
+                    "risk": true
+                },
+                {
+                    "cells": [
+                        "missing readmes",
+                        "none",
+                        "missing tests marker",
+                        "none",
+                        "missing test dir",
+                        "none"
+                    ],
+                    "risk": true
+                },
+                {
+                    "cells": [
+                        "scanner facts",
+                        "counts from live filesystem walk",
+                        "contract facts",
+                        "registry metadata only"
+                    ],
+                    "risk": true
+                }
+            ],
+            "subtle": true,
+            "tab": "Inventory",
+            "title": "feature pack inventory"
+        },
+        {
+            "lenses": [
+                "Dashboard",
+                "Folders"
+            ],
+            "rows": [
+                [
+                    "feature_packs/logic/**",
+                    "logic crates",
+                    "owner",
+                    "organizer",
+                    "action",
+                    "classify and index"
+                ],
+                [
+                    "feature_packs/ui/**",
+                    "UI primitives",
+                    "owner",
+                    "planner",
+                    "action",
+                    "connect to app needs"
+                ],
+                [
+                    "feature_packs/workflows/**",
+                    "packet workflows",
+                    "owner",
+                    "stager",
+                    "action",
+                    "keep proofable"
+                ],
+                [
+                    "target/**",
+                    "generated build output",
+                    "risk",
+                    "generated",
+                    "action",
+                    "safe ignore"
+                ]
+            ],
+            "subtle": true,
+            "tab": "Inventory",
+            "title": "folder roles"
+        },
+        {
+            "lenses": [
+                "Dashboard",
+                "Tests",
+                "Warnings"
+            ],
+            "rows": [
+                [
+                    "risk",
+                    "{{scan.risk_level}}",
+                    "contract",
+                    "{{contracts.status}}",
+                    "next",
+                    "{{contracts.next_step}}"
+                ],
+                [
+                    "test obligations",
+                    "{{scan.test_obligation_count}}",
+                    "proof obligations",
+                    "{{scan.proof_obligation_count}}",
+                    "protected paths",
+                    "{{scan.protected_count}}"
+                ],
+                [
+                    "quality rule",
+                    "feature crates need contract + state model + proof/tests + index entry"
+                ],
+                {
+                    "cells": [
+                        "do not promote blindly",
+                        "features must stay reusable",
+                        "proof expectation",
+                        "cargo test --workspace"
+                    ],
+                    "risk": true
+                }
+            ],
+            "subtle": true,
+            "tab": "Quality",
+            "title": "feature library quality gate"
+        }
+    ],
+    "template_id": "features_feature_foundry_v1",
+    "top_tabs": [
+        "Profile",
+        "Inventory",
+        "Map",
+        "Authority",
+        "Contracts",
+        "Activity",
+        "Quality",
+        "Evidence"
+    ]
+}

@@ -1,0 +1,84 @@
+# Dex Home v2 Native Source Map
+
+The native shell is organized by UI responsibility. Keep new work in the smallest matching module.
+
+- `main.cpp`: application launch, command-line flags, proof screenshot capture, and process entrypoint.
+- `main_window.*`: top-level window shell and selected-state entrypoints.
+- `main_window_chrome.cpp`: toolbar, body surface construction, and chrome toggle wiring.
+- `main_window_ledger.cpp`: legacy manual ledger action writes from the native shell.
+- `main_window_loaders.cpp`: project registry, binder template, proof receipt, and promotion report loaders.
+- `main_window_paths.cpp`: proof, registry, template, and promotion-report path resolution.
+- `main_window_state.cpp`: backend refresh, selected repo/worker refresh, and view refresh.
+- `app_state.h`: shared top-level in-memory cockpit/project/worker state aggregate.
+- `app_state_records.h`: small cockpit/project/worker/ledger record structs.
+- `app_state_helpers.h`: JSON and selected-state helper functions for app state.
+- `binder_state.h`: compact agent binder state aggregator and worker record filters.
+- `binder_json_helpers.h`: tolerant JSON parsing helpers for binder state.
+- `binder_stats_state.*`: Stats snapshot view models and parser.
+- `binder_record_state.*`: Grade, Transcript, and Evidence record view models and parsers.
+- `binder_profile_state.h`: Profile and Relationship view models and parser.
+- `rust_cockpit_backend.*`: read-only Rust CLI backend facade.
+- `rust_cockpit_backend_commands.cpp`: state/stats/repo scan command wrappers.
+- `rust_cockpit_backend_fallback.cpp`: fallback cockpit state construction when the Rust backend is unavailable.
+- `rust_cockpit_backend_parse.cpp`: Rust state JSON to `CockpitState` parsing.
+- `rust_cockpit_backend_paths.cpp`: default repo/binary path discovery.
+- `rust_cockpit_backend_process.cpp`: `QProcess` execution and JSON parsing.
+- `project_registry.h`: project registry data contract.
+- `project_registry_parse.cpp`: tolerant project registry JSON parsing.
+- `project_registry_store.cpp`: project registry file loading.
+- `project_registry_lookup.cpp`: registry lookup and display helpers.
+- `repo_diff_scan_state.*`: repo diff-scan view state and parser.
+- `repo_contract_check_state.*`: repo contract-check view state and parser.
+- `repo_proof_receipt_state.*`: repo proof receipt view state, parser, and loader.
+- `repo_promotion_report_state.*`: repo promotion dry-run report view state, parser, and loader.
+- `project_rail.*`: left project and worker rail orchestration.
+- `project_rail_rows.h`: shared project/worker rail row factory declarations.
+- `project_rail_project_row.cpp`: project row widget and factory.
+- `project_rail_worker_row.cpp`: worker row widget and factory.
+- `detail_lens_rail.*`: right detail-lens tab rail.
+- `sheet_stack_body.*`: central surface overlap/layout host.
+- `ledger_view.h`: tab host for the center binder surface.
+- `binder_page_helpers.*`: shared compact binder page shell helpers.
+- `binder_stats_widgets.cpp`: shared stats-style section, row, text, and mini-cell primitives.
+- `binder_file_inventory_lens.cpp`: static mock file inventory lens helper.
+- `agent_binder_pages.h`: public agent binder page entrypoints.
+- `agent_<subject>_pages.cpp`: one agent binder renderer per subject: Profile, Stats, Relationship, Grade, Transcript, Evidence.
+- `agent_empty_state.*`: shared blank/record-backed agent page and context renderer. Do not add mock agent rows.
+- `repo_binder_pages.h`: public repo binder page entrypoints.
+- `repo_binder_page_helpers.*`: shared repo template and list-row helpers.
+- `repo_binder_template_render.cpp`: binder-template token rendering and section emission.
+- `repo_cleanup_queue_state.*`: derived cleanup queue state from repo scan and contract-check facts.
+- `repo_cleanup_queue_rules.*`: contract-to-cleanup issue/action/status mapping helpers.
+- `repo_inventory_content.cpp`, `repo_inventory_sections.h`: Inventory page content behind the public Inventory renderer.
+- `repo_quality_content.cpp`, `repo_quality_sections.h`: Quality page content behind the public Quality renderer.
+- `repo_evidence_content.cpp`, `repo_evidence_sections.h`: Evidence page content behind the public Evidence renderer.
+- `repo_<subject>_pages.cpp`: one repo binder renderer per subject: Profile, Inventory, Map, Authority, Contracts, Activity, Quality, Evidence.
+- `right_context_panel.*`: right context panel shell and selected-state routing.
+- `right_context_render_helpers.*`: shared context label/action helpers.
+- `agent_context_renderer.*`: agent-side right context dispatcher.
+- `repo_context_renderer.*`: repo-side right context dispatcher.
+- `repo_context_sections.h`: shared repo right-context section declarations.
+- `repo_context_template.cpp`: repo binder-template context token rendering.
+- `repo_context_summary.cpp`: always-on repo scan, contract, cleanup, proof, and promotion context sections.
+- `repo_context_tabs.cpp`: active repo top-tab context sections.
+- `repo_context_actions.cpp`: repo context action buttons.
+- `binder_navigation.*`: top-tab and detail-lens tab grammar.
+- `render_helpers.*`: shared compact labels, row helpers, path/command formatting.
+- `ui_rules.*`: visual constants, fonts, colors, public UI helper contract.
+- `ui_style_sheet.cpp`: application stylesheet assembly and token substitution.
+- `ui_style_sheet_sections.h`: declarations for named stylesheet chunks.
+- `ui_style_<family>.cpp`: stylesheet chunks by surface family.
+- `ui_widget_factories.cpp`: shared label, badge, section, row, and inventory widget factories.
+- `repo_binder_template.cpp`: read-only repo binder template JSON parser.
+- `repo_binder_template_default.cpp`: built-in fallback repo binder template.
+- `repo_binder_template_store.cpp`: template file/store loading and template resolution.
+
+Rules:
+
+- Do not put backend calls inside page widgets; route them through `RustCockpitBackend` and `CockpitState`.
+- Do not add per-project C++ pages. Put repo-specific layout in `data/binder_templates/*.json`; keep only reusable repo subject rendering in `repo_<subject>_pages.cpp`.
+- Keep right context content out of `right_context_panel.*`; agent context stays blank/record-backed through `agent_empty_state.*`, and repo content belongs in `repo_context_renderer.*`.
+- Keep agent binder pages blank/record-backed unless real typed records exist; do not recreate mock dashboard/detail files.
+- Keep repo binder content split by subject; do not recreate a single `repo_binder_pages.cpp` page-content dump.
+- Do not scatter colors, row heights, rail widths, or spacing constants outside `ui_rules`.
+- If a new surface appears, give it a named module before it grows inside `main.cpp`.

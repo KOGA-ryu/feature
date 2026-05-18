@@ -1,0 +1,102 @@
+{
+    "projects": [
+        {
+            "authority": "repo_authority",
+            "binder_template": "features_feature_foundry_v1",
+            "build_commands": [
+                "cargo build --workspace"
+            ],
+            "editor_core_path": "",
+            "editor_core_status": "reserved",
+            "feature_pack_summary": {
+                "groups": {
+                    "logic": 17,
+                    "sim": 6,
+                    "ui": 16,
+                    "workflows": 9
+                },
+                "total": 48
+            },
+            "file_edit_supported": false,
+            "file_inspect_supported": false,
+            "generated_zones": [
+                "target/**",
+                "feature_packs/by_subject/**"
+            ],
+            "name": "Features",
+            "path": "/Users/kogaryu/dev/features",
+            "pinned": true,
+            "project_id": "features",
+            "project_type": "rust_feature_library",
+            "proof_commands": [
+                "cargo test --workspace",
+                "scripts/rebuild_feature_subject_views.sh"
+            ],
+            "protected_zones": [
+                "Cargo.toml",
+                "Cargo.lock",
+                "AGENTS.md",
+                "README.md",
+                "docs/contract.md",
+                "docs/feature_contract.md"
+            ],
+            "role": "reusable feature foundry",
+            "safe_edit_zones": [
+                "feature_packs/logic/**",
+                "feature_packs/sim/**",
+                "feature_packs/ui/**",
+                "feature_packs/workflows/**",
+                "docs/**",
+                "scripts/**"
+            ],
+            "scratch_zones": [
+                "state/**",
+                ".dex/**",
+                "tmp/**"
+            ],
+            "source_docs": [
+                "README.md",
+                "AGENTS.md",
+                "docs/contract.md",
+                "docs/feature_contract.md",
+                "docs/feature_subject_index.md",
+                "docs/roadmap.md",
+                "docs/testing_ground_rules.md",
+                "docs/ui_harness_contract.md"
+            ],
+            "status": "active",
+            "test_commands": [
+                "cargo test --workspace"
+            ],
+            "worker_ids": [
+                "organizer",
+                "planner",
+                "stager"
+            ]
+        }
+    ],
+    "workers": [
+        {
+            "display_name": "Organizer",
+            "role": "organizer",
+            "status": "ready",
+            "worker_id": "organizer"
+        },
+        {
+            "display_name": "Planner",
+            "role": "planner",
+            "status": "ready",
+            "worker_id": "planner"
+        },
+        {
+            "codex_directory": "/Users/kogaryu/dev/features",
+            "codex_model": "Spark xhigh",
+            "codex_permissions": "full access",
+            "codex_session_id": "019e3782-3d83-7da0-83bc-ab69315c9675",
+            "display_name": "Stager",
+            "role": "stager",
+            "status": "ready",
+            "worker_id": "stager"
+        }
+    ]
+}

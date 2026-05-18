@@ -1,0 +1,22 @@
+{
+  "template_id": "repo_default_binder_v1",
+  "record_version": 1,
+  "display_name": "Default Repo Binder",
+  "top_tabs": [
+    "Profile",
+    "Inventory",
+    "Map",
+    "Authority",
+    "Contracts",
+    "Activity",
+    "Quality",
+    "Evidence"
+  ],
+  "detail_lenses": {
+    "Profile": ["Dashboard", "Identity", "Team", "Commands", "Boundaries"],
+    "Inventory": ["Dashboard", "Tree", "Files", "Folders", "Unknown", "Detail"],
+    "Quality": ["Dashboard", "Tests", "Warnings", "Grade", "Stats", "Proof"]
+  },
+  "context_lines": [],
+  "sections": []
+}

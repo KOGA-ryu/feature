@@ -1,0 +1,15 @@
+Features binder proof
+root: /Users/kogaryu/dev/features/tools/features_binder
+bound_repo: /Users/kogaryu/dev/features
+project_id: features
+template: features_feature_foundry_v1
+feature_packs: 48
+workers: organizer planner stager
+screenshots:
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/01_features_profile_1280x800.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/02_features_inventory_1280x800.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/03_features_quality_1280x800.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/04_features_settings_1280x800.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/05_features_profile_900x700.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/06_features_settings_full_1280x4200.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/07_features_text_actions_1280x800.png

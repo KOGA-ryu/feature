@@ -2,6 +2,8 @@
 **/target/
 feature_packs/**/Cargo.lock
 feature_packs/by_subject/
+tools/features_binder/build/
+tools/features_binder/.dex/
 
 .DS_Store
 __pycache__/

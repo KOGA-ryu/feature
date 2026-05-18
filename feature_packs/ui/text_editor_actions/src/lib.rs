@@ -1,5 +1,9 @@
 use feature_core::{FeatureLabResult, FeatureManifest, parse_feature_manifest};
 use serde::{Deserialize, Serialize};
+use text_editor_clipboard::{
+    CleanBasicPolicy, ClipboardTransformResult, clean_basic, copy_code_fence,
+    normalize_line_endings_with_report, strip_ansi_escape_codes_with_report,
+};
 use text_editor_plain::{EditorCommand, TextEditorPlain, trim_trailing_whitespace_text};
 
 pub const FEATURE_ID: &str = "ui.text_editor_actions";
@@ -18,6 +22,7 @@ pub enum TextActionCategory {
 pub enum TextEnabledRule {
     Always,
     DocumentHasText,
+    DocumentOrInputHasText,
     HasLineRange,
 }
 
@@ -57,10 +62,14 @@ pub enum TextActionId {
     CopyPlain,
     CopyMarkdownBlock,
     CopyPromptBlock,
+    CopyCodeFence,
     SelectAll,
     CurrentLineText,
     LineRangeText,
     TrimTrailingWhitespace,
+    CleanBasic,
+    NormalizeLineEndings,
+    StripAnsiEscapeCodes,
 }
 
 impl TextActionId {
@@ -69,10 +78,14 @@ impl TextActionId {
             Self::CopyPlain => "text.copy_plain",
             Self::CopyMarkdownBlock => "text.copy_markdown_block",
             Self::CopyPromptBlock => "text.copy_prompt_block",
+            Self::CopyCodeFence => "text.copy_code_fence",
             Self::SelectAll => "text.select_all",
             Self::CurrentLineText => "text.current_line_text",
             Self::LineRangeText => "text.line_range_text",
             Self::TrimTrailingWhitespace => "text.trim_trailing_whitespace",
+            Self::CleanBasic => "text.clean_basic",
+            Self::NormalizeLineEndings => "text.normalize_line_endings",
+            Self::StripAnsiEscapeCodes => "text.strip_ansi_escape_codes",
         }
     }
 
@@ -81,10 +94,14 @@ impl TextActionId {
             "text.copy_plain" => Some(Self::CopyPlain),
             "text.copy_markdown_block" => Some(Self::CopyMarkdownBlock),
             "text.copy_prompt_block" => Some(Self::CopyPromptBlock),
+            "text.copy_code_fence" => Some(Self::CopyCodeFence),
             "text.select_all" => Some(Self::SelectAll),
             "text.current_line_text" => Some(Self::CurrentLineText),
             "text.line_range_text" => Some(Self::LineRangeText),
             "text.trim_trailing_whitespace" => Some(Self::TrimTrailingWhitespace),
+            "text.clean_basic" => Some(Self::CleanBasic),
+            "text.normalize_line_endings" => Some(Self::NormalizeLineEndings),
+            "text.strip_ansi_escape_codes" => Some(Self::StripAnsiEscapeCodes),
             _ => None,
         }
     }
@@ -109,6 +126,10 @@ impl TextActionRecord {
         match self.enabled_rule {
             TextEnabledRule::Always => true,
             TextEnabledRule::DocumentHasText => !editor.text().is_empty(),
+            TextEnabledRule::DocumentOrInputHasText => {
+                !editor.text().is_empty()
+                    || input.text.as_deref().is_some_and(|value| !value.is_empty())
+            }
             TextEnabledRule::HasLineRange => input.start_line.is_some() && input.end_line.is_some(),
         }
     }
@@ -125,6 +146,7 @@ impl TextActionRecord {
         match self.enabled_rule {
             TextEnabledRule::Always => None,
             TextEnabledRule::DocumentHasText => Some("document is empty"),
+            TextEnabledRule::DocumentOrInputHasText => Some("document and input text are empty"),
             TextEnabledRule::HasLineRange => Some("line range is missing"),
         }
     }
@@ -137,6 +159,7 @@ pub struct TextActionInput {
     pub start_line: Option<usize>,
     pub end_line: Option<usize>,
     pub text: Option<String>,
+    pub strip_ansi_escape_codes: Option<bool>,
 }
 
 impl TextActionInput {
@@ -150,6 +173,7 @@ impl TextActionInput {
 pub enum TextActionOutput {
     None,
     Text(String),
+    ClipboardTransform(ClipboardTransformResult),
     Disabled { action_id: String, reason: String },
 }
 
@@ -195,6 +219,22 @@ pub fn all_text_actions() -> Vec<TextActionRecord> {
             category: TextActionCategory::Clipboard,
             icon: "clipboard-copy",
             tooltip: "Copy text as a prompt-safe block with a source header.",
+            enabled_rule: TextEnabledRule::DocumentHasText,
+            undo_behavior: TextUndoBehavior::None,
+            host_placements: &[
+                TextHostPlacement::CommandPalette,
+                TextHostPlacement::ClipboardMenu,
+                TextHostPlacement::Toolbar,
+            ],
+        },
+        TextActionRecord {
+            id: TextActionId::CopyCodeFence,
+            action_id: TextActionId::CopyCodeFence.as_str(),
+            label: "Copy Code Fence",
+            short_label: "Fence",
+            category: TextActionCategory::Clipboard,
+            icon: "braces",
+            tooltip: "Copy text as a fenced code block with a language label.",
             enabled_rule: TextEnabledRule::DocumentHasText,
             undo_behavior: TextUndoBehavior::None,
             host_placements: &[
@@ -257,6 +297,51 @@ pub fn all_text_actions() -> Vec<TextActionRecord> {
                 TextHostPlacement::CleanupMenu,
             ],
         },
+        TextActionRecord {
+            id: TextActionId::CleanBasic,
+            action_id: TextActionId::CleanBasic.as_str(),
+            label: "Clean Basic",
+            short_label: "Clean",
+            category: TextActionCategory::Cleanup,
+            icon: "wand-sparkles",
+            tooltip: "Return cleaned text with a transform receipt.",
+            enabled_rule: TextEnabledRule::DocumentOrInputHasText,
+            undo_behavior: TextUndoBehavior::None,
+            host_placements: &[
+                TextHostPlacement::CommandPalette,
+                TextHostPlacement::CleanupMenu,
+            ],
+        },
+        TextActionRecord {
+            id: TextActionId::NormalizeLineEndings,
+            action_id: TextActionId::NormalizeLineEndings.as_str(),
+            label: "Normalize Line Endings",
+            short_label: "LF",
+            category: TextActionCategory::Cleanup,
+            icon: "pilcrow",
+            tooltip: "Return text with CRLF/CR line endings normalized to LF.",
+            enabled_rule: TextEnabledRule::DocumentOrInputHasText,
+            undo_behavior: TextUndoBehavior::None,
+            host_placements: &[
+                TextHostPlacement::CommandPalette,
+                TextHostPlacement::CleanupMenu,
+            ],
+        },
+        TextActionRecord {
+            id: TextActionId::StripAnsiEscapeCodes,
+            action_id: TextActionId::StripAnsiEscapeCodes.as_str(),
+            label: "Strip ANSI Escape Codes",
+            short_label: "ANSI",
+            category: TextActionCategory::Cleanup,
+            icon: "eraser",
+            tooltip: "Return text with ANSI escape sequences removed.",
+            enabled_rule: TextEnabledRule::DocumentOrInputHasText,
+            undo_behavior: TextUndoBehavior::None,
+            host_placements: &[
+                TextHostPlacement::CommandPalette,
+                TextHostPlacement::CleanupMenu,
+            ],
+        },
     ]
 }
 
@@ -292,6 +377,9 @@ pub fn execute_text_action(
         TextActionId::CopyPromptBlock => {
             TextActionOutput::Text(editor.copy_prompt_block(input.source.as_deref()))
         }
+        TextActionId::CopyCodeFence => {
+            TextActionOutput::ClipboardTransform(copy_code_fence(editor, input.language.as_deref()))
+        }
         TextActionId::SelectAll => {
             editor.apply(EditorCommand::SelectAll);
             TextActionOutput::None
@@ -310,6 +398,24 @@ pub fn execute_text_action(
                 .unwrap_or_else(|| editor.selected_text_or_all());
             TextActionOutput::Text(trim_trailing_whitespace_text(&source))
         }
+        TextActionId::CleanBasic => {
+            let source = input_text_or_selected_text(editor, &input);
+            TextActionOutput::ClipboardTransform(clean_basic(
+                &source,
+                CleanBasicPolicy {
+                    strip_ansi_escape_codes: input.strip_ansi_escape_codes.unwrap_or(false),
+                    ..CleanBasicPolicy::default()
+                },
+            ))
+        }
+        TextActionId::NormalizeLineEndings => {
+            let source = input_text_or_selected_text(editor, &input);
+            TextActionOutput::ClipboardTransform(normalize_line_endings_with_report(&source))
+        }
+        TextActionId::StripAnsiEscapeCodes => {
+            let source = input_text_or_selected_text(editor, &input);
+            TextActionOutput::ClipboardTransform(strip_ansi_escape_codes_with_report(&source))
+        }
     }
 }
 
@@ -323,4 +429,12 @@ pub fn documentation_preview() -> &'static str {
 
 pub fn sample_fixture() -> &'static str {
     include_str!("../fixtures/sample_actions.json")
+}
+
+fn input_text_or_selected_text(editor: &TextEditorPlain, input: &TextActionInput) -> String {
+    input
+        .text
+        .as_deref()
+        .map(str::to_owned)
+        .unwrap_or_else(|| editor.selected_text_or_all())
 }

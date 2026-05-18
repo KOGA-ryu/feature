@@ -308,10 +308,14 @@ It starts with these actions only:
 text.copy_plain
 text.copy_markdown_block
 text.copy_prompt_block
+text.copy_code_fence
 text.select_all
 text.current_line_text
 text.line_range_text
 text.trim_trailing_whitespace
+text.clean_basic
+text.normalize_line_endings
+text.strip_ansi_escape_codes
 ```
 
 Why these actions first:
@@ -345,6 +349,7 @@ TextActionOutput
 TextEnabledRule
 TextUndoBehavior
 TextHostPlacement
+ClipboardTransformResult
 all_text_actions()
 parse_text_action_id()
 execute_text_action()
@@ -357,7 +362,8 @@ come later.
 Recommended V1 output rule:
 
 ```text
-copy/export/line/cleanup actions return Text(String)
+simple copy/export/line/cleanup actions return Text(String)
+receipt-aware clipboard policy actions return ClipboardTransformResult
 select_all returns None and changes selection only
 disabled actions return Disabled with an action id and reason
 ```

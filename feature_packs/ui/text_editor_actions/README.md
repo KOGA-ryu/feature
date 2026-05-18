@@ -14,10 +14,14 @@ Qt, egui, terminal, and web adapters on the same placement vocabulary.
 - `text.copy_plain`
 - `text.copy_markdown_block`
 - `text.copy_prompt_block`
+- `text.copy_code_fence`
 - `text.select_all`
 - `text.current_line_text`
 - `text.line_range_text`
 - `text.trim_trailing_whitespace`
+- `text.clean_basic`
+- `text.normalize_line_endings`
+- `text.strip_ansi_escape_codes`
 
 ## Design rule
 
@@ -27,6 +31,10 @@ Qt, egui, terminal, and web adapters on the same placement vocabulary.
 
 Qt, egui, terminal, and web hosts should render these action records instead of
 inventing local labels, icons, tooltips, shortcuts, or behavior.
+
+Clipboard policy actions return `ClipboardTransformResult` through
+`TextActionOutput::ClipboardTransform`, preserving cleanup receipts for hosts and
+future agent calls.
 
 ## Cleanup policy
 

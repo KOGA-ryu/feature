@@ -4,6 +4,7 @@ use text_editor_actions::{
     TextEnabledRule, TextHostPlacement, TextUndoBehavior, action_record, all_text_actions,
     execute_text_action, parse_text_action_id, sample_fixture,
 };
+use text_editor_clipboard::ClipboardChangeId;
 use text_editor_plain::{EditorCommand, EditorPosition, EditorSelection, TextEditorPlain};
 
 #[test]
@@ -21,7 +22,12 @@ fn feature_manifest_matches_contract() {
     );
     assert_eq!(
         manifest.outputs.items,
-        vec!["text_action_records", "text_action_output", "enabled_state"]
+        vec![
+            "text_action_records",
+            "text_action_output",
+            "enabled_state",
+            "clipboard_transform_result"
+        ]
     );
 }
 
@@ -51,10 +57,14 @@ fn action_records_are_deterministic_and_complete() {
             "text.copy_plain",
             "text.copy_markdown_block",
             "text.copy_prompt_block",
+            "text.copy_code_fence",
             "text.select_all",
             "text.current_line_text",
             "text.line_range_text",
             "text.trim_trailing_whitespace",
+            "text.clean_basic",
+            "text.normalize_line_endings",
+            "text.strip_ansi_escape_codes",
         ]
     );
 }
@@ -71,6 +81,15 @@ fn action_record_metadata_is_host_renderable() {
     assert_eq!(prompt.enabled_rule, TextEnabledRule::DocumentHasText);
     assert_eq!(prompt.undo_behavior, TextUndoBehavior::None);
     assert!(prompt.host_placements.contains(&TextHostPlacement::Toolbar));
+
+    let clean = action_record(TextActionId::CleanBasic);
+    assert_eq!(clean.category, TextActionCategory::Cleanup);
+    assert_eq!(clean.enabled_rule, TextEnabledRule::DocumentOrInputHasText);
+    assert!(
+        clean
+            .host_placements
+            .contains(&TextHostPlacement::CleanupMenu)
+    );
 }
 
 #[test]
@@ -142,6 +161,27 @@ fn copy_actions_return_exact_helper_outputs_without_mutation() {
 
     assert_eq!(editor.text(), text);
     assert_eq!(editor.selection(), selection);
+}
+
+#[test]
+fn copy_code_fence_returns_clipboard_transform_receipt() {
+    let editor = TextEditorPlain::from_text("let x = 1;".into());
+
+    assert_eq!(
+        execute_text_action(
+            &mut editor.clone(),
+            TextActionId::CopyCodeFence,
+            TextActionInput {
+                language: Some("rust".into()),
+                ..TextActionInput::empty()
+            },
+        ),
+        TextActionOutput::ClipboardTransform(text_editor_clipboard::ClipboardTransformResult {
+            text: "```rust\nlet x = 1;\n```".into(),
+            changes: vec![],
+            warnings: vec![],
+        })
+    );
 }
 
 #[test]
@@ -237,6 +277,96 @@ fn trim_trailing_whitespace_is_output_only() {
             },
         ),
         TextActionOutput::Text("x\ny\n".into())
+    );
+}
+
+#[test]
+fn clipboard_cleanup_actions_return_receipts_without_mutation() {
+    let mut editor = TextEditorPlain::from_text("alpha  \n\u{1b}[31mbeta\u{1b}[0m\t".into());
+    let text = editor.text().to_owned();
+    let selection = editor.selection();
+
+    let output = execute_text_action(
+        &mut editor,
+        TextActionId::CleanBasic,
+        TextActionInput {
+            strip_ansi_escape_codes: Some(true),
+            ..TextActionInput::empty()
+        },
+    );
+    let TextActionOutput::ClipboardTransform(result) = output else {
+        panic!("clean basic should return clipboard transform result");
+    };
+
+    assert_eq!(result.text, "alpha\nbeta");
+    assert_eq!(
+        result
+            .changes
+            .iter()
+            .map(|change| change.change_id)
+            .collect::<Vec<_>>(),
+        vec![
+            ClipboardChangeId::StrippedAnsiEscapeCodes,
+            ClipboardChangeId::TrimmedTrailingWhitespace,
+        ]
+    );
+    assert_eq!(editor.text(), text);
+    assert_eq!(editor.selection(), selection);
+}
+
+#[test]
+fn normalize_and_strip_actions_use_input_text_when_provided() {
+    let mut editor = TextEditorPlain::new();
+
+    let output = execute_text_action(
+        &mut editor,
+        TextActionId::NormalizeLineEndings,
+        TextActionInput {
+            text: Some("a\r\nb\rc".into()),
+            ..TextActionInput::empty()
+        },
+    );
+    let TextActionOutput::ClipboardTransform(result) = output else {
+        panic!("normalize should return clipboard transform result");
+    };
+    assert_eq!(result.text, "a\nb\nc");
+    assert_eq!(
+        result.changes[0].change_id,
+        ClipboardChangeId::NormalizedLineEndings
+    );
+
+    let output = execute_text_action(
+        &mut editor,
+        TextActionId::StripAnsiEscapeCodes,
+        TextActionInput {
+            text: Some("\u{1b}[32mgreen\u{1b}[0m".into()),
+            ..TextActionInput::empty()
+        },
+    );
+    let TextActionOutput::ClipboardTransform(result) = output else {
+        panic!("strip ANSI should return clipboard transform result");
+    };
+    assert_eq!(result.text, "green");
+    assert_eq!(
+        result.changes[0].change_id,
+        ClipboardChangeId::StrippedAnsiEscapeCodes
+    );
+}
+
+#[test]
+fn cleanup_actions_disable_when_editor_and_input_are_empty() {
+    let mut editor = TextEditorPlain::new();
+
+    assert_eq!(
+        execute_text_action(
+            &mut editor,
+            TextActionId::CleanBasic,
+            TextActionInput::empty()
+        ),
+        TextActionOutput::Disabled {
+            action_id: "text.clean_basic".into(),
+            reason: "document and input text are empty".into()
+        }
     );
 }
 

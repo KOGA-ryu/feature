@@ -3412,6 +3412,7 @@ dependencies = [
  "feature_core",
  "serde",
  "serde_json",
+ "text_editor_clipboard",
  "text_editor_plain",
 ]
 

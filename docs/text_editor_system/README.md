@@ -113,5 +113,7 @@ host proof is marked `needs verification`.
   work.
 - `29_reusable_components_matrix.md` for shared components that should not be
   reinvented per crate or host.
+- `44_feature_symbol_language.md` for the future local-librarian and compact
+  feature-request language.
 - `41_spark_code_review_rubric.md` for review expectations.
 - `42_release_gate_checklist.md` for final gating.

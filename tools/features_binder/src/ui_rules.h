@@ -32,6 +32,14 @@ struct metrics {
     static constexpr int font_size_title = 15;
 };
 
+struct text_editor_metrics {
+    static constexpr int base_grid = 8;
+    static constexpr int panel_radius = 8;
+    static constexpr int button_radius = 6;
+    static constexpr int action_strip_height = 156;
+    static constexpr int fixture_shelf_height = 250;
+};
+
 struct colors {
     static QString bg_root();
     static QString bg_rail_light();
@@ -50,6 +58,19 @@ struct colors {
     static QString risk_split_candidate();
     static QString risk_generated();
     static QString risk_inspect_first();
+};
+
+struct text_editor_colors {
+    static QString rail_dark();
+    static QString chrome();
+    static QString editor();
+    static QString toolbar();
+    static QString inspector();
+    static QString status();
+    static QString selection();
+    static QString border();
+    static QString focus();
+    static QString success();
 };
 
 QString app_qss();

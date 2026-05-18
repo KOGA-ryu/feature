@@ -6,6 +6,7 @@
 #include <QScrollArea>
 #include <QStyle>
 #include <QVBoxLayout>
+#include <QWidget>
 
 #include "app_state_helpers.h"
 #include "project_rail_rows.h"
@@ -45,6 +46,44 @@ private:
     std::function<void()> onSelected_;
 };
 
+void polishWorkspaceWidget(QWidget *widget, const char *workspace) {
+    if (!widget) {
+        return;
+    }
+    widget->setProperty("workspace", workspace);
+    widget->style()->unpolish(widget);
+    widget->style()->polish(widget);
+}
+
+void setRailWorkspace(QFrame *rail, QWidget *railBody, QFrame *settingsRow, const char *workspace) {
+    rail->setProperty("workspace", workspace);
+    rail->style()->unpolish(rail);
+    rail->style()->polish(rail);
+    polishWorkspaceWidget(railBody, workspace);
+    polishWorkspaceWidget(settingsRow, workspace);
+}
+
+QFrame *makeTextEditorBucket(const QString &title, const QString &note, const QString &uiPath) {
+    auto *bucket = new QFrame;
+    bucket->setObjectName("textEditorRailBucket");
+    bucket->setProperty("uiPath", uiPath);
+    bucket->setMinimumHeight(54);
+
+    auto *layout = new QVBoxLayout(bucket);
+    layout->setContentsMargins(12, 7, 12, 7);
+    layout->setSpacing(2);
+
+    auto *titleLabel = makeLabel(title, "textEditorBucketTitle");
+    titleLabel->setProperty("uiPath", uiPath + ".title");
+    layout->addWidget(titleLabel);
+
+    auto *noteLabel = makeLabel(note, "textEditorBucketNote");
+    noteLabel->setProperty("uiPath", uiPath + ".empty_state");
+    layout->addWidget(noteLabel);
+
+    return bucket;
+}
+
 } // namespace
 
 ProjectRail::ProjectRail(
@@ -68,11 +107,12 @@ ProjectRail::ProjectRail(
     scroll->setFrameShape(QFrame::NoFrame);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    auto *body = new QWidget;
-    listLayout_ = new QVBoxLayout(body);
+    railBody_ = new QWidget;
+    railBody_->setObjectName("projectRailBody");
+    listLayout_ = new QVBoxLayout(railBody_);
     listLayout_->setContentsMargins(0, 0, 0, 0);
     listLayout_->setSpacing(8);
-    scroll->setWidget(body);
+    scroll->setWidget(railBody_);
     outer->addWidget(scroll, 1);
 
     settingsRow_ = new SettingsRow(onSettingsSelected_, this);
@@ -85,8 +125,24 @@ void ProjectRail::setState(
     const QString &selectedProjectId,
     bool repoMode,
     bool settingsMode) {
+    if (settingsMode) {
+        setSettingsState(state, selectedProjectId);
+        return;
+    }
+    if (repoMode) {
+        setRepoState(state, selectedWorkerId, selectedProjectId);
+        return;
+    }
+    setAgentState(state, selectedWorkerId);
+}
+
+void ProjectRail::setRepoState(
+    const CockpitState &state,
+    const QString &selectedWorkerId,
+    const QString &selectedProjectId) {
+    setRailWorkspace(this, railBody_, settingsRow_, "repo");
     clearLayout(listLayout_);
-    settingsRow_->setProperty("active", settingsMode);
+    settingsRow_->setProperty("active", false);
     settingsRow_->style()->unpolish(settingsRow_);
     settingsRow_->style()->polish(settingsRow_);
 
@@ -97,24 +153,16 @@ void ProjectRail::setState(
         auto *empty = makeLabel("No projects registered", "mutedLabel");
         empty->setFixedHeight(24);
         listLayout_->addWidget(empty);
-        if (!repoMode) {
-            listLayout_->addWidget(makeLabel("Workers", "sectionLabel"));
-            addWorkerRows(state, selectedWorkerId, selectedProjectId, repoMode);
-        }
         listLayout_->addStretch(1);
         return;
     }
 
     listLayout_->addWidget(makeLabel("Pinned", "sectionLabel"));
     addProjectRows(state, selectedProjectId, true);
-    if (repoMode) {
-        const auto *selectedProject = DexProjects::findProjectById(projects, selectedProjectId);
-        if (selectedProject) {
-            listLayout_->addWidget(makeLabel("Workers", "sectionLabel"));
-            addWorkerRows(state, selectedWorkerId, selectedProjectId, repoMode);
-        }
-    } else {
-        addWorkerRows(state, selectedWorkerId, selectedProjectId, repoMode);
+    const auto *selectedProject = DexProjects::findProjectById(projects, selectedProjectId);
+    if (selectedProject) {
+        listLayout_->addWidget(makeLabel("Workers", "sectionLabel"));
+        addWorkerRows(state, selectedWorkerId, selectedProjectId, true);
     }
 
     const bool hasNonPinnedProject = std::any_of(
@@ -127,6 +175,68 @@ void ProjectRail::setState(
         listLayout_->addWidget(makeLabel("All Projects", "sectionLabel"));
         addProjectRows(state, selectedProjectId, false);
     }
+    listLayout_->addStretch(1);
+}
+
+void ProjectRail::setAgentState(const CockpitState &state, const QString &selectedWorkerId) {
+    setRailWorkspace(this, railBody_, settingsRow_, "agent");
+    clearLayout(listLayout_);
+    settingsRow_->setProperty("active", false);
+    settingsRow_->style()->unpolish(settingsRow_);
+    settingsRow_->style()->polish(settingsRow_);
+
+    listLayout_->addWidget(makeLabel("Agents", "sectionLabel"));
+    if (state.workers.isEmpty()) {
+        auto *empty = makeLabel("No agents available", "mutedLabel");
+        empty->setFixedHeight(22);
+        listLayout_->addWidget(empty);
+    }
+    for (const WorkerSummary &worker : state.workers) {
+        listLayout_->addWidget(DexProjectRailRows::makeWorkerRow(
+            worker.id,
+            worker.role,
+            worker.displayName,
+            worker.status,
+            worker.id == selectedWorkerId,
+            onWorkerSelected_));
+    }
+    listLayout_->addStretch(1);
+}
+
+void ProjectRail::setTextEditorState() {
+    setRailWorkspace(this, railBody_, settingsRow_, "text_editor");
+    clearLayout(listLayout_);
+    settingsRow_->setProperty("active", false);
+    settingsRow_->style()->unpolish(settingsRow_);
+    settingsRow_->style()->polish(settingsRow_);
+
+    auto *title = makeLabel("Text Editor", "sectionLabel");
+    title->setProperty("uiPath", "workbench.rail.text_editor.title");
+    listLayout_->addWidget(title);
+    auto *empty = makeLabel("Blank workspace", "mutedLabel");
+    empty->setProperty("uiPath", "workbench.rail.text_editor.empty_state");
+    listLayout_->addWidget(empty);
+    listLayout_->addWidget(makeTextEditorBucket("Documents", "No document open", "workbench.rail.text_editor.documents"));
+    listLayout_->addWidget(makeTextEditorBucket("Clipboard", "No clipboard capture", "workbench.rail.text_editor.clipboard"));
+    listLayout_->addWidget(makeTextEditorBucket("Drafts", "No drafts saved", "workbench.rail.text_editor.drafts"));
+    listLayout_->addWidget(makeTextEditorBucket("Fixtures", "No fixture selected", "workbench.rail.text_editor.fixtures"));
+    listLayout_->addStretch(1);
+}
+
+void ProjectRail::setSettingsState(const CockpitState &state, const QString &selectedProjectId) {
+    setRailWorkspace(this, railBody_, settingsRow_, "settings");
+    clearLayout(listLayout_);
+    settingsRow_->setProperty("active", true);
+    settingsRow_->style()->unpolish(settingsRow_);
+    settingsRow_->style()->polish(settingsRow_);
+
+    listLayout_->addWidget(makeLabel("Settings", "sectionLabel"));
+    listLayout_->addWidget(makeLabel("Project Spec", "mutedLabel"));
+    listLayout_->addWidget(makeLabel("Registry", "sectionLabel"));
+    listLayout_->addWidget(makeLabel(state.projectRegistryLoaded ? "projects.json loaded" : "registry unavailable", "mutedLabel"));
+    listLayout_->addWidget(makeLabel("Selected", "sectionLabel"));
+    const auto *project = DexProjects::findProjectById(registryProjectsForState(state), selectedProjectId);
+    listLayout_->addWidget(makeLabel(project ? DexProjects::displayName(*project) : QString("new project / none"), "mutedLabel"));
     listLayout_->addStretch(1);
 }
 

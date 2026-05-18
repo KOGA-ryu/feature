@@ -31,6 +31,13 @@ public:
     void setSettingsFeature(const QString &featureName);
 
 private:
+    enum class WorkspaceKind {
+        TextEditor,
+        Agent,
+        Repo,
+        Settings,
+    };
+
     static QString resolveProjectRegistryPath(const QString &requestedPath);
     static QString resolveProofReceiptPath(const QString &requestedPath);
     static QString resolveBinderTemplateDirPath(const QString &projectRegistryPath);
@@ -47,6 +54,8 @@ private:
     void refreshSelectedProjectScan();
     void refreshViews();
     void syncSelectedWorkerToSelectedProject();
+    void openTextEditorWorkspace();
+    void setWorkspaceKind(WorkspaceKind workspaceKind);
     void exitSettingsMode();
     void saveProjectRegistryFromSettings(
         DexProjects::ProjectRegistry registry,
@@ -73,6 +82,7 @@ private:
     QString promotionReportPath_;
     bool repoMode_ = true;
     bool settingsMode_ = false;
+    WorkspaceKind workspaceKind_ = WorkspaceKind::Settings;
     QString selectedSettingsFeature_ = "Project Spec";
     QString selectedTopTab_ = "Profile";
     QString selectedDetailLens_ = "Dashboard";
@@ -81,8 +91,6 @@ private:
     LedgerView *ledger_ = nullptr;
     DetailLensRail *detailLensRail_ = nullptr;
     RightContextPanel *rightContext_ = nullptr;
-    QToolBar *bottomHost_ = nullptr;
-    QLabel *bottomShelf_ = nullptr;
     QLabel *chromeLocationLabel_ = nullptr;
     QToolButton *railToggle_ = nullptr;
     QToolButton *bottomToggle_ = nullptr;

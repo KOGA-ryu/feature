@@ -1,5 +1,7 @@
 #include "ui_style_sheet_sections.h"
 
+#include "ui_rules.h"
+
 namespace dex_ui::style_sheet_sections {
 
 QString surfaceAndLabelQss() {
@@ -27,6 +29,16 @@ QString surfaceAndLabelQss() {
             border-top-right-radius: %5px;
             border-bottom-right-radius: %5px;
         }
+        QFrame#textEditorBlankSlot {
+            background: #f8fafb;
+            border: 1px solid #d4d9de;
+            border-radius: 6px;
+        }
+        QFrame#textEditorBlankSurface {
+            background: #ffffff;
+            border: 1px solid #cfd5da;
+            border-radius: 6px;
+        }
         QScrollArea {
             background: transparent;
             border: 0;
@@ -49,6 +61,189 @@ QString surfaceAndLabelQss() {
             background: transparent;
         }
     )");
+}
+
+QString textEditorWorkbenchQss() {
+    return QString(R"(
+        QFrame#projectRail[workspace="text_editor"] {
+            background: %1;
+            border-right: 1px solid #3a3f45;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        QFrame#projectRail[workspace="text_editor"] QScrollArea,
+        QFrame#projectRail[workspace="text_editor"] QWidget#projectRailBody,
+        QWidget#projectRailBody[workspace="text_editor"] {
+            background: %1;
+            border: 0;
+        }
+        QFrame#projectRail[workspace="text_editor"] QLabel {
+            background: transparent;
+            color: #edf2f7;
+        }
+        QFrame#projectRail[workspace="text_editor"] QLabel#sectionLabel {
+            color: #cbd5df;
+            background: transparent;
+            font-size: 11px;
+            font-weight: 750;
+            text-transform: uppercase;
+            padding-left: 0px;
+        }
+        QFrame#projectRail[workspace="text_editor"] QLabel#mutedLabel,
+        QFrame#projectRail[workspace="text_editor"] QLabel#smallLabel {
+            color: #aeb8c2;
+            background: transparent;
+        }
+        QFrame#projectRail[workspace="text_editor"] QFrame#settingsRow {
+            background: #30353a;
+            border: 1px solid #3f464d;
+            border-radius: %6px;
+        }
+        QFrame#projectRail[workspace="text_editor"] QFrame#settingsRow:hover {
+            background: #38404a;
+            border-color: #59636f;
+        }
+        QFrame#textEditorRailBucket {
+            background: #30353a;
+            border: 1px solid #3f464d;
+            border-radius: %6px;
+        }
+        QFrame#textEditorRailBucket:hover {
+            background: #363c42;
+            border-color: #55606a;
+        }
+        QLabel#textEditorBucketTitle {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 750;
+        }
+        QLabel#textEditorBucketNote {
+            color: #aeb8c2;
+            font-size: 11px;
+        }
+
+        QWidget#textEditorBlankBody {
+            background: #f5f7f9;
+        }
+        QWidget#textEditorWorkbenchPage,
+        QScrollArea#textEditorWorkspaceScroll {
+            background: #f5f7f9;
+            border: 0;
+        }
+        QFrame#textEditorActionStrip {
+            background: %3;
+            border: 1px solid %5;
+            border-radius: %6px;
+        }
+        QFrame#textEditorToolbarDivider {
+            background: #d7dde3;
+            border: 0;
+        }
+        QPushButton#textEditorActionButton {
+            background: #ffffff;
+            color: #1f2933;
+            border: 1px solid %5;
+            border-radius: %7px;
+            min-height: 30px;
+            max-height: 30px;
+            padding: 3px 9px;
+            font-size: 12px;
+            font-weight: 650;
+            text-align: center;
+        }
+        QPushButton#textEditorActionButton:disabled {
+            color: #3f4a55;
+            background: #ffffff;
+            border-color: #cbd3db;
+        }
+        QFrame#textEditorBlankSurface,
+        QFrame#textEditorFixtureShelf {
+            background: %2;
+            border: 1px solid #cfd6dd;
+            border-radius: %6px;
+        }
+        QFrame#textEditorDocumentHeader {
+            background: #f8fafc;
+            border-bottom: 1px solid #d8dde3;
+            border-top-left-radius: %6px;
+            border-top-right-radius: %6px;
+        }
+        QFrame#textEditorDocumentTab {
+            background: #ffffff;
+            border-right: 1px solid #ccd3da;
+            border-bottom: 1px solid #ffffff;
+            border-top-left-radius: %7px;
+            border-top-right-radius: %7px;
+        }
+        QFrame#textEditorSelectionPreview {
+            background: #f2f6f9;
+            border: 1px dashed #cbd6df;
+            border-radius: 4px;
+        }
+        QLabel#textEditorSurfaceTitle {
+            color: #20262d;
+            font-size: 12px;
+            font-weight: 750;
+            background: transparent;
+        }
+        QLabel#textEditorSurfaceEmpty {
+            color: #4d5965;
+            font-size: 12px;
+            background: transparent;
+        }
+        QLabel#textEditorMonoLabel {
+            color: #4d5965;
+            font-family: "Menlo", "Monaco", "Courier New", monospace;
+            font-size: 11px;
+            background: transparent;
+        }
+        QLabel#textEditorGutterLabel {
+            color: #7a838c;
+            font-family: "Menlo", "Monaco", "Courier New", monospace;
+            font-size: 11px;
+            background: transparent;
+        }
+        QFrame#textEditorFixturePanel,
+        QFrame#textEditorContextPanel {
+            background: #ffffff;
+            border: 1px solid #d8dee5;
+            border-radius: %6px;
+        }
+        QFrame#textEditorFixturePanel QLabel#textEditorSurfaceTitle {
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: 0px;
+        }
+        QFrame#textEditorContextPanel QLabel#textEditorSurfaceEmpty {
+            color: #47525f;
+            font-size: 11px;
+        }
+
+        QFrame#detailLensRail[workspace="text_editor"] {
+            background: #eef1f4;
+            border-left: 1px solid #ccd2d8;
+            border-right: 1px solid #ccd2d8;
+        }
+        QFrame#rightContext[workspace="text_editor"] {
+            background: %4;
+            border-left: 1px solid %5;
+            border-radius: 0px;
+        }
+        QFrame#rightContext[workspace="text_editor"] QLabel#sectionLabel {
+            color: #111827;
+            background: transparent;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+    )")
+        .arg(text_editor_colors::rail_dark())
+        .arg(text_editor_colors::editor())
+        .arg(text_editor_colors::toolbar())
+        .arg(text_editor_colors::inspector())
+        .arg(text_editor_colors::border())
+        .arg(text_editor_metrics::panel_radius)
+        .arg(text_editor_metrics::button_radius);
 }
 
 } // namespace dex_ui::style_sheet_sections

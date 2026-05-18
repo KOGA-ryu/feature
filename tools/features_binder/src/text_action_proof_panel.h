@@ -5,6 +5,7 @@
 #include "text_action_proof_model.h"
 
 class QCheckBox;
+class QComboBox;
 class QGridLayout;
 class QLabel;
 class QLineEdit;
@@ -18,10 +19,16 @@ public:
 private:
     void rebuildActionButtons();
     void executeAction(const QString &actionId);
+    void loadSelectedFixture();
+    void runSelectedFixture();
+    void runAllFixtures();
     DexTextActions::TextActionProofInput currentInput() const;
     QString selectedText() const;
     void renderResult(const DexTextActions::HostActionResult &result);
+    void renderFixtureResult(const DexTextActions::TextActionFixtureResult &result);
+    void renderFixtureSuiteResult(const DexTextActions::TextActionFixtureSuiteResult &result);
 
+    QComboBox *fixturePicker_ = nullptr;
     QPlainTextEdit *editor_ = nullptr;
     QLineEdit *language_ = nullptr;
     QLineEdit *source_ = nullptr;

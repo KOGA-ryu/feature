@@ -1,0 +1,17 @@
+id = "ui.scroll_reader_capsule_host_v0"
+name = "scroll_reader_capsule_host_v0"
+kind = "ui_pattern"
+status = "draft"
+summary = "Runnable local host shell for the scroll reader capsule render plan."
+tags = ["subject:notes_and_productivity", "ui", "utility", "reader", "capsule", "desktop_host"]
+dependencies = ["feature_core", "ui.scroll_reader_capsule_v1"]
+compatible_features = ["ui.scroll_reader_capsule_v1", "ui.text_editor_clipboard", "ui.text_editor_host_adapter"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["sample_text", "command_line_text", "clipboard_text_snapshot", "keyboard_event", "pointer_drag", "window_position", "capsule_mode_preference", "wheel_delta", "elapsed_ms"]
+
+[outputs]
+items = ["runnable_capsule_window", "host_session_state", "clipboard_load_report", "window_preferences", "capsule_render_plan", "host_keyboard_contract", "host_pointer_contract"]

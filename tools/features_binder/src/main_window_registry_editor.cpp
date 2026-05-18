@@ -11,6 +11,7 @@
 void DexHomeV2Window::exitSettingsMode() {
     settingsMode_ = false;
     repoMode_ = true;
+    workspaceKind_ = WorkspaceKind::Repo;
     if (repoModeToggle_) {
         repoModeToggle_->setChecked(true);
     }
@@ -50,10 +51,12 @@ void DexHomeV2Window::saveProjectRegistryFromSettings(
     selectedProjectId_ = selectedProjectId;
     settingsMode_ = !exitAfterSave;
     repoMode_ = true;
+    workspaceKind_ = exitAfterSave ? WorkspaceKind::Repo : WorkspaceKind::Settings;
     reloadState();
 }
 
 void DexHomeV2Window::revertProjectRegistrySettings() {
     settingsMode_ = true;
+    workspaceKind_ = WorkspaceKind::Settings;
     reloadState();
 }

@@ -12,6 +12,7 @@ QString app_qss() {
         + style_sheet_sections::railRowQss()
         + style_sheet_sections::statsQss()
         + style_sheet_sections::tabQss()
+        + style_sheet_sections::textEditorWorkbenchQss()
         + style_sheet_sections::reportAndBadgeQss();
 
     return QString(qss)

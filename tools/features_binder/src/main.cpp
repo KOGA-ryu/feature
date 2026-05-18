@@ -56,8 +56,9 @@ int main(int argc, char **argv) {
     const QCommandLineOption detailLensOption("detail-lens", "Initial right detail lens.", "lens");
     const QCommandLineOption workerOption("worker", "Initial worker lens.", "worker-id");
     const QCommandLineOption repoBinderOption("repo-binder", "Start in repo binder mode.");
-    const QCommandLineOption settingsOption("settings", "Start on the project registry settings spec sheet.");
-    const QCommandLineOption settingsFeatureOption("settings-feature", "Initial Settings feature, e.g. Project Spec or Text Actions.", "feature", "Project Spec");
+    const QCommandLineOption settingsOption("settings", "Start on a Settings workspace.");
+    const QCommandLineOption noSettingsOption("no-settings", "Start on the normal repo binder instead of the active Settings workbench.");
+    const QCommandLineOption settingsFeatureOption("settings-feature", "Initial Settings feature, e.g. Project Spec.", "feature", "Project Spec");
     parser.addOption(screenshotOption);
     parser.addOption(sizeOption);
     parser.addOption(hideRailOption);
@@ -72,6 +73,7 @@ int main(int argc, char **argv) {
     parser.addOption(workerOption);
     parser.addOption(repoBinderOption);
     parser.addOption(settingsOption);
+    parser.addOption(noSettingsOption);
     parser.addOption(settingsFeatureOption);
     parser.process(app);
 
@@ -103,7 +105,8 @@ int main(int argc, char **argv) {
     if (parser.isSet(detailLensOption)) {
         window.setDetailLens(parser.value(detailLensOption));
     }
-    if (parser.isSet(settingsOption)) {
+    const bool startSettings = parser.isSet(settingsOption) || !parser.isSet(noSettingsOption);
+    if (startSettings) {
         window.setSettingsFeature(parser.value(settingsFeatureOption));
         window.setSettingsMode(true);
     }

@@ -1,8 +1,11 @@
 #include "settings_text_actions_page.h"
 
 #include <QScrollArea>
+#include <QPushButton>
 #include <QVBoxLayout>
 
+#include "binder_page_helpers.h"
+#include "settings_shortcuts_dialog.h"
 #include "text_action_proof_panel.h"
 
 namespace DexSettingsPages {
@@ -22,6 +25,19 @@ QWidget *buildTextActionsSettingsPage() {
     auto *bodyLayout = new QVBoxLayout(body);
     bodyLayout->setContentsMargins(12, 12, 12, 12);
     bodyLayout->setSpacing(10);
+
+    auto *utility = DexBinderPages::makeStatsSection("settings utilities", true);
+    auto *utilityLayout = static_cast<QVBoxLayout *>(utility->layout());
+    utilityLayout->addWidget(DexBinderPages::makeStatsText(
+        "Open a compact reference for binder commands, text-action commands, and verified Codex shortcuts."));
+    auto *shortcuts = new QPushButton("Commands / Hotkeys");
+    shortcuts->setObjectName("primaryAction");
+    QObject::connect(shortcuts, &QPushButton::clicked, page, [page]() {
+        DexSettingsShortcuts::showShortcutsDialog(page);
+    });
+    utilityLayout->addWidget(shortcuts, 0, Qt::AlignLeft);
+    bodyLayout->addWidget(utility);
+
     bodyLayout->addWidget(new TextActionProofPanel);
     bodyLayout->addStretch(1);
 

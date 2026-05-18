@@ -10,6 +10,7 @@ QString buttonQss();
 QString railRowQss();
 QString statsQss();
 QString tabQss();
+QString textEditorWorkbenchQss();
 QString reportAndBadgeQss();
 
 } // namespace dex_ui::style_sheet_sections

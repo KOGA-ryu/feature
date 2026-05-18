@@ -143,3 +143,8 @@ library must remain host-agnostic.
   feature-request language.
 - `41_spark_code_review_rubric.md` for review expectations.
 - `42_release_gate_checklist.md` for final gating.
+- `43_text_editor_detail_pass_todo.md` for the current detail-pass checklist.
+- `45_ui_style_and_pathing_contract.md` for CSS/QSS, selector, and UI path rules.
+- `46_personal_text_editor_reference_dissection.md` for the reference screenshot
+  anatomy.
+- `47_text_editor_surface_grammar_sheet.md` for per-surface styling grammar.

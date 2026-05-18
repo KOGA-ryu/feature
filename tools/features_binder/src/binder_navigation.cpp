@@ -3,7 +3,7 @@
 #include "binder_state.h"
 
 QStringList repoBinderTopTabs() {
-    return {"Profile", "Inventory", "Map", "Authority", "Contracts", "Activity", "Quality", "Evidence"};
+    return {"Profile", "Inventory", "Map", "Authority", "Contracts", "Text Editor", "Activity", "Quality", "Evidence"};
 }
 
 QStringList topTabsFor(bool repoMode) {
@@ -26,6 +26,9 @@ QStringList detailLensTabsFor(const QString &topTab, bool repoMode) {
         }
         if (topTab == "Contracts") {
             return {"Dashboard", "Rules", "Detection", "Violations", "Scope", "Evidence"};
+        }
+        if (topTab == "Text Editor") {
+            return {"Dashboard", "Editor", "Actions", "Inspector", "Fixtures", "Receipts", "Proof"};
         }
         if (topTab == "Activity") {
             return {"Dashboard", "Scan", "Monitor", "Report", "Changes", "Cleanup"};

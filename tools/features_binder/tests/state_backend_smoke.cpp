@@ -10,9 +10,11 @@
 
 #include "binder_state.h"
 #include "app_state_helpers.h"
+#include "binder_navigation.h"
 #include "project_registry.h"
 #include "project_registry_spec_model.h"
 #include "repo_binder_template.h"
+#include "settings_shortcuts_model.h"
 #include "text_action_proof_model.h"
 
 class StateBackendSmoke final : public QObject {
@@ -274,6 +276,23 @@ private slots:
         QVERIFY(copyIt->disabledReason.isEmpty());
     }
 
+    void repoBinderPromotesTextEditorAsMainSubject() {
+        const QStringList tabs = repoBinderTopTabs();
+        const int contractsIndex = tabs.indexOf("Contracts");
+        const int textEditorIndex = tabs.indexOf("Text Editor");
+        const int activityIndex = tabs.indexOf("Activity");
+
+        QVERIFY(contractsIndex >= 0);
+        QVERIFY(textEditorIndex >= 0);
+        QVERIFY(activityIndex >= 0);
+        QVERIFY(contractsIndex < textEditorIndex);
+        QVERIFY(textEditorIndex < activityIndex);
+
+        QCOMPARE(
+            detailLensTabsFor("Text Editor", true),
+            QStringList({"Dashboard", "Editor", "Actions", "Inspector", "Fixtures", "Receipts", "Proof"}));
+    }
+
     void textActionProofModelDisablesEmptyCleanupHonestly() {
         const QVector<DexTextActions::HostActionItem> actions =
             DexTextActions::renderHostActionItems("", {});
@@ -303,6 +322,83 @@ private slots:
         QCOMPARE(
             result.receipt.changes,
             QStringList({"normalized_line_endings: 1", "stripped_ansi_escape_codes: 2"}));
+    }
+
+    void textActionFixtureCatalogContainsExpectedCases() {
+        const QVector<DexTextActions::TextActionFixture> fixtures = DexTextActions::textActionFixtures();
+
+        QVERIFY(fixtures.size() >= 5);
+        const auto promptIt = std::find_if(fixtures.begin(), fixtures.end(), [](const DexTextActions::TextActionFixture &fixture) {
+            return fixture.fixtureId == "copy_prompt_block_source";
+        });
+        QVERIFY(promptIt != fixtures.end());
+        QCOMPARE(promptIt->actionId, QString("text.copy_prompt_block"));
+        QVERIFY(promptIt->expectedClipboardText.contains("Source: features_binder"));
+    }
+
+    void textActionFixturesPassExpectedOutputChecks() {
+        for (const DexTextActions::TextActionFixture &fixture : DexTextActions::textActionFixtures()) {
+            const DexTextActions::TextActionFixtureResult result =
+                DexTextActions::runTextActionFixture(fixture.fixtureId);
+            QVERIFY2(result.passed, qPrintable(result.summary));
+            QCOMPARE(result.actualClipboardText, fixture.expectedClipboardText);
+        }
+    }
+
+    void textActionFixtureSuiteAggregatesPassFailCounts() {
+        const DexTextActions::TextActionFixtureSuiteResult suite =
+            DexTextActions::runAllTextActionFixtures();
+
+        QVERIFY(suite.allPassed);
+        QCOMPARE(suite.total, DexTextActions::textActionFixtures().size());
+        QCOMPARE(suite.passed, suite.total);
+        QCOMPARE(suite.failed, 0);
+        QVERIFY(suite.summary.startsWith("PASS all fixtures"));
+    }
+
+    void textActionFixtureRunnerReportsMissingFixture() {
+        const DexTextActions::TextActionFixtureResult result =
+            DexTextActions::runTextActionFixture("missing_fixture");
+
+        QVERIFY(!result.passed);
+        QCOMPARE(result.summary, QString("Fixture not found."));
+        QVERIFY(result.actualClipboardText.isEmpty());
+    }
+
+    void settingsShortcutTabsIncludeCodexAppShortcuts() {
+        const QVector<DexSettingsShortcuts::ShortcutCommandTab> tabs =
+            DexSettingsShortcuts::shortcutCommandTabs();
+        const auto textEditorTab = std::find_if(tabs.begin(), tabs.end(), [](const DexSettingsShortcuts::ShortcutCommandTab &tab) {
+            return tab.tabName == "Text Editor";
+        });
+        const auto oldTextActionsTab = std::find_if(tabs.begin(), tabs.end(), [](const DexSettingsShortcuts::ShortcutCommandTab &tab) {
+            return tab.tabName == "Text Actions";
+        });
+        QVERIFY(textEditorTab != tabs.end());
+        QVERIFY(oldTextActionsTab == tabs.end());
+
+        const auto codexTab = std::find_if(tabs.begin(), tabs.end(), [](const DexSettingsShortcuts::ShortcutCommandTab &tab) {
+            return tab.tabName == "OpenAI Codex";
+        });
+
+        QVERIFY(codexTab != tabs.end());
+        QVERIFY(codexTab->records.size() >= 60);
+        const auto sessionIt = std::find_if(
+            codexTab->records.begin(),
+            codexTab->records.end(),
+            [](const DexSettingsShortcuts::ShortcutCommandRecord &record) {
+                return record.command == "Copy session id";
+            });
+        QVERIFY(sessionIt != codexTab->records.end());
+        QCOMPARE(sessionIt->shortcut, QString("⌥⌘C"));
+        const auto shortcutsIt = std::find_if(
+            codexTab->records.begin(),
+            codexTab->records.end(),
+            [](const DexSettingsShortcuts::ShortcutCommandRecord &record) {
+                return record.command == "Show keyboard shortcuts";
+            });
+        QVERIFY(shortcutsIt != codexTab->records.end());
+        QCOMPARE(shortcutsIt->shortcut, QString("⌘?"));
     }
 
     void projectRegistryParsesWorkerCatalog() {

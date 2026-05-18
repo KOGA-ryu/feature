@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50" role="img" aria-label="scroll reader capsule play">
+  <defs>
+    <clipPath id="scroll-reader-text-clip">
+      <rect x="10" y="10" width="180" height="30"/>
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="200" height="50" rx="14" fill="#25221d" stroke="#e7cfa8" stroke-opacity="0.34"/>
+  <rect x="10" y="5" width="180" height="3" rx="1" fill="#14120f" opacity="0.45"/>
+  <rect x="10" y="5" width="0" height="3" rx="1" fill="#d9ad70" opacity="0.9"/>
+  <rect x="54" y="10" width="92" height="30" rx="7" fill="#efe3ca" opacity="0.96" stroke="#e7cfa8" stroke-width="1"/>
+  <g clip-path="url(#scroll-reader-text-clip)">
+    <text x="100" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#bcb29c">Select text to read</text>
+  </g>
+  <rect x="10" y="10" width="56" height="30" rx="0" fill="#25221d" opacity="0.42"/>
+  <rect x="134" y="10" width="56" height="30" rx="0" fill="#25221d" opacity="0.32"/>
+</svg>

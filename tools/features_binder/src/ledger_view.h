@@ -21,7 +21,7 @@
 #include "repo_binder_template.h"
 #include "repo_binder_pages.h"
 #include "project_registry_spec_page.h"
-#include "settings_text_actions_page.h"
+#include "text_editor_workbench_page.h"
 #include "ui_rules.h"
 
 class LedgerView final : public QWidget {
@@ -87,6 +87,7 @@ public:
                 pages_->addWidget(DexBinderPages::buildRepoMapPage(state, workerId, project, detailLens));
                 pages_->addWidget(DexBinderPages::buildRepoAuthorityPage(state, workerId, project, detailLens));
                 pages_->addWidget(DexBinderPages::buildRepoContractsPage(state, workerId, project, detailLens));
+                pages_->addWidget(DexTextEditorPages::buildTextEditorWorkbenchPage());
                 pages_->addWidget(DexBinderPages::buildRepoActivityPage(state, workerId, project, detailLens));
                 pages_->addWidget(DexBinderPages::buildRepoQualityPage(state, workerId, project, detailLens, binderTemplate));
                 pages_->addWidget(DexBinderPages::buildRepoEvidencePage(state, workerId, project, detailLens));
@@ -107,6 +108,22 @@ public:
         if (auto *button = tabGroup_->button(pages_->currentIndex())) {
             button->setChecked(true);
         }
+    }
+
+    void setTextEditorWorkspaceState() {
+        clearLayout(tabLayout_);
+        currentTabs_.clear();
+        delete tabGroup_;
+        tabGroup_ = new QButtonGroup(this);
+        tabGroup_->setExclusive(true);
+        while (pages_->count() > 0) {
+            QWidget *page = pages_->widget(0);
+            pages_->removeWidget(page);
+            page->deleteLater();
+        }
+        pages_->addWidget(DexTextEditorPages::buildTextEditorWorkbenchPage());
+        pages_->setCurrentIndex(0);
+        currentTab_ = "Text Editor";
     }
 
     void setSettingsState(
@@ -134,7 +151,7 @@ public:
         registry.error = state.projectRegistryError;
         registry.projects = state.registryProjects;
         registry.workers = state.registryWorkers;
-        currentTabs_ = {"Project Spec", "Text Actions"};
+        currentTabs_ = {"Project Spec"};
         const int requestedIndex = std::max(0, static_cast<int>(currentTabs_.indexOf(selectedSettingsFeature)));
         for (int i = 0; i < currentTabs_.size(); ++i) {
             auto *button = new QPushButton(currentTabs_.at(i));
@@ -162,7 +179,6 @@ public:
             std::move(onRevert),
             std::move(onBack),
             std::move(onSaveAndBack)));
-        pages_->addWidget(DexSettingsPages::buildTextActionsSettingsPage());
         pages_->setCurrentIndex(requestedIndex);
         currentTab_ = currentTabs_.value(requestedIndex, "Project Spec");
     }

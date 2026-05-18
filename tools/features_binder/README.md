@@ -53,3 +53,14 @@ Proof screenshots are written to:
 ```text
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/
 ```
+
+## Active Workbench
+
+Plain app launch opens the current work area:
+
+```text
+Settings > Project Spec
+```
+
+Use `--no-settings --tab "Text Editor"` to launch the main Text Editor workbench.
+Inside the app, the `Shelf` chrome button is the quick jump into that same Text Editor workspace.

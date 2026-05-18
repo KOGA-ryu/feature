@@ -1,0 +1,37 @@
+{
+  "built_in_options": [
+    {
+      "id": "warm_lens",
+      "label": "Warm Lens",
+      "seed": {
+        "accent": "#d9ad70",
+        "background": "#25221d",
+        "foreground": "#efe2c7",
+        "contrast": 76
+      }
+    },
+    {
+      "id": "eye_comfort",
+      "label": "Eye Comfort",
+      "seed": {
+        "accent": "#39E83C",
+        "background": "#6B6F78",
+        "foreground": "#33085D",
+        "contrast": 76
+      }
+    }
+  ],
+  "custom_theme_controls": [
+    "accent_color_wheel",
+    "background_color_wheel",
+    "foreground_color_wheel",
+    "contrast_slider"
+  ],
+  "custom_seed_fields": [
+    "accent",
+    "background",
+    "foreground",
+    "contrast"
+  ],
+  "exposes_internal_role_color_editor": false
+}

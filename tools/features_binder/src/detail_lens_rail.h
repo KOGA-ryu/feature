@@ -12,6 +12,7 @@ public:
     explicit DetailLensRail(std::function<void(QString)> onLensSelected, QWidget *parent = nullptr);
 
     void setTopTab(const QString &topTab, const QString &requestedLens, bool repoMode);
+    void setTextEditorState(const QString &requestedLens);
     QString currentLens() const;
 
 private:

@@ -24,6 +24,18 @@ public:
         const QString &selectedTopTab,
         const QString &selectedDetailLens,
         bool repoMode);
+    void setRepoState(
+        const CockpitState &state,
+        const QString &selectedWorkerId,
+        const QString &selectedProjectId,
+        const QString &selectedTopTab,
+        const QString &selectedDetailLens);
+    void setAgentState(
+        const CockpitState &state,
+        const QString &selectedWorkerId,
+        const QString &selectedTopTab,
+        const QString &selectedDetailLens);
+    void setTextEditorState(const QString &selectedDetailLens);
     void setSettingsState(
         const CockpitState &state,
         const QString &selectedProjectId,

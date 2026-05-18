@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QStyle>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -15,7 +16,18 @@
 #include "repo_binder_template.h"
 #include "repo_context_renderer.h"
 #include "right_context_render_helpers.h"
+#include "text_editor_workspace_blank.h"
 #include "ui_rules.h"
+
+namespace {
+
+void setContextWorkspace(QFrame *context, const char *workspace) {
+    context->setProperty("workspace", workspace);
+    context->style()->unpolish(context);
+    context->style()->polish(context);
+}
+
+} // namespace
 
 RightContextPanel::RightContextPanel(
     std::function<void()> onAddGrade,
@@ -50,65 +62,69 @@ void RightContextPanel::setState(
     const QString &selectedTopTab,
     const QString &selectedDetailLens,
     bool repoMode) {
-    clearLayout(contentLayout_);
-
     if (repoMode) {
-        const QVector<DexProjects::ProjectRegistryEntry> projects = registryProjectsForState(state);
-        const DexProjects::ProjectRegistryEntry *selected = DexProjects::findProjectById(projects, selectedProjectId);
-        if (!selected) {
-            DexRightContext::addContextSection(contentLayout_, "selected repo");
-            DexRightContext::addWrappedLine(contentLayout_, "No project selected");
-            DexRightContext::addWrappedLine(contentLayout_, "active subject                 " + selectedTopTab);
-            DexRightContext::addWrappedLine(contentLayout_, "detail lens                    " + selectedDetailLens);
-            DexRightContext::addWrappedLine(contentLayout_, "registered projects            0");
-            DexRightContext::addWrappedLine(contentLayout_, "diff-scan                      not run");
-            DexRightContext::addWrappedLine(contentLayout_, "contract-check                 not run");
-            DexRightContext::addContextSection(contentLayout_, "next registration step");
-            DexRightContext::addWrappedLine(contentLayout_, "Open Settings to create the first project spec.");
-            contentLayout_->addStretch(1);
-            return;
-        }
-        const DexProjects::ProjectRegistryEntry project = *selected;
-        const DexRepoBinderTemplate::BinderTemplate binderTemplate =
-            DexRepoBinderTemplate::resolveTemplateForProject(state.binderTemplateStore, project.binderTemplate);
-        DexRightContext::addRepoContext(
-            contentLayout_,
-            state,
-            selectedWorkerId,
-            project,
-            binderTemplate,
-            state.repoDiffScan,
-            state.repoContractCheck,
-            state.repoProofReceipt,
-            state.repoPromotionReport,
-            selectedTopTab,
-            selectedDetailLens);
+        setRepoState(state, selectedWorkerId, selectedProjectId, selectedTopTab, selectedDetailLens);
+        return;
+    }
+    setAgentState(state, selectedWorkerId, selectedTopTab, selectedDetailLens);
+}
+
+void RightContextPanel::setRepoState(
+    const CockpitState &state,
+    const QString &selectedWorkerId,
+    const QString &selectedProjectId,
+    const QString &selectedTopTab,
+    const QString &selectedDetailLens) {
+    setContextWorkspace(this, "repo");
+    clearLayout(contentLayout_);
+    const QVector<DexProjects::ProjectRegistryEntry> projects = registryProjectsForState(state);
+    const DexProjects::ProjectRegistryEntry *selected = DexProjects::findProjectById(projects, selectedProjectId);
+    if (!selected) {
+        DexRightContext::addContextSection(contentLayout_, "selected repo");
+        DexRightContext::addWrappedLine(contentLayout_, "No project selected");
+        DexRightContext::addWrappedLine(contentLayout_, "active subject                 " + selectedTopTab);
+        DexRightContext::addWrappedLine(contentLayout_, "detail lens                    " + selectedDetailLens);
+        DexRightContext::addWrappedLine(contentLayout_, "registered projects            0");
+        DexRightContext::addWrappedLine(contentLayout_, "diff-scan                      not run");
+        DexRightContext::addWrappedLine(contentLayout_, "contract-check                 not run");
+        DexRightContext::addContextSection(contentLayout_, "next registration step");
+        DexRightContext::addWrappedLine(contentLayout_, "Open Settings to create the first project spec.");
         contentLayout_->addStretch(1);
         return;
     }
+    const DexProjects::ProjectRegistryEntry project = *selected;
+    const DexRepoBinderTemplate::BinderTemplate binderTemplate =
+        DexRepoBinderTemplate::resolveTemplateForProject(state.binderTemplateStore, project.binderTemplate);
+    DexRightContext::addRepoContext(
+        contentLayout_,
+        state,
+        selectedWorkerId,
+        project,
+        binderTemplate,
+        state.repoDiffScan,
+        state.repoContractCheck,
+        state.repoProofReceipt,
+        state.repoPromotionReport,
+        selectedTopTab,
+        selectedDetailLens);
+    contentLayout_->addStretch(1);
+}
 
-    if (selectedTopTab == "Profile" || selectedTopTab == "Stats" || selectedTopTab == "Relationship" || selectedTopTab == "Grade" || selectedTopTab == "Transcript" || selectedTopTab == "Evidence") {
-        DexRightContext::addAgentContext(contentLayout_, state, selectedWorkerId, selectedTopTab, selectedDetailLens);
-        contentLayout_->addStretch(1);
-        return;
-    }
-
-    contentLayout_->addWidget(makeLabel(selectedTopTab + " context", "reportTitle"));
-    DexRightContext::addWrappedLine(contentLayout_, "selected worker: " + workerDisplayName(state, selectedWorkerId));
-    DexRightContext::addWrappedLine(contentLayout_, "active section: " + selectedTopTab);
-    DexRightContext::addWrappedLine(contentLayout_, "detail lens: " + selectedDetailLens);
-
-    auto *gradeButton = new QPushButton("Add legacy grade");
-    gradeButton->setObjectName("primaryAction");
-    gradeButton->setToolTip("Add legacy grade: append a grade_recorded event to worker_ledger.jsonl.");
-    connect(gradeButton, &QPushButton::clicked, this, [this]() {
-        onAddGrade_();
-    });
-    contentLayout_->addWidget(gradeButton);
-    DexRightContext::addWrappedLine(contentLayout_, "legacy source: worker_ledger.jsonl");
-    DexRightContext::addWrappedLine(contentLayout_, "typed grade editor: pending");
-
+void RightContextPanel::setAgentState(
+    const CockpitState &state,
+    const QString &selectedWorkerId,
+    const QString &selectedTopTab,
+    const QString &selectedDetailLens) {
+    setContextWorkspace(this, "agent");
+    clearLayout(contentLayout_);
     DexRightContext::addAgentContext(contentLayout_, state, selectedWorkerId, selectedTopTab, selectedDetailLens);
+    contentLayout_->addStretch(1);
+}
+
+void RightContextPanel::setTextEditorState(const QString &selectedDetailLens) {
+    setContextWorkspace(this, "text_editor");
+    clearLayout(contentLayout_);
+    DexTextEditorWorkspace::addBlankWorkspaceContext(contentLayout_, selectedDetailLens);
     contentLayout_->addStretch(1);
 }
 
@@ -116,6 +132,7 @@ void RightContextPanel::setSettingsState(
     const CockpitState &state,
     const QString &selectedProjectId,
     const QString &selectedSettingsFeature) {
+    setContextWorkspace(this, "settings");
     clearLayout(contentLayout_);
 
     DexRightContext::addContextSection(contentLayout_, "settings");

@@ -56,7 +56,36 @@ struct HostActionResult {
     QStringList warnings;
 };
 
+struct TextActionFixture {
+    QString fixtureId;
+    QString label;
+    QString actionId;
+    QString documentText;
+    QString selectedText;
+    TextActionProofInput input;
+    QString expectedClipboardText;
+};
+
+struct TextActionFixtureResult {
+    TextActionFixture fixture;
+    HostActionResult actionResult;
+    bool passed = false;
+    QString summary;
+    QString expectedClipboardText;
+    QString actualClipboardText;
+};
+
+struct TextActionFixtureSuiteResult {
+    QVector<TextActionFixtureResult> results;
+    int total = 0;
+    int passed = 0;
+    int failed = 0;
+    bool allPassed = false;
+    QString summary;
+};
+
 QVector<TextActionRecord> textActionRecords();
+QVector<TextActionFixture> textActionFixtures();
 QVector<HostActionItem> renderHostActionItems(
     const QString &documentText,
     const TextActionProofInput &input,
@@ -66,6 +95,8 @@ HostActionResult executeTextActionProof(
     const QString &documentText,
     const QString &selectedText,
     const TextActionProofInput &input);
+TextActionFixtureResult runTextActionFixture(const QString &fixtureId);
+TextActionFixtureSuiteResult runAllTextActionFixtures();
 QString selectedTextOrAll(const QString &documentText, const QString &selectedText);
 QString hotkeyLabelForAction(const QString &actionId, const QString &profile);
 

@@ -1,0 +1,17 @@
+id = "ui.scroll_reader_capsule_v1"
+name = "scroll_reader_capsule_v1"
+kind = "ui_pattern"
+status = "draft"
+summary = "Mock UI contract constants for a beautiful temporary text-snapshot scroll reader capsule."
+tags = ["subject:notes_and_productivity", "ui", "utility", "reader", "capsule", "selected_text", "clipboard_snapshot"]
+dependencies = ["feature_core"]
+compatible_features = ["ui.scroll_reader_overlay_v1", "ui.text_editor_plain", "ui.command_palette"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["reader_input_payload", "selected_text", "clipboard_watch_snapshot", "capsule_mode", "desktop_shortcut", "host_launch_action", "wheel_delta", "elapsed_ms"]
+
+[outputs]
+items = ["geometry_tokens", "color_token_names", "theme_options_contract", "desktop_shortcut_contract", "display_layers", "beauty_contract", "interaction_contract", "input_ingest_contract", "clipboard_watch_ingest_report", "capsule_runtime_model", "tape_motion_model", "capsule_render_plan", "svg_preview", "svg_golden_snapshots"]

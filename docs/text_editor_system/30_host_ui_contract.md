@@ -220,11 +220,55 @@ Headless crates may operate on text provided by the host.
 
 ## Placement Rules
 
-- Common actions may appear in toolbar.
-- All actions should appear in command palette.
-- Selection actions may appear in context menu.
-- Host-specific status belongs in footer/status bar.
-- Workflow-specific actions may appear in a right context panel.
+The default UI organization model is the mature editor model:
+
+- Command palette contains every action.
+- Menus provide complete discovery through classic editor categories.
+- Toolbar contains frequent atomic actions only.
+- Context menu contains selection/current-location actions only.
+- Inspector owns parameters, options, receipts, and expected/actual output.
+- Fixture bench owns proof and regression review.
+
+Classic menu placement:
+
+- `File`: document, draft, and file-state actions later.
+- `Edit`: copy, paste, select, line helpers, and undo later.
+- `View`: layout and readability controls later.
+- `Tools`: cleanup, terminal helpers, fixtures, and validation.
+- `Help`: commands/hotkeys, docs, and policy references.
+
+Toolbar V1 actions:
+
+- `Copy`
+- `Prompt`
+- `Markdown`
+- `Fence`
+- `Clean`
+- `Run All`
+- `Commands`
+
+Context-menu safety rule:
+
+- Copy/export actions may use selected-or-all behavior.
+- Cleanup actions in the context menu require selected text.
+- Whole-document cleanup must be explicit from menu, palette, or inspector.
+
+Inspector behavior:
+
+- Inspector fields are contextual to the selected action or fixture.
+- Irrelevant fields should not crowd the active task surface.
+- Receipts and expected-vs-actual output belong in the inspector or adjacent
+  result surface.
+
+Style and selector naming:
+
+- `45_ui_style_and_pathing_contract.md` owns `ui_path`, style token hierarchy,
+  selector naming, and component state vocabulary.
+- Host placement says where an action may render.
+- `ui_path` says what that rendered surface is called for CSS, QSS,
+  screenshots, tests, and accessibility hooks.
+- Hosts may translate `ui_path` into toolkit-specific selectors, but must not
+  invent a parallel naming scheme for shared editor actions.
 
 ## What Not To Do
 

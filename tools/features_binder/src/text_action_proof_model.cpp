@@ -153,6 +153,16 @@ HostActionResult disabledResult(const QString &actionId, const QString &reason) 
     return result;
 }
 
+const TextActionFixture *findFixture(const QString &fixtureId) {
+    static const QVector<TextActionFixture> fixtures = textActionFixtures();
+    for (const TextActionFixture &fixture : fixtures) {
+        if (fixture.fixtureId == fixtureId) {
+            return &fixture;
+        }
+    }
+    return nullptr;
+}
+
 } // namespace
 
 QVector<TextActionRecord> textActionRecords() {
@@ -190,6 +200,71 @@ QVector<TextActionRecord> textActionRecords() {
         {"text.strip_ansi_escape_codes", "Strip ANSI Escape Codes", "ANSI", "cleanup", "eraser",
             "Return text with ANSI escape sequences removed.",
             "document_or_input_has_text", {"command_palette", "cleanup_menu"}},
+    };
+}
+
+QVector<TextActionFixture> textActionFixtures() {
+    TextActionProofInput promptInput;
+    promptInput.language = "text";
+    promptInput.source = "features_binder";
+
+    TextActionProofInput markdownInput;
+    markdownInput.language = "rust";
+    markdownInput.source = "feature_pack";
+
+    TextActionProofInput cleanInput;
+    cleanInput.stripAnsiEscapeCodes = true;
+
+    TextActionProofInput lineInput;
+    lineInput.startLine = 1;
+    lineInput.endLine = 2;
+
+    return {
+        {
+            "copy_plain_selection",
+            "Copy Plain uses selected text",
+            "text.copy_plain",
+            "alpha\nbeta\nomega",
+            "beta",
+            TextActionProofInput{},
+            "beta",
+        },
+        {
+            "copy_markdown_rust_block",
+            "Markdown block preserves indentation",
+            "text.copy_markdown_block",
+            "fn main() {\n    println!(\"hi\");\n}",
+            {},
+            markdownInput,
+            "```rust\nfn main() {\n    println!(\"hi\");\n}\n```",
+        },
+        {
+            "copy_prompt_block_source",
+            "Prompt block includes source",
+            "text.copy_prompt_block",
+            "build the next slice",
+            {},
+            promptInput,
+            "Source: features_binder\n\n```text\nbuild the next slice\n```",
+        },
+        {
+            "clean_basic_receipt",
+            "Clean Basic normalizes, trims, and strips ANSI",
+            "text.clean_basic",
+            QString("one  \r\ntwo\t\r\n") + QChar(0x1b) + "[31mred" + QChar(0x1b) + "[0m",
+            {},
+            cleanInput,
+            "one\ntwo\nred",
+        },
+        {
+            "line_range_clamps",
+            "Line Range returns inclusive lines",
+            "text.line_range_text",
+            "zero\none\ntwo\nthree",
+            {},
+            lineInput,
+            "one\ntwo",
+        },
     };
 }
 
@@ -330,6 +405,50 @@ HostActionResult executeTextActionProof(
               .arg(result.receipt.changeCount)
               .arg(result.receipt.warningCount);
     return result;
+}
+
+TextActionFixtureResult runTextActionFixture(const QString &fixtureId) {
+    TextActionFixtureResult result;
+    const TextActionFixture *fixture = findFixture(fixtureId);
+    if (!fixture) {
+        result.summary = "Fixture not found.";
+        return result;
+    }
+    result.fixture = *fixture;
+    result.actionResult = executeTextActionProof(
+        fixture->actionId,
+        fixture->documentText,
+        fixture->selectedText,
+        fixture->input);
+    result.expectedClipboardText = fixture->expectedClipboardText;
+    result.actualClipboardText = result.actionResult.clipboardText;
+    result.passed = result.expectedClipboardText == result.actualClipboardText;
+    result.summary = result.passed
+        ? QString("PASS %1").arg(fixture->fixtureId)
+        : QString("FAIL %1: expected output did not match actual output").arg(fixture->fixtureId);
+    return result;
+}
+
+TextActionFixtureSuiteResult runAllTextActionFixtures() {
+    TextActionFixtureSuiteResult suite;
+    for (const TextActionFixture &fixture : textActionFixtures()) {
+        TextActionFixtureResult result = runTextActionFixture(fixture.fixtureId);
+        if (result.passed) {
+            ++suite.passed;
+        } else {
+            ++suite.failed;
+        }
+        suite.results.push_back(std::move(result));
+    }
+    suite.total = suite.results.size();
+    suite.allPassed = suite.failed == 0;
+    suite.summary = suite.allPassed
+        ? QString("PASS all fixtures: %1/%2").arg(suite.passed).arg(suite.total)
+        : QString("FAIL fixtures: %1 passed, %2 failed, %3 total")
+              .arg(suite.passed)
+              .arg(suite.failed)
+              .arg(suite.total);
+    return suite;
 }
 
 QString selectedTextOrAll(const QString &documentText, const QString &selectedText) {

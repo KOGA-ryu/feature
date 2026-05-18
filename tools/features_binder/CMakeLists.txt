@@ -79,8 +79,12 @@ add_executable(dex_home_v2
     src/rust_cockpit_backend_parse.cpp
     src/rust_cockpit_backend_paths.cpp
     src/rust_cockpit_backend_process.cpp
+    src/settings_shortcuts_dialog.cpp
+    src/settings_shortcuts_model.cpp
     src/settings_text_actions_page.cpp
     src/sheet_stack_body.cpp
+    src/text_editor_workbench_page.cpp
+    src/text_editor_workspace_blank.cpp
     src/text_action_proof_model.cpp
     src/text_action_proof_panel.cpp
     src/ui_style_base_chrome.cpp
@@ -98,6 +102,7 @@ add_executable(dex_home_v2
 target_link_libraries(dex_home_v2 PRIVATE Qt6::Widgets)
 
 add_executable(dex_home_v2_smoke
+    src/binder_navigation.cpp
     src/binder_record_state.cpp
     src/binder_stats_state.cpp
     src/project_registry_lookup.cpp
@@ -107,6 +112,7 @@ add_executable(dex_home_v2_smoke
     src/repo_binder_template.cpp
     src/repo_binder_template_default.cpp
     src/repo_binder_template_store.cpp
+    src/settings_shortcuts_model.cpp
     src/text_action_proof_model.cpp
     tests/state_backend_smoke.cpp
 )

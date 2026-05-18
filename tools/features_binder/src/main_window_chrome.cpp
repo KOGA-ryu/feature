@@ -42,9 +42,8 @@ void DexHomeV2Window::buildToolbar() {
 
     bottomToggle_ = new QToolButton;
     bottomToggle_->setText("Shelf");
-    bottomToggle_->setCheckable(true);
-    bottomToggle_->setChecked(false);
-    bottomToggle_->setToolTip("Toggle bottom shelf");
+    bottomToggle_->setCheckable(false);
+    bottomToggle_->setToolTip("Open the Text Editor workspace");
     toolbar->addWidget(bottomToggle_);
 
     repoModeToggle_ = new QToolButton;
@@ -79,27 +78,10 @@ void DexHomeV2Window::buildBody() {
         },
         body_);
     ledger_ = new LedgerView([this](const QString &tabName) {
-        selectedTopTab_ = tabName;
-        selectedDetailLens_ = detailLensTabsFor(selectedTopTab_, repoMode_).value(0, "Summary");
-        if (detailLensRail_) {
-            detailLensRail_->setTopTab(selectedTopTab_, selectedDetailLens_, repoMode_);
-            selectedDetailLens_ = detailLensRail_->currentLens();
-        }
-        if (ledger_) {
-            ledger_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
-        }
-        if (rightContext_) {
-            rightContext_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
-        }
+        setTopTab(tabName);
     }, body_);
     detailLensRail_ = new DetailLensRail([this](const QString &lensName) {
-        selectedDetailLens_ = lensName;
-        if (ledger_) {
-            ledger_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
-        }
-        if (rightContext_) {
-            rightContext_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
-        }
+        setDetailLens(lensName);
     }, body_);
     rightContext_ = new RightContextPanel(
         [this]() {
@@ -120,19 +102,8 @@ void DexHomeV2Window::buildBody() {
     connect(repoModeToggle_, &QToolButton::toggled, this, [this](bool enabled) {
         setRepoBinderMode(enabled);
     });
-    connect(bottomToggle_, &QToolButton::toggled, this, [this](bool visible) {
-        if (!bottomShelf_) {
-            bottomShelf_ = new QLabel("Terminal / proof / output / receipts");
-            bottomShelf_->setAlignment(Qt::AlignCenter);
-            bottomShelf_->setFixedHeight(32);
-            bottomShelf_->setStyleSheet("background:#eef2f5; border-top:1px solid #9da4ac;");
-            bottomHost_ = new QToolBar("Dex Home v2 bottom shelf");
-            bottomHost_->setMovable(false);
-            bottomHost_->setFloatable(false);
-            bottomHost_->addWidget(bottomShelf_);
-            addToolBar(Qt::BottomToolBarArea, bottomHost_);
-        }
-        bottomShelf_->setVisible(visible);
+    connect(bottomToggle_, &QToolButton::clicked, this, [this]() {
+        openTextEditorWorkspace();
     });
 
 }

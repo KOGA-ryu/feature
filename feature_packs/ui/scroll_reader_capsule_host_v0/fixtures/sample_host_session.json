@@ -1,0 +1,11 @@
+{
+  "mode": "large",
+  "sample_text": "The quick brown fox jumps over the lazy dog while the scroll reader keeps one focus word centered.",
+  "launch_path": "command_line_or_sample_text",
+  "clipboard_load": "paste_on_demand",
+  "reposition": "click_drag_capsule_to_move_window",
+  "remembers_position": true,
+  "remembers_mode": true,
+  "desktop_shortcut_registered": false,
+  "runtime_surface": "pill_only"
+}

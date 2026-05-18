@@ -1,6 +1,7 @@
 #include "text_action_proof_panel.h"
 
 #include <QCheckBox>
+#include <QComboBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -10,6 +11,8 @@
 #include <QSpinBox>
 #include <QTextCursor>
 #include <QVBoxLayout>
+
+#include <algorithm>
 
 #include "binder_page_helpers.h"
 
@@ -68,6 +71,31 @@ TextActionProofPanel::TextActionProofPanel(QWidget *parent)
         "preview only",
     }, false, false));
     layout->addWidget(header);
+
+    auto *fixtureSection = DexBinderPages::makeStatsSection("fixture runner", true);
+    auto *fixtureLayout = static_cast<QVBoxLayout *>(fixtureSection->layout());
+    fixtureLayout->addWidget(DexBinderPages::makeStatsText(
+        "Saved cases run through the same generated action path and compare actual output against expected output."));
+    auto *fixtureRow = new QWidget;
+    auto *fixtureRowLayout = new QHBoxLayout(fixtureRow);
+    fixtureRowLayout->setContentsMargins(0, 0, 0, 0);
+    fixturePicker_ = new QComboBox;
+    for (const DexTextActions::TextActionFixture &fixture : DexTextActions::textActionFixtures()) {
+        fixturePicker_->addItem(fixture.label, fixture.fixtureId);
+    }
+    auto *loadFixture = new QPushButton("Load Fixture");
+    loadFixture->setObjectName("statsContextAction");
+    auto *runFixture = new QPushButton("Run Fixture");
+    runFixture->setObjectName("primaryAction");
+    auto *runAllButton = new QPushButton("Run All");
+    runAllButton->setObjectName("primaryAction");
+    fixtureRowLayout->addWidget(new QLabel("case"));
+    fixtureRowLayout->addWidget(fixturePicker_, 1);
+    fixtureRowLayout->addWidget(loadFixture);
+    fixtureRowLayout->addWidget(runFixture);
+    fixtureRowLayout->addWidget(runAllButton);
+    fixtureLayout->addWidget(fixtureRow);
+    layout->addWidget(fixtureSection);
 
     auto *editorSection = DexBinderPages::makeStatsSection("sample text");
     auto *editorLayout = static_cast<QVBoxLayout *>(editorSection->layout());
@@ -139,7 +167,17 @@ TextActionProofPanel::TextActionProofPanel(QWidget *parent)
     connect(stripAnsi_, &QCheckBox::toggled, this, [this](bool) {
         rebuildActionButtons();
     });
-    rebuildActionButtons();
+    connect(loadFixture, &QPushButton::clicked, this, [this]() {
+        loadSelectedFixture();
+    });
+    connect(runFixture, &QPushButton::clicked, this, [this]() {
+        runSelectedFixture();
+    });
+    connect(runAllButton, &QPushButton::clicked, this, [this]() {
+        runAllFixtures();
+    });
+    loadSelectedFixture();
+    runAllFixtures();
 }
 
 void TextActionProofPanel::rebuildActionButtons() {
@@ -178,6 +216,34 @@ void TextActionProofPanel::executeAction(const QString &actionId) {
     rebuildActionButtons();
 }
 
+void TextActionProofPanel::loadSelectedFixture() {
+    const QString fixtureId = fixturePicker_->currentData().toString();
+    for (const DexTextActions::TextActionFixture &fixture : DexTextActions::textActionFixtures()) {
+        if (fixture.fixtureId != fixtureId) {
+            continue;
+        }
+        editor_->setPlainText(fixture.documentText);
+        language_->setText(fixture.input.language.isEmpty() ? QString("text") : fixture.input.language);
+        source_->setText(fixture.input.source);
+        startLine_->setValue(std::max(0, fixture.input.startLine));
+        endLine_->setValue(std::max(0, fixture.input.endLine));
+        stripAnsi_->setChecked(fixture.input.stripAnsiEscapeCodes);
+        output_->setPlainText(fixture.expectedClipboardText);
+        status_->setText("Fixture loaded: " + fixture.fixtureId);
+        receipt_->setText("expected output loaded; run fixture to compare");
+        rebuildActionButtons();
+        return;
+    }
+}
+
+void TextActionProofPanel::runSelectedFixture() {
+    renderFixtureResult(DexTextActions::runTextActionFixture(fixturePicker_->currentData().toString()));
+}
+
+void TextActionProofPanel::runAllFixtures() {
+    renderFixtureSuiteResult(DexTextActions::runAllTextActionFixtures());
+}
+
 DexTextActions::TextActionProofInput TextActionProofPanel::currentInput() const {
     DexTextActions::TextActionProofInput input;
     input.language = language_->text();
@@ -199,4 +265,40 @@ void TextActionProofPanel::renderResult(const DexTextActions::HostActionResult &
     status_->setText(result.displayText);
     receipt_->setText(receiptText(result.receipt));
     output_->setPlainText(result.clipboardText);
+}
+
+void TextActionProofPanel::renderFixtureResult(const DexTextActions::TextActionFixtureResult &result) {
+    status_->setText(result.summary);
+    receipt_->setText(receiptText(result.actionResult.receipt));
+    QStringList lines;
+    lines << "expected:";
+    lines << result.expectedClipboardText;
+    lines << "";
+    lines << "actual:";
+    lines << result.actualClipboardText;
+    output_->setPlainText(lines.join('\n'));
+}
+
+void TextActionProofPanel::renderFixtureSuiteResult(const DexTextActions::TextActionFixtureSuiteResult &result) {
+    status_->setText(result.summary);
+    receipt_->setText(QString("fixtures: %1 passed, %2 failed, %3 total")
+        .arg(result.passed)
+        .arg(result.failed)
+        .arg(result.total));
+    QStringList lines;
+    for (const DexTextActions::TextActionFixtureResult &fixtureResult : result.results) {
+        lines << QString("%1 %2")
+            .arg(fixtureResult.passed ? "PASS" : "FAIL", fixtureResult.fixture.fixtureId);
+        if (!fixtureResult.passed) {
+            QString expected = fixtureResult.expectedClipboardText;
+            QString actual = fixtureResult.actualClipboardText;
+            expected.replace('\n', "\n  ");
+            actual.replace('\n', "\n  ");
+            lines << "  expected:";
+            lines << "  " + expected;
+            lines << "  actual:";
+            lines << "  " + actual;
+        }
+    }
+    output_->setPlainText(lines.join('\n'));
 }

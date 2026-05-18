@@ -1,11 +1,13 @@
 #include "main_window.h"
 
 #include <QStatusBar>
+#include <QToolButton>
 
 #include <algorithm>
 #include <utility>
 
 #include "app_state_helpers.h"
+#include "binder_navigation.h"
 #include "binder_state.h"
 #include "detail_lens_rail.h"
 #include "ledger_view.h"
@@ -124,9 +126,24 @@ void DexHomeV2Window::syncSelectedWorkerToSelectedProject() {
 }
 
 void DexHomeV2Window::refreshViews() {
-    projectRail_->setState(state_, selectedWorkerId_, selectedProjectId_, repoMode_, settingsMode_);
-    detailLensRail_->setVisible(!settingsMode_);
-    if (settingsMode_) {
+    const bool railVisible = !railToggle_ || railToggle_->isChecked();
+    const bool contextVisible = !contextToggle_ || contextToggle_->isChecked();
+    projectRail_->setVisible(railVisible);
+    rightContext_->setVisible(contextVisible);
+    detailLensRail_->setVisible(workspaceKind_ != WorkspaceKind::Settings);
+
+    if (workspaceKind_ == WorkspaceKind::TextEditor) {
+        selectedTopTab_ = "Text Editor";
+        if (!detailLensTabsFor(selectedTopTab_, true).contains(selectedDetailLens_)) {
+            selectedDetailLens_ = "Dashboard";
+        }
+        projectRail_->setTextEditorState();
+        detailLensRail_->setTextEditorState(selectedDetailLens_);
+        selectedDetailLens_ = detailLensRail_->currentLens();
+        ledger_->setTextEditorWorkspaceState();
+        rightContext_->setTextEditorState(selectedDetailLens_);
+    } else if (workspaceKind_ == WorkspaceKind::Settings) {
+        projectRail_->setSettingsState(state_, selectedProjectId_);
         ledger_->setSettingsState(
             state_,
             selectedProjectId_,
@@ -144,23 +161,35 @@ void DexHomeV2Window::refreshViews() {
                 saveProjectRegistryFromSettings(std::move(registry), projectId, std::move(binderTemplate), true);
             });
         rightContext_->setSettingsState(state_, selectedProjectId_, selectedSettingsFeature_);
-    } else {
-        detailLensRail_->setTopTab(selectedTopTab_, selectedDetailLens_, repoMode_);
+    } else if (workspaceKind_ == WorkspaceKind::Agent) {
+        projectRail_->setAgentState(state_, selectedWorkerId_);
+        detailLensRail_->setTopTab(selectedTopTab_, selectedDetailLens_, false);
         selectedDetailLens_ = detailLensRail_->currentLens();
-        ledger_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
-        rightContext_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, repoMode_);
+        ledger_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, false);
+        rightContext_->setAgentState(state_, selectedWorkerId_, selectedTopTab_, selectedDetailLens_);
+    } else {
+        projectRail_->setRepoState(state_, selectedWorkerId_, selectedProjectId_);
+        detailLensRail_->setTopTab(selectedTopTab_, selectedDetailLens_, true);
+        selectedDetailLens_ = detailLensRail_->currentLens();
+        ledger_->setState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_, true);
+        rightContext_->setRepoState(state_, selectedWorkerId_, selectedProjectId_, selectedTopTab_, selectedDetailLens_);
     }
     if (chromeLocationLabel_) {
+        if (workspaceKind_ == WorkspaceKind::TextEditor) {
+            chromeLocationLabel_->setText(QString("Text Editor / Blank Workspace / %1").arg(selectedDetailLens_));
+            body_->relayoutSheets();
+            return;
+        }
         QString projectName = selectedProjectId_.isEmpty() ? QString("No project") : selectedProjectId_;
         if (const auto *project = DexProjects::findProjectById(registryProjectsForState(state_), selectedProjectId_)) {
             projectName = DexProjects::displayName(*project);
         }
-        const QString modeLabel = settingsMode_
+        const QString modeLabel = workspaceKind_ == WorkspaceKind::Settings
             ? QString("Settings")
-            : repoMode_ && selectedProjectId_.isEmpty()
+            : workspaceKind_ == WorkspaceKind::Repo && selectedProjectId_.isEmpty()
             ? QString("Repo Binder")
             : workerDisplayName(state_, selectedWorkerId_);
-        if (settingsMode_) {
+        if (workspaceKind_ == WorkspaceKind::Settings) {
             chromeLocationLabel_->setText(QString("%1 / Settings / %2").arg(projectName, selectedSettingsFeature_));
         } else {
             chromeLocationLabel_->setText(QString("%1 / %2 / %3 / %4")

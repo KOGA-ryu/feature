@@ -80,6 +80,60 @@ Text(String) output -> QClipboard when the action is a copy/export command
 If an icon is missing, the host may render a text-only action. It must not
 invent a different icon contract name.
 
+## UI Organization Target
+
+Qt follows the same mature editor model as the neutral host contract:
+
+- command palette: every `text.*` action
+- classic menus: complete discovery by category
+- toolbar: frequent atomic actions only
+- text context menu: selected text or current-location actions only
+- inspector: parameters, options, receipts, and expected-vs-actual output
+- fixture bench: proof and regression review
+
+Toolbar V1 should stay small:
+
+```text
+Copy
+Prompt
+Markdown
+Fence
+Clean
+Run All
+Commands
+```
+
+Context-menu cleanup in Qt must require selected text. Whole-document cleanup
+must route through a menu, command palette, or inspector flow so the user made
+that scope explicit.
+
+Qt-specific behavior that has not been proven by screenshots or host tests must
+be marked `needs verification` in the relevant implementation note.
+
+## Qt/QSS Pathing
+
+Qt/QSS must use the shared `ui_path` vocabulary from
+`45_ui_style_and_pathing_contract.md`.
+
+Recommended mapping:
+
+```text
+ui_path -> QSS dynamic property or proof test id
+component_state -> QSS dynamic property for visual state
+shared component name -> stable objectName
+```
+
+Example:
+
+```text
+objectName: textActionButton
+uiPath: workbench.toolbar.primary.copy_prompt_block
+componentState: active
+```
+
+QSS may style by object name, `uiPath`, and `componentState`. It must not encode
+action behavior or invent local names such as `promptMagicButton`.
+
 ## Acceptance
 
 The Qt adapter is valid when a screenshot can prove the actions are visible and

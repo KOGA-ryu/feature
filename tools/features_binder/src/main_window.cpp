@@ -1,6 +1,7 @@
 #include "main_window.h"
 
 #include <QSize>
+#include <QStatusBar>
 
 #include <utility>
 
@@ -64,6 +65,9 @@ void DexHomeV2Window::setTopTab(const QString &tabName) {
         settingsMode_ = false;
         selectedTopTab_ = tabName;
         selectedDetailLens_ = detailLensTabsFor(selectedTopTab_, repoMode_).value(0, "Summary");
+        setWorkspaceKind(repoMode_
+            ? (selectedTopTab_ == "Text Editor" ? WorkspaceKind::TextEditor : WorkspaceKind::Repo)
+            : WorkspaceKind::Agent);
         refreshViews();
     }
 }
@@ -83,6 +87,7 @@ void DexHomeV2Window::setRepoBinderMode(bool enabled) {
     }
     repoMode_ = enabled;
     settingsMode_ = false;
+    workspaceKind_ = repoMode_ ? WorkspaceKind::Repo : WorkspaceKind::Agent;
     selectedTopTab_ = "Profile";
     selectedDetailLens_ = "Dashboard";
     if (repoModeToggle_) {
@@ -99,6 +104,7 @@ void DexHomeV2Window::setSelectedWorker(const QString &workerId) {
         return;
     }
     settingsMode_ = false;
+    workspaceKind_ = repoMode_ ? WorkspaceKind::Repo : WorkspaceKind::Agent;
     selectedWorkerId_ = workerId;
     if (!repoMode_ && !state_.workers.isEmpty() && !hasWorker(state_, selectedWorkerId_)) {
         selectedWorkerId_ = state_.workers.first().id;
@@ -115,6 +121,7 @@ void DexHomeV2Window::setSelectedProject(const QString &projectId) {
         return;
     }
     settingsMode_ = false;
+    workspaceKind_ = WorkspaceKind::Repo;
     selectedProjectId_ = projectId;
     state_.selectedProjectId = selectedProjectId_;
     state_.repoDiffScan = DexRepoDiffScan::unavailableScanState("scan pending");
@@ -133,6 +140,7 @@ void DexHomeV2Window::setSettingsMode(bool enabled) {
     }
     settingsMode_ = enabled;
     if (settingsMode_) {
+        workspaceKind_ = WorkspaceKind::Settings;
         repoMode_ = true;
         if (repoModeToggle_) {
             repoModeToggle_->setChecked(true);
@@ -142,10 +150,32 @@ void DexHomeV2Window::setSettingsMode(bool enabled) {
 }
 
 void DexHomeV2Window::setSettingsFeature(const QString &featureName) {
-    if (featureName == "Project Spec" || featureName == "Text Actions") {
+    if (featureName == "Project Spec") {
         selectedSettingsFeature_ = featureName;
         if (settingsMode_) {
             refreshViews();
         }
+    }
+}
+
+void DexHomeV2Window::openTextEditorWorkspace() {
+    settingsMode_ = false;
+    repoMode_ = true;
+    workspaceKind_ = WorkspaceKind::TextEditor;
+    selectedTopTab_ = "Text Editor";
+    selectedDetailLens_ = detailLensTabsFor(selectedTopTab_, repoMode_).value(0, "Dashboard");
+    if (repoModeToggle_) {
+        repoModeToggle_->setChecked(true);
+    }
+    refreshViews();
+    statusBar()->showMessage("Text Editor workspace opened from Shelf", 3000);
+}
+
+void DexHomeV2Window::setWorkspaceKind(WorkspaceKind workspaceKind) {
+    workspaceKind_ = workspaceKind;
+    settingsMode_ = workspaceKind_ == WorkspaceKind::Settings;
+    repoMode_ = workspaceKind_ != WorkspaceKind::Agent;
+    if (repoModeToggle_) {
+        repoModeToggle_->setChecked(repoMode_);
     }
 }

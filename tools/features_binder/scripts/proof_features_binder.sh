@@ -7,7 +7,17 @@ APP="$BUILD/dex_home_v2"
 OUT="$ROOT/proof_reference/final_current"
 
 mkdir -p "$OUT"
-rm -f "$OUT"/*.png "$OUT"/manifest.txt
+rm -f \
+  "$OUT/01_features_profile_1280x800.png" \
+  "$OUT/02_features_inventory_1280x800.png" \
+  "$OUT/03_features_quality_1280x800.png" \
+  "$OUT/04_features_settings_1280x800.png" \
+  "$OUT/05_features_profile_900x700.png" \
+  "$OUT/06_features_settings_full_1280x4200.png" \
+  "$OUT/07_features_text_actions_1280x800.png" \
+  "$OUT/07_features_text_editor_1280x800.png" \
+  "$OUT/08_features_text_editor_900x700.png" \
+  "$OUT/manifest.txt"
 
 cmake -S "$ROOT" -B "$BUILD"
 cmake --build "$BUILD"
@@ -28,7 +38,8 @@ capture "03_features_quality_1280x800" --size 1280x800 --worker planner --tab Qu
 capture "04_features_settings_1280x800" --size 1280x800 --settings
 capture "05_features_profile_900x700" --size 900x700 --worker stager --tab Profile
 capture "06_features_settings_full_1280x4200" --size 1280x4200 --settings
-capture "07_features_text_actions_1280x800" --size 1280x800 --settings --settings-feature "Text Actions"
+capture "07_features_text_editor_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor"
+capture "08_features_text_editor_900x700" --size 900x700 --no-settings --worker organizer --tab "Text Editor"
 
 check_png_size() {
   local file="$1"
@@ -49,7 +60,8 @@ check_png_size "$OUT/03_features_quality_1280x800.png" 1280 800
 check_png_size "$OUT/04_features_settings_1280x800.png" 1280 800
 check_png_size "$OUT/05_features_profile_900x700.png" 900 700
 check_png_size "$OUT/06_features_settings_full_1280x4200.png" 1280 4200
-check_png_size "$OUT/07_features_text_actions_1280x800.png" 1280 800
+check_png_size "$OUT/07_features_text_editor_1280x800.png" 1280 800
+check_png_size "$OUT/08_features_text_editor_900x700.png" 900 700
 
 grep -q '"project_id": "features"' "$ROOT/data/projects.json"
 grep -q '"path": "/Users/kogaryu/dev/features"' "$ROOT/data/projects.json"
@@ -68,7 +80,14 @@ template: features_feature_foundry_v1
 feature_packs: 48
 workers: organizer planner stager
 screenshots:
-$(find "$OUT" -maxdepth 1 -name '*.png' -print | sort)
+$OUT/01_features_profile_1280x800.png
+$OUT/02_features_inventory_1280x800.png
+$OUT/03_features_quality_1280x800.png
+$OUT/04_features_settings_1280x800.png
+$OUT/05_features_profile_900x700.png
+$OUT/06_features_settings_full_1280x4200.png
+$OUT/07_features_text_editor_1280x800.png
+$OUT/08_features_text_editor_900x700.png
 MANIFEST
 
 echo "proof written to $OUT"

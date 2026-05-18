@@ -22,6 +22,17 @@ QString colors::risk_split_candidate() { return "#ead8d8"; }
 QString colors::risk_generated() { return "#dce3ea"; }
 QString colors::risk_inspect_first() { return "#e8dfcf"; }
 
+QString text_editor_colors::rail_dark() { return "#25282b"; }
+QString text_editor_colors::chrome() { return "#f7f8f8"; }
+QString text_editor_colors::editor() { return "#ffffff"; }
+QString text_editor_colors::toolbar() { return "#fdfdfd"; }
+QString text_editor_colors::inspector() { return "#ffffff"; }
+QString text_editor_colors::status() { return "#26282b"; }
+QString text_editor_colors::selection() { return "#e5f1f7"; }
+QString text_editor_colors::border() { return "#d4d9df"; }
+QString text_editor_colors::focus() { return "#4898ff"; }
+QString text_editor_colors::success() { return "#35c66b"; }
+
 QString app_font_family() {
     const QStringList installedFamilies = QFontDatabase::families();
     const QStringList preferredFamilies = {

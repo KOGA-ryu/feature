@@ -1,0 +1,101 @@
+{
+  "large": {
+    "width": 400,
+    "height": 100,
+    "radius": 28,
+    "lens_width": 184,
+    "lens_height": 54
+  },
+  "compact": {
+    "width": 200,
+    "height": 50,
+    "radius": 14,
+    "lens_width": 92,
+    "lens_height": 30
+  },
+  "fade_width": 56,
+  "control_row_height": 20,
+  "progress_marker_height": 3,
+  "overlay_padding": 10,
+  "focus_context_target_chars_large": 90,
+  "focus_context_target_chars_compact": 44,
+  "tape_transition_duration_ms": 160,
+  "typography": {
+    "large_context_font_size": 18,
+    "large_focus_font_size": 20,
+    "compact_context_font_size": 11,
+    "compact_focus_font_size": 12,
+    "max_focus_type_scale_percent": 112,
+    "focus_letter_spacing_tenths_px": 2,
+    "continuous_tape_word_gap_px": 6,
+    "context_text_opacity_percent": 72,
+    "focus_text_opacity_percent": 100,
+    "lens_bg_opacity_percent": 96
+  },
+  "color_tokens": [
+    "base_bg",
+    "capsule_bg",
+    "lens_bg",
+    "lens_edge",
+    "text_context",
+    "text_focus",
+    "text_muted",
+    "accent_speed",
+    "accent_progress",
+    "control_idle",
+    "control_hover"
+  ],
+  "theme_user_controls": [
+    "accent",
+    "background",
+    "foreground",
+    "contrast"
+  ],
+  "built_in_theme_option_ids": [
+    "warm_lens",
+    "eye_comfort"
+  ],
+  "custom_theme_controls": [
+    "accent_color_wheel",
+    "background_color_wheel",
+    "foreground_color_wheel",
+    "contrast_slider"
+  ],
+  "default_theme_contrast": 76,
+  "display_layers": [
+    "base_capsule",
+    "continuous_sentence_tape",
+    "center_lens",
+    "fade_zones",
+    "optional_function_marks"
+  ],
+  "beauty_principles": [
+    "beauty_is_functional",
+    "typographic_focus_not_literal_glow",
+    "subtle_format_preservation",
+    "minimal_visible_indicators"
+  ],
+  "tape_format_rules": [
+    "continuous_sentence_tape",
+    "highlight_exactly_one_focus_anchor_word",
+    "focus_anchor_not_reading_unit",
+    "context_band_is_reading_unit",
+    "preserve_readable_ahead_context",
+    "preserve_readable_behind_context",
+    "support_peripheral_context_reading",
+    "preserve_word_order",
+    "preserve_punctuation",
+    "neighbor_words_remain_visible",
+    "allow_subtle_lens_type_scale",
+    "allow_subtle_lens_word_spacing"
+  ],
+  "optional_surfaces": [
+    "separate_options_window"
+  ],
+  "runtime_surface_rules": [
+    "runtime_displays_pill_only",
+    "no_app_shell",
+    "no_persistent_play_pause_indicator",
+    "no_numeric_wpm_readout"
+  ]
+}

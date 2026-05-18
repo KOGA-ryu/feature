@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50" role="img" aria-label="scroll reader capsule play">
+  <defs>
+    <clipPath id="scroll-reader-text-clip">
+      <rect x="10" y="10" width="180" height="30"/>
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="200" height="50" rx="14" fill="#25221d" stroke="#e7cfa8" stroke-opacity="0.34"/>
+  <rect x="10" y="5" width="180" height="3" rx="1" fill="#14120f" opacity="0.45"/>
+  <rect x="10" y="5" width="37" height="3" rx="1" fill="#d9ad70" opacity="0.9"/>
+  <rect x="54" y="10" width="92" height="30" rx="7" fill="#efe3ca" opacity="0.96" stroke="#e7cfa8" stroke-width="1"/>
+  <g clip-path="url(#scroll-reader-text-clip)">
+    <text x="4" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">The</text>
+    <text x="34" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">quick</text>
+    <text x="70" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">brown</text>
+    <text x="100" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="12" font-weight="600" letter-spacing="0.2" opacity="1" fill="#181612">fox</text>
+    <text x="130" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">jumps</text>
+    <text x="163" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">over</text>
+    <text x="190" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">the</text>
+    <text x="217" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">lazy</text>
+    <text x="247" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">dog.</text>
+  </g>
+  <rect x="10" y="10" width="56" height="30" rx="0" fill="#25221d" opacity="0.42"/>
+  <rect x="134" y="10" width="56" height="30" rx="0" fill="#25221d" opacity="0.32"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100" viewBox="0 0 400 100" role="img" aria-label="scroll reader capsule play">
+  <defs>
+    <clipPath id="scroll-reader-text-clip">
+      <rect x="10" y="23" width="380" height="54"/>
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="400" height="100" rx="28" fill="#25221d" stroke="#e7cfa8" stroke-opacity="0.34"/>
+  <rect x="10" y="5" width="380" height="3" rx="1" fill="#14120f" opacity="0.45"/>
+  <rect x="10" y="5" width="380" height="3" rx="1" fill="#d9ad70" opacity="0.9"/>
+  <rect x="108" y="23" width="184" height="54" rx="13" fill="#efe3ca" opacity="0.96" stroke="#e7cfa8" stroke-width="1"/>
+  <g clip-path="url(#scroll-reader-text-clip)">
+    <text x="-170" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">dog.</text>
+    <text x="-125" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">True</text>
+    <text x="-75" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">power</text>
+    <text x="0" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">knowledge</text>
+    <text x="75" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">comes</text>
+    <text x="125" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="0" opacity="0.72" fill="#a29986">from</text>
+    <text x="200" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="600" letter-spacing="0.2" opacity="1" fill="#181612">practice.</text>
+  </g>
+  <rect x="10" y="23" width="56" height="54" rx="0" fill="#25221d" opacity="0.42"/>
+  <rect x="334" y="23" width="56" height="54" rx="0" fill="#25221d" opacity="0.32"/>
+</svg>

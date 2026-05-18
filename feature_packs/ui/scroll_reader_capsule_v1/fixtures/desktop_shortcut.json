@@ -1,0 +1,13 @@
+{
+  "id": "summon_scroll_reader_capsule",
+  "label": "Summon Scroll Reader",
+  "scope": "desktop_global",
+  "modifiers": [
+    "ctrl",
+    "option"
+  ],
+  "key": "r",
+  "action": "capture_selected_or_copied_text_and_open_capsule",
+  "enabled_by_default": true,
+  "host_owned": true
+}

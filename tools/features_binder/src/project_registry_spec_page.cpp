@@ -21,6 +21,7 @@
 #include "binder_page_helpers.h"
 #include "render_helpers.h"
 #include "repo_binder_template.h"
+#include "settings_shortcuts_dialog.h"
 
 namespace {
 
@@ -198,6 +199,8 @@ ProjectRegistrySpecPage::ProjectRegistrySpecPage(
     saveAndBack->setObjectName("primaryAction");
     auto *revert = new QPushButton("Cancel / Revert");
     revert->setObjectName("statsContextAction");
+    auto *shortcuts = new QPushButton("Commands / Hotkeys");
+    shortcuts->setObjectName("statsContextAction");
     connect(back, &QPushButton::clicked, this, [this]() {
         if (onBack_) {
             onBack_();
@@ -214,10 +217,14 @@ ProjectRegistrySpecPage::ProjectRegistrySpecPage(
             onRevert_();
         }
     });
+    connect(shortcuts, &QPushButton::clicked, this, [this]() {
+        DexSettingsShortcuts::showShortcutsDialog(this);
+    });
     actionsLayout->addWidget(back);
     actionsLayout->addWidget(save);
     actionsLayout->addWidget(saveAndBack);
     actionsLayout->addWidget(revert);
+    actionsLayout->addWidget(shortcuts);
     actionsLayout->addStretch(1);
     layout->addWidget(actions);
 

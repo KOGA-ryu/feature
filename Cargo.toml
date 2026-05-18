@@ -40,6 +40,7 @@ members = [
   "feature_packs/ui/checklist_single",
   "feature_packs/ui/text_editor_plain",
   "feature_packs/ui/text_editor_actions",
+  "feature_packs/ui/text_editor_clipboard",
   "feature_packs/ui/scroll_reader_overlay_v1",
   "feature_packs/ui/session_notes_panel",
   "feature_packs/ui/left_rail",

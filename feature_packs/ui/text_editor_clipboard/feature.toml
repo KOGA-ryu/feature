@@ -1,0 +1,17 @@
+id = "ui.text_editor_clipboard"
+name = "text_editor_clipboard"
+kind = "ui_pattern"
+status = "tested"
+summary = "Headless clipboard/export policy helpers with exact copy, prompt/code fences, basic cleanup, and transform receipts."
+tags = ["subject:notes_and_productivity", "ui", "utility", "editor", "text", "clipboard", "cleanup"]
+dependencies = ["feature_core", "ui.text_editor_plain"]
+compatible_features = ["ui.text_editor_plain", "ui.text_editor_actions", "ui.command_palette", "ui.right_inspector"]
+owner = "feature_lab"
+created_at = "2026-05-18T00:00:00Z"
+updated_at = "2026-05-18T00:00:00Z"
+
+[inputs]
+items = ["document_text", "selection", "clipboard_policy"]
+
+[outputs]
+items = ["clipboard_text", "transform_changes", "transform_warnings"]

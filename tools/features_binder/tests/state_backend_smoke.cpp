@@ -17,6 +17,7 @@
 #include "settings_shortcuts_model.h"
 #include "text_action_proof_model.h"
 #include "text_editor_rust_action_client.h"
+#include "text_editor_workspace_state.h"
 
 class StateBackendSmoke final : public QObject {
     Q_OBJECT
@@ -314,6 +315,61 @@ private slots:
         QCOMPARE(result.selection.caret.column, 5);
     }
 
+    void parsesTextEditorRustActionInventory() {
+        const QByteArray payload = R"({
+            "ok": true,
+            "actions": [
+                {
+                    "action_id": "text.copy_plain",
+                    "label": "Copy Plain",
+                    "short_label": "Copy",
+                    "icon": "copy",
+                    "tooltip": "Copy selected text.",
+                    "category": "clipboard",
+                    "placements": ["command_palette", "clipboard_menu"],
+                    "hotkey_label": "Ctrl+C",
+                    "enabled_rule": "document_has_text",
+                    "enabled": true,
+                    "disabled_reason": null,
+                    "undo_behavior": "none"
+                }
+            ],
+            "editor_text": "alpha",
+            "selection": {
+                "anchor": {"line": 0, "column": 0},
+                "caret": {"line": 0, "column": 0}
+            }
+        })";
+        QString error;
+        const QVector<DexTextActions::HostActionItem> actions =
+            DexTextEditorRust::parseActionRunnerActions(payload, &error);
+
+        QVERIFY(error.isEmpty());
+        QCOMPARE(actions.size(), 1);
+        QCOMPARE(actions.first().actionId, QString("text.copy_plain"));
+        QCOMPARE(actions.first().shortLabel, QString("Copy"));
+        QCOMPARE(actions.first().hotkeyLabel, QString("Ctrl+C"));
+        QVERIFY(actions.first().enabled);
+    }
+
+    void textEditorFixtureFallbackCoversFixtureActionIds() {
+        const QVector<DexTextActions::TextActionRecord> records = DexTextActions::textActionRecords();
+        QStringList actionIds;
+        for (const DexTextActions::TextActionRecord &record : records) {
+            actionIds.push_back(record.actionId);
+        }
+
+        QVERIFY(actionIds.contains("text.copy_plain"));
+        QVERIFY(actionIds.contains("text.copy_prompt_block"));
+        QVERIFY(actionIds.contains("text.clean_basic"));
+
+        for (const DexTextActions::TextActionFixture &fixture : DexTextActions::textActionFixtures()) {
+            QVERIFY2(
+                actionIds.contains(fixture.actionId),
+                qPrintable("fixture fallback missing action id: " + fixture.actionId));
+        }
+    }
+
     void malformedTextEditorRustRunnerResponseIsUnavailable() {
         const DexTextEditorRust::ActionResult result =
             DexTextEditorRust::parseActionRunnerResponse("not json");
@@ -338,6 +394,23 @@ private slots:
         QCOMPARE(
             detailLensTabsFor("Text Editor", true),
             QStringList({"Dashboard", "Editor", "Actions", "Inspector", "Fixtures", "Receipts", "Proof"}));
+    }
+
+    void textEditorWorkspaceRequiredUiPathsCoverBucketHierarchy() {
+        const QStringList paths = DexTextEditorWorkspace::requiredTextEditorUiPaths();
+
+        QVERIFY(paths.contains("workbench.rail.text_editor.documents"));
+        QVERIFY(paths.contains("workbench.rail.text_editor.clipboard"));
+        QVERIFY(paths.contains("workbench.toolbar.primary"));
+        QVERIFY(paths.contains("workbench.editor.surface.document"));
+        QVERIFY(paths.contains("workbench.editor.surface.text"));
+        QVERIFY(paths.contains("workbench.inspector.text_editor.options"));
+        QVERIFY(paths.contains("workbench.inspector.text_editor.context"));
+        QVERIFY(paths.contains("workbench.inspector.text_editor.result"));
+        QVERIFY(paths.contains("workbench.inspector.text_editor.receipts"));
+        QVERIFY(paths.contains("workbench.fixture_bench"));
+        QVERIFY(paths.contains("workbench.fixture_bench.results.expected"));
+        QVERIFY(paths.contains("workbench.fixture_bench.results.actual"));
     }
 
     void textActionProofModelDisablesEmptyCleanupHonestly() {

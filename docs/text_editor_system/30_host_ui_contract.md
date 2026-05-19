@@ -204,6 +204,30 @@ text_editor_host_qt: put that string onto QClipboard
 
 This keeps tests deterministic and avoids system side effects in headless crates.
 
+## Content Limits
+
+Hosts must make content caps explicit instead of silently accepting unbounded
+editor, clipboard, or preview payloads.
+
+Current Qt workbench caps:
+
+```text
+document action input: 200000 chars
+system clipboard write: 100000 chars
+output preview: 12000 chars
+receipt preview: 4000 chars
+```
+
+Policy:
+
+- document text above the action-input cap is not sent to the Rust runner.
+- clipboard output above the clipboard cap is shown in preview but not written
+  to the OS clipboard.
+- preview panes may clip long output, but the clip notice must include shown
+  and total character counts.
+- these caps are host safety limits; headless crates still define exact text
+  behavior for inputs they receive.
+
 ## File Boundary
 
 Headless helpers do not open file dialogs.

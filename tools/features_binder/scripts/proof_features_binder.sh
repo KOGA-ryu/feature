@@ -18,11 +18,15 @@ rm -f \
   "$OUT/06_features_settings_full_1280x4200.png" \
   "$OUT/07_features_text_actions_1280x800.png" \
   "$OUT/07_features_text_editor_1280x800.png" \
+  "$OUT/07_features_text_editor_ui_tree.json" \
   "$OUT/08_features_text_editor_900x700.png" \
   "$OUT/manifest.txt"
 
 cmake -S "$ROOT" -B "$BUILD"
 cargo build --manifest-path "$FEATURES_ROOT/Cargo.toml" -p text_editor_host_adapter --bin text_editor_action_runner
+printf '%s' '{"mode":"render_host_actions","document_text":"alpha","input":{},"profile":"linux_desktop"}' \
+  | "$RUNNER" \
+  | grep -q '"action_id": "text.copy_plain"'
 cmake --build "$BUILD"
 ctest --test-dir "$BUILD" --output-on-failure
 export TEXT_EDITOR_ACTION_RUNNER="$RUNNER"
@@ -42,7 +46,7 @@ capture "03_features_quality_1280x800" --size 1280x800 --worker planner --tab Qu
 capture "04_features_settings_1280x800" --size 1280x800 --settings
 capture "05_features_profile_900x700" --size 900x700 --worker stager --tab Profile
 capture "06_features_settings_full_1280x4200" --size 1280x4200 --settings
-capture "07_features_text_editor_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor"
+capture "07_features_text_editor_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor" --ui-tree-dump "$OUT/07_features_text_editor_ui_tree.json"
 capture "08_features_text_editor_900x700" --size 900x700 --no-settings --worker organizer --tab "Text Editor"
 
 check_png_size() {
@@ -66,6 +70,14 @@ check_png_size "$OUT/05_features_profile_900x700.png" 900 700
 check_png_size "$OUT/06_features_settings_full_1280x4200.png" 1280 4200
 check_png_size "$OUT/07_features_text_editor_1280x800.png" 1280 800
 check_png_size "$OUT/08_features_text_editor_900x700.png" 900 700
+test -s "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.rail.text_editor.documents' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.toolbar.primary' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.editor.surface.document' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.inspector.text_editor.options' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.fixture_bench.results.expected' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q 'workbench.fixture_bench.results.actual' "$OUT/07_features_text_editor_ui_tree.json"
+grep -q '"workspace": "text_editor"' "$OUT/07_features_text_editor_ui_tree.json"
 
 grep -q '"project_id": "features"' "$ROOT/data/projects.json"
 grep -q '"path": "/Users/kogaryu/dev/features"' "$ROOT/data/projects.json"
@@ -92,6 +104,8 @@ $OUT/05_features_profile_900x700.png
 $OUT/06_features_settings_full_1280x4200.png
 $OUT/07_features_text_editor_1280x800.png
 $OUT/08_features_text_editor_900x700.png
+ui_tree:
+$OUT/07_features_text_editor_ui_tree.json
 MANIFEST
 
 echo "proof written to $OUT"

@@ -137,6 +137,7 @@ QStringList requiredTextEditorUiPaths() {
         "workbench.editor.status.cursor_position",
         "workbench.inspector.text_editor.options",
         "workbench.inspector.text_editor.context",
+        "workbench.inspector.text_editor.result",
         "workbench.inspector.text_editor.receipts",
         "workbench.fixture_bench",
         "workbench.fixture_bench.runner",

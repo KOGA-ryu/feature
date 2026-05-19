@@ -48,6 +48,21 @@ QStringList stringArray(const QJsonValue &value) {
     return output;
 }
 
+DexTextActions::HostActionItem hostActionItemFromJson(const QJsonObject &object) {
+    DexTextActions::HostActionItem item;
+    item.actionId = object.value("action_id").toString();
+    item.label = object.value("label").toString();
+    item.shortLabel = object.value("short_label").toString();
+    item.category = object.value("category").toString();
+    item.icon = object.value("icon").toString();
+    item.tooltip = object.value("tooltip").toString();
+    item.placements = stringArray(object.value("placements"));
+    item.hotkeyLabel = object.value("hotkey_label").toString();
+    item.enabled = object.value("enabled").toBool(false);
+    item.disabledReason = object.value("disabled_reason").toString();
+    return item;
+}
+
 QJsonObject inputToJson(const DexTextActions::TextActionProofInput &input) {
     QJsonObject object;
     if (!input.language.trimmed().isEmpty()) {
@@ -77,6 +92,47 @@ ActionResult unavailableResult(const QString &message) {
     return result;
 }
 
+QByteArray runActionRunner(const QJsonObject &request, QString *error) {
+    const QString runnerPath = resolveTextEditorActionRunnerPath();
+    if (!QFileInfo::exists(runnerPath)) {
+        if (error) {
+            *error = "missing runner at " + runnerPath;
+        }
+        return {};
+    }
+
+    QProcess process;
+    process.start(runnerPath);
+    if (!process.waitForStarted(3000)) {
+        if (error) {
+            *error = "failed to start runner at " + runnerPath;
+        }
+        return {};
+    }
+
+    process.write(QJsonDocument(request).toJson(QJsonDocument::Compact));
+    process.closeWriteChannel();
+
+    if (!process.waitForFinished(8000)) {
+        process.kill();
+        process.waitForFinished(1000);
+        if (error) {
+            *error = "runner timed out";
+        }
+        return {};
+    }
+
+    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+        const QString stderrText = QString::fromUtf8(process.readAllStandardError()).trimmed();
+        if (error) {
+            *error = stderrText.isEmpty() ? "runner exited with failure" : stderrText;
+        }
+        return {};
+    }
+
+    return process.readAllStandardOutput();
+}
+
 } // namespace
 
 QString resolveTextEditorActionRunnerPath() {
@@ -104,6 +160,7 @@ QString resolveTextEditorActionRunnerPath() {
 
 QJsonObject requestToJson(const ActionRequest &request) {
     QJsonObject object{
+        {"mode", "execute_action"},
         {"action_id", request.actionId},
         {"document_text", request.documentText},
         {"input", inputToJson(request.input)},
@@ -112,6 +169,33 @@ QJsonObject requestToJson(const ActionRequest &request) {
         object.insert("selection", selectionToJson(request.selection));
     }
     return object;
+}
+
+QVector<DexTextActions::HostActionItem> parseActionRunnerActions(const QByteArray &payload, QString *error) {
+    QJsonParseError parseError;
+    const QJsonDocument document = QJsonDocument::fromJson(payload, &parseError);
+    if (parseError.error != QJsonParseError::NoError || !document.isObject()) {
+        if (error) {
+            *error = "malformed runner json: " + parseError.errorString();
+        }
+        return {};
+    }
+
+    const QJsonObject root = document.object();
+    if (!root.value("ok").toBool(false)) {
+        if (error) {
+            *error = root.value("error").toString("runner returned ok=false");
+        }
+        return {};
+    }
+
+    QVector<DexTextActions::HostActionItem> actions;
+    for (const QJsonValue &entry : root.value("actions").toArray()) {
+        if (entry.isObject()) {
+            actions.push_back(hostActionItemFromJson(entry.toObject()));
+        }
+    }
+    return actions;
 }
 
 ActionResult parseActionRunnerResponse(const QByteArray &payload) {
@@ -150,33 +234,33 @@ ActionResult parseActionRunnerResponse(const QByteArray &payload) {
     return output;
 }
 
+QVector<DexTextActions::HostActionItem> renderActionsWithRunner(
+    const QString &documentText,
+    const DexTextActions::TextActionProofInput &input,
+    QString *error) {
+    const QJsonObject request{
+        {"mode", "render_host_actions"},
+        {"document_text", documentText},
+        {"input", inputToJson(input)},
+        {"profile", "linux_desktop"},
+    };
+
+    const QByteArray payload = runActionRunner(request, error);
+    if (payload.isEmpty()) {
+        return {};
+    }
+
+    return parseActionRunnerActions(payload, error);
+}
+
 ActionResult executeActionWithRunner(const ActionRequest &request) {
-    const QString runnerPath = resolveTextEditorActionRunnerPath();
-    if (!QFileInfo::exists(runnerPath)) {
-        return unavailableResult("missing runner at " + runnerPath);
+    QString error;
+    const QByteArray payload = runActionRunner(requestToJson(request), &error);
+    if (payload.isEmpty()) {
+        return unavailableResult(error);
     }
 
-    QProcess process;
-    process.start(runnerPath);
-    if (!process.waitForStarted(3000)) {
-        return unavailableResult("failed to start runner at " + runnerPath);
-    }
-
-    const QByteArray payload = QJsonDocument(requestToJson(request)).toJson(QJsonDocument::Compact);
-    process.write(payload);
-    process.closeWriteChannel();
-
-    if (!process.waitForFinished(8000)) {
-        process.kill();
-        process.waitForFinished(1000);
-        return unavailableResult("runner timed out");
-    }
-    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
-        const QString stderrText = QString::fromUtf8(process.readAllStandardError()).trimmed();
-        return unavailableResult(stderrText.isEmpty() ? "runner exited with failure" : stderrText);
-    }
-
-    return parseActionRunnerResponse(process.readAllStandardOutput());
+    return parseActionRunnerResponse(payload);
 }
 
 } // namespace DexTextEditorRust

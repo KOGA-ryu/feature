@@ -2,11 +2,19 @@
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QIODevice>
 #include <QPixmap>
+#include <QRect>
 #include <QSize>
 #include <QStringList>
 #include <QTimer>
+#include <QVariant>
+#include <QWidget>
 
 #include "main_window.h"
 #include "render_helpers.h"
@@ -30,6 +38,56 @@ QSize parseSize(const QString &value) {
         return QSize(kDesignWidth, kDesignHeight);
     }
     return QSize(width, height);
+}
+
+QJsonObject dumpWidgetTree(QWidget *widget) {
+    QJsonObject node;
+    node.insert("className", widget->metaObject()->className());
+    node.insert("objectName", widget->objectName());
+    node.insert("visible", widget->isVisible());
+    const QVariant uiPath = widget->property("uiPath");
+    if (uiPath.isValid()) {
+        node.insert("uiPath", uiPath.toString());
+    }
+    const QVariant componentState = widget->property("componentState");
+    if (componentState.isValid()) {
+        node.insert("componentState", componentState.toString());
+    }
+    const QVariant workspace = widget->property("workspace");
+    if (workspace.isValid()) {
+        node.insert("workspace", workspace.toString());
+    }
+
+    const QRect geometry = widget->geometry();
+    node.insert("geometry", QJsonObject{
+        {"x", geometry.x()},
+        {"y", geometry.y()},
+        {"width", geometry.width()},
+        {"height", geometry.height()},
+    });
+
+    QJsonArray children;
+    for (QObject *child : widget->children()) {
+        auto *childWidget = qobject_cast<QWidget *>(child);
+        if (!childWidget || !childWidget->isVisible()) {
+            continue;
+        }
+        children.append(dumpWidgetTree(childWidget));
+    }
+    node.insert("children", children);
+    return node;
+}
+
+bool writeWidgetTreeDump(QWidget *root, const QString &path) {
+    const QFileInfo info(path);
+    QDir().mkpath(info.absolutePath());
+    QFile file(path);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        return false;
+    }
+    const QJsonDocument document(dumpWidgetTree(root));
+    file.write(document.toJson(QJsonDocument::Indented));
+    return true;
 }
 
 } // namespace
@@ -59,6 +117,7 @@ int main(int argc, char **argv) {
     const QCommandLineOption settingsOption("settings", "Start on a Settings workspace.");
     const QCommandLineOption noSettingsOption("no-settings", "Start on the normal repo binder instead of the active Settings workbench.");
     const QCommandLineOption settingsFeatureOption("settings-feature", "Initial Settings feature, e.g. Project Spec.", "feature", "Project Spec");
+    const QCommandLineOption uiTreeDumpOption("ui-tree-dump", "Save visible UI tree JSON and exit.", "path");
     parser.addOption(screenshotOption);
     parser.addOption(sizeOption);
     parser.addOption(hideRailOption);
@@ -75,6 +134,7 @@ int main(int argc, char **argv) {
     parser.addOption(settingsOption);
     parser.addOption(noSettingsOption);
     parser.addOption(settingsFeatureOption);
+    parser.addOption(uiTreeDumpOption);
     parser.process(app);
 
     const QString repoRoot = parser.isSet(repoRootOption)
@@ -120,13 +180,21 @@ int main(int argc, char **argv) {
     window.resize(size);
     window.show();
 
-    if (parser.isSet(screenshotOption)) {
+    if (parser.isSet(screenshotOption) || parser.isSet(uiTreeDumpOption)) {
         const QString path = parser.value(screenshotOption);
-        QTimer::singleShot(350, &app, [&window, path]() {
-            const QFileInfo info(path);
-            QDir().mkpath(info.absolutePath());
-            QPixmap pixmap = window.grab();
-            pixmap.save(path);
+        const QString uiTreePath = parser.value(uiTreeDumpOption);
+        const bool shouldScreenshot = parser.isSet(screenshotOption);
+        const bool shouldDumpUiTree = parser.isSet(uiTreeDumpOption);
+        QTimer::singleShot(350, &app, [&window, path, uiTreePath, shouldScreenshot, shouldDumpUiTree]() {
+            if (shouldScreenshot) {
+                const QFileInfo info(path);
+                QDir().mkpath(info.absolutePath());
+                QPixmap pixmap = window.grab();
+                pixmap.save(path);
+            }
+            if (shouldDumpUiTree) {
+                writeWidgetTreeDump(&window, uiTreePath);
+            }
             QApplication::quit();
         });
     }

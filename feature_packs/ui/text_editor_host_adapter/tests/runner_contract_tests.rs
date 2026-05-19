@@ -41,6 +41,31 @@ fn runner_executes_copy_plain_with_selected_text() {
 }
 
 #[test]
+fn runner_renders_host_actions_from_rust_metadata() {
+    let response = run_runner(json!({
+        "mode": "render_host_actions",
+        "document_text": "alpha",
+        "input": {},
+        "profile": "linux_desktop"
+    }));
+
+    assert_eq!(response["ok"], true);
+    assert!(response["result"].is_null());
+    let actions = response["actions"]
+        .as_array()
+        .expect("actions should exist");
+    let copy = actions
+        .iter()
+        .find(|action| action["action_id"] == "text.copy_plain")
+        .expect("copy action should render");
+
+    assert_eq!(copy["label"], "Copy Plain");
+    assert_eq!(copy["short_label"], "Copy");
+    assert_eq!(copy["hotkey_label"], "Ctrl+C");
+    assert_eq!(copy["enabled"], true);
+}
+
+#[test]
 fn runner_executes_prompt_block_with_source() {
     let response = run_runner(json!({
         "action_id": "text.copy_prompt_block",
@@ -109,5 +134,10 @@ fn runner_rejects_unknown_action_id() {
     }));
 
     assert_eq!(response["ok"], false);
-    assert!(response["error"].as_str().unwrap().contains("unknown action id"));
+    assert!(
+        response["error"]
+            .as_str()
+            .unwrap()
+            .contains("unknown action id")
+    );
 }

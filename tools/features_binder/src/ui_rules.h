@@ -45,11 +45,18 @@ struct text_editor_metrics {
     static constexpr int inspector_width = 300;
     static constexpr int rail_bucket_height = 54;
     static constexpr int toolbar_button_height = 30;
-    static constexpr int action_strip_height = 66;
+    static constexpr int action_strip_height = 120;
     static constexpr int document_min_height = 320;
     static constexpr int fixture_shelf_height = 250;
     static constexpr int fixture_result_min_height = 144;
     static constexpr int document_tab_height = 42;
+};
+
+struct text_editor_content_limits {
+    static constexpr int max_document_chars = 200000;
+    static constexpr int max_clipboard_chars = 100000;
+    static constexpr int max_output_preview_chars = 12000;
+    static constexpr int max_receipt_preview_chars = 4000;
 };
 
 struct colors {

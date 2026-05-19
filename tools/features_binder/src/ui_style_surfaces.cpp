@@ -156,6 +156,31 @@ QString textEditorWorkbenchQss() {
             background: #ffffff;
             border-color: #cbd3db;
         }
+        QPushButton#textEditorActionButton[componentState="running"] {
+            color: #12395c;
+            background: #e5f1ff;
+            border-color: #4898ff;
+        }
+        QPushButton#textEditorActionButton[componentState="success"] {
+            color: #0f3d24;
+            background: #e7f8ee;
+            border-color: #35c66b;
+        }
+        QPushButton#textEditorActionButton[componentState="danger"] {
+            color: #651b1b;
+            background: #fdecec;
+            border-color: #d66a6a;
+        }
+        QPushButton#textEditorActionButton[componentState="disabled"] {
+            color: #7b8794;
+            background: #f5f7f9;
+            border-color: #d8dee5;
+        }
+        QPushButton#textEditorActionButton[componentState="active"],
+        QPushButton#textEditorActionButton:pressed {
+            border-color: #4898ff;
+            background: #eaf3ff;
+        }
         QFrame#textEditorBlankSurface,
         QFrame#textEditorFixtureShelf {
             background: %2;
@@ -241,6 +266,27 @@ QString textEditorWorkbenchQss() {
             border: 1px solid #d8dee5;
             border-radius: %6px;
         }
+        QLabel#textEditorSurfaceEmpty[componentState="success"] {
+            color: #17633b;
+        }
+        QLabel#textEditorSurfaceEmpty[componentState="danger"] {
+            color: #8a2424;
+        }
+        QLabel#textEditorMonoLabel[componentState="active"] {
+            color: #12395c;
+        }
+        QFrame#textEditorFixturePanel[componentState="success"],
+        QFrame#textEditorContextPanel[componentState="success"] {
+            border-left: 3px solid #35c66b;
+        }
+        QFrame#textEditorFixturePanel[componentState="danger"],
+        QFrame#textEditorContextPanel[componentState="danger"] {
+            border-left: 3px solid #d64545;
+        }
+        QFrame#textEditorFixturePanel[componentState="disabled"],
+        QFrame#textEditorContextPanel[componentState="disabled"] {
+            border-left: 3px solid #97a2ad;
+        }
         QFrame#textEditorFixturePanel QLabel#textEditorSurfaceTitle {
             font-size: 11px;
             font-weight: 850;
@@ -260,6 +306,26 @@ QString textEditorWorkbenchQss() {
             background: %4;
             border-left: 1px solid %5;
             border-radius: 0px;
+        }
+        QFrame#rightContext[workspace="text_editor"] QLineEdit,
+        QFrame#rightContext[workspace="text_editor"] QSpinBox,
+        QFrame#rightContext[workspace="text_editor"] QComboBox {
+            background: #ffffff;
+            color: #1f2933;
+            border: 1px solid #cbd3db;
+            border-radius: 5px;
+            min-height: 26px;
+            padding: 2px 7px;
+            font-size: 11px;
+        }
+        QFrame#rightContext[workspace="text_editor"] QLineEdit:focus,
+        QFrame#rightContext[workspace="text_editor"] QSpinBox:focus {
+            border-color: #4898ff;
+        }
+        QFrame#rightContext[workspace="text_editor"] QCheckBox {
+            color: #2f3b47;
+            font-size: 11px;
+            background: transparent;
         }
         QFrame#rightContext[workspace="text_editor"] QLabel#sectionLabel {
             color: #111827;

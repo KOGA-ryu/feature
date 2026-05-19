@@ -166,6 +166,8 @@ const TextActionFixture *findFixture(const QString &fixtureId) {
 } // namespace
 
 QVector<TextActionRecord> textActionRecords() {
+    // Fixture-only fallback action records. Runtime toolbar metadata is loaded
+    // from Rust through text_editor_action_runner when that runner is present.
     return {
         {"text.copy_plain", "Copy Plain", "Copy", "clipboard", "copy",
             "Copy selected text, or the full document when nothing is selected.",

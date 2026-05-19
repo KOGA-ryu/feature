@@ -6,6 +6,12 @@
 
 namespace DexTextActions {
 
+// Fixture-only fallback model for the Qt proof bench.
+//
+// Live Text Editor toolbar rendering and action execution should prefer the
+// Rust text_editor_action_runner via text_editor_rust_action_client.*. Keep
+// this C++ model small so the fixture bench can still render useful fallback
+// content when the runner is unavailable.
 struct TextActionProofInput {
     QString language;
     QString source;

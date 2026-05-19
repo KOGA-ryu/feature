@@ -49,7 +49,12 @@ struct ActionResult {
 
 QString resolveTextEditorActionRunnerPath();
 QJsonObject requestToJson(const ActionRequest &request);
+QVector<DexTextActions::HostActionItem> parseActionRunnerActions(const QByteArray &payload, QString *error = nullptr);
 ActionResult parseActionRunnerResponse(const QByteArray &payload);
+QVector<DexTextActions::HostActionItem> renderActionsWithRunner(
+    const QString &documentText,
+    const DexTextActions::TextActionProofInput &input,
+    QString *error = nullptr);
 ActionResult executeActionWithRunner(const ActionRequest &request);
 
 } // namespace DexTextEditorRust

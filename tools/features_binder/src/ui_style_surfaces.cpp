@@ -132,7 +132,7 @@ QString textEditorWorkbenchQss() {
         }
         QFrame#textEditorActionStrip {
             background: %3;
-            border: 1px solid %5;
+            border: 1px solid #dfe5eb;
             border-radius: %6px;
         }
         QFrame#textEditorToolbarDivider {
@@ -144,11 +144,11 @@ QString textEditorWorkbenchQss() {
             color: #1f2933;
             border: 1px solid %5;
             border-radius: %7px;
-            min-height: 30px;
-            max-height: 30px;
-            padding: 3px 9px;
-            font-size: 12px;
-            font-weight: 650;
+            min-height: 24px;
+            max-height: 24px;
+            padding: 1px 7px;
+            font-size: 11px;
+            font-weight: 600;
             text-align: center;
         }
         QPushButton#textEditorActionButton:disabled {

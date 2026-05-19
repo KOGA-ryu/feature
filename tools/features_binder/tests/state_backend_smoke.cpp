@@ -477,6 +477,20 @@ private slots:
             QStringList({"Dashboard", "Editor", "Actions", "Inspector", "Fixtures", "Receipts", "Proof"}));
     }
 
+    void textEditorToolbarUsesCompactDensityTokens() {
+        const QString rulesPath = QFileInfo::exists("src/ui_rules.h")
+            ? QString("src/ui_rules.h")
+            : QString("../src/ui_rules.h");
+        QFile rules(rulesPath);
+        QVERIFY(rules.open(QIODevice::ReadOnly | QIODevice::Text));
+        const QString source = QString::fromUtf8(rules.readAll());
+
+        QVERIFY(source.contains("toolbar_button_height = 24"));
+        QVERIFY(source.contains("button_radius = 4"));
+        QVERIFY(source.contains("panel_padding_dense = 6"));
+        QVERIFY(source.contains("action_strip_height = 64"));
+    }
+
     void textEditorWorkspaceRequiredUiPathsCoverBucketHierarchy() {
         const QStringList paths = DexTextEditorWorkspace::requiredTextEditorUiPaths();
 

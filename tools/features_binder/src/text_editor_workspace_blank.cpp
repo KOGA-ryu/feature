@@ -414,6 +414,7 @@ private:
         button->setProperty("uiPath", uiPath);
         button->setProperty("componentState", "default");
         button->setMinimumWidth(0);
+        button->setFixedHeight(dex_ui::text_editor_metrics::toolbar_button_height);
         button->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
         return button;
     }

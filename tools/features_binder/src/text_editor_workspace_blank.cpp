@@ -7,11 +7,13 @@
 #include <QGridLayout>
 #include <QGuiApplication>
 #include <QHBoxLayout>
+#include <QAction>
 #include <QEvent>
 #include <QKeyEvent>
 #include <QKeySequence>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMenu>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QResizeEvent>
@@ -25,6 +27,7 @@
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTimer>
+#include <QToolButton>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -351,9 +354,24 @@ private:
         auto *filters = new QWidget;
         filters->setObjectName("textEditorCommandPaletteFilters");
         filters->setProperty("uiPath", "workbench.palette.filters");
-        commandPaletteFiltersLayout_ = new QHBoxLayout(filters);
-        commandPaletteFiltersLayout_->setContentsMargins(0, 0, 0, 0);
-        commandPaletteFiltersLayout_->setSpacing(dex_ui::text_editor_metrics::dense_gap);
+        auto *filtersLayout = new QHBoxLayout(filters);
+        filtersLayout->setContentsMargins(0, 0, 0, 0);
+        filtersLayout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
+        commandPaletteFilterSelect_ = new QToolButton;
+        commandPaletteFilterSelect_->setObjectName("textEditorCommandPaletteFilterSelect");
+        commandPaletteFilterSelect_->setProperty("uiPath", "workbench.palette.filter.select");
+        commandPaletteFilterSelect_->setFixedHeight(20);
+        commandPaletteFilterSelect_->setFixedWidth(132);
+        commandPaletteFilterSelect_->setPopupMode(QToolButton::InstantPopup);
+        commandPaletteFilterSelect_->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        commandPaletteFilterMenu_ = new QMenu(commandPaletteFilterSelect_);
+        for (const QString &filter : DexTextEditorUi::commandPaletteCategoryFilters()) {
+            QAction *action = commandPaletteFilterMenu_->addAction(DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
+            action->setData(filter);
+        }
+        commandPaletteFilterSelect_->setMenu(commandPaletteFilterMenu_);
+        filtersLayout->addWidget(commandPaletteFilterSelect_);
+        filtersLayout->addStretch(1);
         layout->addWidget(filters);
         renderCommandPaletteFilters();
 
@@ -375,36 +393,34 @@ private:
             paletteSelectedIndex_ = -1;
             renderCommandPaletteResults();
         });
+        connect(commandPaletteFilterMenu_, &QMenu::triggered, this, [this](QAction *action) {
+            const QString filter = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(
+                action ? action->data().toString() : QString());
+            if (filter == paletteCategoryFilter_) {
+                renderCommandPaletteFilters();
+                return;
+            }
+            paletteCategoryFilter_ = filter;
+            paletteSelectedIndex_ = -1;
+            renderCommandPaletteResults();
+        });
 
         return palette;
     }
 
     void renderCommandPaletteFilters() {
-        if (!commandPaletteFiltersLayout_) {
+        if (!commandPaletteFilterSelect_) {
             return;
         }
-        clearTextEditorLayout(commandPaletteFiltersLayout_);
         paletteCategoryFilter_ = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(paletteCategoryFilter_);
-        for (const QString &filter : DexTextEditorUi::commandPaletteCategoryFilters()) {
-            auto *button = new QPushButton(DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
-            button->setObjectName("textEditorCommandPaletteFilter");
-            button->setProperty("uiPath", "workbench.palette.filter." + filter);
-            button->setProperty("categoryFilter", filter);
-            button->setProperty("componentState", filter == paletteCategoryFilter_ ? "selected" : "default");
-            button->setAccessibleName("Text Editor palette filter, " + DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
-            button->setFixedHeight(20);
-            button->setMinimumWidth(0);
-            button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-            button->setCheckable(true);
-            button->setChecked(filter == paletteCategoryFilter_);
-            connect(button, &QPushButton::clicked, this, [this, filter]() {
-                paletteCategoryFilter_ = filter;
-                paletteSelectedIndex_ = -1;
-                renderCommandPaletteResults();
-            });
-            commandPaletteFiltersLayout_->addWidget(button);
-        }
-        commandPaletteFiltersLayout_->addStretch(1);
+        commandPaletteFilterSelect_->setText(DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_) + " v");
+        commandPaletteFilterSelect_->setProperty("categoryFilter", paletteCategoryFilter_);
+        commandPaletteFilterSelect_->setProperty("categoryFilterCount", DexTextEditorUi::commandPaletteCategoryFilters().size());
+        commandPaletteFilterSelect_->setProperty("componentState", "default");
+        commandPaletteFilterSelect_->setAccessibleName(
+            "Text Editor palette category filter, " + DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_));
+        commandPaletteFilterSelect_->style()->unpolish(commandPaletteFilterSelect_);
+        commandPaletteFilterSelect_->style()->polish(commandPaletteFilterSelect_);
     }
 
     QFrame *buildActionStrip() {
@@ -1102,7 +1118,8 @@ private:
     QFrame *commandPalette_ = nullptr;
     QLineEdit *commandPaletteQuery_ = nullptr;
     QLabel *commandPaletteEmpty_ = nullptr;
-    QHBoxLayout *commandPaletteFiltersLayout_ = nullptr;
+    QToolButton *commandPaletteFilterSelect_ = nullptr;
+    QMenu *commandPaletteFilterMenu_ = nullptr;
     QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
     QVector<DexTextActions::HostActionItem> paletteMatches_;
     int paletteSelectedIndex_ = -1;

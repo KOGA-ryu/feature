@@ -152,21 +152,21 @@ QString textEditorWorkbenchQss() {
         QWidget#textEditorCommandPaletteFilters {
             background: transparent;
         }
-        QPushButton#textEditorCommandPaletteFilter {
+        QToolButton#textEditorCommandPaletteFilterSelect {
             background: #f7f9fb;
             color: #364451;
             border: 1px solid #d8dee5;
             border-radius: %7px;
             min-height: 18px;
             max-height: 18px;
-            padding: 0px 6px;
+            padding: 0px 7px;
             font-size: 11px;
             font-weight: 600;
+            text-align: left;
         }
-        QPushButton#textEditorCommandPaletteFilter[componentState="selected"] {
-            background: #e7f0f8;
-            border-color: #7d98b3;
-            color: #16324a;
+        QToolButton#textEditorCommandPaletteFilterSelect::menu-indicator {
+            width: 18px;
+            image: none;
         }
         QPushButton#textEditorCommandPaletteRow {
             background: #ffffff;

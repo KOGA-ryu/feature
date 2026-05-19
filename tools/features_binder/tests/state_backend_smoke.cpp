@@ -502,11 +502,7 @@ private slots:
         QVERIFY(paths.contains("workbench.palette"));
         QVERIFY(paths.contains("workbench.palette.search.input"));
         QVERIFY(paths.contains("workbench.palette.filters"));
-        QVERIFY(paths.contains("workbench.palette.filter.all"));
-        QVERIFY(paths.contains("workbench.palette.filter.clipboard"));
-        QVERIFY(paths.contains("workbench.palette.filter.selection"));
-        QVERIFY(paths.contains("workbench.palette.filter.lines"));
-        QVERIFY(paths.contains("workbench.palette.filter.cleanup"));
+        QVERIFY(paths.contains("workbench.palette.filter.select"));
         QVERIFY(paths.contains("workbench.palette.section.all"));
         QVERIFY(paths.contains("workbench.palette.empty_state"));
         QVERIFY(paths.contains("workbench.editor.surface.document"));

@@ -185,171 +185,118 @@
                                                                 {
                                                                     "children": [
                                                                         {
-                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
+                                                                            "className": "QLabel",
                                                                             "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 87,
+                                                                                "height": 15,
+                                                                                "width": 268,
                                                                                 "x": 11,
-                                                                                "y": 5
+                                                                                "y": 11
                                                                             },
-                                                                            "objectName": "textEditorActionButton",
+                                                                            "objectName": "textEditorSurfaceTitle",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_plain"
+                                                                                "uiPath": "workbench.palette.title"
                                                                             },
-                                                                            "text": "Copy",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_plain",
+                                                                            "text": "TEXT TOOLS",
+                                                                            "uiPath": "workbench.palette.title",
                                                                             "visible": true
                                                                         },
                                                                         {
-                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
+                                                                            "className": "QLineEdit",
                                                                             "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 88,
-                                                                                "x": 104,
-                                                                                "y": 5
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_markdown_block"
-                                                                            },
-                                                                            "text": "Markdown",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_markdown_block",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 87,
+                                                                                "height": 32,
+                                                                                "width": 268,
                                                                                 "x": 11,
-                                                                                "y": 29
+                                                                                "y": 32
                                                                             },
-                                                                            "objectName": "textEditorActionButton",
+                                                                            "objectName": "textEditorCommandPaletteInput",
+                                                                            "placeholderText": "Search dropdown actions",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_prompt_block"
+                                                                                "uiPath": "workbench.palette.search.input"
                                                                             },
-                                                                            "text": "Prompt",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_prompt_block",
+                                                                            "text": "",
+                                                                            "uiPath": "workbench.palette.search.input",
                                                                             "visible": true
                                                                         },
                                                                         {
-                                                                            "accessibleName": "",
+                                                                            "accessibleName": "Text Editor actions dropdown",
                                                                             "children": [
                                                                             ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
+                                                                            "className": "QToolButton",
+                                                                            "componentState": "closed",
                                                                             "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 88,
-                                                                                "x": 104,
-                                                                                "y": 29
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_code_fence"
-                                                                            },
-                                                                            "text": "Fence",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_code_fence",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 87,
+                                                                                "height": 22,
+                                                                                "width": 152,
                                                                                 "x": 11,
-                                                                                "y": 52
+                                                                                "y": 70
                                                                             },
-                                                                            "objectName": "textEditorActionButton",
+                                                                            "objectName": "textEditorCommandDropdownButton",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.select_all"
+                                                                                "_q_stylesheet_minw": true,
+                                                                                "componentState": "closed",
+                                                                                "dropdownOnlyActions": true,
+                                                                                "resultCount": 11,
+                                                                                "selectedActionId": "text.current_line_text",
+                                                                                "uiPath": "workbench.palette.dropdown"
                                                                             },
-                                                                            "text": "All",
-                                                                            "uiPath": "workbench.toolbar.primary.select_all",
+                                                                            "text": "Actions (11) v",
+                                                                            "uiPath": "workbench.palette.dropdown",
                                                                             "visible": true
                                                                         },
                                                                         {
-                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
-                                                                            "className": "QPushButton",
+                                                                            "className": "QLabel",
                                                                             "componentState": "default",
-                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 88,
-                                                                                "x": 104,
-                                                                                "y": 52
+                                                                                "height": 14,
+                                                                                "width": 268,
+                                                                                "x": 11,
+                                                                                "y": 98
                                                                             },
-                                                                            "objectName": "textEditorActionButton",
+                                                                            "objectName": "textEditorSurfaceEmpty",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
                                                                                 "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.clean_basic"
+                                                                                "uiPath": "workbench.palette.empty_state"
                                                                             },
-                                                                            "text": "Clean",
-                                                                            "uiPath": "workbench.toolbar.primary.clean_basic",
+                                                                            "text": "Dropdown: 11 actions",
+                                                                            "uiPath": "workbench.palette.empty_state",
                                                                             "visible": true
                                                                         }
                                                                     ],
                                                                     "className": "QFrame",
-                                                                    "componentState": "default",
+                                                                    "componentState": "closed",
                                                                     "geometry": {
-                                                                        "height": 76,
+                                                                        "height": 123,
                                                                         "width": 290,
                                                                         "x": 10,
                                                                         "y": 10
                                                                     },
-                                                                    "objectName": "textEditorActionStrip",
+                                                                    "objectName": "textEditorCommandPalette",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": "default",
-                                                                        "uiPath": "workbench.toolbar.primary"
+                                                                        "componentState": "closed",
+                                                                        "dropdownMenuVisible": false,
+                                                                        "dropdownOnlyActions": true,
+                                                                        "focusedSurface": "Editor",
+                                                                        "paletteOpen": false,
+                                                                        "resultCount": 11,
+                                                                        "selectedActionId": "text.current_line_text",
+                                                                        "selectedRowIndex": 5,
+                                                                        "uiPath": "workbench.palette"
                                                                     },
-                                                                    "uiPath": "workbench.toolbar.primary",
+                                                                    "uiPath": "workbench.palette",
                                                                     "visible": true
                                                                 },
                                                                 {
@@ -523,7 +470,7 @@
                                                                         "height": 358,
                                                                         "width": 290,
                                                                         "x": 10,
-                                                                        "y": 92
+                                                                        "y": 139
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
@@ -592,97 +539,6 @@
                                                                                 },
                                                                                 {
                                                                                     "children": [
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 246,
-                                                                                                "x": 0,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.load"
-                                                                                            },
-                                                                                            "text": "Load Fixture",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.load",
-                                                                                            "visible": true
-                                                                                        },
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 246,
-                                                                                                "x": 0,
-                                                                                                "y": 26
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.run"
-                                                                                            },
-                                                                                            "text": "Run Fixture",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.run",
-                                                                                            "visible": true
-                                                                                        },
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 246,
-                                                                                                "x": 0,
-                                                                                                "y": 52
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.run_all"
-                                                                                            },
-                                                                                            "text": "Run All",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.run_all",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QWidget",
-                                                                                    "geometry": {
-                                                                                        "height": 72,
-                                                                                        "width": 246,
-                                                                                        "x": 11,
-                                                                                        "y": 63
-                                                                                    },
-                                                                                    "objectName": "",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
-                                                                                    },
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
                                                                                     ],
                                                                                     "className": "QLabel",
                                                                                     "componentState": "success",
@@ -690,7 +546,7 @@
                                                                                         "height": 14,
                                                                                         "width": 246,
                                                                                         "x": 11,
-                                                                                        "y": 141
+                                                                                        "y": 63
                                                                                     },
                                                                                     "objectName": "textEditorSurfaceEmpty",
                                                                                     "properties": {
@@ -706,7 +562,7 @@
                                                                             "className": "QFrame",
                                                                             "componentState": "empty",
                                                                             "geometry": {
-                                                                                "height": 160,
+                                                                                "height": 82,
                                                                                 "width": 268,
                                                                                 "x": 11,
                                                                                 "y": 11
@@ -893,7 +749,7 @@
                                                                                             },
                                                                                             "readOnly": true,
                                                                                             "uiPath": "workbench.fixture_bench.results.actual",
-                                                                                            "verticalScrollMaximum": 5,
+                                                                                            "verticalScrollMaximum": 15,
                                                                                             "visible": true
                                                                                         }
                                                                                     ],
@@ -920,7 +776,7 @@
                                                                                 "height": 222,
                                                                                 "width": 268,
                                                                                 "x": 11,
-                                                                                "y": 177
+                                                                                "y": 99
                                                                             },
                                                                             "objectName": "",
                                                                             "properties": {
@@ -934,10 +790,10 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "empty",
                                                                     "geometry": {
-                                                                        "height": 410,
+                                                                        "height": 332,
                                                                         "width": 290,
                                                                         "x": 10,
-                                                                        "y": 456
+                                                                        "y": 503
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
@@ -951,7 +807,7 @@
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 876,
+                                                                "height": 845,
                                                                 "width": 310,
                                                                 "x": 0,
                                                                 "y": 0

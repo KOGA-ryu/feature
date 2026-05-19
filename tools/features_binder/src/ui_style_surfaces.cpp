@@ -149,45 +149,54 @@ QString textEditorWorkbenchQss() {
             padding: 1px 7px;
             font-size: 12px;
         }
-        QWidget#textEditorCommandPaletteFilters {
-            background: transparent;
-        }
-        QToolButton#textEditorCommandPaletteFilterSelect {
+        QToolButton#textEditorCommandDropdownButton {
             background: #f7f9fb;
             color: #364451;
             border: 1px solid #d8dee5;
             border-radius: %7px;
-            min-height: 18px;
-            max-height: 18px;
-            padding: 0px 7px;
+            min-height: 20px;
+            max-height: 20px;
+            padding: 0px 8px;
             font-size: 11px;
             font-weight: 600;
             text-align: left;
         }
-        QToolButton#textEditorCommandPaletteFilterSelect::menu-indicator {
-            width: 18px;
-            image: none;
-        }
-        QPushButton#textEditorCommandPaletteRow {
-            background: #ffffff;
-            color: #1f2933;
-            border: 1px solid #d8dee5;
-            border-radius: %7px;
-            min-height: 18px;
-            max-height: 18px;
-            padding: 0px 7px;
-            text-align: left;
-            font-size: 11px;
-            font-weight: 600;
-        }
-        QPushButton#textEditorCommandPaletteRow[componentState="selected"] {
+        QToolButton#textEditorCommandDropdownButton[componentState="open"],
+        QToolButton#textEditorCommandDropdownButton:hover {
             background: #eaf3ff;
             border-color: #4898ff;
             color: #12395c;
         }
-        QPushButton#textEditorCommandPaletteRow[componentState="disabled"] {
+        QFrame#textEditorCommandDropdownMenu {
+            background: #ffffff;
+            border: 1px solid #cfd8e2;
+            border-radius: %7px;
+        }
+        QFrame#textEditorCommandDropdownRow {
+            background: #ffffff;
+            color: #1f2933;
+            border: 0;
+            border-radius: 0;
+            min-height: 22px;
+            max-height: 22px;
+        }
+        QLabel#textEditorCommandDropdownRowText {
+            color: #1f2933;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        QFrame#textEditorCommandDropdownRow:hover,
+        QFrame#textEditorCommandDropdownRow[componentState="selected"] {
+            background: #eaf3ff;
+        }
+        QFrame#textEditorCommandDropdownRow:hover QLabel#textEditorCommandDropdownRowText,
+        QFrame#textEditorCommandDropdownRow[componentState="selected"] QLabel#textEditorCommandDropdownRowText {
+            color: #12395c;
+        }
+        QFrame#textEditorCommandDropdownRow[componentState="disabled"] {
             background: #f5f7f9;
-            border-color: #d8dee5;
+        }
+        QFrame#textEditorCommandDropdownRow[componentState="disabled"] QLabel#textEditorCommandDropdownRowText {
             color: #7b8794;
         }
         QFrame#textEditorToolbarDivider {

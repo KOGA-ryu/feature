@@ -199,7 +199,7 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "uiPath": "workbench.palette.title"
                                                                             },
-                                                                            "text": "COMMAND PALETTE",
+                                                                            "text": "TEXT TOOLS",
                                                                             "uiPath": "workbench.palette.title",
                                                                             "visible": true
                                                                         },
@@ -214,7 +214,7 @@
                                                                                 "y": 32
                                                                             },
                                                                             "objectName": "textEditorCommandPaletteInput",
-                                                                            "placeholderText": "Search Text Editor actions",
+                                                                            "placeholderText": "Search dropdown actions",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_minh": true,
@@ -225,408 +225,611 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "Text Editor actions dropdown",
                                                                             "children": [
-                                                                                {
-                                                                                    "accessibleName": "Text Editor palette category filter, All",
-                                                                                    "children": [
-                                                                                    ],
-                                                                                    "className": "QToolButton",
-                                                                                    "componentState": "default",
-                                                                                    "enabled": true,
-                                                                                    "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 47,
-                                                                                        "x": 0,
-                                                                                        "y": 0
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteFilterSelect",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "_q_stylesheet_minw": true,
-                                                                                        "categoryFilter": "all",
-                                                                                        "categoryFilterCount": 5,
-                                                                                        "componentState": "default",
-                                                                                        "uiPath": "workbench.palette.filter.select"
-                                                                                    },
-                                                                                    "text": "All v",
-                                                                                    "uiPath": "workbench.palette.filter.select",
-                                                                                    "visible": true
-                                                                                }
                                                                             ],
-                                                                            "className": "QWidget",
+                                                                            "className": "QToolButton",
+                                                                            "componentState": "open",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 648,
+                                                                                "height": 22,
+                                                                                "width": 152,
                                                                                 "x": 11,
                                                                                 "y": 70
                                                                             },
-                                                                            "objectName": "textEditorCommandPaletteFilters",
+                                                                            "objectName": "textEditorCommandDropdownButton",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": "workbench.palette.filters"
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "_q_stylesheet_minw": true,
+                                                                                "componentState": "open",
+                                                                                "dropdownOnlyActions": true,
+                                                                                "resultCount": 11,
+                                                                                "selectedActionId": "text.current_line_text",
+                                                                                "uiPath": "workbench.palette.dropdown"
                                                                             },
-                                                                            "uiPath": "workbench.palette.filters",
+                                                                            "text": "Actions (11) v",
+                                                                            "uiPath": "workbench.palette.dropdown",
                                                                             "visible": true
                                                                         },
                                                                         {
                                                                             "children": [
                                                                                 {
-                                                                                    "accessibleName": "Copy Plain, clipboard, Ctrl+C, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Copy Plain  [clipboard]  Ctrl+C",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
-                                                                                    "componentState": "selected",
-                                                                                    "enabled": true,
+                                                                                    "className": "QFrame",
+                                                                                    "componentState": "default",
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 0
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 1
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Copy Plain, clipboard, Ctrl+C, enabled",
                                                                                         "actionId": "text.copy_plain",
                                                                                         "actionLabel": "Copy Plain",
                                                                                         "category": "clipboard",
-                                                                                        "componentState": "selected",
+                                                                                        "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Copy Plain  [clipboard]  Ctrl+C",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 0,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "Ctrl+C",
                                                                                         "iconName": "copy",
-                                                                                        "uiPath": "workbench.palette.action.copy_plain"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.copy_plain"
                                                                                     },
-                                                                                    "text": "Copy Plain  [clipboard]  Ctrl+C",
-                                                                                    "uiPath": "workbench.palette.action.copy_plain",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.copy_plain",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Copy Markdown Block, clipboard, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Copy Markdown Block  [clipboard]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 24
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 23
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Copy Markdown Block, clipboard, enabled",
                                                                                         "actionId": "text.copy_markdown_block",
                                                                                         "actionLabel": "Copy Markdown Block",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Copy Markdown Block  [clipboard]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 1,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "clipboard-copy",
-                                                                                        "uiPath": "workbench.palette.action.copy_markdown_block"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.copy_markdown_block"
                                                                                     },
-                                                                                    "text": "Copy Markdown Block  [clipboard]",
-                                                                                    "uiPath": "workbench.palette.action.copy_markdown_block",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.copy_markdown_block",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Copy Prompt Block, clipboard, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Copy Prompt Block  [clipboard]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 48
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 45
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Copy Prompt Block, clipboard, enabled",
                                                                                         "actionId": "text.copy_prompt_block",
                                                                                         "actionLabel": "Copy Prompt Block",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Copy Prompt Block  [clipboard]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 2,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "clipboard-copy",
-                                                                                        "uiPath": "workbench.palette.action.copy_prompt_block"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.copy_prompt_block"
                                                                                     },
-                                                                                    "text": "Copy Prompt Block  [clipboard]",
-                                                                                    "uiPath": "workbench.palette.action.copy_prompt_block",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.copy_prompt_block",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Copy Code Fence, clipboard, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Copy Code Fence  [clipboard]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 72
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 67
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Copy Code Fence, clipboard, enabled",
                                                                                         "actionId": "text.copy_code_fence",
                                                                                         "actionLabel": "Copy Code Fence",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Copy Code Fence  [clipboard]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 3,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "braces",
-                                                                                        "uiPath": "workbench.palette.action.copy_code_fence"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.copy_code_fence"
                                                                                     },
-                                                                                    "text": "Copy Code Fence  [clipboard]",
-                                                                                    "uiPath": "workbench.palette.action.copy_code_fence",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.copy_code_fence",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Select All, selection, Ctrl+A, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Select All  [selection]  Ctrl+A",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 96
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 89
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Select All, selection, Ctrl+A, enabled",
                                                                                         "actionId": "text.select_all",
                                                                                         "actionLabel": "Select All",
                                                                                         "category": "selection",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Select All  [selection]  Ctrl+A",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 4,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "Ctrl+A",
                                                                                         "iconName": "scan-text",
-                                                                                        "uiPath": "workbench.palette.action.select_all"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.select_all"
                                                                                     },
-                                                                                    "text": "Select All  [selection]  Ctrl+A",
-                                                                                    "uiPath": "workbench.palette.action.select_all",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.select_all",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Current Line Text, lines, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Current Line Text  [lines]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
-                                                                                    "componentState": "default",
-                                                                                    "enabled": true,
+                                                                                    "className": "QFrame",
+                                                                                    "componentState": "selected",
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 120
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 111
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Current Line Text, lines, enabled",
                                                                                         "actionId": "text.current_line_text",
                                                                                         "actionLabel": "Current Line Text",
                                                                                         "category": "lines",
-                                                                                        "componentState": "default",
+                                                                                        "componentState": "selected",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Current Line Text  [lines]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 5,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "text-cursor-input",
-                                                                                        "uiPath": "workbench.palette.action.current_line_text"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.current_line_text"
                                                                                     },
-                                                                                    "text": "Current Line Text  [lines]",
-                                                                                    "uiPath": "workbench.palette.action.current_line_text",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.current_line_text",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Line Range Text, lines, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Line Range Text  [lines]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 144
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 133
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Line Range Text, lines, enabled",
                                                                                         "actionId": "text.line_range_text",
                                                                                         "actionLabel": "Line Range Text",
                                                                                         "category": "lines",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Line Range Text  [lines]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 6,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "rows-3",
-                                                                                        "uiPath": "workbench.palette.action.line_range_text"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.line_range_text"
                                                                                     },
-                                                                                    "text": "Line Range Text  [lines]",
-                                                                                    "uiPath": "workbench.palette.action.line_range_text",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.line_range_text",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Trim Trailing Whitespace, cleanup, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Trim Trailing Whitespace  [cleanup]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 168
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 155
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Trim Trailing Whitespace, cleanup, enabled",
                                                                                         "actionId": "text.trim_trailing_whitespace",
                                                                                         "actionLabel": "Trim Trailing Whitespace",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Trim Trailing Whitespace  [cleanup]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 7,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "eraser",
-                                                                                        "uiPath": "workbench.palette.action.trim_trailing_whitespace"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.trim_trailing_whitespace"
                                                                                     },
-                                                                                    "text": "Trim Trailing Whitespace  [cleanup]",
-                                                                                    "uiPath": "workbench.palette.action.trim_trailing_whitespace",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.trim_trailing_whitespace",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Clean Basic, cleanup, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Clean Basic  [cleanup]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 192
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 177
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Clean Basic, cleanup, enabled",
                                                                                         "actionId": "text.clean_basic",
                                                                                         "actionLabel": "Clean Basic",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Clean Basic  [cleanup]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 8,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "wand-sparkles",
-                                                                                        "uiPath": "workbench.palette.action.clean_basic"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.clean_basic"
                                                                                     },
-                                                                                    "text": "Clean Basic  [cleanup]",
-                                                                                    "uiPath": "workbench.palette.action.clean_basic",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.clean_basic",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Normalize Line Endings, cleanup, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Normalize Line Endings  [cleanup]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 216
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 199
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Normalize Line Endings, cleanup, enabled",
                                                                                         "actionId": "text.normalize_line_endings",
                                                                                         "actionLabel": "Normalize Line Endings",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Normalize Line Endings  [cleanup]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 9,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "pilcrow",
-                                                                                        "uiPath": "workbench.palette.action.normalize_line_endings"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.normalize_line_endings"
                                                                                     },
-                                                                                    "text": "Normalize Line Endings  [cleanup]",
-                                                                                    "uiPath": "workbench.palette.action.normalize_line_endings",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.normalize_line_endings",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
-                                                                                    "accessibleName": "Strip ANSI Escape Codes, cleanup, enabled",
                                                                                     "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 22,
+                                                                                                "width": 632,
+                                                                                                "x": 7,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorCommandDropdownRowText",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "dropdownRole": "menuitem_label"
+                                                                                            },
+                                                                                            "text": "Strip ANSI Escape Codes  [cleanup]",
+                                                                                            "visible": true
+                                                                                        }
                                                                                     ],
-                                                                                    "className": "QPushButton",
+                                                                                    "className": "QFrame",
                                                                                     "componentState": "default",
-                                                                                    "enabled": true,
                                                                                     "geometry": {
-                                                                                        "height": 20,
-                                                                                        "width": 648,
-                                                                                        "x": 0,
-                                                                                        "y": 240
+                                                                                        "height": 22,
+                                                                                        "width": 646,
+                                                                                        "x": 1,
+                                                                                        "y": 221
                                                                                     },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
+                                                                                    "objectName": "textEditorCommandDropdownRow",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
+                                                                                        "accessibleLabel": "Strip ANSI Escape Codes, cleanup, enabled",
                                                                                         "actionId": "text.strip_ansi_escape_codes",
                                                                                         "actionLabel": "Strip ANSI Escape Codes",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
                                                                                         "disabledReason": "",
+                                                                                        "displayText": "Strip ANSI Escape Codes  [cleanup]",
+                                                                                        "dropdownActionEnabled": true,
+                                                                                        "dropdownActionIndex": 10,
+                                                                                        "dropdownRole": "menuitem",
                                                                                         "hotkeyLabel": "",
                                                                                         "iconName": "eraser",
-                                                                                        "uiPath": "workbench.palette.action.strip_ansi_escape_codes"
+                                                                                        "uiPath": "workbench.palette.dropdown.menu.action.strip_ansi_escape_codes"
                                                                                     },
-                                                                                    "text": "Strip ANSI Escape Codes  [cleanup]",
-                                                                                    "uiPath": "workbench.palette.action.strip_ansi_escape_codes",
+                                                                                    "uiPath": "workbench.palette.dropdown.menu.action.strip_ansi_escape_codes",
                                                                                     "visible": true
                                                                                 }
                                                                             ],
-                                                                            "className": "QWidget",
+                                                                            "className": "QFrame",
                                                                             "geometry": {
-                                                                                "height": 260,
+                                                                                "height": 244,
                                                                                 "width": 648,
                                                                                 "x": 11,
-                                                                                "y": 96
+                                                                                "y": 98
                                                                             },
-                                                                            "objectName": "textEditorCommandPaletteResults",
+                                                                            "objectName": "textEditorCommandDropdownMenu",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": "workbench.palette.section.all"
+                                                                                "uiPath": "workbench.palette.dropdown.menu"
                                                                             },
-                                                                            "uiPath": "workbench.palette.section.all",
+                                                                            "uiPath": "workbench.palette.dropdown.menu",
                                                                             "visible": true
                                                                         },
                                                                         {
@@ -638,7 +841,7 @@
                                                                                 "height": 14,
                                                                                 "width": 648,
                                                                                 "x": 11,
-                                                                                "y": 362
+                                                                                "y": 348
                                                                             },
                                                                             "objectName": "textEditorSurfaceEmpty",
                                                                             "properties": {
@@ -646,7 +849,7 @@
                                                                                 "componentState": "default",
                                                                                 "uiPath": "workbench.palette.empty_state"
                                                                             },
-                                                                            "text": "All: 11 commands",
+                                                                            "text": "Dropdown: 11 actions",
                                                                             "uiPath": "workbench.palette.empty_state",
                                                                             "visible": true
                                                                         }
@@ -654,7 +857,7 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "open",
                                                                     "geometry": {
-                                                                        "height": 387,
+                                                                        "height": 373,
                                                                         "width": 670,
                                                                         "x": 10,
                                                                         "y": 10
@@ -662,187 +865,17 @@
                                                                     "objectName": "textEditorCommandPalette",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "activeCategoryFilter": "all",
-                                                                        "categoryFilterCount": 5,
                                                                         "componentState": "open",
+                                                                        "dropdownMenuVisible": true,
+                                                                        "dropdownOnlyActions": true,
                                                                         "focusedSurface": "Palette",
                                                                         "paletteOpen": true,
                                                                         "resultCount": 11,
-                                                                        "selectedActionId": "text.copy_plain",
-                                                                        "selectedRowIndex": 0,
+                                                                        "selectedActionId": "text.current_line_text",
+                                                                        "selectedRowIndex": 5,
                                                                         "uiPath": "workbench.palette"
                                                                     },
                                                                     "uiPath": "workbench.palette",
-                                                                    "visible": true
-                                                                },
-                                                                {
-                                                                    "children": [
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 11,
-                                                                                "y": 5
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_plain"
-                                                                            },
-                                                                            "text": "Copy",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_plain",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 229,
-                                                                                "y": 5
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_markdown_block"
-                                                                            },
-                                                                            "text": "Markdown",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_markdown_block",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 447,
-                                                                                "y": 5
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_prompt_block"
-                                                                            },
-                                                                            "text": "Prompt",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_prompt_block",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 11,
-                                                                                "y": 28
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.copy_code_fence"
-                                                                            },
-                                                                            "text": "Fence",
-                                                                            "uiPath": "workbench.toolbar.primary.copy_code_fence",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 229,
-                                                                                "y": 28
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.select_all"
-                                                                            },
-                                                                            "text": "All",
-                                                                            "uiPath": "workbench.toolbar.primary.select_all",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QPushButton",
-                                                                            "componentState": "default",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 20,
-                                                                                "width": 212,
-                                                                                "x": 447,
-                                                                                "y": 28
-                                                                            },
-                                                                            "objectName": "textEditorActionButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.toolbar.primary.clean_basic"
-                                                                            },
-                                                                            "text": "Clean",
-                                                                            "uiPath": "workbench.toolbar.primary.clean_basic",
-                                                                            "visible": true
-                                                                        }
-                                                                    ],
-                                                                    "className": "QFrame",
-                                                                    "componentState": "default",
-                                                                    "geometry": {
-                                                                        "height": 52,
-                                                                        "width": 670,
-                                                                        "x": 10,
-                                                                        "y": 403
-                                                                    },
-                                                                    "objectName": "textEditorActionStrip",
-                                                                    "properties": {
-                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": "default",
-                                                                        "uiPath": "workbench.toolbar.primary"
-                                                                    },
-                                                                    "uiPath": "workbench.toolbar.primary",
                                                                     "visible": true
                                                                 },
                                                                 {
@@ -1016,7 +1049,7 @@
                                                                         "height": 358,
                                                                         "width": 670,
                                                                         "x": 10,
-                                                                        "y": 461
+                                                                        "y": 389
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
@@ -1085,97 +1118,6 @@
                                                                                 },
                                                                                 {
                                                                                     "children": [
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 626,
-                                                                                                "x": 0,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.load"
-                                                                                            },
-                                                                                            "text": "Load Fixture",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.load",
-                                                                                            "visible": true
-                                                                                        },
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 626,
-                                                                                                "x": 0,
-                                                                                                "y": 26
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.run"
-                                                                                            },
-                                                                                            "text": "Run Fixture",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.run",
-                                                                                            "visible": true
-                                                                                        },
-                                                                                        {
-                                                                                            "accessibleName": "",
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QPushButton",
-                                                                                            "componentState": "default",
-                                                                                            "enabled": true,
-                                                                                            "geometry": {
-                                                                                                "height": 20,
-                                                                                                "width": 626,
-                                                                                                "x": 0,
-                                                                                                "y": 52
-                                                                                            },
-                                                                                            "objectName": "textEditorActionButton",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "_q_stylesheet_maxh": true,
-                                                                                                "_q_stylesheet_minh": true,
-                                                                                                "componentState": "default",
-                                                                                                "uiPath": "workbench.fixture_bench.runner.run_all"
-                                                                                            },
-                                                                                            "text": "Run All",
-                                                                                            "uiPath": "workbench.fixture_bench.runner.run_all",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QWidget",
-                                                                                    "geometry": {
-                                                                                        "height": 72,
-                                                                                        "width": 626,
-                                                                                        "x": 11,
-                                                                                        "y": 63
-                                                                                    },
-                                                                                    "objectName": "",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
-                                                                                    },
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
                                                                                     ],
                                                                                     "className": "QLabel",
                                                                                     "componentState": "success",
@@ -1183,7 +1125,7 @@
                                                                                         "height": 14,
                                                                                         "width": 626,
                                                                                         "x": 11,
-                                                                                        "y": 141
+                                                                                        "y": 63
                                                                                     },
                                                                                     "objectName": "textEditorSurfaceEmpty",
                                                                                     "properties": {
@@ -1199,7 +1141,7 @@
                                                                             "className": "QFrame",
                                                                             "componentState": "empty",
                                                                             "geometry": {
-                                                                                "height": 160,
+                                                                                "height": 82,
                                                                                 "width": 648,
                                                                                 "x": 11,
                                                                                 "y": 11
@@ -1381,7 +1323,7 @@
                                                                                 "height": 222,
                                                                                 "width": 648,
                                                                                 "x": 11,
-                                                                                "y": 177
+                                                                                "y": 99
                                                                             },
                                                                             "objectName": "",
                                                                             "properties": {
@@ -1395,10 +1337,10 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "empty",
                                                                     "geometry": {
-                                                                        "height": 410,
+                                                                        "height": 332,
                                                                         "width": 670,
                                                                         "x": 10,
-                                                                        "y": 825
+                                                                        "y": 753
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
@@ -1412,7 +1354,7 @@
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 1245,
+                                                                "height": 1095,
                                                                 "width": 690,
                                                                 "x": 0,
                                                                 "y": 0

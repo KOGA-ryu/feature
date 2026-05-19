@@ -89,7 +89,7 @@ check_text_editor_tree() {
   local expected_columns="$2"
   local expected_rows="$3"
   grep -q 'workbench.rail.text_editor.documents' "$tree"
-  grep -q 'workbench.toolbar.primary' "$tree"
+  grep -q 'workbench.palette.dropdown' "$tree"
   grep -q 'workbench.editor.surface.document' "$tree"
   grep -q 'workbench.editor.surface.text' "$tree"
   grep -q 'workbench.inspector.text_editor.options' "$tree"
@@ -116,7 +116,7 @@ nodes = {}
 
 def walk(node):
     ui_path = node.get("uiPath", "")
-    if ui_path.startswith("workbench.toolbar.primary.") and ui_path != "workbench.toolbar.primary":
+    if ui_path.startswith("workbench.toolbar.primary"):
         buttons.append((ui_path, node.get("geometry", {}), node.get("text", "")))
     if ui_path:
         geometries[ui_path] = node.get("geometry", {})
@@ -125,24 +125,18 @@ def walk(node):
         walk(child)
 
 walk(tree)
-if len(buttons) != 6:
-    raise SystemExit(f"expected 6 primary toolbar actions, saw {len(buttons)}")
-labels = [button[2] for button in sorted(buttons, key=lambda item: (item[1].get("y", 0), item[1].get("x", 0)))]
-expected_labels = ["Copy", "Markdown", "Prompt", "Fence", "All", "Clean"]
-if labels != expected_labels:
-    raise SystemExit(f"toolbar labels mismatch: expected {expected_labels}, saw {labels}")
-columns = len({button[1].get("x") for button in buttons})
-rows = len({button[1].get("y") for button in buttons})
-if columns != expected_columns or rows != expected_rows:
-    raise SystemExit(f"toolbar grid mismatch: expected {expected_columns}x{expected_rows}, saw {columns}x{rows}")
-toolbar = geometries.get("workbench.toolbar.primary", {})
-for ui_path, geometry, _label in buttons:
-    if geometry.get("x", 0) < 0 or geometry.get("y", 0) < 0:
-        raise SystemExit(f"{ui_path} has negative geometry: {geometry}")
-    if geometry.get("x", 0) + geometry.get("width", 0) > toolbar.get("width", 0):
-        raise SystemExit(f"{ui_path} overflows toolbar width: {geometry} > {toolbar}")
-    if geometry.get("height", 999) > 24:
-        raise SystemExit(f"{ui_path} is outside compact toolbar height envelope: {geometry}")
+if buttons:
+    raise SystemExit(f"text tool toolbar buttons still render: {buttons}")
+dropdown = nodes.get("workbench.palette.dropdown")
+if not dropdown:
+    raise SystemExit("missing sole Text Editor action dropdown")
+if dropdown.get("className") != "QToolButton":
+    raise SystemExit(f"action dropdown is not a QToolButton: {dropdown}")
+if dropdown.get("geometry", {}).get("height", 999) > 26:
+    raise SystemExit(f"action dropdown is outside compact height envelope: {dropdown}")
+props = dropdown.get("properties", {})
+if props.get("dropdownOnlyActions") is not True:
+    raise SystemExit(f"action dropdown missing dropdown-only proof property: {props}")
 workspace = geometries.get("workbench.editor.workspace", {})
 scroll = geometries.get("workbench.editor.scroll", {})
 if scroll and workspace and workspace.get("width", 0) > scroll.get("width", 0):
@@ -194,7 +188,7 @@ def walk(node):
     ui_path = node.get("uiPath", "")
     if ui_path:
         nodes[ui_path] = node
-    if ui_path.startswith("workbench.palette.action."):
+    if ui_path.startswith("workbench.palette.dropdown.menu.action."):
         state = node.get("componentState", "")
         if state == "selected":
             selected_rows.append(node)
@@ -207,9 +201,8 @@ walk(tree)
 for ui_path in (
     "workbench.palette",
     "workbench.palette.search.input",
-    "workbench.palette.filters",
-    "workbench.palette.filter.select",
-    "workbench.palette.section.all",
+    "workbench.palette.dropdown",
+    "workbench.palette.dropdown.menu",
     "workbench.palette.empty_state",
 ):
     if ui_path not in nodes:
@@ -226,36 +219,42 @@ if props.get("selectedActionId") in ("", "none", None):
     raise SystemExit(f"palette selectedActionId is missing: {props}")
 if int(props.get("selectedRowIndex", -1)) < 0:
     raise SystemExit(f"palette selectedRowIndex is missing: {props}")
-if props.get("activeCategoryFilter") != "all":
-    raise SystemExit(f"palette activeCategoryFilter changed: {props}")
-if int(props.get("categoryFilterCount", 0)) < 5:
-    raise SystemExit(f"palette categoryFilterCount is too small: {props}")
-filter_select = nodes["workbench.palette.filter.select"]
-filter_props = filter_select.get("properties", {})
-if filter_props.get("categoryFilter") != "all":
-    raise SystemExit(f"palette category dropdown filter changed: {filter_props}")
-if int(filter_props.get("categoryFilterCount", 0)) < 5:
-    raise SystemExit(f"palette category dropdown count is too small: {filter_props}")
-if filter_select.get("geometry", {}).get("height", 999) > 26:
-    raise SystemExit(f"palette category dropdown is outside compact height envelope: {filter_select}")
-pill_paths = [path for path in nodes if path.startswith("workbench.palette.filter.") and path != "workbench.palette.filter.select"]
-if pill_paths:
-    raise SystemExit(f"palette still renders pill filter paths: {pill_paths}")
+if props.get("dropdownOnlyActions") is not True:
+    raise SystemExit(f"palette is not marked dropdown-only: {props}")
+if props.get("dropdownMenuVisible") is not True:
+    raise SystemExit(f"palette dropdown menu is not visible in proof: {props}")
+dropdown = nodes["workbench.palette.dropdown"]
+dropdown_props = dropdown.get("properties", {})
+if dropdown.get("className") != "QToolButton":
+    raise SystemExit(f"palette action dropdown is not a QToolButton: {dropdown}")
+if dropdown_props.get("dropdownOnlyActions") is not True:
+    raise SystemExit(f"palette action dropdown missing dropdown-only property: {dropdown_props}")
+if dropdown.get("geometry", {}).get("height", 999) > 26:
+    raise SystemExit(f"palette action dropdown is outside compact height envelope: {dropdown}")
+if any(path.startswith("workbench.palette.filter.") for path in nodes):
+    raise SystemExit("palette still renders filter pill/dropdown paths")
+if any(path.startswith("workbench.toolbar.primary") for path in nodes):
+    raise SystemExit("text tool toolbar still renders")
 if not selected_rows:
-    raise SystemExit("command palette has no selected command row")
+    raise SystemExit("dropdown menu has no selected command row")
 selected = selected_rows[0]
 selected_props = selected.get("properties", {})
-for key in ("actionId", "actionLabel", "category", "iconName", "hotkeyLabel", "disabledReason"):
+for key in ("actionId", "actionLabel", "displayText", "category", "iconName", "hotkeyLabel", "disabledReason", "dropdownRole", "dropdownActionIndex", "dropdownActionEnabled", "accessibleLabel"):
     if key not in selected_props:
-        raise SystemExit(f"selected palette row missing {key}: {selected_props}")
+        raise SystemExit(f"selected dropdown row missing {key}: {selected_props}")
+if selected_props.get("dropdownRole") != "menuitem":
+    raise SystemExit(f"selected dropdown row is not a menuitem: {selected_props}")
 if selected_props.get("actionId") != props.get("selectedActionId"):
     raise SystemExit(f"selected row/action proof mismatch: {selected_props} vs {props}")
-if selected_props.get("actionLabel") not in selected.get("text", ""):
+display_text = selected_props.get("displayText", "")
+if selected_props.get("actionLabel") not in display_text:
     raise SystemExit(f"selected row text does not include action label: {selected}")
-if "[" + selected_props.get("category", "") + "]" not in selected.get("text", ""):
+if "[" + selected_props.get("category", "") + "]" not in display_text:
     raise SystemExit(f"selected row text does not include category: {selected}")
-if not selected.get("accessibleName"):
+if not selected_props.get("accessibleLabel"):
     raise SystemExit(f"selected row missing accessibleName: {selected}")
+if selected.get("className") != "QFrame":
+    raise SystemExit(f"selected dropdown row is not a QFrame menu row: {selected}")
 if selected.get("geometry", {}).get("height", 999) > 24:
     raise SystemExit(f"selected palette row is outside compact row height envelope: {selected}")
 if disabled_rows and "disabledReason" not in disabled_rows[0].get("properties", {}):

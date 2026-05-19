@@ -4,19 +4,15 @@
 #include <QClipboard>
 #include <QComboBox>
 #include <QFrame>
-#include <QGridLayout>
 #include <QGuiApplication>
 #include <QHBoxLayout>
-#include <QAction>
 #include <QEvent>
 #include <QKeyEvent>
 #include <QKeySequence>
 #include <QLabel>
 #include <QLineEdit>
-#include <QMenu>
 #include <QPlainTextEdit>
 #include <QPushButton>
-#include <QResizeEvent>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QShortcut>
@@ -244,7 +240,6 @@ public:
         bodyLayout->setSpacing(dex_ui::text_editor_metrics::region_gap);
 
         bodyLayout->addWidget(buildCommandPalette());
-        bodyLayout->addWidget(buildActionStrip());
         bodyLayout->addWidget(buildDocumentSurface(), 1);
         bodyLayout->addWidget(buildFixtureShelf());
 
@@ -254,13 +249,11 @@ public:
         });
         connect(editor_, &QPlainTextEdit::textChanged, this, [this]() {
             refreshLineControls();
-            rebuildActionButtons();
             renderCommandPaletteResults();
             updateEditorStatus();
         });
         connect(editor_, &QPlainTextEdit::cursorPositionChanged, this, [this]() {
             updateEditorStatus();
-            rebuildActionButtons();
             renderCommandPaletteResults();
         });
         connect(editor_->verticalScrollBar(), &QScrollBar::valueChanged, this, [this]() {
@@ -268,7 +261,6 @@ public:
         });
         connect(controller_, &TextEditorWorkspaceController::actionInputChanged, this, [this]() {
             refreshLineControls();
-            rebuildActionButtons();
             renderCommandPaletteResults();
         });
         connect(controller_, &TextEditorWorkspaceController::commandPaletteRequested, this, [this]() {
@@ -302,7 +294,7 @@ private:
             auto *keyEvent = static_cast<QKeyEvent *>(event);
             switch (keyEvent->key()) {
             case Qt::Key_Escape:
-                hideCommandPalette();
+                hideCommandPaletteMenu();
                 return true;
             case Qt::Key_Down:
                 movePaletteSelection(1);
@@ -318,22 +310,34 @@ private:
                 break;
             }
         }
-        return QWidget::eventFilter(watched, event);
-    }
-
-    void resizeEvent(QResizeEvent *event) override {
-        QWidget::resizeEvent(event);
-        const int columns = desiredActionColumns();
-        if (columns != actionColumnCount_) {
-            rebuildActionButtons();
+        auto *widget = qobject_cast<QWidget *>(watched);
+        if (widget && widget->property("dropdownActionIndex").isValid()) {
+            if (event->type() == QEvent::Enter) {
+                const int index = widget->property("dropdownActionIndex").toInt();
+                if (index >= 0 && index < paletteMatches_.size() && paletteMatches_.at(index).enabled) {
+                    paletteSelectedIndex_ = index;
+                    updateDropdownRowStates();
+                    updatePaletteProofProperties();
+                }
+                return false;
+            }
+            if (event->type() == QEvent::MouseButtonRelease) {
+                const QString actionId = widget->property("actionId").toString();
+                const bool enabled = widget->property("dropdownActionEnabled").toBool();
+                if (enabled && !actionId.isEmpty()) {
+                    hideCommandPaletteMenu();
+                    executeAction(actionId);
+                    return true;
+                }
+            }
         }
+        return QWidget::eventFilter(watched, event);
     }
 
     QFrame *buildCommandPalette() {
         auto *palette = makePanel("textEditorCommandPalette", "workbench.palette");
         commandPalette_ = palette;
-        palette->setVisible(false);
-        setComponentState(palette, "default");
+        setComponentState(palette, "closed");
 
         auto *layout = new QVBoxLayout(palette);
         layout->setContentsMargins(
@@ -342,102 +346,50 @@ private:
             dex_ui::text_editor_metrics::panel_padding,
             dex_ui::text_editor_metrics::panel_padding);
         layout->setSpacing(dex_ui::text_editor_metrics::region_gap);
-        layout->addWidget(makeTextEditorLabel("COMMAND PALETTE", "textEditorSurfaceTitle", "workbench.palette.title"));
+        layout->addWidget(makeTextEditorLabel("TEXT TOOLS", "textEditorSurfaceTitle", "workbench.palette.title"));
 
         commandPaletteQuery_ = new QLineEdit;
         commandPaletteQuery_->setObjectName("textEditorCommandPaletteInput");
         commandPaletteQuery_->setProperty("uiPath", "workbench.palette.search.input");
-        commandPaletteQuery_->setPlaceholderText("Search Text Editor actions");
+        commandPaletteQuery_->setPlaceholderText("Search dropdown actions");
         commandPaletteQuery_->installEventFilter(this);
         layout->addWidget(commandPaletteQuery_);
 
-        auto *filters = new QWidget;
-        filters->setObjectName("textEditorCommandPaletteFilters");
-        filters->setProperty("uiPath", "workbench.palette.filters");
-        auto *filtersLayout = new QHBoxLayout(filters);
-        filtersLayout->setContentsMargins(0, 0, 0, 0);
-        filtersLayout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
-        commandPaletteFilterSelect_ = new QToolButton;
-        commandPaletteFilterSelect_->setObjectName("textEditorCommandPaletteFilterSelect");
-        commandPaletteFilterSelect_->setProperty("uiPath", "workbench.palette.filter.select");
-        commandPaletteFilterSelect_->setFixedHeight(20);
-        commandPaletteFilterSelect_->setFixedWidth(132);
-        commandPaletteFilterSelect_->setPopupMode(QToolButton::InstantPopup);
-        commandPaletteFilterSelect_->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        commandPaletteFilterMenu_ = new QMenu(commandPaletteFilterSelect_);
-        for (const QString &filter : DexTextEditorUi::commandPaletteCategoryFilters()) {
-            QAction *action = commandPaletteFilterMenu_->addAction(DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
-            action->setData(filter);
-        }
-        commandPaletteFilterSelect_->setMenu(commandPaletteFilterMenu_);
-        filtersLayout->addWidget(commandPaletteFilterSelect_);
-        filtersLayout->addStretch(1);
-        layout->addWidget(filters);
-        renderCommandPaletteFilters();
+        commandDropdownButton_ = new QToolButton;
+        commandDropdownButton_->setObjectName("textEditorCommandDropdownButton");
+        commandDropdownButton_->setProperty("uiPath", "workbench.palette.dropdown");
+        commandDropdownButton_->setProperty("componentState", "closed");
+        commandDropdownButton_->setFixedHeight(22);
+        commandDropdownButton_->setFixedWidth(152);
+        commandDropdownButton_->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        commandDropdownButton_->setToolButtonStyle(Qt::ToolButtonTextOnly);
+        commandDropdownButton_->setPopupMode(QToolButton::DelayedPopup);
+        commandDropdownButton_->setText("Actions v");
+        layout->addWidget(commandDropdownButton_);
 
-        auto *results = new QWidget;
-        results->setObjectName("textEditorCommandPaletteResults");
-        results->setProperty("uiPath", "workbench.palette.section.all");
-        commandPaletteResultsLayout_ = new QVBoxLayout(results);
+        commandDropdownMenu_ = makePanel("textEditorCommandDropdownMenu", "workbench.palette.dropdown.menu");
+        commandDropdownMenu_->setVisible(false);
+        commandPaletteResultsLayout_ = new QVBoxLayout(commandDropdownMenu_);
         commandPaletteResultsLayout_->setContentsMargins(0, 0, 0, 0);
-        commandPaletteResultsLayout_->setSpacing(dex_ui::text_editor_metrics::dense_gap);
-        layout->addWidget(results);
+        commandPaletteResultsLayout_->setSpacing(0);
+        layout->addWidget(commandDropdownMenu_);
 
         commandPaletteEmpty_ = makeTextEditorLabel(
-            "Type to filter commands",
+            "Open the dropdown to run a Text Editor action.",
             "textEditorSurfaceEmpty",
             "workbench.palette.empty_state");
         layout->addWidget(commandPaletteEmpty_);
 
+        connect(commandDropdownButton_, &QToolButton::clicked, this, [this]() {
+            toggleCommandPaletteMenu();
+        });
         connect(commandPaletteQuery_, &QLineEdit::textChanged, this, [this]() {
             paletteSelectedIndex_ = -1;
             renderCommandPaletteResults();
         });
-        connect(commandPaletteFilterMenu_, &QMenu::triggered, this, [this](QAction *action) {
-            const QString filter = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(
-                action ? action->data().toString() : QString());
-            if (filter == paletteCategoryFilter_) {
-                renderCommandPaletteFilters();
-                return;
-            }
-            paletteCategoryFilter_ = filter;
-            paletteSelectedIndex_ = -1;
-            renderCommandPaletteResults();
-        });
+        renderCommandPaletteResults();
 
         return palette;
-    }
-
-    void renderCommandPaletteFilters() {
-        if (!commandPaletteFilterSelect_) {
-            return;
-        }
-        paletteCategoryFilter_ = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(paletteCategoryFilter_);
-        commandPaletteFilterSelect_->setText(DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_) + " v");
-        commandPaletteFilterSelect_->setProperty("categoryFilter", paletteCategoryFilter_);
-        commandPaletteFilterSelect_->setProperty("categoryFilterCount", DexTextEditorUi::commandPaletteCategoryFilters().size());
-        commandPaletteFilterSelect_->setProperty("componentState", "default");
-        commandPaletteFilterSelect_->setAccessibleName(
-            "Text Editor palette category filter, " + DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_));
-        commandPaletteFilterSelect_->style()->unpolish(commandPaletteFilterSelect_);
-        commandPaletteFilterSelect_->style()->polish(commandPaletteFilterSelect_);
-    }
-
-    QFrame *buildActionStrip() {
-        auto *strip = makePanel("textEditorActionStrip", "workbench.toolbar.primary");
-        actionStrip_ = strip;
-        strip->setFixedHeight(dex_ui::text_editor_metrics::action_strip_height);
-        setComponentState(strip, "default");
-
-        actionsLayout_ = new QGridLayout(strip);
-        actionsLayout_->setContentsMargins(
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding_dense,
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding_dense);
-        actionsLayout_->setHorizontalSpacing(dex_ui::text_editor_metrics::region_gap);
-        actionsLayout_->setVerticalSpacing(dex_ui::text_editor_metrics::dense_gap);
-        return strip;
     }
 
     QFrame *buildDocumentSurface() {
@@ -530,20 +482,8 @@ private:
         for (const DexTextActions::TextActionFixture &fixture : DexTextActions::textActionFixtures()) {
             fixturePicker_->addItem(fixture.label, fixture.fixtureId);
         }
-        auto *loadFixture = makeActionButton("Load Fixture", "workbench.fixture_bench.runner.load");
-        auto *runFixture = makeActionButton("Run Fixture", "workbench.fixture_bench.runner.run");
-        auto *runAll = makeActionButton("Run All", "workbench.fixture_bench.runner.run_all");
         fixtureRowLayout->addWidget(fixturePicker_, 1);
         runnerLayout->addWidget(fixtureRow);
-
-        auto *fixtureButtonRow = new QWidget;
-        auto *fixtureButtonLayout = new QVBoxLayout(fixtureButtonRow);
-        fixtureButtonLayout->setContentsMargins(0, 0, 0, 0);
-        fixtureButtonLayout->setSpacing(dex_ui::text_editor_metrics::region_gap);
-        fixtureButtonLayout->addWidget(loadFixture);
-        fixtureButtonLayout->addWidget(runFixture);
-        fixtureButtonLayout->addWidget(runAll);
-        runnerLayout->addWidget(fixtureButtonRow);
 
         fixtureStatus_ = makeTextEditorLabel("No fixture run yet.", "textEditorSurfaceEmpty", "workbench.fixture_bench.runner.status");
         fixtureStatus_->setWordWrap(true);
@@ -562,14 +502,8 @@ private:
         resultLayout->addWidget(makeOutputPanel("ACTUAL / ACTION OUTPUT", actual_, "workbench.fixture_bench.results.actual_panel"), 1);
         layout->addWidget(resultRow, 1);
 
-        connect(loadFixture, &QPushButton::clicked, this, [this]() {
+        connect(fixturePicker_, &QComboBox::currentIndexChanged, this, [this]() {
             loadSelectedFixture();
-        });
-        connect(runFixture, &QPushButton::clicked, this, [this]() {
-            runSelectedFixture();
-        });
-        connect(runAll, &QPushButton::clicked, this, [this]() {
-            runAllFixtures();
         });
         return shelf;
     }
@@ -594,62 +528,74 @@ private:
             return;
         }
         clearTextEditorLayout(commandPaletteResultsLayout_);
-        renderCommandPaletteFilters();
-        paletteCategoryFilter_ = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(paletteCategoryFilter_);
+        const QVector<DexTextActions::HostActionItem> actions = availableActions();
+        controller_->setActionInventory(actions.size(), DexTextActions::textActionFixtures().size());
         paletteMatches_ =
-            DexTextEditorUi::filterCommandPaletteActionsForCategory(
-                availableActions(),
-                commandPaletteQuery_ ? commandPaletteQuery_->text() : QString(),
-                paletteCategoryFilter_);
+            DexTextEditorUi::filterCommandPaletteActions(
+                actions,
+                commandPaletteQuery_ ? commandPaletteQuery_->text() : QString());
         paletteSelectedIndex_ = DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, 0);
         updatePaletteProofProperties();
         bool sawDisabled = false;
         for (int index = 0; index < paletteMatches_.size(); ++index) {
             const DexTextActions::HostActionItem &action = paletteMatches_.at(index);
             const bool isSelected = index == paletteSelectedIndex_;
-            const QString uiPath = QString("workbench.palette.action.%1").arg(actionPathSuffix(action.actionId));
-            auto *button = makeActionButton(DexTextEditorUi::commandPaletteRowText(action), uiPath);
-            button->setObjectName("textEditorCommandPaletteRow");
-            button->setProperty("actionId", action.actionId);
-            button->setProperty("actionLabel", action.label);
-            button->setProperty("category", action.category);
-            button->setProperty("iconName", action.icon);
-            button->setProperty("hotkeyLabel", action.hotkeyLabel);
-            button->setProperty("disabledReason", action.disabledReason);
-            button->setProperty("componentState", action.enabled ? (isSelected ? "selected" : "default") : "disabled");
-            button->setAccessibleName(DexTextEditorUi::commandPaletteAccessibleName(action));
-            button->setEnabled(action.enabled);
-            sawDisabled = sawDisabled || !action.enabled;
-            button->setToolTip(action.hotkeyLabel.isEmpty()
+            const QString uiPath = QString("workbench.palette.dropdown.menu.action.%1").arg(actionPathSuffix(action.actionId));
+            const QString displayText = DexTextEditorUi::commandPaletteRowText(action);
+            auto *row = makePanel("textEditorCommandDropdownRow", uiPath);
+            row->setProperty("actionId", action.actionId);
+            row->setProperty("actionLabel", action.label);
+            row->setProperty("displayText", displayText);
+            row->setProperty("category", action.category);
+            row->setProperty("iconName", action.icon);
+            row->setProperty("hotkeyLabel", action.hotkeyLabel);
+            row->setProperty("disabledReason", action.disabledReason);
+            row->setProperty("dropdownRole", "menuitem");
+            row->setProperty("dropdownActionIndex", index);
+            row->setProperty("dropdownActionEnabled", action.enabled);
+            row->setProperty("componentState", action.enabled ? (isSelected ? "selected" : "default") : "disabled");
+            const QString accessibleName = DexTextEditorUi::commandPaletteAccessibleName(action);
+            row->setAccessibleName(accessibleName);
+            row->setProperty("accessibleLabel", accessibleName);
+            row->setToolTip(action.hotkeyLabel.isEmpty()
                 ? action.tooltip + (action.disabledReason.isEmpty() ? QString() : "\n" + action.disabledReason)
                 : action.tooltip + "\n" + action.hotkeyLabel);
-            connect(button, &QPushButton::clicked, this, [this, action]() {
-                hideCommandPalette();
-                executeAction(action.actionId);
-            });
-            commandPaletteResultsLayout_->addWidget(button);
+            row->setFixedHeight(22);
+            row->setAttribute(Qt::WA_Hover, true);
+            row->installEventFilter(this);
+            row->setCursor(action.enabled ? Qt::PointingHandCursor : Qt::ArrowCursor);
+            auto *rowLayout = new QHBoxLayout(row);
+            rowLayout->setContentsMargins(7, 0, 7, 0);
+            rowLayout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
+            auto *label = makeTextEditorLabel(
+                displayText,
+                "textEditorCommandDropdownRowText");
+            label->setProperty("dropdownRole", "menuitem_label");
+            label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+            rowLayout->addWidget(label, 1);
+            sawDisabled = sawDisabled || !action.enabled;
+            commandPaletteResultsLayout_->addWidget(row);
         }
         if (commandPaletteEmpty_) {
             if (paletteMatches_.isEmpty()) {
-                commandPaletteEmpty_->setText(
-                    DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_) + ": no Text Editor command matches");
+                commandPaletteEmpty_->setText("Dropdown: no Text Editor action matches");
                 setComponentState(commandPaletteEmpty_, "empty");
             } else {
-                commandPaletteEmpty_->setText(QString("%1: %2 command%3%4")
-                    .arg(DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_))
+                commandPaletteEmpty_->setText(QString("Dropdown: %1 action%2%3")
                     .arg(paletteMatches_.size())
                     .arg(paletteMatches_.size() == 1 ? "" : "s")
-                    .arg(sawDisabled ? " | disabled commands preserved" : ""));
+                    .arg(sawDisabled ? " | disabled actions preserved" : ""));
                 setComponentState(commandPaletteEmpty_, sawDisabled ? QString("disabled") : QString("default"));
             }
         }
+        updateDropdownButtonState();
     }
 
     void updatePaletteProofProperties() {
         if (!commandPalette_) {
             return;
         }
-        const bool isOpen = !commandPalette_->isHidden();
+        const bool isOpen = commandDropdownMenu_ && !commandDropdownMenu_->isHidden();
         commandPalette_->setProperty("paletteOpen", isOpen);
         commandPalette_->setProperty("focusedSurface", isOpen ? "Palette" : "Editor");
         commandPalette_->setProperty(
@@ -657,14 +603,16 @@ private:
             DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_));
         commandPalette_->setProperty("selectedRowIndex", paletteSelectedIndex_);
         commandPalette_->setProperty("resultCount", paletteMatches_.size());
-        commandPalette_->setProperty("activeCategoryFilter", paletteCategoryFilter_);
-        commandPalette_->setProperty("categoryFilterCount", DexTextEditorUi::commandPaletteCategoryFilters().size());
+        commandPalette_->setProperty("dropdownOnlyActions", true);
+        commandPalette_->setProperty("dropdownMenuVisible", isOpen);
     }
 
     void movePaletteSelection(int direction) {
         paletteSelectedIndex_ =
             DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, direction);
-        renderCommandPaletteResults();
+        updateDropdownRowStates();
+        updateDropdownButtonState();
+        updatePaletteProofProperties();
     }
 
     void runSelectedPaletteAction() {
@@ -672,7 +620,7 @@ private:
         if (actionId == "none") {
             return;
         }
-        hideCommandPalette();
+        hideCommandPaletteMenu();
         executeAction(actionId);
     }
 
@@ -680,7 +628,9 @@ private:
         if (!commandPalette_) {
             return;
         }
-        commandPalette_->setVisible(true);
+        if (commandDropdownMenu_) {
+            commandDropdownMenu_->setVisible(true);
+        }
         setComponentState(commandPalette_, "open");
         controller_->setFocusedSurface("Palette");
         renderCommandPaletteResults();
@@ -691,81 +641,62 @@ private:
         }
     }
 
-    void hideCommandPalette() {
+    void hideCommandPaletteMenu() {
         if (!commandPalette_) {
             return;
         }
+        if (commandDropdownMenu_) {
+            commandDropdownMenu_->setVisible(false);
+        }
         setComponentState(commandPalette_, "closed");
-        commandPalette_->setVisible(false);
         controller_->setFocusedSurface("Editor");
+        updateDropdownButtonState();
         updatePaletteProofProperties();
         if (editor_) {
             editor_->setFocus();
         }
     }
 
-    void rebuildActionButtons() {
-        if (!actionsLayout_) {
+    void toggleCommandPaletteMenu() {
+        if (commandDropdownMenu_ && !commandDropdownMenu_->isHidden()) {
+            hideCommandPaletteMenu();
             return;
         }
-        clearTextEditorLayout(actionsLayout_);
-        const QVector<DexTextActions::HostActionItem> actions = availableActions();
-        controller_->setActionInventory(actions.size(), DexTextActions::textActionFixtures().size());
-        QVector<DexTextActions::HostActionItem> toolbarActions;
-        for (const DexTextActions::HostActionItem &action : actions) {
-            if (isPrimaryToolbarAction(action.actionId)) {
-                toolbarActions.append(action);
+        showCommandPalette();
+    }
+
+    void updateDropdownButtonState() {
+        if (!commandDropdownButton_) {
+            return;
+        }
+        const bool isOpen = commandDropdownMenu_ && !commandDropdownMenu_->isHidden();
+        const QString selectedActionId = DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_);
+        commandDropdownButton_->setText(QString("Actions (%1) v").arg(paletteMatches_.size()));
+        commandDropdownButton_->setProperty("componentState", isOpen ? "open" : "closed");
+        commandDropdownButton_->setProperty("selectedActionId", selectedActionId);
+        commandDropdownButton_->setProperty("resultCount", paletteMatches_.size());
+        commandDropdownButton_->setProperty("dropdownOnlyActions", true);
+        commandDropdownButton_->setAccessibleName("Text Editor actions dropdown");
+        commandDropdownButton_->style()->unpolish(commandDropdownButton_);
+        commandDropdownButton_->style()->polish(commandDropdownButton_);
+    }
+
+    void updateDropdownRowStates() {
+        if (!commandPaletteResultsLayout_) {
+            return;
+        }
+        for (int i = 0; i < commandPaletteResultsLayout_->count(); ++i) {
+            QWidget *widget = commandPaletteResultsLayout_->itemAt(i)->widget();
+            if (!widget || !widget->property("dropdownActionIndex").isValid()) {
+                continue;
             }
-        }
-        int row = 0;
-        int column = 0;
-        const int kColumns = desiredActionColumns();
-        actionColumnCount_ = kColumns;
-        if (actionStrip_) {
-            actionStrip_->setFixedHeight(actionStripHeight(kColumns, toolbarActions.size()));
-        }
-        for (const DexTextActions::HostActionItem &action : toolbarActions) {
-            auto *button = makeActionButton(action.shortLabel, "workbench.toolbar.primary." + actionPathSuffix(action.actionId));
-            const bool isRunning = action.actionId == activeActionId_ && activeActionState_ == "running";
-            const QString buttonState = action.enabled
-                ? (action.actionId == activeActionId_ ? activeActionState_ : QString("default"))
+            const int index = widget->property("dropdownActionIndex").toInt();
+            const bool enabled = widget->property("dropdownActionEnabled").toBool();
+            const QString state = enabled
+                ? (index == paletteSelectedIndex_ ? QString("selected") : QString("default"))
                 : QString("disabled");
-            button->setEnabled(action.enabled && !isRunning);
-            button->setProperty("componentState", buttonState);
-            button->setToolTip(action.hotkeyLabel.isEmpty()
-                ? action.tooltip + (action.disabledReason.isEmpty() ? QString() : "\n" + action.disabledReason)
-                : action.tooltip + "\n" + action.hotkeyLabel);
-            connect(button, &QPushButton::clicked, this, [this, action]() {
-                executeAction(action.actionId);
-            });
-            actionsLayout_->addWidget(button, row, column);
-            if (++column == kColumns) {
-                column = 0;
-                ++row;
-            }
+            setComponentState(widget, state);
         }
-        for (int i = 0; i < kColumns; ++i) {
-            actionsLayout_->setColumnStretch(i, 1);
-        }
-    }
-
-    int desiredActionColumns() const {
-        const int available = actionStrip_ ? actionStrip_->width() : width();
-        if (available < 240) {
-            return 1;
-        }
-        if (available < 520) {
-            return 2;
-        }
-        return 3;
-    }
-
-    int actionStripHeight(int columns, int actionCount) const {
-        columns = std::max(1, columns);
-        const int rows = std::max(1, (actionCount + columns - 1) / columns);
-        return (dex_ui::text_editor_metrics::panel_padding_dense * 2)
-            + (rows * dex_ui::text_editor_metrics::toolbar_button_height)
-            + ((rows - 1) * dex_ui::text_editor_metrics::dense_gap);
     }
 
     void executeAction(const QString &actionId) {
@@ -785,7 +716,6 @@ private:
 
         activeActionId_ = actionId;
         activeActionState_ = "running";
-        rebuildActionButtons();
         renderCommandPaletteResults();
         updateEditorStatus();
 
@@ -801,7 +731,6 @@ private:
             applySelection(result.selection);
         }
         renderRustResult(actionId, result, documentText);
-        rebuildActionButtons();
         renderCommandPaletteResults();
         updateEditorStatus();
     }
@@ -829,7 +758,7 @@ private:
             setComponentState(fixtureStatus_, "empty");
             controller_->setFixtureStatus("Fixture loaded: " + fixture.fixtureId, "empty");
             refreshLineControls();
-            rebuildActionButtons();
+            renderCommandPaletteResults();
             updateEditorStatus();
             return;
         }
@@ -993,7 +922,6 @@ private:
             if (activeActionId_ == resultActionId && activeActionState_ != "running") {
                 activeActionId_.clear();
                 activeActionState_ = "default";
-                rebuildActionButtons();
                 renderCommandPaletteResults();
                 updateEditorStatus();
             }
@@ -1114,22 +1042,18 @@ private:
     QLabel *cursorStatus_ = nullptr;
     QLabel *snapshotStatus_ = nullptr;
     QLabel *fixtureStatus_ = nullptr;
-    QFrame *actionStrip_ = nullptr;
     QFrame *commandPalette_ = nullptr;
     QLineEdit *commandPaletteQuery_ = nullptr;
     QLabel *commandPaletteEmpty_ = nullptr;
-    QToolButton *commandPaletteFilterSelect_ = nullptr;
-    QMenu *commandPaletteFilterMenu_ = nullptr;
+    QToolButton *commandDropdownButton_ = nullptr;
+    QFrame *commandDropdownMenu_ = nullptr;
     QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
     QVector<DexTextActions::HostActionItem> paletteMatches_;
     int paletteSelectedIndex_ = -1;
-    QGridLayout *actionsLayout_ = nullptr;
     TextEditorWorkspaceController *controller_ = nullptr;
-    int actionColumnCount_ = 0;
     QString actionInventorySource_ = "C++ fixture fallback";
     QString activeActionId_;
     QString activeActionState_ = "default";
-    QString paletteCategoryFilter_ = "all";
 };
 
 QFrame *makeContextPanel(const QString &title, const QStringList &lines, const QString &uiPath, const QString &state = "empty") {

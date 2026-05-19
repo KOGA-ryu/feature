@@ -13,6 +13,10 @@
                         "y": 0
                     },
                     "objectName": "chromeTitle",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                    },
+                    "text": "Dex Home",
                     "visible": true
                 },
                 {
@@ -26,6 +30,10 @@
                         "y": 0
                     },
                     "objectName": "chromeLocation",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                    },
+                    "text": "Text Editor / Blank Workspace / Dashboard",
                     "visible": true
                 },
                 {
@@ -39,12 +47,16 @@
                         "y": 0
                     },
                     "objectName": "",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                    },
                     "visible": true
                 },
                 {
                     "children": [
                     ],
                     "className": "QToolButton",
+                    "enabled": true,
                     "geometry": {
                         "height": 29,
                         "width": 51,
@@ -52,12 +64,19 @@
                         "y": 4
                     },
                     "objectName": "",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "_q_stylesheet_minw": true
+                    },
+                    "text": "Rail",
                     "visible": true
                 },
                 {
                     "children": [
                     ],
                     "className": "QToolButton",
+                    "enabled": true,
                     "geometry": {
                         "height": 29,
                         "width": 59,
@@ -65,12 +84,19 @@
                         "y": 4
                     },
                     "objectName": "",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "_q_stylesheet_minw": true
+                    },
+                    "text": "Shelf",
                     "visible": true
                 },
                 {
                     "children": [
                     ],
                     "className": "QToolButton",
+                    "enabled": true,
                     "geometry": {
                         "height": 29,
                         "width": 61,
@@ -78,12 +104,19 @@
                         "y": 4
                     },
                     "objectName": "",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "_q_stylesheet_minw": true
+                    },
+                    "text": "Repo",
                     "visible": true
                 },
                 {
                     "children": [
                     ],
                     "className": "QToolButton",
+                    "enabled": true,
                     "geometry": {
                         "height": 29,
                         "width": 75,
@@ -91,6 +124,12 @@
                         "y": 4
                     },
                     "objectName": "",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "_q_stylesheet_minw": true
+                    },
+                    "text": "Context",
                     "visible": true
                 }
             ],
@@ -102,6 +141,11 @@
                 "y": 0
             },
             "objectName": "",
+            "properties": {
+                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                "_q_stylesheet_maxh": true,
+                "_q_stylesheet_minh": true
+            },
             "visible": true
         },
         {
@@ -119,6 +163,9 @@
                                 "y": 0
                             },
                             "objectName": "",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                            },
                             "visible": true
                         },
                         {
@@ -138,13 +185,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 13,
-                                                                                "y": 9
+                                                                                "y": 7
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Copy",
                                                                             "uiPath": "workbench.toolbar.primary.copy_plain",
                                                                             "visible": true
                                                                         },
@@ -153,13 +209,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 229,
-                                                                                "y": 9
+                                                                                "y": 7
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Markdown",
                                                                             "uiPath": "workbench.toolbar.primary.copy_markdown_block",
                                                                             "visible": true
                                                                         },
@@ -168,13 +233,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 445,
-                                                                                "y": 9
+                                                                                "y": 7
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Prompt",
                                                                             "uiPath": "workbench.toolbar.primary.copy_prompt_block",
                                                                             "visible": true
                                                                         },
@@ -183,13 +257,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 13,
-                                                                                "y": 42
+                                                                                "y": 34
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Fence",
                                                                             "uiPath": "workbench.toolbar.primary.copy_code_fence",
                                                                             "visible": true
                                                                         },
@@ -198,13 +281,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 229,
-                                                                                "y": 42
+                                                                                "y": 34
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "All",
                                                                             "uiPath": "workbench.toolbar.primary.select_all",
                                                                             "visible": true
                                                                         },
@@ -213,13 +305,22 @@
                                                                             ],
                                                                             "className": "QPushButton",
                                                                             "componentState": "default",
+                                                                            "enabled": true,
                                                                             "geometry": {
-                                                                                "height": 38,
+                                                                                "height": 28,
                                                                                 "width": 208,
                                                                                 "x": 445,
-                                                                                "y": 42
+                                                                                "y": 34
                                                                             },
                                                                             "objectName": "textEditorActionButton",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "_q_stylesheet_maxh": true,
+                                                                                "_q_stylesheet_minh": true,
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Clean",
                                                                             "uiPath": "workbench.toolbar.primary.clean_basic",
                                                                             "visible": true
                                                                         }
@@ -227,12 +328,17 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "default",
                                                                     "geometry": {
-                                                                        "height": 80,
+                                                                        "height": 64,
                                                                         "width": 666,
                                                                         "x": 12,
                                                                         "y": 12
                                                                     },
                                                                     "objectName": "textEditorActionStrip",
+                                                                    "properties": {
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "componentState": 0,
+                                                                        "uiPath": 0
+                                                                    },
                                                                     "uiPath": "workbench.toolbar.primary",
                                                                     "visible": true
                                                                 },
@@ -253,6 +359,11 @@
                                                                                                 "y": 0
                                                                                             },
                                                                                             "objectName": "textEditorSurfaceTitle",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "scratch.txt",
                                                                                             "uiPath": "workbench.editor.tabs.active_document.label",
                                                                                             "visible": true
                                                                                         }
@@ -266,6 +377,11 @@
                                                                                         "y": 0
                                                                                     },
                                                                                     "objectName": "textEditorDocumentTab",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "componentState": 0,
+                                                                                        "uiPath": 0
+                                                                                    },
                                                                                     "uiPath": "workbench.editor.tabs.active_document",
                                                                                     "visible": true
                                                                                 },
@@ -280,6 +396,11 @@
                                                                                         "y": 0
                                                                                     },
                                                                                     "objectName": "textEditorSurfaceEmpty",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "uiPath": 0
+                                                                                    },
+                                                                                    "text": "actions: 11 | fixtures: 5",
                                                                                     "uiPath": "workbench.editor.status.summary",
                                                                                     "visible": true
                                                                                 }
@@ -292,6 +413,10 @@
                                                                                 "y": 1
                                                                             },
                                                                             "objectName": "textEditorDocumentHeader",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "uiPath": 0
+                                                                            },
                                                                             "uiPath": "workbench.editor.tabs",
                                                                             "visible": true
                                                                         },
@@ -320,7 +445,14 @@
                                                                                 "y": 43
                                                                             },
                                                                             "objectName": "textEditorDocumentEditor",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "readOnly": false,
                                                                             "uiPath": "workbench.editor.surface.text",
+                                                                            "verticalScrollMaximum": 0,
                                                                             "visible": true
                                                                         },
                                                                         {
@@ -329,25 +461,66 @@
                                                                             "className": "QLabel",
                                                                             "componentState": "empty",
                                                                             "geometry": {
-                                                                                "height": 21,
+                                                                                "height": 19,
                                                                                 "width": 664,
                                                                                 "x": 1,
                                                                                 "y": 323
                                                                             },
                                                                             "objectName": "textEditorMonoLabel",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "Ln 1, Col 1        UTF-8        LF        selection: none",
                                                                             "uiPath": "workbench.editor.status.cursor_position",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QLabel",
+                                                                            "componentState": "empty",
+                                                                            "geometry": {
+                                                                                "height": 13,
+                                                                                "width": 664,
+                                                                                "x": 1,
+                                                                                "y": 342
+                                                                            },
+                                                                            "objectName": "textEditorMonoLabel",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "componentState": 0,
+                                                                                "snapshotActiveActionId": 0,
+                                                                                "snapshotActiveActionState": 0,
+                                                                                "snapshotCharacterCount": 16,
+                                                                                "snapshotDocumentName": 0,
+                                                                                "snapshotLineCount": 3,
+                                                                                "snapshotScrollMaximum": 2,
+                                                                                "snapshotScrollValue": 0,
+                                                                                "snapshotVisibleBlockEnd": 3,
+                                                                                "snapshotVisibleBlockStart": 1,
+                                                                                "uiPath": 0
+                                                                            },
+                                                                            "text": "visible rows 1-3 | scroll 0/2 | action none/default",
+                                                                            "uiPath": "workbench.editor.snapshot",
                                                                             "visible": true
                                                                         }
                                                                     ],
                                                                     "className": "QFrame",
                                                                     "componentState": "default",
                                                                     "geometry": {
-                                                                        "height": 353,
+                                                                        "height": 362,
                                                                         "width": 666,
                                                                         "x": 12,
-                                                                        "y": 100
+                                                                        "y": 84
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
+                                                                    "properties": {
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "componentState": 0,
+                                                                        "uiPath": 0
+                                                                    },
                                                                     "uiPath": "workbench.editor.surface.document",
                                                                     "visible": true
                                                                 },
@@ -363,9 +536,14 @@
                                                                                         "height": 14,
                                                                                         "width": 614,
                                                                                         "x": 13,
-                                                                                        "y": 9
+                                                                                        "y": 7
                                                                                     },
                                                                                     "objectName": "textEditorSurfaceTitle",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "uiPath": 0
+                                                                                    },
+                                                                                    "text": "FIXTURE RUNNER",
                                                                                     "uiPath": "workbench.fixture_bench.runner.title",
                                                                                     "visible": true
                                                                                 },
@@ -382,6 +560,10 @@
                                                                                                 "y": 0
                                                                                             },
                                                                                             "objectName": "",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "_q_stylesheet_minh": true
+                                                                                            },
                                                                                             "visible": true
                                                                                         }
                                                                                     ],
@@ -390,9 +572,12 @@
                                                                                         "height": 32,
                                                                                         "width": 614,
                                                                                         "x": 13,
-                                                                                        "y": 31
+                                                                                        "y": 29
                                                                                     },
                                                                                     "objectName": "",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                                                                    },
                                                                                     "visible": true
                                                                                 },
                                                                                 {
@@ -402,13 +587,22 @@
                                                                                             ],
                                                                                             "className": "QPushButton",
                                                                                             "componentState": "default",
+                                                                                            "enabled": true,
                                                                                             "geometry": {
-                                                                                                "height": 38,
+                                                                                                "height": 28,
                                                                                                 "width": 614,
                                                                                                 "x": 0,
                                                                                                 "y": 0
                                                                                             },
                                                                                             "objectName": "textEditorActionButton",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "_q_stylesheet_maxh": true,
+                                                                                                "_q_stylesheet_minh": true,
+                                                                                                "componentState": 0,
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "Load Fixture",
                                                                                             "uiPath": "workbench.fixture_bench.runner.load",
                                                                                             "visible": true
                                                                                         },
@@ -417,13 +611,22 @@
                                                                                             ],
                                                                                             "className": "QPushButton",
                                                                                             "componentState": "default",
+                                                                                            "enabled": true,
                                                                                             "geometry": {
-                                                                                                "height": 38,
+                                                                                                "height": 28,
                                                                                                 "width": 614,
                                                                                                 "x": 0,
-                                                                                                "y": 46
+                                                                                                "y": 36
                                                                                             },
                                                                                             "objectName": "textEditorActionButton",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "_q_stylesheet_maxh": true,
+                                                                                                "_q_stylesheet_minh": true,
+                                                                                                "componentState": 0,
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "Run Fixture",
                                                                                             "uiPath": "workbench.fixture_bench.runner.run",
                                                                                             "visible": true
                                                                                         },
@@ -432,25 +635,37 @@
                                                                                             ],
                                                                                             "className": "QPushButton",
                                                                                             "componentState": "default",
+                                                                                            "enabled": true,
                                                                                             "geometry": {
-                                                                                                "height": 38,
+                                                                                                "height": 28,
                                                                                                 "width": 614,
                                                                                                 "x": 0,
-                                                                                                "y": 92
+                                                                                                "y": 72
                                                                                             },
                                                                                             "objectName": "textEditorActionButton",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "_q_stylesheet_maxh": true,
+                                                                                                "_q_stylesheet_minh": true,
+                                                                                                "componentState": 0,
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "Run All",
                                                                                             "uiPath": "workbench.fixture_bench.runner.run_all",
                                                                                             "visible": true
                                                                                         }
                                                                                     ],
                                                                                     "className": "QWidget",
                                                                                     "geometry": {
-                                                                                        "height": 130,
+                                                                                        "height": 100,
                                                                                         "width": 614,
                                                                                         "x": 13,
-                                                                                        "y": 71
+                                                                                        "y": 69
                                                                                     },
                                                                                     "objectName": "",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                                                                    },
                                                                                     "visible": true
                                                                                 },
                                                                                 {
@@ -459,12 +674,18 @@
                                                                                     "className": "QLabel",
                                                                                     "componentState": "success",
                                                                                     "geometry": {
-                                                                                        "height": 15,
+                                                                                        "height": 14,
                                                                                         "width": 614,
                                                                                         "x": 13,
-                                                                                        "y": 209
+                                                                                        "y": 177
                                                                                     },
                                                                                     "objectName": "textEditorSurfaceEmpty",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "componentState": 0,
+                                                                                        "uiPath": 0
+                                                                                    },
+                                                                                    "text": "PASS all fixtures: 5/5",
                                                                                     "uiPath": "workbench.fixture_bench.runner.status",
                                                                                     "visible": true
                                                                                 }
@@ -472,12 +693,17 @@
                                                                             "className": "QFrame",
                                                                             "componentState": "empty",
                                                                             "geometry": {
-                                                                                "height": 233,
+                                                                                "height": 198,
                                                                                 "width": 640,
                                                                                 "x": 13,
                                                                                 "y": 13
                                                                             },
                                                                             "objectName": "textEditorFixturePanel",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "componentState": 0,
+                                                                                "uiPath": 0
+                                                                            },
                                                                             "uiPath": "workbench.fixture_bench.runner",
                                                                             "visible": true
                                                                         },
@@ -493,9 +719,14 @@
                                                                                                 "height": 14,
                                                                                                 "width": 290,
                                                                                                 "x": 13,
-                                                                                                "y": 9
+                                                                                                "y": 7
                                                                                             },
                                                                                             "objectName": "textEditorSurfaceTitle",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "EXPECTED",
                                                                                             "uiPath": "workbench.fixture_bench.results.expected_panel.title",
                                                                                             "visible": true
                                                                                         },
@@ -521,22 +752,35 @@
                                                                                                 "height": 192,
                                                                                                 "width": 290,
                                                                                                 "x": 13,
-                                                                                                "y": 31
+                                                                                                "y": 29
                                                                                             },
                                                                                             "objectName": "textEditorOutputPreview",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "componentState": 0,
+                                                                                                "scrollsInternally": true,
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "readOnly": true,
                                                                                             "uiPath": "workbench.fixture_bench.results.expected",
+                                                                                            "verticalScrollMaximum": 0,
                                                                                             "visible": true
                                                                                         }
                                                                                     ],
                                                                                     "className": "QFrame",
                                                                                     "componentState": "empty",
                                                                                     "geometry": {
-                                                                                        "height": 232,
+                                                                                        "height": 228,
                                                                                         "width": 316,
                                                                                         "x": 0,
                                                                                         "y": 0
                                                                                     },
                                                                                     "objectName": "textEditorFixturePanel",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "componentState": 0,
+                                                                                        "uiPath": 0
+                                                                                    },
                                                                                     "uiPath": "workbench.fixture_bench.results.expected_panel",
                                                                                     "visible": true
                                                                                 },
@@ -550,9 +794,14 @@
                                                                                                 "height": 14,
                                                                                                 "width": 290,
                                                                                                 "x": 13,
-                                                                                                "y": 9
+                                                                                                "y": 7
                                                                                             },
                                                                                             "objectName": "textEditorSurfaceTitle",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "text": "ACTUAL / ACTION OUTPUT",
                                                                                             "uiPath": "workbench.fixture_bench.results.actual_panel.title",
                                                                                             "visible": true
                                                                                         },
@@ -578,34 +827,51 @@
                                                                                                 "height": 192,
                                                                                                 "width": 290,
                                                                                                 "x": 13,
-                                                                                                "y": 31
+                                                                                                "y": 29
                                                                                             },
                                                                                             "objectName": "textEditorOutputPreview",
+                                                                                            "properties": {
+                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "componentState": 0,
+                                                                                                "scrollsInternally": true,
+                                                                                                "uiPath": 0
+                                                                                            },
+                                                                                            "readOnly": true,
                                                                                             "uiPath": "workbench.fixture_bench.results.actual",
+                                                                                            "verticalScrollMaximum": 0,
                                                                                             "visible": true
                                                                                         }
                                                                                     ],
                                                                                     "className": "QFrame",
                                                                                     "componentState": "empty",
                                                                                     "geometry": {
-                                                                                        "height": 232,
+                                                                                        "height": 228,
                                                                                         "width": 316,
                                                                                         "x": 324,
                                                                                         "y": 0
                                                                                     },
                                                                                     "objectName": "textEditorFixturePanel",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "componentState": 0,
+                                                                                        "uiPath": 0
+                                                                                    },
                                                                                     "uiPath": "workbench.fixture_bench.results.actual_panel",
                                                                                     "visible": true
                                                                                 }
                                                                             ],
                                                                             "className": "QWidget",
                                                                             "geometry": {
-                                                                                "height": 232,
+                                                                                "height": 228,
                                                                                 "width": 640,
                                                                                 "x": 13,
-                                                                                "y": 254
+                                                                                "y": 219
                                                                             },
                                                                             "objectName": "",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "uiPath": 0
+                                                                            },
                                                                             "uiPath": "workbench.fixture_bench.results",
                                                                             "visible": true
                                                                         }
@@ -613,24 +879,33 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "empty",
                                                                     "geometry": {
-                                                                        "height": 499,
+                                                                        "height": 460,
                                                                         "width": 666,
                                                                         "x": 12,
-                                                                        "y": 461
+                                                                        "y": 454
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
+                                                                    "properties": {
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "componentState": 0,
+                                                                        "uiPath": 0
+                                                                    },
                                                                     "uiPath": "workbench.fixture_bench",
                                                                     "visible": true
                                                                 }
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 972,
+                                                                "height": 926,
                                                                 "width": 690,
                                                                 "x": 0,
                                                                 "y": 0
                                                             },
                                                             "objectName": "textEditorBlankBody",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
                                                             "uiPath": "workbench.editor.workspace",
                                                             "visible": true
                                                         }
@@ -658,6 +933,9 @@
                                                                 "y": 0
                                                             },
                                                             "objectName": "",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                                            },
                                                             "visible": true
                                                         }
                                                     ],
@@ -669,6 +947,9 @@
                                                         "y": 0
                                                     },
                                                     "objectName": "qt_scrollarea_vcontainer",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                                    },
                                                     "visible": true
                                                 }
                                             ],
@@ -680,6 +961,10 @@
                                                 "y": 0
                                             },
                                             "objectName": "textEditorWorkspaceScroll",
+                                            "properties": {
+                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                "uiPath": 0
+                                            },
                                             "uiPath": "workbench.editor.scroll",
                                             "visible": true
                                         }
@@ -692,6 +977,10 @@
                                         "y": 0
                                     },
                                     "objectName": "textEditorWorkbenchPage",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "uiPath": 0
+                                    },
                                     "uiPath": "workbench.text_editor",
                                     "visible": true
                                 }
@@ -704,6 +993,9 @@
                                 "y": 0
                             },
                             "objectName": "",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                            },
                             "visible": true
                         }
                     ],
@@ -715,6 +1007,9 @@
                         "y": 0
                     },
                     "objectName": "centerLedger",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                    },
                     "visible": true
                 },
                 {
@@ -736,6 +1031,11 @@
                                                         "y": 0
                                                     },
                                                     "objectName": "sectionLabel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "uiPath": 0
+                                                    },
+                                                    "text": "Text Editor",
                                                     "uiPath": "workbench.rail.text_editor.title",
                                                     "visible": true
                                                 },
@@ -750,6 +1050,11 @@
                                                         "y": 26
                                                     },
                                                     "objectName": "mutedLabel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "uiPath": 0
+                                                    },
+                                                    "text": "Blank workspace",
                                                     "uiPath": "workbench.rail.text_editor.empty_state",
                                                     "visible": true
                                                 },
@@ -760,12 +1065,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "textEditorBucketTitle",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Documents",
                                                             "uiPath": "workbench.rail.text_editor.documents.title",
                                                             "visible": true
                                                         },
@@ -774,12 +1084,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
                                                                 "y": 29
                                                             },
                                                             "objectName": "textEditorBucketNote",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "No document open",
                                                             "uiPath": "workbench.rail.text_editor.documents.empty_state",
                                                             "visible": true
                                                         }
@@ -792,6 +1107,17 @@
                                                         "y": 49
                                                     },
                                                     "objectName": "textEditorRailBucket",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 10,
+                                                        "defaultSize": 208,
+                                                        "minSize": 208,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.rail.text_editor.documents",
                                                     "visible": true
                                                 },
@@ -802,12 +1128,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "textEditorBucketTitle",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Clipboard",
                                                             "uiPath": "workbench.rail.text_editor.clipboard.title",
                                                             "visible": true
                                                         },
@@ -816,12 +1147,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
                                                                 "y": 29
                                                             },
                                                             "objectName": "textEditorBucketNote",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "No clipboard capture",
                                                             "uiPath": "workbench.rail.text_editor.clipboard.empty_state",
                                                             "visible": true
                                                         }
@@ -834,6 +1170,17 @@
                                                         "y": 111
                                                     },
                                                     "objectName": "textEditorRailBucket",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 20,
+                                                        "defaultSize": 208,
+                                                        "minSize": 208,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.rail.text_editor.clipboard",
                                                     "visible": true
                                                 },
@@ -844,12 +1191,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "textEditorBucketTitle",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Drafts",
                                                             "uiPath": "workbench.rail.text_editor.drafts.title",
                                                             "visible": true
                                                         },
@@ -858,12 +1210,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
                                                                 "y": 29
                                                             },
                                                             "objectName": "textEditorBucketNote",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "No drafts saved",
                                                             "uiPath": "workbench.rail.text_editor.drafts.empty_state",
                                                             "visible": true
                                                         }
@@ -876,6 +1233,17 @@
                                                         "y": 173
                                                     },
                                                     "objectName": "textEditorRailBucket",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 30,
+                                                        "defaultSize": 208,
+                                                        "minSize": 208,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.rail.text_editor.drafts",
                                                     "visible": true
                                                 },
@@ -886,12 +1254,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "textEditorBucketTitle",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Fixtures",
                                                             "uiPath": "workbench.rail.text_editor.fixtures.title",
                                                             "visible": true
                                                         },
@@ -900,12 +1273,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 16,
+                                                                "height": 18,
                                                                 "width": 160,
                                                                 "x": 13,
                                                                 "y": 29
                                                             },
                                                             "objectName": "textEditorBucketNote",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "No fixture selected",
                                                             "uiPath": "workbench.rail.text_editor.fixtures.empty_state",
                                                             "visible": true
                                                         }
@@ -918,6 +1296,17 @@
                                                         "y": 235
                                                     },
                                                     "objectName": "textEditorRailBucket",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 40,
+                                                        "defaultSize": 208,
+                                                        "minSize": 208,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.rail.text_editor.fixtures",
                                                     "visible": true
                                                 }
@@ -930,6 +1319,10 @@
                                                 "y": 0
                                             },
                                             "objectName": "projectRailBody",
+                                            "properties": {
+                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                "workspace": 0
+                                            },
                                             "visible": true,
                                             "workspace": "text_editor"
                                         }
@@ -953,6 +1346,9 @@
                                 "y": 12
                             },
                             "objectName": "",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                            },
                             "visible": true
                         },
                         {
@@ -968,6 +1364,10 @@
                                         "y": 9
                                     },
                                     "objectName": "",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                    },
+                                    "text": "",
                                     "visible": true
                                 },
                                 {
@@ -981,6 +1381,10 @@
                                         "y": 5
                                     },
                                     "objectName": "",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                    },
+                                    "text": "Settings",
                                     "visible": true
                                 }
                             ],
@@ -992,6 +1396,11 @@
                                 "y": 721
                             },
                             "objectName": "settingsRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "active": false,
+                                "workspace": 0
+                            },
                             "visible": true,
                             "workspace": "text_editor"
                         }
@@ -1004,6 +1413,10 @@
                         "y": 0
                     },
                     "objectName": "projectRail",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "workspace": 0
+                    },
                     "visible": true,
                     "workspace": "text_editor"
                 },
@@ -1013,6 +1426,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1020,6 +1434,16 @@
                                 "y": 24
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": true,
+                                "lastTab": false,
+                                "tabIndex": 0,
+                                "workspace": 0
+                            },
+                            "text": "Dash",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1027,6 +1451,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1034,6 +1459,16 @@
                                 "y": 62
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": false,
+                                "tabIndex": 1,
+                                "workspace": 0
+                            },
+                            "text": "Editor",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1041,6 +1476,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1048,6 +1484,16 @@
                                 "y": 100
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": false,
+                                "tabIndex": 2,
+                                "workspace": 0
+                            },
+                            "text": "Acti",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1055,6 +1501,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1062,6 +1509,16 @@
                                 "y": 138
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": false,
+                                "tabIndex": 3,
+                                "workspace": 0
+                            },
+                            "text": "Insp",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1069,6 +1526,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1076,6 +1534,16 @@
                                 "y": 176
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": false,
+                                "tabIndex": 4,
+                                "workspace": 0
+                            },
+                            "text": "Fixt",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1083,6 +1551,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 33,
                                 "width": 46,
@@ -1090,6 +1559,16 @@
                                 "y": 214
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": false,
+                                "tabIndex": 5,
+                                "workspace": 0
+                            },
+                            "text": "Rece",
                             "visible": true,
                             "workspace": "text_editor"
                         },
@@ -1097,6 +1576,7 @@
                             "children": [
                             ],
                             "className": "QPushButton",
+                            "enabled": true,
                             "geometry": {
                                 "height": 32,
                                 "width": 46,
@@ -1104,6 +1584,16 @@
                                 "y": 252
                             },
                             "objectName": "detailLensTab",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "firstTab": false,
+                                "lastTab": true,
+                                "tabIndex": 6,
+                                "workspace": 0
+                            },
+                            "text": "Proof",
                             "visible": true,
                             "workspace": "text_editor"
                         }
@@ -1116,6 +1606,10 @@
                         "y": 0
                     },
                     "objectName": "detailLensRail",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "workspace": 0
+                    },
                     "visible": true,
                     "workspace": "text_editor"
                 },
@@ -1134,12 +1628,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 18,
-                                                                "width": 253,
+                                                                "height": 14,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "sectionLabel",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "ACTION OPTIONS",
                                                             "uiPath": "workbench.inspector.text_editor.options.title",
                                                             "visible": true
                                                         },
@@ -1148,12 +1647,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 253,
+                                                                "height": 13,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 35
+                                                                "y": 29
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Source",
                                                             "uiPath": "workbench.inspector.text_editor.options.source_label",
                                                             "visible": true
                                                         },
@@ -1163,11 +1667,18 @@
                                                             "className": "QLineEdit",
                                                             "geometry": {
                                                                 "height": 32,
-                                                                "width": 253,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 57
+                                                                "y": 50
                                                             },
                                                             "objectName": "",
+                                                            "placeholderText": "",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "_q_stylesheet_minh": true,
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "features_binder",
                                                             "uiPath": "workbench.inspector.text_editor.options.source",
                                                             "visible": true
                                                         },
@@ -1176,12 +1687,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 253,
+                                                                "height": 13,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 97
+                                                                "y": 90
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Language",
                                                             "uiPath": "workbench.inspector.text_editor.options.language_label",
                                                             "visible": true
                                                         },
@@ -1191,11 +1707,18 @@
                                                             "className": "QLineEdit",
                                                             "geometry": {
                                                                 "height": 32,
-                                                                "width": 253,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 119
+                                                                "y": 111
                                                             },
                                                             "objectName": "",
+                                                            "placeholderText": "",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "_q_stylesheet_minh": true,
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "text",
                                                             "uiPath": "workbench.inspector.text_editor.options.language",
                                                             "visible": true
                                                         },
@@ -1204,12 +1727,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 253,
+                                                                "height": 13,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 159
+                                                                "y": 151
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Line Range",
                                                             "uiPath": "workbench.inspector.text_editor.options.line_range_label",
                                                             "visible": true
                                                         },
@@ -1228,6 +1756,8 @@
                                                                                 "y": 3
                                                                             },
                                                                             "objectName": "qt_spinbox_lineedit",
+                                                                            "placeholderText": "",
+                                                                            "text": "0",
                                                                             "visible": true
                                                                         }
                                                                     ],
@@ -1240,6 +1770,13 @@
                                                                         "y": 0
                                                                     },
                                                                     "objectName": "",
+                                                                    "properties": {
+                                                                        "_q_spinbox_lineedit": "",
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "_q_stylesheet_minh": true,
+                                                                        "componentState": 0,
+                                                                        "uiPath": 0
+                                                                    },
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_start",
                                                                     "visible": true
                                                                 },
@@ -1249,11 +1786,16 @@
                                                                     "className": "QLabel",
                                                                     "geometry": {
                                                                         "height": 37,
-                                                                        "width": 103,
+                                                                        "width": 85,
                                                                         "x": 75,
                                                                         "y": 0
                                                                     },
                                                                     "objectName": "textEditorSurfaceEmpty",
+                                                                    "properties": {
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "uiPath": 0
+                                                                    },
+                                                                    "text": "to",
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_to",
                                                                     "visible": true
                                                                 },
@@ -1270,6 +1812,8 @@
                                                                                 "y": 3
                                                                             },
                                                                             "objectName": "qt_spinbox_lineedit",
+                                                                            "placeholderText": "",
+                                                                            "text": "0",
                                                                             "visible": true
                                                                         }
                                                                     ],
@@ -1278,10 +1822,17 @@
                                                                     "geometry": {
                                                                         "height": 37,
                                                                         "width": 67,
-                                                                        "x": 186,
+                                                                        "x": 168,
                                                                         "y": 0
                                                                     },
                                                                     "objectName": "",
+                                                                    "properties": {
+                                                                        "_q_spinbox_lineedit": "",
+                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "_q_stylesheet_minh": true,
+                                                                        "componentState": 0,
+                                                                        "uiPath": 0
+                                                                    },
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_end",
                                                                     "visible": true
                                                                 }
@@ -1289,11 +1840,15 @@
                                                             "className": "QWidget",
                                                             "geometry": {
                                                                 "height": 37,
-                                                                "width": 253,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 181
+                                                                "y": 172
                                                             },
                                                             "objectName": "",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
                                                             "uiPath": "workbench.inspector.text_editor.options.line_range",
                                                             "visible": true
                                                         },
@@ -1302,13 +1857,20 @@
                                                             ],
                                                             "className": "QCheckBox",
                                                             "componentState": "default",
+                                                            "enabled": true,
                                                             "geometry": {
                                                                 "height": 19,
-                                                                "width": 253,
+                                                                "width": 235,
                                                                 "x": 13,
-                                                                "y": 226
+                                                                "y": 217
                                                             },
                                                             "objectName": "",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "componentState": 0,
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Strip ANSI escape codes",
                                                             "uiPath": "workbench.inspector.text_editor.options.strip_ansi",
                                                             "visible": true
                                                         }
@@ -1316,12 +1878,24 @@
                                                     "className": "QFrame",
                                                     "componentState": "default",
                                                     "geometry": {
-                                                        "height": 254,
-                                                        "width": 279,
+                                                        "height": 243,
+                                                        "width": 261,
                                                         "x": 0,
                                                         "y": 0
                                                     },
                                                     "objectName": "textEditorContextPanel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 10,
+                                                        "componentState": 0,
+                                                        "defaultSize": 300,
+                                                        "minSize": 280,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.inspector.text_editor.options",
                                                     "visible": true
                                                 },
@@ -1332,12 +1906,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 18,
-                                                                "width": 251,
+                                                                "height": 14,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "sectionLabel",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "WORKSPACE STATE",
                                                             "uiPath": "workbench.inspector.text_editor.context.title",
                                                             "visible": true
                                                         },
@@ -1346,12 +1925,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 35
+                                                                "y": 29
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "detail lens: Dashboard",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1360,12 +1944,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 57
+                                                                "y": 50
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "focused surface: Editor",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1374,12 +1963,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 79
+                                                                "y": 71
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "document: scratch.txt",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1388,12 +1982,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 101
+                                                                "y": 92
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "3 lines | 16 chars",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1402,12 +2001,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 28,
-                                                                "width": 251,
+                                                                "height": 27,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 123
+                                                                "y": 113
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "limits: doc 200000 | clipboard 100000 | preview 12000",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1416,12 +2020,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 159
+                                                                "y": 148
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "Ln 1, Col 1",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         },
@@ -1430,12 +2039,74 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 181
+                                                                "y": 169
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "selection: none",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 13,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 190
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "visible rows: 1-3",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 13,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 211
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "scroll: 0/2",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 13,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 232
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "active action: none / default",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
                                                             "visible": true
                                                         }
@@ -1443,12 +2114,24 @@
                                                     "className": "QFrame",
                                                     "componentState": "success",
                                                     "geometry": {
-                                                        "height": 204,
-                                                        "width": 279,
+                                                        "height": 252,
+                                                        "width": 261,
                                                         "x": 0,
-                                                        "y": 262
+                                                        "y": 251
                                                     },
                                                     "objectName": "textEditorContextPanel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 20,
+                                                        "componentState": 0,
+                                                        "defaultSize": 300,
+                                                        "minSize": 280,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.inspector.text_editor.context",
                                                     "visible": true
                                                 },
@@ -1459,12 +2142,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 18,
-                                                                "width": 251,
+                                                                "height": 14,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "sectionLabel",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "LAST RESULT",
                                                             "uiPath": "workbench.inspector.text_editor.result.title",
                                                             "visible": true
                                                         },
@@ -1473,12 +2161,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 35
+                                                                "y": 29
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "action: fixtures.run_all",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
                                                             "visible": true
                                                         },
@@ -1487,12 +2180,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 57
+                                                                "y": 50
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "kind: fixture_suite",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
                                                             "visible": true
                                                         },
@@ -1501,12 +2199,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 79
+                                                                "y": 71
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "summary: PASS all fixtures: 5/5",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
                                                             "visible": true
                                                         },
@@ -1515,12 +2218,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 14,
-                                                                "width": 251,
+                                                                "height": 13,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 101
+                                                                "y": 92
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "fixture: PASS all fixtures: 5/5",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
                                                             "visible": true
                                                         }
@@ -1528,12 +2236,24 @@
                                                     "className": "QFrame",
                                                     "componentState": "success",
                                                     "geometry": {
-                                                        "height": 124,
-                                                        "width": 279,
+                                                        "height": 112,
+                                                        "width": 261,
                                                         "x": 0,
-                                                        "y": 474
+                                                        "y": 511
                                                     },
                                                     "objectName": "textEditorContextPanel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 30,
+                                                        "componentState": 0,
+                                                        "defaultSize": 300,
+                                                        "minSize": 280,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.inspector.text_editor.result",
                                                     "visible": true
                                                 },
@@ -1544,12 +2264,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 18,
-                                                                "width": 251,
+                                                                "height": 14,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 9
+                                                                "y": 7
                                                             },
                                                             "objectName": "sectionLabel",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "RECEIPT",
                                                             "uiPath": "workbench.inspector.text_editor.receipts.title",
                                                             "visible": true
                                                         },
@@ -1558,12 +2283,17 @@
                                                             ],
                                                             "className": "QLabel",
                                                             "geometry": {
-                                                                "height": 84,
-                                                                "width": 251,
+                                                                "height": 83,
+                                                                "width": 233,
                                                                 "x": 15,
-                                                                "y": 35
+                                                                "y": 29
                                                             },
                                                             "objectName": "textEditorSurfaceEmpty",
+                                                            "properties": {
+                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                "uiPath": 0
+                                                            },
+                                                            "text": "PASS all fixtures: 5/5\nPASS copy_plain_selection\nPASS copy_markdown_rust_block\nPASS copy_prompt_block_source\nPASS clean_basic_receipt\nPASS line_range_clamps",
                                                             "uiPath": "workbench.inspector.text_editor.receipts.line",
                                                             "visible": true
                                                         }
@@ -1571,35 +2301,82 @@
                                                     "className": "QFrame",
                                                     "componentState": "success",
                                                     "geometry": {
-                                                        "height": 128,
-                                                        "width": 279,
+                                                        "height": 119,
+                                                        "width": 261,
                                                         "x": 0,
-                                                        "y": 606
+                                                        "y": 631
                                                     },
                                                     "objectName": "textEditorContextPanel",
+                                                    "properties": {
+                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                        "activationPriority": 40,
+                                                        "componentState": 0,
+                                                        "defaultSize": 300,
+                                                        "minSize": 280,
+                                                        "panelKey": 0,
+                                                        "panelPosition": 0,
+                                                        "persistentName": 0,
+                                                        "startsOpen": true,
+                                                        "uiPath": 0
+                                                    },
                                                     "uiPath": "workbench.inspector.text_editor.receipts",
                                                     "visible": true
                                                 }
                                             ],
                                             "className": "QWidget",
                                             "geometry": {
-                                                "height": 741,
-                                                "width": 279,
+                                                "height": 750,
+                                                "width": 261,
                                                 "x": 0,
                                                 "y": 0
                                             },
                                             "objectName": "",
+                                            "properties": {
+                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                            },
                                             "visible": true
                                         }
                                     ],
                                     "className": "QWidget",
                                     "geometry": {
                                         "height": 741,
-                                        "width": 279,
+                                        "width": 261,
                                         "x": 0,
                                         "y": 0
                                     },
                                     "objectName": "qt_scrollarea_viewport",
+                                    "visible": true
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                            ],
+                                            "className": "QScrollBar",
+                                            "geometry": {
+                                                "height": 741,
+                                                "width": 18,
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            "objectName": "",
+                                            "properties": {
+                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                            },
+                                            "visible": true
+                                        }
+                                    ],
+                                    "className": "QWidget",
+                                    "geometry": {
+                                        "height": 741,
+                                        "width": 18,
+                                        "x": 261,
+                                        "y": 0
+                                    },
+                                    "objectName": "qt_scrollarea_vcontainer",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                                    },
                                     "visible": true
                                 }
                             ],
@@ -1611,6 +2388,9 @@
                                 "y": 12
                             },
                             "objectName": "",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+                            },
                             "visible": true
                         }
                     ],
@@ -1622,6 +2402,10 @@
                         "y": 0
                     },
                     "objectName": "rightContext",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "workspace": 0
+                    },
                     "visible": true,
                     "workspace": "text_editor"
                 }
@@ -1634,6 +2418,9 @@
                 "y": 37
             },
             "objectName": "rootSurface",
+            "properties": {
+                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+            },
             "visible": true
         }
     ],
@@ -1645,5 +2432,8 @@
         "y": 2
     },
     "objectName": "",
+    "properties": {
+        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
+    },
     "visible": true
 }

@@ -7,12 +7,15 @@
 #include <QGridLayout>
 #include <QGuiApplication>
 #include <QHBoxLayout>
+#include <QKeySequence>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QResizeEvent>
 #include <QScrollArea>
+#include <QScrollBar>
+#include <QShortcut>
 #include <QSignalBlocker>
 #include <QSizePolicy>
 #include <QSpinBox>
@@ -28,20 +31,19 @@
 #include "render_helpers.h"
 #include "text_action_proof_model.h"
 #include "text_editor_rust_action_client.h"
+#include "text_editor_ui.h"
 #include "text_editor_workspace_state.h"
 #include "ui_rules.h"
 
 namespace {
 
-void setUiPath(QWidget *widget, const QString &uiPath) {
-    widget->setProperty("uiPath", uiPath);
-}
-
-void setComponentState(QWidget *widget, const QString &state) {
-    widget->setProperty("componentState", state);
-    widget->style()->unpolish(widget);
-    widget->style()->polish(widget);
-}
+using DexTextEditorUi::makeActionButton;
+using DexTextEditorUi::makeOutputBox;
+using DexTextEditorUi::makeOutputPanel;
+using DexTextEditorUi::makePanel;
+using DexTextEditorUi::makeTextEditorLabel;
+using DexTextEditorUi::setComponentState;
+using DexTextEditorUi::setUiPath;
 
 QString actionPathSuffix(const QString &actionId) {
     return actionId.startsWith("text.") ? actionId.mid(5) : actionId;
@@ -59,16 +61,6 @@ bool isPrimaryToolbarAction(const QString &actionId) {
     return primaryActions.contains(actionId);
 }
 
-QLabel *makeTextEditorLabel(const QString &text, const char *objectName, const QString &uiPath = QString()) {
-    auto *label = makeLabel(text, objectName);
-    label->setMinimumWidth(0);
-    label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    if (!uiPath.isEmpty()) {
-        setUiPath(label, uiPath);
-    }
-    return label;
-}
-
 QLineEdit *makeTextEditorLineEdit(const QString &value, const QString &uiPath) {
     auto *edit = new QLineEdit;
     edit->setText(value);
@@ -77,14 +69,6 @@ QLineEdit *makeTextEditorLineEdit(const QString &value, const QString &uiPath) {
     edit->setProperty("uiPath", uiPath);
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     return edit;
-}
-
-QFrame *makePanel(const QString &objectName, const QString &uiPath) {
-    auto *panel = new QFrame;
-    panel->setObjectName(objectName);
-    panel->setMinimumWidth(0);
-    setUiPath(panel, uiPath);
-    return panel;
 }
 
 void clearTextEditorLayout(QLayout *layout) {
@@ -168,6 +152,23 @@ QString clippedPreviewText(const QString &text, int limit) {
         + QString("\n\n[preview clipped: %1 of %2 chars shown]").arg(limit).arg(text.size());
 }
 
+void applyPanelDescriptor(QWidget *widget, const QString &uiPath) {
+    for (const DexTextEditorUi::TextEditorPanelDescriptor &descriptor : DexTextEditorUi::textEditorPanelDescriptors()) {
+        if (descriptor.uiPath != uiPath) {
+            continue;
+        }
+        widget->setProperty("panelKey", descriptor.key);
+        widget->setProperty("persistentName", descriptor.persistentName);
+        widget->setProperty("panelPosition", DexTextEditorUi::panelPositionName(descriptor.position));
+        widget->setProperty("defaultSize", descriptor.defaultSize);
+        widget->setProperty("minSize", descriptor.minSize);
+        widget->setProperty("startsOpen", descriptor.startsOpen);
+        widget->setProperty("enabled", descriptor.enabled);
+        widget->setProperty("activationPriority", descriptor.activationPriority);
+        return;
+    }
+}
+
 void setPreviewText(QPlainTextEdit *edit, const QString &text, int limit) {
     if (edit) {
         edit->setPlainText(clippedPreviewText(text, limit));
@@ -214,22 +215,36 @@ public:
             dex_ui::text_editor_metrics::panel_padding);
         bodyLayout->setSpacing(dex_ui::text_editor_metrics::region_gap);
 
+        bodyLayout->addWidget(buildCommandPalette());
         bodyLayout->addWidget(buildActionStrip());
         bodyLayout->addWidget(buildDocumentSurface(), 1);
         bodyLayout->addWidget(buildFixtureShelf());
 
+        auto *paletteShortcut = new QShortcut(QKeySequence("Ctrl+Shift+P"), this);
+        connect(paletteShortcut, &QShortcut::activated, this, [this]() {
+            showCommandPalette();
+        });
         connect(editor_, &QPlainTextEdit::textChanged, this, [this]() {
             refreshLineControls();
             rebuildActionButtons();
+            renderCommandPaletteResults();
             updateEditorStatus();
         });
         connect(editor_, &QPlainTextEdit::cursorPositionChanged, this, [this]() {
             updateEditorStatus();
             rebuildActionButtons();
+            renderCommandPaletteResults();
+        });
+        connect(editor_->verticalScrollBar(), &QScrollBar::valueChanged, this, [this]() {
+            updateEditorStatus();
         });
         connect(controller_, &TextEditorWorkspaceController::actionInputChanged, this, [this]() {
             refreshLineControls();
             rebuildActionButtons();
+            renderCommandPaletteResults();
+        });
+        connect(controller_, &TextEditorWorkspaceController::commandPaletteRequested, this, [this]() {
+            showCommandPalette();
         });
 
         controller_->setActionInventory(
@@ -257,6 +272,59 @@ private:
         if (columns != actionColumnCount_) {
             rebuildActionButtons();
         }
+    }
+
+    QFrame *buildCommandPalette() {
+        auto *palette = makePanel("textEditorCommandPalette", "workbench.palette");
+        commandPalette_ = palette;
+        palette->setVisible(false);
+        setComponentState(palette, "default");
+
+        auto *layout = new QVBoxLayout(palette);
+        layout->setContentsMargins(
+            dex_ui::text_editor_metrics::panel_padding,
+            dex_ui::text_editor_metrics::panel_padding,
+            dex_ui::text_editor_metrics::panel_padding,
+            dex_ui::text_editor_metrics::panel_padding);
+        layout->setSpacing(dex_ui::text_editor_metrics::region_gap);
+        layout->addWidget(makeTextEditorLabel("COMMAND PALETTE", "textEditorSurfaceTitle", "workbench.palette.title"));
+
+        commandPaletteQuery_ = new QLineEdit;
+        commandPaletteQuery_->setObjectName("textEditorCommandPaletteInput");
+        commandPaletteQuery_->setProperty("uiPath", "workbench.palette.search.input");
+        commandPaletteQuery_->setPlaceholderText("Search Text Editor actions");
+        layout->addWidget(commandPaletteQuery_);
+
+        auto *results = new QWidget;
+        results->setObjectName("textEditorCommandPaletteResults");
+        results->setProperty("uiPath", "workbench.palette.section.all");
+        commandPaletteResultsLayout_ = new QVBoxLayout(results);
+        commandPaletteResultsLayout_->setContentsMargins(0, 0, 0, 0);
+        commandPaletteResultsLayout_->setSpacing(dex_ui::text_editor_metrics::dense_gap);
+        layout->addWidget(results);
+
+        commandPaletteEmpty_ = makeTextEditorLabel(
+            "Type to filter commands",
+            "textEditorSurfaceEmpty",
+            "workbench.palette.empty_state");
+        layout->addWidget(commandPaletteEmpty_);
+
+        connect(commandPaletteQuery_, &QLineEdit::textChanged, this, [this]() {
+            renderCommandPaletteResults();
+        });
+        connect(commandPaletteQuery_, &QLineEdit::returnPressed, this, [this]() {
+            const QVector<DexTextActions::HostActionItem> matches =
+                DexTextEditorUi::filterCommandPaletteActions(availableActions(), commandPaletteQuery_->text());
+            auto enabled = std::find_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
+                return action.enabled;
+            });
+            if (enabled != matches.end()) {
+                hideCommandPalette();
+                executeAction(enabled->actionId);
+            }
+        });
+
+        return palette;
     }
 
     QFrame *buildActionStrip() {
@@ -291,16 +359,7 @@ private:
         headerLayout->setContentsMargins(0, 0, 0, 0);
         headerLayout->setSpacing(0);
 
-        auto *tab = makePanel("textEditorDocumentTab", "workbench.editor.tabs.active_document");
-        tab->setFixedWidth(176);
-        setComponentState(tab, "active");
-        auto *tabLayout = new QHBoxLayout(tab);
-        tabLayout->setContentsMargins(
-            dex_ui::text_editor_metrics::section_gap,
-            0,
-            dex_ui::text_editor_metrics::panel_padding,
-            0);
-        tabLayout->addWidget(makeTextEditorLabel("scratch.txt", "textEditorSurfaceTitle", "workbench.editor.tabs.active_document.label"));
+        auto *tab = DexTextEditorUi::makeDocumentTab("scratch.txt", "workbench.editor.tabs.active_document");
         headerLayout->addWidget(tab);
         editorStatus_ = makeTextEditorLabel("ready", "textEditorSurfaceEmpty", "workbench.editor.status.summary");
         headerLayout->addWidget(editorStatus_, 1);
@@ -324,6 +383,17 @@ private:
             dex_ui::text_editor_metrics::panel_padding,
             0);
         layout->addWidget(cursorStatus_);
+        snapshotStatus_ = makeTextEditorLabel(
+            "visible rows 1-1 | scroll 0/0 | action none/default",
+            "textEditorMonoLabel",
+            "workbench.editor.snapshot");
+        snapshotStatus_->setProperty("componentState", "empty");
+        snapshotStatus_->setContentsMargins(
+            dex_ui::text_editor_metrics::panel_padding,
+            0,
+            dex_ui::text_editor_metrics::panel_padding,
+            0);
+        layout->addWidget(snapshotStatus_);
         return surface;
     }
 
@@ -408,52 +478,11 @@ private:
         return shelf;
     }
 
-    QPushButton *makeActionButton(const QString &label, const QString &uiPath) const {
-        auto *button = new QPushButton(label);
-        button->setObjectName("textEditorActionButton");
-        button->setProperty("uiPath", uiPath);
-        button->setProperty("componentState", "default");
-        button->setMinimumWidth(0);
-        button->setFixedHeight(dex_ui::text_editor_metrics::toolbar_button_height);
-        button->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
-        return button;
-    }
-
-    QPlainTextEdit *makeOutputBox(const QString &placeholder, const QString &uiPath) const {
-        auto *box = new QPlainTextEdit;
-        box->setObjectName("textEditorOutputPreview");
-        box->setProperty("uiPath", uiPath);
-        box->setProperty("componentState", "empty");
-        box->setReadOnly(true);
-        box->setMinimumWidth(0);
-        box->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
-        box->setMinimumHeight(dex_ui::text_editor_metrics::fixture_result_min_height);
-        box->setPlaceholderText(placeholder);
-        return box;
-    }
-
-    QFrame *makeOutputPanel(const QString &title, QPlainTextEdit *output, const QString &uiPath) const {
-        auto *panel = makePanel("textEditorFixturePanel", uiPath);
-        panel->setMinimumWidth(0);
-        panel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
-        setComponentState(panel, "empty");
-        auto *layout = new QVBoxLayout(panel);
-        layout->setContentsMargins(
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding_dense,
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding_dense);
-        layout->setSpacing(dex_ui::text_editor_metrics::region_gap);
-        layout->addWidget(makeTextEditorLabel(title, "textEditorSurfaceTitle", uiPath + ".title"));
-        layout->addWidget(output, 1);
-        return panel;
-    }
-
-    void rebuildActionButtons() {
-        if (!actionsLayout_) {
-            return;
+    QVector<DexTextActions::HostActionItem> availableActions() {
+        if (!editor_) {
+            actionInventorySource_ = "C++ fixture fallback";
+            return DexTextActions::renderHostActionItems("", {});
         }
-        clearTextEditorLayout(actionsLayout_);
         QString actionError;
         QVector<DexTextActions::HostActionItem> actions =
             DexTextEditorRust::renderActionsWithRunner(editor_->toPlainText(), currentInput(), &actionError);
@@ -461,6 +490,84 @@ private:
         if (actions.isEmpty()) {
             actions = DexTextActions::renderHostActionItems(editor_->toPlainText(), currentInput());
         }
+        return actions;
+    }
+
+    void renderCommandPaletteResults() {
+        if (!commandPaletteResultsLayout_) {
+            return;
+        }
+        clearTextEditorLayout(commandPaletteResultsLayout_);
+        const QVector<DexTextActions::HostActionItem> matches =
+            DexTextEditorUi::filterCommandPaletteActions(availableActions(), commandPaletteQuery_ ? commandPaletteQuery_->text() : QString());
+        const auto selected = std::find_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.enabled;
+        });
+        bool sawDisabled = false;
+        for (const DexTextActions::HostActionItem &action : matches) {
+            const bool isSelected = selected != matches.end() && action.actionId == selected->actionId;
+            const QString uiPath = QString("workbench.palette.action.%1").arg(actionPathSuffix(action.actionId));
+            auto *button = makeActionButton(action.label, uiPath);
+            button->setObjectName("textEditorCommandPaletteRow");
+            button->setProperty("actionId", action.actionId);
+            button->setProperty("category", action.category);
+            button->setProperty("hotkeyLabel", action.hotkeyLabel);
+            button->setProperty("componentState", action.enabled ? (isSelected ? "selected" : "default") : "disabled");
+            button->setEnabled(action.enabled);
+            sawDisabled = sawDisabled || !action.enabled;
+            button->setToolTip(action.hotkeyLabel.isEmpty()
+                ? action.tooltip + (action.disabledReason.isEmpty() ? QString() : "\n" + action.disabledReason)
+                : action.tooltip + "\n" + action.hotkeyLabel);
+            connect(button, &QPushButton::clicked, this, [this, action]() {
+                hideCommandPalette();
+                executeAction(action.actionId);
+            });
+            commandPaletteResultsLayout_->addWidget(button);
+        }
+        if (commandPaletteEmpty_) {
+            if (matches.isEmpty()) {
+                commandPaletteEmpty_->setText("No Text Editor command matches");
+                setComponentState(commandPaletteEmpty_, "empty");
+            } else {
+                commandPaletteEmpty_->setText(QString("%1 command%2%3")
+                    .arg(matches.size())
+                    .arg(matches.size() == 1 ? "" : "s")
+                    .arg(sawDisabled ? " | disabled commands preserved" : ""));
+                setComponentState(commandPaletteEmpty_, sawDisabled ? QString("disabled") : QString("default"));
+            }
+        }
+    }
+
+    void showCommandPalette() {
+        if (!commandPalette_) {
+            return;
+        }
+        commandPalette_->setVisible(true);
+        setComponentState(commandPalette_, "open");
+        renderCommandPaletteResults();
+        if (commandPaletteQuery_) {
+            commandPaletteQuery_->setFocus();
+            commandPaletteQuery_->selectAll();
+        }
+    }
+
+    void hideCommandPalette() {
+        if (!commandPalette_) {
+            return;
+        }
+        setComponentState(commandPalette_, "closed");
+        commandPalette_->setVisible(false);
+        if (editor_) {
+            editor_->setFocus();
+        }
+    }
+
+    void rebuildActionButtons() {
+        if (!actionsLayout_) {
+            return;
+        }
+        clearTextEditorLayout(actionsLayout_);
+        const QVector<DexTextActions::HostActionItem> actions = availableActions();
         controller_->setActionInventory(actions.size(), DexTextActions::textActionFixtures().size());
         QVector<DexTextActions::HostActionItem> toolbarActions;
         for (const DexTextActions::HostActionItem &action : actions) {
@@ -536,6 +643,8 @@ private:
         activeActionId_ = actionId;
         activeActionState_ = "running";
         rebuildActionButtons();
+        renderCommandPaletteResults();
+        updateEditorStatus();
 
         DexTextEditorRust::ActionRequest request;
         request.actionId = actionId;
@@ -550,6 +659,7 @@ private:
         }
         renderRustResult(actionId, result);
         rebuildActionButtons();
+        renderCommandPaletteResults();
         updateEditorStatus();
     }
 
@@ -713,6 +823,8 @@ private:
                 activeActionId_.clear();
                 activeActionState_ = "default";
                 rebuildActionButtons();
+                renderCommandPaletteResults();
+                updateEditorStatus();
             }
         });
     }
@@ -767,6 +879,16 @@ private:
     void updateEditorStatus() {
         const QTextCursor cursor = editor_->textCursor();
         const QString selectionText = selectedText();
+        const int lineCount = std::max(1, editor_->document()->blockCount());
+        const int characterCount = std::max(0, static_cast<int>(editor_->toPlainText().size()));
+        QScrollBar *scrollBar = editor_->verticalScrollBar();
+        const int scrollValue = scrollBar ? scrollBar->value() : 0;
+        const int scrollMaximum = scrollBar ? scrollBar->maximum() : 0;
+        const int visibleStart = std::min(lineCount, scrollValue + 1);
+        const int visibleRows = std::max(1, editor_->viewport()->height() / std::max(1, editor_->fontMetrics().height()));
+        const int visibleEnd = std::min(lineCount, visibleStart + visibleRows - 1);
+        const QString cursorText = QString("Ln %1, Col %2").arg(cursor.blockNumber() + 1).arg(cursor.positionInBlock() + 1);
+        const QString selectionSummary = selectionText.isEmpty() ? QString("selection: none") : QString("selection: %1 chars").arg(selectionText.size());
         cursorStatus_->setText(QString("Ln %1, Col %2        UTF-8        LF        selection: %3")
                                    .arg(cursor.blockNumber() + 1)
                                    .arg(cursor.positionInBlock() + 1)
@@ -775,12 +897,39 @@ private:
         editorStatus_->setText(QString("actions: %1 | fixtures: %2")
                                    .arg(controller_->state().actionCount)
                                    .arg(DexTextActions::textActionFixtures().size()));
-        controller_->setDocumentFacts(
-            "scratch.txt",
-            editor_->document()->blockCount(),
-            editor_->toPlainText().size(),
-            QString("Ln %1, Col %2").arg(cursor.blockNumber() + 1).arg(cursor.positionInBlock() + 1),
-            selectionText.isEmpty() ? QString("selection: none") : QString("selection: %1 chars").arg(selectionText.size()));
+        if (snapshotStatus_) {
+            snapshotStatus_->setText(QString("visible rows %1-%2 | scroll %3/%4 | action %5/%6")
+                .arg(visibleStart)
+                .arg(visibleEnd)
+                .arg(scrollValue)
+                .arg(scrollMaximum)
+                .arg(activeActionId_.isEmpty() ? QString("none") : activeActionId_)
+                .arg(activeActionState_));
+            snapshotStatus_->setProperty("snapshotDocumentName", "scratch.txt");
+            snapshotStatus_->setProperty("snapshotLineCount", lineCount);
+            snapshotStatus_->setProperty("snapshotCharacterCount", characterCount);
+            snapshotStatus_->setProperty("snapshotVisibleBlockStart", visibleStart);
+            snapshotStatus_->setProperty("snapshotVisibleBlockEnd", visibleEnd);
+            snapshotStatus_->setProperty("snapshotScrollValue", scrollValue);
+            snapshotStatus_->setProperty("snapshotScrollMaximum", scrollMaximum);
+            snapshotStatus_->setProperty("snapshotActiveActionId", activeActionId_.isEmpty() ? QString("none") : activeActionId_);
+            snapshotStatus_->setProperty("snapshotActiveActionState", activeActionState_);
+        }
+        DexTextEditorWorkspace::TextEditorDisplaySnapshot snapshot;
+        snapshot.documentName = "scratch.txt";
+        snapshot.lineCount = lineCount;
+        snapshot.characterCount = characterCount;
+        snapshot.cursorSummary = cursorText;
+        snapshot.selectionSummary = selectionSummary;
+        snapshot.visibleBlockStart = visibleStart;
+        snapshot.visibleBlockEnd = visibleEnd;
+        snapshot.verticalScrollValue = scrollValue;
+        snapshot.verticalScrollMaximum = scrollMaximum;
+        snapshot.activeActionId = activeActionId_.isEmpty() ? QString("none") : activeActionId_;
+        snapshot.activeActionState = activeActionState_;
+        snapshot.lastResultSummary = controller_->state().lastResultSummary;
+        snapshot.lastReceiptSummary = controller_->state().lastReceiptSummary;
+        controller_->setEditorSnapshot(snapshot);
     }
 
     QPlainTextEdit *editor_ = nullptr;
@@ -789,8 +938,13 @@ private:
     QComboBox *fixturePicker_ = nullptr;
     QLabel *editorStatus_ = nullptr;
     QLabel *cursorStatus_ = nullptr;
+    QLabel *snapshotStatus_ = nullptr;
     QLabel *fixtureStatus_ = nullptr;
     QFrame *actionStrip_ = nullptr;
+    QFrame *commandPalette_ = nullptr;
+    QLineEdit *commandPaletteQuery_ = nullptr;
+    QLabel *commandPaletteEmpty_ = nullptr;
+    QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
     QGridLayout *actionsLayout_ = nullptr;
     TextEditorWorkspaceController *controller_ = nullptr;
     int actionColumnCount_ = 0;
@@ -801,6 +955,7 @@ private:
 
 QFrame *makeContextPanel(const QString &title, const QStringList &lines, const QString &uiPath, const QString &state = "empty") {
     auto *panel = makePanel("textEditorContextPanel", uiPath);
+    applyPanelDescriptor(panel, uiPath);
     setComponentState(panel, state);
     auto *layout = new QVBoxLayout(panel);
     layout->setContentsMargins(
@@ -822,6 +977,7 @@ QFrame *makeContextPanel(const QString &title, const QStringList &lines, const Q
 QFrame *makeOptionsPanel(TextEditorWorkspaceController *controller) {
     const TextEditorWorkspaceState &state = controller->state();
     auto *panel = makePanel("textEditorContextPanel", "workbench.inspector.text_editor.options");
+    applyPanelDescriptor(panel, "workbench.inspector.text_editor.options");
     setComponentState(panel, "default");
     auto *layout = new QVBoxLayout(panel);
     layout->setContentsMargins(
@@ -886,6 +1042,7 @@ QFrame *makeOptionsPanel(TextEditorWorkspaceController *controller) {
 
 QFrame *makeWorkspaceStatePanel(TextEditorWorkspaceController *controller) {
     const TextEditorWorkspaceState &state = controller->state();
+    const DexTextEditorWorkspace::TextEditorDisplaySnapshot snapshot = state.snapshot;
     return makeContextPanel(
         "WORKSPACE STATE",
         {
@@ -899,6 +1056,9 @@ QFrame *makeWorkspaceStatePanel(TextEditorWorkspaceController *controller) {
                 .arg(dex_ui::text_editor_content_limits::max_output_preview_chars),
             state.cursorSummary,
             state.selectionSummary,
+            QString("visible rows: %1-%2").arg(snapshot.visibleBlockStart).arg(snapshot.visibleBlockEnd),
+            QString("scroll: %1/%2").arg(snapshot.verticalScrollValue).arg(snapshot.verticalScrollMaximum),
+            "active action: " + snapshot.activeActionId + " / " + snapshot.activeActionState,
         },
         "workbench.inspector.text_editor.context",
         state.componentState);

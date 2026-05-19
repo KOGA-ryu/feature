@@ -1,6 +1,7 @@
 #include "project_rail.h"
 
 #include <QHBoxLayout>
+#include <QHash>
 #include <QLabel>
 #include <QMouseEvent>
 #include <QScrollArea>
@@ -11,6 +12,7 @@
 #include "app_state_helpers.h"
 #include "project_rail_rows.h"
 #include "render_helpers.h"
+#include "text_editor_ui.h"
 #include "ui_rules.h"
 
 namespace {
@@ -64,31 +66,6 @@ void setRailWorkspace(QFrame *rail, QWidget *railBody, QFrame *settingsRow, cons
     rail->style()->polish(rail);
     polishWorkspaceWidget(railBody, workspace);
     polishWorkspaceWidget(settingsRow, workspace);
-}
-
-QFrame *makeTextEditorBucket(const QString &title, const QString &note, const QString &uiPath) {
-    auto *bucket = new QFrame;
-    bucket->setObjectName("textEditorRailBucket");
-    bucket->setProperty("uiPath", uiPath);
-    bucket->setMinimumHeight(dex_ui::text_editor_metrics::rail_bucket_height);
-
-    auto *layout = new QVBoxLayout(bucket);
-    layout->setContentsMargins(
-        dex_ui::text_editor_metrics::panel_padding,
-        dex_ui::text_editor_metrics::panel_padding_dense,
-        dex_ui::text_editor_metrics::panel_padding,
-        dex_ui::text_editor_metrics::panel_padding_dense);
-    layout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
-
-    auto *titleLabel = makeLabel(title, "textEditorBucketTitle");
-    titleLabel->setProperty("uiPath", uiPath + ".title");
-    layout->addWidget(titleLabel);
-
-    auto *noteLabel = makeLabel(note, "textEditorBucketNote");
-    noteLabel->setProperty("uiPath", uiPath + ".empty_state");
-    layout->addWidget(noteLabel);
-
-    return bucket;
 }
 
 } // namespace
@@ -223,10 +200,21 @@ void ProjectRail::setTextEditorState() {
     auto *empty = makeLabel("Blank workspace", "mutedLabel");
     empty->setProperty("uiPath", "workbench.rail.text_editor.empty_state");
     listLayout_->addWidget(empty);
-    listLayout_->addWidget(makeTextEditorBucket("Documents", "No document open", "workbench.rail.text_editor.documents"));
-    listLayout_->addWidget(makeTextEditorBucket("Clipboard", "No clipboard capture", "workbench.rail.text_editor.clipboard"));
-    listLayout_->addWidget(makeTextEditorBucket("Drafts", "No drafts saved", "workbench.rail.text_editor.drafts"));
-    listLayout_->addWidget(makeTextEditorBucket("Fixtures", "No fixture selected", "workbench.rail.text_editor.fixtures"));
+    const QHash<QString, QString> notes = {
+        {"documents", "No document open"},
+        {"clipboard", "No clipboard capture"},
+        {"drafts", "No drafts saved"},
+        {"fixtures", "No fixture selected"},
+    };
+    for (const DexTextEditorUi::TextEditorPanelDescriptor &descriptor : DexTextEditorUi::textEditorPanelDescriptors()) {
+        if (descriptor.position != DexTextEditorUi::PanelPosition::Left) {
+            continue;
+        }
+        listLayout_->addWidget(DexTextEditorUi::makeRailBucket(
+            descriptor.persistentName,
+            notes.value(descriptor.key),
+            descriptor));
+    }
     listLayout_->addStretch(1);
 }
 

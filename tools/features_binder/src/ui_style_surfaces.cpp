@@ -135,6 +135,42 @@ QString textEditorWorkbenchQss() {
             border: 1px solid #dfe5eb;
             border-radius: %6px;
         }
+        QFrame#textEditorCommandPalette {
+            background: #ffffff;
+            border: 1px solid #b9c4cf;
+            border-radius: %6px;
+        }
+        QLineEdit#textEditorCommandPaletteInput {
+            background: #fbfcfd;
+            color: #151b23;
+            border: 1px solid #c8d0d8;
+            border-radius: 5px;
+            min-height: 28px;
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+        QPushButton#textEditorCommandPaletteRow {
+            background: #ffffff;
+            color: #1f2933;
+            border: 1px solid #d8dee5;
+            border-radius: %7px;
+            min-height: 26px;
+            max-height: 26px;
+            padding: 2px 8px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        QPushButton#textEditorCommandPaletteRow[componentState="selected"] {
+            background: #eaf3ff;
+            border-color: #4898ff;
+            color: #12395c;
+        }
+        QPushButton#textEditorCommandPaletteRow[componentState="disabled"] {
+            background: #f5f7f9;
+            border-color: #d8dee5;
+            color: #7b8794;
+        }
         QFrame#textEditorToolbarDivider {
             background: #d7dde3;
             border: 0;

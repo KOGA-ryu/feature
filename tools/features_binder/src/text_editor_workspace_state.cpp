@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "text_editor_ui.h"
+
 namespace DexTextEditorWorkspace {
 
 namespace {
@@ -80,6 +82,31 @@ void TextEditorWorkspaceController::setDocumentFacts(
     emit documentStateChanged();
 }
 
+void TextEditorWorkspaceController::setEditorSnapshot(const TextEditorDisplaySnapshot &snapshot) {
+    TextEditorDisplaySnapshot normalized = snapshot;
+    normalized.documentName = normalizedState(normalized.documentName, "scratch.txt");
+    normalized.lineCount = std::max(1, normalized.lineCount);
+    normalized.characterCount = std::max(0, normalized.characterCount);
+    normalized.cursorSummary = normalizedState(normalized.cursorSummary, "Ln 1, Col 1");
+    normalized.selectionSummary = normalizedState(normalized.selectionSummary, "selection: none");
+    normalized.visibleBlockStart = std::max(1, normalized.visibleBlockStart);
+    normalized.visibleBlockEnd = std::max(normalized.visibleBlockStart, normalized.visibleBlockEnd);
+    normalized.verticalScrollValue = std::max(0, normalized.verticalScrollValue);
+    normalized.verticalScrollMaximum = std::max(normalized.verticalScrollValue, normalized.verticalScrollMaximum);
+    normalized.activeActionId = normalizedState(normalized.activeActionId, "none");
+    normalized.activeActionState = normalizedState(normalized.activeActionState, "default");
+    normalized.lastResultSummary = normalizedState(normalized.lastResultSummary, "No action has run.");
+    normalized.lastReceiptSummary = normalizedState(normalized.lastReceiptSummary, "No receipt yet.");
+
+    state_.snapshot = normalized;
+    state_.documentName = normalized.documentName;
+    state_.documentLines = normalized.lineCount;
+    state_.documentCharacters = normalized.characterCount;
+    state_.cursorSummary = normalized.cursorSummary;
+    state_.selectionSummary = normalized.selectionSummary;
+    emit documentStateChanged();
+}
+
 void TextEditorWorkspaceController::setActionInput(
     const QString &language,
     const QString &source,
@@ -125,16 +152,25 @@ void TextEditorWorkspaceController::setFixtureStatus(const QString &fixtureStatu
     emit resultStateChanged();
 }
 
+void TextEditorWorkspaceController::requestCommandPalette() {
+    emit commandPaletteRequested();
+}
+
 QStringList requiredTextEditorUiPaths() {
-    return {
+    QStringList uiPaths = {
         "workbench.rail.text_editor.documents",
         "workbench.rail.text_editor.clipboard",
         "workbench.rail.text_editor.drafts",
         "workbench.rail.text_editor.fixtures",
         "workbench.toolbar.primary",
+        "workbench.palette",
+        "workbench.palette.search.input",
+        "workbench.palette.section.all",
+        "workbench.palette.empty_state",
         "workbench.editor.surface.document",
         "workbench.editor.surface.text",
         "workbench.editor.status.cursor_position",
+        "workbench.editor.snapshot",
         "workbench.inspector.text_editor.options",
         "workbench.inspector.text_editor.context",
         "workbench.inspector.text_editor.result",
@@ -144,6 +180,12 @@ QStringList requiredTextEditorUiPaths() {
         "workbench.fixture_bench.results.expected",
         "workbench.fixture_bench.results.actual",
     };
+    for (const QString &uiPath : DexTextEditorUi::textEditorPanelUiPaths()) {
+        if (!uiPaths.contains(uiPath)) {
+            uiPaths.push_back(uiPath);
+        }
+    }
+    return uiPaths;
 }
 
 } // namespace DexTextEditorWorkspace

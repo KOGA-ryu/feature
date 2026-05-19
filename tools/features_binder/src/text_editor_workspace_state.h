@@ -6,6 +6,22 @@
 
 namespace DexTextEditorWorkspace {
 
+struct TextEditorDisplaySnapshot {
+    QString documentName = "scratch.txt";
+    int lineCount = 1;
+    int characterCount = 0;
+    QString cursorSummary = "Ln 1, Col 1";
+    QString selectionSummary = "selection: none";
+    int visibleBlockStart = 1;
+    int visibleBlockEnd = 1;
+    int verticalScrollValue = 0;
+    int verticalScrollMaximum = 0;
+    QString activeActionId = "none";
+    QString activeActionState = "default";
+    QString lastResultSummary = "No action has run.";
+    QString lastReceiptSummary = "No receipt yet.";
+};
+
 struct TextEditorWorkspaceState {
     QString detailLens = "Dashboard";
     QString focusedSurface = "Editor";
@@ -27,6 +43,7 @@ struct TextEditorWorkspaceState {
     QString lastReceiptSummary = "No receipt yet.";
     QString fixtureStatus = "No fixture run yet.";
     QString componentState = "empty";
+    TextEditorDisplaySnapshot snapshot;
 };
 
 class TextEditorWorkspaceController final : public QObject {
@@ -47,6 +64,7 @@ public:
         int documentCharacters,
         const QString &cursorSummary,
         const QString &selectionSummary);
+    void setEditorSnapshot(const TextEditorDisplaySnapshot &snapshot);
     void setActionInput(
         const QString &language,
         const QString &source,
@@ -60,12 +78,14 @@ public:
         const QString &receiptSummary,
         const QString &componentState);
     void setFixtureStatus(const QString &fixtureStatus, const QString &componentState);
+    void requestCommandPalette();
 
 signals:
     void actionInputChanged();
     void documentStateChanged();
     void resultStateChanged();
     void workspaceStateChanged();
+    void commandPaletteRequested();
 
 private:
     TextEditorWorkspaceState state_;

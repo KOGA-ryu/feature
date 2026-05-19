@@ -86,6 +86,7 @@ add_executable(dex_home_v2
     src/sheet_stack_body.cpp
     src/text_editor_workbench_page.cpp
     src/text_editor_rust_action_client.cpp
+    src/text_editor_ui.cpp
     src/text_editor_workspace_state.cpp
     src/text_editor_workspace_blank.cpp
     src/text_action_proof_model.cpp
@@ -120,6 +121,7 @@ add_executable(dex_home_v2_smoke
     src/repo_binder_template_store.cpp
     src/settings_shortcuts_model.cpp
     src/text_editor_rust_action_client.cpp
+    src/text_editor_ui.cpp
     src/text_editor_workspace_state.cpp
     src/text_action_proof_model.cpp
     tests/state_backend_smoke.cpp
@@ -132,7 +134,7 @@ target_compile_definitions(dex_home_v2_smoke PRIVATE
 )
 
 target_include_directories(dex_home_v2_smoke PRIVATE src)
-target_link_libraries(dex_home_v2_smoke PRIVATE Qt6::Test Qt6::Core)
+target_link_libraries(dex_home_v2_smoke PRIVATE Qt6::Test Qt6::Core Qt6::Widgets)
 
 enable_testing()
 add_test(NAME dex_home_v2_smoke COMMAND dex_home_v2_smoke)

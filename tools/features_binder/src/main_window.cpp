@@ -172,6 +172,11 @@ void DexHomeV2Window::openTextEditorWorkspace() {
     statusBar()->showMessage("Text Editor workspace opened from Shelf", 3000);
 }
 
+void DexHomeV2Window::openTextEditorCommandPalette() {
+    openTextEditorWorkspace();
+    textEditorWorkspace_->requestCommandPalette();
+}
+
 void DexHomeV2Window::setWorkspaceKind(WorkspaceKind workspaceKind) {
     workspaceKind_ = workspaceKind;
     settingsMode_ = workspaceKind_ == WorkspaceKind::Settings;

@@ -8,8 +8,14 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QIODevice>
+#include <QAbstractButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMetaType>
+#include <QPlainTextEdit>
 #include <QPixmap>
 #include <QRect>
+#include <QScrollBar>
 #include <QSize>
 #include <QStringList>
 #include <QTimer>
@@ -56,6 +62,32 @@ QJsonObject dumpWidgetTree(QWidget *widget) {
     const QVariant workspace = widget->property("workspace");
     if (workspace.isValid()) {
         node.insert("workspace", workspace.toString());
+    }
+    QJsonObject properties;
+    for (const QByteArray &propertyName : widget->dynamicPropertyNames()) {
+        const QVariant value = widget->property(propertyName.constData());
+        if (value.typeId() == QMetaType::Bool) {
+            properties.insert(QString::fromUtf8(propertyName), value.toBool());
+        } else if (value.canConvert<int>()) {
+            properties.insert(QString::fromUtf8(propertyName), value.toInt());
+        } else {
+            properties.insert(QString::fromUtf8(propertyName), value.toString());
+        }
+    }
+    if (!properties.isEmpty()) {
+        node.insert("properties", properties);
+    }
+    if (auto *button = qobject_cast<QAbstractButton *>(widget)) {
+        node.insert("text", button->text());
+        node.insert("enabled", button->isEnabled());
+    } else if (auto *label = qobject_cast<QLabel *>(widget)) {
+        node.insert("text", label->text());
+    } else if (auto *lineEdit = qobject_cast<QLineEdit *>(widget)) {
+        node.insert("text", lineEdit->text());
+        node.insert("placeholderText", lineEdit->placeholderText());
+    } else if (auto *plainTextEdit = qobject_cast<QPlainTextEdit *>(widget)) {
+        node.insert("readOnly", plainTextEdit->isReadOnly());
+        node.insert("verticalScrollMaximum", plainTextEdit->verticalScrollBar()->maximum());
     }
 
     const QRect geometry = widget->geometry();
@@ -118,6 +150,7 @@ int main(int argc, char **argv) {
     const QCommandLineOption noSettingsOption("no-settings", "Start on the normal repo binder instead of the active Settings workbench.");
     const QCommandLineOption settingsFeatureOption("settings-feature", "Initial Settings feature, e.g. Project Spec.", "feature", "Project Spec");
     const QCommandLineOption uiTreeDumpOption("ui-tree-dump", "Save visible UI tree JSON and exit.", "path");
+    const QCommandLineOption showCommandPaletteOption("show-command-palette", "Open the Text Editor command palette before capture.");
     parser.addOption(screenshotOption);
     parser.addOption(sizeOption);
     parser.addOption(hideRailOption);
@@ -135,6 +168,7 @@ int main(int argc, char **argv) {
     parser.addOption(noSettingsOption);
     parser.addOption(settingsFeatureOption);
     parser.addOption(uiTreeDumpOption);
+    parser.addOption(showCommandPaletteOption);
     parser.process(app);
 
     const QString repoRoot = parser.isSet(repoRootOption)
@@ -175,6 +209,9 @@ int main(int argc, char **argv) {
     }
     if (parser.isSet(hideContextOption)) {
         window.setRightContextVisible(false);
+    }
+    if (parser.isSet(showCommandPaletteOption)) {
+        window.openTextEditorCommandPalette();
     }
     const QSize size = parseSize(parser.value(sizeOption));
     window.resize(size);

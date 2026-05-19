@@ -17,7 +17,9 @@
 #include "settings_shortcuts_model.h"
 #include "text_action_proof_model.h"
 #include "text_editor_rust_action_client.h"
+#include "text_editor_ui.h"
 #include "text_editor_workspace_state.h"
+#include "ui_rules.h"
 
 class StateBackendSmoke final : public QObject {
     Q_OBJECT
@@ -478,17 +480,15 @@ private slots:
     }
 
     void textEditorToolbarUsesCompactDensityTokens() {
-        const QString rulesPath = QFileInfo::exists("src/ui_rules.h")
-            ? QString("src/ui_rules.h")
-            : QString("../src/ui_rules.h");
-        QFile rules(rulesPath);
-        QVERIFY(rules.open(QIODevice::ReadOnly | QIODevice::Text));
-        const QString source = QString::fromUtf8(rules.readAll());
+        const DexTextEditorUi::UiTokens defaultTokens = DexTextEditorUi::tokens();
+        const DexTextEditorUi::UiTokens compactTokens = DexTextEditorUi::tokens(DexTextEditorUi::UiDensity::Compact);
+        const DexTextEditorUi::UiTokens comfortableTokens = DexTextEditorUi::tokens(DexTextEditorUi::UiDensity::Comfortable);
 
-        QVERIFY(source.contains("toolbar_button_height = 24"));
-        QVERIFY(source.contains("button_radius = 4"));
-        QVERIFY(source.contains("panel_padding_dense = 6"));
-        QVERIFY(source.contains("action_strip_height = 64"));
+        QCOMPARE(defaultTokens.toolbarButtonHeight, 24);
+        QCOMPARE(defaultTokens.buttonRadius, 4);
+        QCOMPARE(defaultTokens.panelPaddingDense, 6);
+        QVERIFY(compactTokens.regionGap < defaultTokens.regionGap);
+        QVERIFY(comfortableTokens.regionGap > defaultTokens.regionGap);
     }
 
     void textEditorWorkspaceRequiredUiPathsCoverBucketHierarchy() {
@@ -496,9 +496,16 @@ private slots:
 
         QVERIFY(paths.contains("workbench.rail.text_editor.documents"));
         QVERIFY(paths.contains("workbench.rail.text_editor.clipboard"));
+        QVERIFY(paths.contains("workbench.rail.text_editor.drafts"));
+        QVERIFY(paths.contains("workbench.rail.text_editor.fixtures"));
         QVERIFY(paths.contains("workbench.toolbar.primary"));
+        QVERIFY(paths.contains("workbench.palette"));
+        QVERIFY(paths.contains("workbench.palette.search.input"));
+        QVERIFY(paths.contains("workbench.palette.section.all"));
+        QVERIFY(paths.contains("workbench.palette.empty_state"));
         QVERIFY(paths.contains("workbench.editor.surface.document"));
         QVERIFY(paths.contains("workbench.editor.surface.text"));
+        QVERIFY(paths.contains("workbench.editor.snapshot"));
         QVERIFY(paths.contains("workbench.inspector.text_editor.options"));
         QVERIFY(paths.contains("workbench.inspector.text_editor.context"));
         QVERIFY(paths.contains("workbench.inspector.text_editor.result"));
@@ -506,6 +513,69 @@ private slots:
         QVERIFY(paths.contains("workbench.fixture_bench"));
         QVERIFY(paths.contains("workbench.fixture_bench.results.expected"));
         QVERIFY(paths.contains("workbench.fixture_bench.results.actual"));
+    }
+
+    void textEditorPanelDescriptorsStayScopedToTextEditor() {
+        const QVector<DexTextEditorUi::TextEditorPanelDescriptor> panels =
+            DexTextEditorUi::textEditorPanelDescriptors();
+
+        QCOMPARE(panels.size(), 8);
+        QCOMPARE(
+            DexTextEditorUi::textEditorPanelKeys(),
+            QStringList({"documents", "clipboard", "drafts", "fixtures", "action_options", "workspace_state", "last_result", "receipt"}));
+        for (const DexTextEditorUi::TextEditorPanelDescriptor &panel : panels) {
+            QVERIFY(panel.uiPath.contains("text_editor"));
+            QVERIFY(!panel.uiPath.contains("repo"));
+            QVERIFY(!panel.uiPath.contains("agent"));
+            QVERIFY(panel.startsOpen);
+            QVERIFY(panel.enabled);
+            if (panel.position == DexTextEditorUi::PanelPosition::Left) {
+                QCOMPARE(panel.defaultSize, dex_ui::text_editor_metrics::rail_width);
+                QCOMPARE(panel.minSize, dex_ui::text_editor_metrics::rail_width);
+            } else {
+                QCOMPARE(panel.defaultSize, dex_ui::text_editor_metrics::inspector_width);
+                QCOMPARE(panel.minSize, dex_ui::text_editor_metrics::inspector_width_min);
+            }
+        }
+    }
+
+    void textEditorCommandPaletteFilteringPreservesDisabledActions() {
+        const QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("", {});
+        const QVector<DexTextActions::HostActionItem> matches =
+            DexTextEditorUi::filterCommandPaletteActions(actions, "Clean");
+
+        QVERIFY(!matches.isEmpty());
+        const auto cleanIt = std::find_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.actionId == "text.clean_basic";
+        });
+        QVERIFY(cleanIt != matches.end());
+        QVERIFY(!cleanIt->enabled);
+        QCOMPARE(cleanIt->disabledReason, QString("document and input text are empty"));
+    }
+
+    void textEditorSnapshotNormalizesBounds() {
+        DexTextEditorWorkspace::TextEditorWorkspaceController controller;
+        DexTextEditorWorkspace::TextEditorDisplaySnapshot snapshot;
+        snapshot.documentName = "";
+        snapshot.lineCount = -2;
+        snapshot.characterCount = -4;
+        snapshot.visibleBlockStart = -1;
+        snapshot.visibleBlockEnd = -7;
+        snapshot.verticalScrollValue = -9;
+        snapshot.verticalScrollMaximum = -1;
+        snapshot.activeActionId = "";
+
+        controller.setEditorSnapshot(snapshot);
+
+        QCOMPARE(controller.state().snapshot.documentName, QString("scratch.txt"));
+        QCOMPARE(controller.state().snapshot.lineCount, 1);
+        QCOMPARE(controller.state().snapshot.characterCount, 0);
+        QCOMPARE(controller.state().snapshot.visibleBlockStart, 1);
+        QCOMPARE(controller.state().snapshot.visibleBlockEnd, 1);
+        QCOMPARE(controller.state().snapshot.verticalScrollValue, 0);
+        QCOMPARE(controller.state().snapshot.verticalScrollMaximum, 0);
+        QCOMPARE(controller.state().snapshot.activeActionId, QString("none"));
     }
 
     void textActionProofModelDisablesEmptyCleanupHonestly() {

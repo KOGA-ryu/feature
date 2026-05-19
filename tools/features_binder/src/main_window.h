@@ -30,6 +30,7 @@ public:
     void setSelectedProject(const QString &projectId);
     void setSettingsMode(bool enabled);
     void setSettingsFeature(const QString &featureName);
+    void openTextEditorCommandPalette();
 
 private:
     enum class WorkspaceKind {

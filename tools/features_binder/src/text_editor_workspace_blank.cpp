@@ -125,6 +125,15 @@ QString receiptText(const DexTextEditorRust::ReceiptSummary &receipt) {
     return lines.join('\n');
 }
 
+QString resultReceiptText(const DexTextEditorRust::ActionResult &result) {
+    QStringList sections{receiptText(result.receipt)};
+    const QString metadata = DexTextEditorRust::payloadMetadataSummary(result.payloadMetadata);
+    if (!metadata.isEmpty()) {
+        sections << metadata;
+    }
+    return sections.join("\n\n");
+}
+
 QString fixtureSummaryText(const DexTextActions::TextActionFixtureSuiteResult &suite) {
     QStringList lines;
     lines << suite.summary;
@@ -678,8 +687,9 @@ private:
         }
 
         const QString outputText = result.hasClipboardText ? result.clipboardText : result.displayText;
+        const QString receiptSummary = resultReceiptText(result);
         setPreviewText(actual_, outputText, dex_ui::text_editor_content_limits::max_output_preview_chars);
-        setPreviewText(expected_, receiptText(result.receipt), dex_ui::text_editor_content_limits::max_receipt_preview_chars);
+        setPreviewText(expected_, receiptSummary, dex_ui::text_editor_content_limits::max_receipt_preview_chars);
         const QString clipboardNote = result.hasClipboardText
             && result.clipboardText.size() > dex_ui::text_editor_content_limits::max_clipboard_chars
             ? " | clipboard skipped: over limit"
@@ -695,7 +705,7 @@ private:
             resultActionId,
             result.kind,
             result.displayText + clipboardNote,
-            receiptText(result.receipt),
+            receiptSummary,
             state);
         QTimer::singleShot(1200, this, [this, resultActionId]() {
             if (activeActionId_ == resultActionId && activeActionState_ != "running") {

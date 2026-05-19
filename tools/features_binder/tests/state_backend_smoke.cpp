@@ -315,6 +315,87 @@ private slots:
         QCOMPARE(result.selection.caret.column, 5);
     }
 
+    void parsesTextEditorRustPayloadMetadata() {
+        const QByteArray payload = R"({
+            "ok": true,
+            "result": {
+                "action_id": "text.copy_plain",
+                "kind": "clipboard_payload",
+                "display_text": "Clipboard payload ready.",
+                "clipboard_text": "alpha\nbeta",
+                "payload_metadata": {
+                    "payload_kind": "exact_text",
+                    "export_policy": "full_document",
+                    "used_selection": false,
+                    "fallback_to_full_document": false,
+                    "character_count": 10,
+                    "line_count": 2
+                },
+                "receipt_summary": {
+                    "change_count": 0,
+                    "warning_count": 0,
+                    "changes": [],
+                    "warnings": []
+                },
+                "warnings": []
+            },
+            "editor_text": "alpha\nbeta",
+            "selection": {
+                "anchor": {"line": 0, "column": 0},
+                "caret": {"line": 0, "column": 5}
+            }
+        })";
+
+        const DexTextEditorRust::ActionResult result =
+            DexTextEditorRust::parseActionRunnerResponse(payload);
+
+        QVERIFY(result.ok);
+        QCOMPARE(result.kind, QString("clipboard_payload"));
+        QVERIFY(result.payloadMetadata.valid);
+        QCOMPARE(result.payloadMetadata.payloadKind, QString("exact_text"));
+        QCOMPARE(result.payloadMetadata.exportPolicy, QString("full_document"));
+        QVERIFY(!result.payloadMetadata.usedSelection);
+        QVERIFY(!result.payloadMetadata.fallbackToFullDocument);
+        QCOMPARE(result.payloadMetadata.characterCount, 10);
+        QCOMPARE(result.payloadMetadata.lineCount, 2);
+        QCOMPARE(
+            DexTextEditorRust::payloadMetadataSummary(result.payloadMetadata),
+            QString("payload metadata:\n"
+                    "  kind: exact_text\n"
+                    "  policy: full_document\n"
+                    "  source: full document\n"
+                    "  characters: 10\n"
+                    "  lines: 2\n"
+                    "  fallback_to_full_document: false"));
+    }
+
+    void textEditorResultStateCarriesPayloadMetadataSummary() {
+        DexTextEditorRust::PayloadMetadata metadata;
+        metadata.valid = true;
+        metadata.payloadKind = "exact_text";
+        metadata.exportPolicy = "selected_or_full_document";
+        metadata.usedSelection = false;
+        metadata.fallbackToFullDocument = true;
+        metadata.characterCount = 16;
+        metadata.lineCount = 3;
+
+        DexTextEditorWorkspace::TextEditorWorkspaceController controller;
+        controller.setLastResult(
+            "text.copy_plain",
+            "clipboard_payload",
+            "Clipboard payload ready.",
+            "changes: 0\nwarnings: 0\n\n" + DexTextEditorRust::payloadMetadataSummary(metadata),
+            "success");
+
+        QCOMPARE(controller.state().lastActionId, QString("text.copy_plain"));
+        QCOMPARE(controller.state().lastActionKind, QString("clipboard_payload"));
+        QVERIFY(controller.state().lastReceiptSummary.contains("policy: selected_or_full_document"));
+        QVERIFY(controller.state().lastReceiptSummary.contains("source: full document fallback"));
+        QVERIFY(controller.state().lastReceiptSummary.contains("fallback_to_full_document: true"));
+        QVERIFY(controller.state().lastReceiptSummary.contains("characters: 16"));
+        QVERIFY(controller.state().lastReceiptSummary.contains("lines: 3"));
+    }
+
     void parsesTextEditorRustActionInventory() {
         const QByteArray payload = R"({
             "ok": true,

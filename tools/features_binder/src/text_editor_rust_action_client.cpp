@@ -40,6 +40,23 @@ Selection parseSelection(const QJsonObject &object) {
     return selection;
 }
 
+PayloadMetadata parsePayloadMetadata(const QJsonValue &value) {
+    PayloadMetadata metadata;
+    if (!value.isObject()) {
+        return metadata;
+    }
+
+    const QJsonObject object = value.toObject();
+    metadata.payloadKind = object.value("payload_kind").toString();
+    metadata.exportPolicy = object.value("export_policy").toString();
+    metadata.usedSelection = object.value("used_selection").toBool(false);
+    metadata.fallbackToFullDocument = object.value("fallback_to_full_document").toBool(false);
+    metadata.characterCount = object.value("character_count").toInt(0);
+    metadata.lineCount = object.value("line_count").toInt(0);
+    metadata.valid = true;
+    return metadata;
+}
+
 QStringList stringArray(const QJsonValue &value) {
     QStringList output;
     for (const QJsonValue &entry : value.toArray()) {
@@ -220,6 +237,7 @@ ActionResult parseActionRunnerResponse(const QByteArray &payload) {
         output.clipboardText = result.value("clipboard_text").toString();
         output.hasClipboardText = true;
     }
+    output.payloadMetadata = parsePayloadMetadata(result.value("payload_metadata"));
     output.warnings = stringArray(result.value("warnings"));
 
     const QJsonObject receipt = result.value("receipt_summary").toObject();
@@ -232,6 +250,26 @@ ActionResult parseActionRunnerResponse(const QByteArray &payload) {
         output.error = "runner returned ok=false";
     }
     return output;
+}
+
+QString payloadMetadataSummary(const PayloadMetadata &metadata) {
+    if (!metadata.valid) {
+        return {};
+    }
+
+    const QString source = metadata.usedSelection
+        ? QString("selected text")
+        : (metadata.fallbackToFullDocument ? QString("full document fallback") : QString("full document"));
+
+    return QStringList{
+        "payload metadata:",
+        "  kind: " + metadata.payloadKind,
+        "  policy: " + metadata.exportPolicy,
+        "  source: " + source,
+        QString("  characters: %1").arg(metadata.characterCount),
+        QString("  lines: %1").arg(metadata.lineCount),
+        QString("  fallback_to_full_document: %1").arg(metadata.fallbackToFullDocument ? "true" : "false"),
+    }.join('\n');
 }
 
 QVector<DexTextActions::HostActionItem> renderActionsWithRunner(

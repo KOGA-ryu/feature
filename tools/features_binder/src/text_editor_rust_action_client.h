@@ -33,6 +33,16 @@ struct ReceiptSummary {
     QStringList warnings;
 };
 
+struct PayloadMetadata {
+    QString payloadKind;
+    QString exportPolicy;
+    bool usedSelection = false;
+    bool fallbackToFullDocument = false;
+    int characterCount = 0;
+    int lineCount = 0;
+    bool valid = false;
+};
+
 struct ActionResult {
     bool ok = false;
     QString error;
@@ -41,6 +51,7 @@ struct ActionResult {
     QString displayText;
     QString clipboardText;
     bool hasClipboardText = false;
+    PayloadMetadata payloadMetadata;
     ReceiptSummary receipt;
     QStringList warnings;
     QString editorText;
@@ -51,6 +62,7 @@ QString resolveTextEditorActionRunnerPath();
 QJsonObject requestToJson(const ActionRequest &request);
 QVector<DexTextActions::HostActionItem> parseActionRunnerActions(const QByteArray &payload, QString *error = nullptr);
 ActionResult parseActionRunnerResponse(const QByteArray &payload);
+QString payloadMetadataSummary(const PayloadMetadata &metadata);
 QVector<DexTextActions::HostActionItem> renderActionsWithRunner(
     const QString &documentText,
     const DexTextActions::TextActionProofInput &input,

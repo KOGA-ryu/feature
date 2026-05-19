@@ -207,6 +207,15 @@ for ui_path in (
 palette = nodes["workbench.palette"]
 if palette.get("componentState") != "open":
     raise SystemExit(f"palette did not open for proof: {palette}")
+props = palette.get("properties", {})
+if props.get("paletteOpen") is not True:
+    raise SystemExit(f"paletteOpen proof property is not true: {props}")
+if props.get("focusedSurface") != "Palette":
+    raise SystemExit(f"palette focusedSurface proof property changed: {props}")
+if props.get("selectedActionId") in ("", "none", None):
+    raise SystemExit(f"palette selectedActionId is missing: {props}")
+if int(props.get("selectedRowIndex", -1)) < 0:
+    raise SystemExit(f"palette selectedRowIndex is missing: {props}")
 if not selected_rows:
     raise SystemExit("command palette has no selected command row")
 if len(nodes) < 4:

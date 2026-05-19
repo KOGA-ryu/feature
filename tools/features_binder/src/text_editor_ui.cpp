@@ -173,6 +173,52 @@ QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(
     return matches;
 }
 
+int firstEnabledCommandPaletteIndex(const QVector<DexTextActions::HostActionItem> &actions) {
+    for (int index = 0; index < actions.size(); ++index) {
+        if (actions.at(index).enabled) {
+            return index;
+        }
+    }
+    return -1;
+}
+
+int moveCommandPaletteSelection(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    int currentIndex,
+    int direction) {
+    if (actions.isEmpty()) {
+        return -1;
+    }
+    const int firstEnabled = firstEnabledCommandPaletteIndex(actions);
+    if (firstEnabled < 0) {
+        return -1;
+    }
+    if (direction == 0) {
+        return currentIndex >= 0 && currentIndex < actions.size() && actions.at(currentIndex).enabled
+            ? currentIndex
+            : firstEnabled;
+    }
+
+    const int step = direction > 0 ? 1 : -1;
+    const int start = currentIndex >= 0 && currentIndex < actions.size() ? currentIndex : firstEnabled;
+    for (int offset = 1; offset <= actions.size(); ++offset) {
+        const int candidate = (start + (step * offset) + actions.size()) % actions.size();
+        if (actions.at(candidate).enabled) {
+            return candidate;
+        }
+    }
+    return firstEnabled;
+}
+
+QString commandPaletteSelectedActionId(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    int selectedIndex) {
+    if (selectedIndex < 0 || selectedIndex >= actions.size() || !actions.at(selectedIndex).enabled) {
+        return "none";
+    }
+    return actions.at(selectedIndex).actionId;
+}
+
 void setUiPath(QWidget *widget, const QString &uiPath) {
     widget->setProperty("uiPath", uiPath);
 }

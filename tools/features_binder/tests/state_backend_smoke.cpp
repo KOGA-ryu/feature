@@ -554,6 +554,44 @@ private slots:
         QCOMPARE(cleanIt->disabledReason, QString("document and input text are empty"));
     }
 
+    void textEditorCommandPaletteSelectionSkipsDisabledActions() {
+        QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("", {});
+        const QVector<DexTextActions::HostActionItem> matches =
+            DexTextEditorUi::filterCommandPaletteActions(actions, "");
+
+        const int first = DexTextEditorUi::firstEnabledCommandPaletteIndex(matches);
+        QVERIFY(first >= 0);
+        QVERIFY(matches.at(first).enabled);
+
+        const int next = DexTextEditorUi::moveCommandPaletteSelection(matches, first, 1);
+        QVERIFY(next >= 0);
+        QVERIFY(matches.at(next).enabled);
+        const int enabledCount = std::count_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.enabled;
+        });
+        QVERIFY(next != first || enabledCount == 1);
+
+        QCOMPARE(
+            DexTextEditorUi::commandPaletteSelectedActionId(matches, first),
+            matches.at(first).actionId);
+        QCOMPARE(
+            DexTextEditorUi::commandPaletteSelectedActionId(matches, -1),
+            QString("none"));
+    }
+
+    void textEditorCommandPaletteSelectionHandlesAllDisabledResults() {
+        QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("", {});
+        for (DexTextActions::HostActionItem &action : actions) {
+            action.enabled = false;
+        }
+
+        QCOMPARE(DexTextEditorUi::firstEnabledCommandPaletteIndex(actions), -1);
+        QCOMPARE(DexTextEditorUi::moveCommandPaletteSelection(actions, 0, 1), -1);
+        QCOMPARE(DexTextEditorUi::commandPaletteSelectedActionId(actions, 0), QString("none"));
+    }
+
     void textEditorSnapshotNormalizesBounds() {
         DexTextEditorWorkspace::TextEditorWorkspaceController controller;
         DexTextEditorWorkspace::TextEditorDisplaySnapshot snapshot;

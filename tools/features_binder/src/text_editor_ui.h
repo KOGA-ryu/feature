@@ -59,6 +59,14 @@ QStringList textEditorPanelUiPaths();
 QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(
     const QVector<DexTextActions::HostActionItem> &actions,
     const QString &query);
+int firstEnabledCommandPaletteIndex(const QVector<DexTextActions::HostActionItem> &actions);
+int moveCommandPaletteSelection(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    int currentIndex,
+    int direction);
+QString commandPaletteSelectedActionId(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    int selectedIndex);
 
 void setUiPath(QWidget *widget, const QString &uiPath);
 void setComponentState(QWidget *widget, const QString &state);

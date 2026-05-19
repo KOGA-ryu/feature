@@ -68,6 +68,8 @@ QJsonObject dumpWidgetTree(QWidget *widget) {
         const QVariant value = widget->property(propertyName.constData());
         if (value.typeId() == QMetaType::Bool) {
             properties.insert(QString::fromUtf8(propertyName), value.toBool());
+        } else if (value.typeId() == QMetaType::QString) {
+            properties.insert(QString::fromUtf8(propertyName), value.toString());
         } else if (value.canConvert<int>()) {
             properties.insert(QString::fromUtf8(propertyName), value.toInt());
         } else {

@@ -7,6 +7,8 @@
 #include <QGridLayout>
 #include <QGuiApplication>
 #include <QHBoxLayout>
+#include <QEvent>
+#include <QKeyEvent>
 #include <QKeySequence>
 #include <QLabel>
 #include <QLineEdit>
@@ -266,6 +268,30 @@ public:
     }
 
 private:
+    bool eventFilter(QObject *watched, QEvent *event) override {
+        if (watched == commandPaletteQuery_ && event->type() == QEvent::KeyPress) {
+            auto *keyEvent = static_cast<QKeyEvent *>(event);
+            switch (keyEvent->key()) {
+            case Qt::Key_Escape:
+                hideCommandPalette();
+                return true;
+            case Qt::Key_Down:
+                movePaletteSelection(1);
+                return true;
+            case Qt::Key_Up:
+                movePaletteSelection(-1);
+                return true;
+            case Qt::Key_Return:
+            case Qt::Key_Enter:
+                runSelectedPaletteAction();
+                return true;
+            default:
+                break;
+            }
+        }
+        return QWidget::eventFilter(watched, event);
+    }
+
     void resizeEvent(QResizeEvent *event) override {
         QWidget::resizeEvent(event);
         const int columns = desiredActionColumns();
@@ -293,6 +319,7 @@ private:
         commandPaletteQuery_->setObjectName("textEditorCommandPaletteInput");
         commandPaletteQuery_->setProperty("uiPath", "workbench.palette.search.input");
         commandPaletteQuery_->setPlaceholderText("Search Text Editor actions");
+        commandPaletteQuery_->installEventFilter(this);
         layout->addWidget(commandPaletteQuery_);
 
         auto *results = new QWidget;
@@ -310,18 +337,8 @@ private:
         layout->addWidget(commandPaletteEmpty_);
 
         connect(commandPaletteQuery_, &QLineEdit::textChanged, this, [this]() {
+            paletteSelectedIndex_ = -1;
             renderCommandPaletteResults();
-        });
-        connect(commandPaletteQuery_, &QLineEdit::returnPressed, this, [this]() {
-            const QVector<DexTextActions::HostActionItem> matches =
-                DexTextEditorUi::filterCommandPaletteActions(availableActions(), commandPaletteQuery_->text());
-            auto enabled = std::find_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
-                return action.enabled;
-            });
-            if (enabled != matches.end()) {
-                hideCommandPalette();
-                executeAction(enabled->actionId);
-            }
         });
 
         return palette;
@@ -498,14 +515,14 @@ private:
             return;
         }
         clearTextEditorLayout(commandPaletteResultsLayout_);
-        const QVector<DexTextActions::HostActionItem> matches =
+        paletteMatches_ =
             DexTextEditorUi::filterCommandPaletteActions(availableActions(), commandPaletteQuery_ ? commandPaletteQuery_->text() : QString());
-        const auto selected = std::find_if(matches.begin(), matches.end(), [](const DexTextActions::HostActionItem &action) {
-            return action.enabled;
-        });
+        paletteSelectedIndex_ = DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, 0);
+        updatePaletteProofProperties();
         bool sawDisabled = false;
-        for (const DexTextActions::HostActionItem &action : matches) {
-            const bool isSelected = selected != matches.end() && action.actionId == selected->actionId;
+        for (int index = 0; index < paletteMatches_.size(); ++index) {
+            const DexTextActions::HostActionItem &action = paletteMatches_.at(index);
+            const bool isSelected = index == paletteSelectedIndex_;
             const QString uiPath = QString("workbench.palette.action.%1").arg(actionPathSuffix(action.actionId));
             auto *button = makeActionButton(action.label, uiPath);
             button->setObjectName("textEditorCommandPaletteRow");
@@ -525,17 +542,46 @@ private:
             commandPaletteResultsLayout_->addWidget(button);
         }
         if (commandPaletteEmpty_) {
-            if (matches.isEmpty()) {
+            if (paletteMatches_.isEmpty()) {
                 commandPaletteEmpty_->setText("No Text Editor command matches");
                 setComponentState(commandPaletteEmpty_, "empty");
             } else {
                 commandPaletteEmpty_->setText(QString("%1 command%2%3")
-                    .arg(matches.size())
-                    .arg(matches.size() == 1 ? "" : "s")
+                    .arg(paletteMatches_.size())
+                    .arg(paletteMatches_.size() == 1 ? "" : "s")
                     .arg(sawDisabled ? " | disabled commands preserved" : ""));
                 setComponentState(commandPaletteEmpty_, sawDisabled ? QString("disabled") : QString("default"));
             }
         }
+    }
+
+    void updatePaletteProofProperties() {
+        if (!commandPalette_) {
+            return;
+        }
+        const bool isOpen = !commandPalette_->isHidden();
+        commandPalette_->setProperty("paletteOpen", isOpen);
+        commandPalette_->setProperty("focusedSurface", isOpen ? "Palette" : "Editor");
+        commandPalette_->setProperty(
+            "selectedActionId",
+            DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_));
+        commandPalette_->setProperty("selectedRowIndex", paletteSelectedIndex_);
+        commandPalette_->setProperty("resultCount", paletteMatches_.size());
+    }
+
+    void movePaletteSelection(int direction) {
+        paletteSelectedIndex_ =
+            DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, direction);
+        renderCommandPaletteResults();
+    }
+
+    void runSelectedPaletteAction() {
+        const QString actionId = DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_);
+        if (actionId == "none") {
+            return;
+        }
+        hideCommandPalette();
+        executeAction(actionId);
     }
 
     void showCommandPalette() {
@@ -544,7 +590,9 @@ private:
         }
         commandPalette_->setVisible(true);
         setComponentState(commandPalette_, "open");
+        controller_->setFocusedSurface("Palette");
         renderCommandPaletteResults();
+        updatePaletteProofProperties();
         if (commandPaletteQuery_) {
             commandPaletteQuery_->setFocus();
             commandPaletteQuery_->selectAll();
@@ -557,6 +605,8 @@ private:
         }
         setComponentState(commandPalette_, "closed");
         commandPalette_->setVisible(false);
+        controller_->setFocusedSurface("Editor");
+        updatePaletteProofProperties();
         if (editor_) {
             editor_->setFocus();
         }
@@ -945,6 +995,8 @@ private:
     QLineEdit *commandPaletteQuery_ = nullptr;
     QLabel *commandPaletteEmpty_ = nullptr;
     QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
+    QVector<DexTextActions::HostActionItem> paletteMatches_;
+    int paletteSelectedIndex_ = -1;
     QGridLayout *actionsLayout_ = nullptr;
     TextEditorWorkspaceController *controller_ = nullptr;
     int actionColumnCount_ = 0;

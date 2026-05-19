@@ -197,8 +197,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.copy_plain"
                                                                             },
                                                                             "text": "Copy",
                                                                             "uiPath": "workbench.toolbar.primary.copy_plain",
@@ -221,8 +221,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.copy_markdown_block"
                                                                             },
                                                                             "text": "Markdown",
                                                                             "uiPath": "workbench.toolbar.primary.copy_markdown_block",
@@ -245,8 +245,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.copy_prompt_block"
                                                                             },
                                                                             "text": "Prompt",
                                                                             "uiPath": "workbench.toolbar.primary.copy_prompt_block",
@@ -269,8 +269,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.copy_code_fence"
                                                                             },
                                                                             "text": "Fence",
                                                                             "uiPath": "workbench.toolbar.primary.copy_code_fence",
@@ -293,8 +293,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.select_all"
                                                                             },
                                                                             "text": "All",
                                                                             "uiPath": "workbench.toolbar.primary.select_all",
@@ -317,8 +317,8 @@
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                 "_q_stylesheet_maxh": true,
                                                                                 "_q_stylesheet_minh": true,
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "default",
+                                                                                "uiPath": "workbench.toolbar.primary.clean_basic"
                                                                             },
                                                                             "text": "Clean",
                                                                             "uiPath": "workbench.toolbar.primary.clean_basic",
@@ -336,8 +336,8 @@
                                                                     "objectName": "textEditorActionStrip",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": 0,
-                                                                        "uiPath": 0
+                                                                        "componentState": "default",
+                                                                        "uiPath": "workbench.toolbar.primary"
                                                                     },
                                                                     "uiPath": "workbench.toolbar.primary",
                                                                     "visible": true
@@ -361,7 +361,7 @@
                                                                                             "objectName": "textEditorSurfaceTitle",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "uiPath": 0
+                                                                                                "uiPath": "workbench.editor.tabs.active_document.label"
                                                                                             },
                                                                                             "text": "scratch.txt",
                                                                                             "uiPath": "workbench.editor.tabs.active_document.label",
@@ -379,8 +379,8 @@
                                                                                     "objectName": "textEditorDocumentTab",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "componentState": 0,
-                                                                                        "uiPath": 0
+                                                                                        "componentState": "active",
+                                                                                        "uiPath": "workbench.editor.tabs.active_document"
                                                                                     },
                                                                                     "uiPath": "workbench.editor.tabs.active_document",
                                                                                     "visible": true
@@ -398,7 +398,7 @@
                                                                                     "objectName": "textEditorSurfaceEmpty",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "uiPath": 0
+                                                                                        "uiPath": "workbench.editor.status.summary"
                                                                                     },
                                                                                     "text": "actions: 11 | fixtures: 5",
                                                                                     "uiPath": "workbench.editor.status.summary",
@@ -415,7 +415,7 @@
                                                                             "objectName": "textEditorDocumentHeader",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": 0
+                                                                                "uiPath": "workbench.editor.tabs"
                                                                             },
                                                                             "uiPath": "workbench.editor.tabs",
                                                                             "visible": true
@@ -447,8 +447,8 @@
                                                                             "objectName": "textEditorDocumentEditor",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "focused",
+                                                                                "uiPath": "workbench.editor.surface.text"
                                                                             },
                                                                             "readOnly": false,
                                                                             "uiPath": "workbench.editor.surface.text",
@@ -469,8 +469,8 @@
                                                                             "objectName": "textEditorMonoLabel",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "empty",
+                                                                                "uiPath": "workbench.editor.status.cursor_position"
                                                                             },
                                                                             "text": "Ln 1, Col 1        UTF-8        LF        selection: none",
                                                                             "uiPath": "workbench.editor.status.cursor_position",
@@ -490,17 +490,17 @@
                                                                             "objectName": "textEditorMonoLabel",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": 0,
-                                                                                "snapshotActiveActionId": 0,
-                                                                                "snapshotActiveActionState": 0,
+                                                                                "componentState": "empty",
+                                                                                "snapshotActiveActionId": "none",
+                                                                                "snapshotActiveActionState": "default",
                                                                                 "snapshotCharacterCount": 16,
-                                                                                "snapshotDocumentName": 0,
+                                                                                "snapshotDocumentName": "scratch.txt",
                                                                                 "snapshotLineCount": 3,
                                                                                 "snapshotScrollMaximum": 2,
                                                                                 "snapshotScrollValue": 0,
                                                                                 "snapshotVisibleBlockEnd": 3,
                                                                                 "snapshotVisibleBlockStart": 1,
-                                                                                "uiPath": 0
+                                                                                "uiPath": "workbench.editor.snapshot"
                                                                             },
                                                                             "text": "visible rows 1-3 | scroll 0/2 | action none/default",
                                                                             "uiPath": "workbench.editor.snapshot",
@@ -518,8 +518,8 @@
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": 0,
-                                                                        "uiPath": 0
+                                                                        "componentState": "default",
+                                                                        "uiPath": "workbench.editor.surface.document"
                                                                     },
                                                                     "uiPath": "workbench.editor.surface.document",
                                                                     "visible": true
@@ -541,7 +541,7 @@
                                                                                     "objectName": "textEditorSurfaceTitle",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "uiPath": 0
+                                                                                        "uiPath": "workbench.fixture_bench.runner.title"
                                                                                     },
                                                                                     "text": "FIXTURE RUNNER",
                                                                                     "uiPath": "workbench.fixture_bench.runner.title",
@@ -599,8 +599,8 @@
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                                 "_q_stylesheet_maxh": true,
                                                                                                 "_q_stylesheet_minh": true,
-                                                                                                "componentState": 0,
-                                                                                                "uiPath": 0
+                                                                                                "componentState": "default",
+                                                                                                "uiPath": "workbench.fixture_bench.runner.load"
                                                                                             },
                                                                                             "text": "Load Fixture",
                                                                                             "uiPath": "workbench.fixture_bench.runner.load",
@@ -623,8 +623,8 @@
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                                 "_q_stylesheet_maxh": true,
                                                                                                 "_q_stylesheet_minh": true,
-                                                                                                "componentState": 0,
-                                                                                                "uiPath": 0
+                                                                                                "componentState": "default",
+                                                                                                "uiPath": "workbench.fixture_bench.runner.run"
                                                                                             },
                                                                                             "text": "Run Fixture",
                                                                                             "uiPath": "workbench.fixture_bench.runner.run",
@@ -647,8 +647,8 @@
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                                 "_q_stylesheet_maxh": true,
                                                                                                 "_q_stylesheet_minh": true,
-                                                                                                "componentState": 0,
-                                                                                                "uiPath": 0
+                                                                                                "componentState": "default",
+                                                                                                "uiPath": "workbench.fixture_bench.runner.run_all"
                                                                                             },
                                                                                             "text": "Run All",
                                                                                             "uiPath": "workbench.fixture_bench.runner.run_all",
@@ -682,8 +682,8 @@
                                                                                     "objectName": "textEditorSurfaceEmpty",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "componentState": 0,
-                                                                                        "uiPath": 0
+                                                                                        "componentState": "success",
+                                                                                        "uiPath": "workbench.fixture_bench.runner.status"
                                                                                     },
                                                                                     "text": "PASS all fixtures: 5/5",
                                                                                     "uiPath": "workbench.fixture_bench.runner.status",
@@ -701,8 +701,8 @@
                                                                             "objectName": "textEditorFixturePanel",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": 0,
-                                                                                "uiPath": 0
+                                                                                "componentState": "empty",
+                                                                                "uiPath": "workbench.fixture_bench.runner"
                                                                             },
                                                                             "uiPath": "workbench.fixture_bench.runner",
                                                                             "visible": true
@@ -724,7 +724,7 @@
                                                                                             "objectName": "textEditorSurfaceTitle",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "uiPath": 0
+                                                                                                "uiPath": "workbench.fixture_bench.results.expected_panel.title"
                                                                                             },
                                                                                             "text": "EXPECTED",
                                                                                             "uiPath": "workbench.fixture_bench.results.expected_panel.title",
@@ -757,9 +757,9 @@
                                                                                             "objectName": "textEditorOutputPreview",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "componentState": 0,
+                                                                                                "componentState": "empty",
                                                                                                 "scrollsInternally": true,
-                                                                                                "uiPath": 0
+                                                                                                "uiPath": "workbench.fixture_bench.results.expected"
                                                                                             },
                                                                                             "readOnly": true,
                                                                                             "uiPath": "workbench.fixture_bench.results.expected",
@@ -778,8 +778,8 @@
                                                                                     "objectName": "textEditorFixturePanel",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "componentState": 0,
-                                                                                        "uiPath": 0
+                                                                                        "componentState": "empty",
+                                                                                        "uiPath": "workbench.fixture_bench.results.expected_panel"
                                                                                     },
                                                                                     "uiPath": "workbench.fixture_bench.results.expected_panel",
                                                                                     "visible": true
@@ -799,7 +799,7 @@
                                                                                             "objectName": "textEditorSurfaceTitle",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "uiPath": 0
+                                                                                                "uiPath": "workbench.fixture_bench.results.actual_panel.title"
                                                                                             },
                                                                                             "text": "ACTUAL / ACTION OUTPUT",
                                                                                             "uiPath": "workbench.fixture_bench.results.actual_panel.title",
@@ -864,9 +864,9 @@
                                                                                             "objectName": "textEditorOutputPreview",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "componentState": 0,
+                                                                                                "componentState": "empty",
                                                                                                 "scrollsInternally": true,
-                                                                                                "uiPath": 0
+                                                                                                "uiPath": "workbench.fixture_bench.results.actual"
                                                                                             },
                                                                                             "readOnly": true,
                                                                                             "uiPath": "workbench.fixture_bench.results.actual",
@@ -885,8 +885,8 @@
                                                                                     "objectName": "textEditorFixturePanel",
                                                                                     "properties": {
                                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "componentState": 0,
-                                                                                        "uiPath": 0
+                                                                                        "componentState": "empty",
+                                                                                        "uiPath": "workbench.fixture_bench.results.actual_panel"
                                                                                     },
                                                                                     "uiPath": "workbench.fixture_bench.results.actual_panel",
                                                                                     "visible": true
@@ -902,7 +902,7 @@
                                                                             "objectName": "",
                                                                             "properties": {
                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": 0
+                                                                                "uiPath": "workbench.fixture_bench.results"
                                                                             },
                                                                             "uiPath": "workbench.fixture_bench.results",
                                                                             "visible": true
@@ -919,8 +919,8 @@
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": 0,
-                                                                        "uiPath": 0
+                                                                        "componentState": "empty",
+                                                                        "uiPath": "workbench.fixture_bench"
                                                                     },
                                                                     "uiPath": "workbench.fixture_bench",
                                                                     "visible": true
@@ -936,7 +936,7 @@
                                                             "objectName": "textEditorBlankBody",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.editor.workspace"
                                                             },
                                                             "uiPath": "workbench.editor.workspace",
                                                             "visible": true
@@ -995,7 +995,7 @@
                                             "objectName": "textEditorWorkspaceScroll",
                                             "properties": {
                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                "uiPath": 0
+                                                "uiPath": "workbench.editor.scroll"
                                             },
                                             "uiPath": "workbench.editor.scroll",
                                             "visible": true
@@ -1011,7 +1011,7 @@
                                     "objectName": "textEditorWorkbenchPage",
                                     "properties": {
                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                        "uiPath": 0
+                                        "uiPath": "workbench.text_editor"
                                     },
                                     "uiPath": "workbench.text_editor",
                                     "visible": true
@@ -1065,7 +1065,7 @@
                                                     "objectName": "sectionLabel",
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.title"
                                                     },
                                                     "text": "Text Editor",
                                                     "uiPath": "workbench.rail.text_editor.title",
@@ -1084,7 +1084,7 @@
                                                     "objectName": "mutedLabel",
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.empty_state"
                                                     },
                                                     "text": "Blank workspace",
                                                     "uiPath": "workbench.rail.text_editor.empty_state",
@@ -1105,7 +1105,7 @@
                                                             "objectName": "textEditorBucketTitle",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.documents.title"
                                                             },
                                                             "text": "Documents",
                                                             "uiPath": "workbench.rail.text_editor.documents.title",
@@ -1124,7 +1124,7 @@
                                                             "objectName": "textEditorBucketNote",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.documents.empty_state"
                                                             },
                                                             "text": "No document open",
                                                             "uiPath": "workbench.rail.text_editor.documents.empty_state",
@@ -1144,11 +1144,11 @@
                                                         "activationPriority": 10,
                                                         "defaultSize": 208,
                                                         "minSize": 208,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "documents",
+                                                        "panelPosition": "left",
+                                                        "persistentName": "Documents",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.documents"
                                                     },
                                                     "uiPath": "workbench.rail.text_editor.documents",
                                                     "visible": true
@@ -1168,7 +1168,7 @@
                                                             "objectName": "textEditorBucketTitle",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.clipboard.title"
                                                             },
                                                             "text": "Clipboard",
                                                             "uiPath": "workbench.rail.text_editor.clipboard.title",
@@ -1187,7 +1187,7 @@
                                                             "objectName": "textEditorBucketNote",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.clipboard.empty_state"
                                                             },
                                                             "text": "No clipboard capture",
                                                             "uiPath": "workbench.rail.text_editor.clipboard.empty_state",
@@ -1207,11 +1207,11 @@
                                                         "activationPriority": 20,
                                                         "defaultSize": 208,
                                                         "minSize": 208,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "clipboard",
+                                                        "panelPosition": "left",
+                                                        "persistentName": "Clipboard",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.clipboard"
                                                     },
                                                     "uiPath": "workbench.rail.text_editor.clipboard",
                                                     "visible": true
@@ -1231,7 +1231,7 @@
                                                             "objectName": "textEditorBucketTitle",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.drafts.title"
                                                             },
                                                             "text": "Drafts",
                                                             "uiPath": "workbench.rail.text_editor.drafts.title",
@@ -1250,7 +1250,7 @@
                                                             "objectName": "textEditorBucketNote",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.drafts.empty_state"
                                                             },
                                                             "text": "No drafts saved",
                                                             "uiPath": "workbench.rail.text_editor.drafts.empty_state",
@@ -1270,11 +1270,11 @@
                                                         "activationPriority": 30,
                                                         "defaultSize": 208,
                                                         "minSize": 208,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "drafts",
+                                                        "panelPosition": "left",
+                                                        "persistentName": "Drafts",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.drafts"
                                                     },
                                                     "uiPath": "workbench.rail.text_editor.drafts",
                                                     "visible": true
@@ -1294,7 +1294,7 @@
                                                             "objectName": "textEditorBucketTitle",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.fixtures.title"
                                                             },
                                                             "text": "Fixtures",
                                                             "uiPath": "workbench.rail.text_editor.fixtures.title",
@@ -1313,7 +1313,7 @@
                                                             "objectName": "textEditorBucketNote",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.rail.text_editor.fixtures.empty_state"
                                                             },
                                                             "text": "No fixture selected",
                                                             "uiPath": "workbench.rail.text_editor.fixtures.empty_state",
@@ -1333,11 +1333,11 @@
                                                         "activationPriority": 40,
                                                         "defaultSize": 208,
                                                         "minSize": 208,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "fixtures",
+                                                        "panelPosition": "left",
+                                                        "persistentName": "Fixtures",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.rail.text_editor.fixtures"
                                                     },
                                                     "uiPath": "workbench.rail.text_editor.fixtures",
                                                     "visible": true
@@ -1353,7 +1353,7 @@
                                             "objectName": "projectRailBody",
                                             "properties": {
                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                "workspace": 0
+                                                "workspace": "text_editor"
                                             },
                                             "visible": true,
                                             "workspace": "text_editor"
@@ -1431,7 +1431,7 @@
                             "properties": {
                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                 "active": false,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "visible": true,
                             "workspace": "text_editor"
@@ -1447,7 +1447,7 @@
                     "objectName": "projectRail",
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                        "workspace": 0
+                        "workspace": "text_editor"
                     },
                     "visible": true,
                     "workspace": "text_editor"
@@ -1473,7 +1473,7 @@
                                 "firstTab": true,
                                 "lastTab": false,
                                 "tabIndex": 0,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Dash",
                             "visible": true,
@@ -1498,7 +1498,7 @@
                                 "firstTab": false,
                                 "lastTab": false,
                                 "tabIndex": 1,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Editor",
                             "visible": true,
@@ -1523,7 +1523,7 @@
                                 "firstTab": false,
                                 "lastTab": false,
                                 "tabIndex": 2,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Acti",
                             "visible": true,
@@ -1548,7 +1548,7 @@
                                 "firstTab": false,
                                 "lastTab": false,
                                 "tabIndex": 3,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Insp",
                             "visible": true,
@@ -1573,7 +1573,7 @@
                                 "firstTab": false,
                                 "lastTab": false,
                                 "tabIndex": 4,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Fixt",
                             "visible": true,
@@ -1598,7 +1598,7 @@
                                 "firstTab": false,
                                 "lastTab": false,
                                 "tabIndex": 5,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Rece",
                             "visible": true,
@@ -1623,7 +1623,7 @@
                                 "firstTab": false,
                                 "lastTab": true,
                                 "tabIndex": 6,
-                                "workspace": 0
+                                "workspace": "text_editor"
                             },
                             "text": "Proof",
                             "visible": true,
@@ -1640,7 +1640,7 @@
                     "objectName": "detailLensRail",
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                        "workspace": 0
+                        "workspace": "text_editor"
                     },
                     "visible": true,
                     "workspace": "text_editor"
@@ -1668,7 +1668,7 @@
                                                             "objectName": "sectionLabel",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.title"
                                                             },
                                                             "text": "ACTION OPTIONS",
                                                             "uiPath": "workbench.inspector.text_editor.options.title",
@@ -1687,7 +1687,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.source_label"
                                                             },
                                                             "text": "Source",
                                                             "uiPath": "workbench.inspector.text_editor.options.source_label",
@@ -1708,7 +1708,7 @@
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                 "_q_stylesheet_minh": true,
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.source"
                                                             },
                                                             "text": "features_binder",
                                                             "uiPath": "workbench.inspector.text_editor.options.source",
@@ -1727,7 +1727,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.language_label"
                                                             },
                                                             "text": "Language",
                                                             "uiPath": "workbench.inspector.text_editor.options.language_label",
@@ -1748,7 +1748,7 @@
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                 "_q_stylesheet_minh": true,
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.language"
                                                             },
                                                             "text": "text",
                                                             "uiPath": "workbench.inspector.text_editor.options.language",
@@ -1767,7 +1767,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.line_range_label"
                                                             },
                                                             "text": "Line Range",
                                                             "uiPath": "workbench.inspector.text_editor.options.line_range_label",
@@ -1806,8 +1806,8 @@
                                                                         "_q_spinbox_lineedit": "",
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                         "_q_stylesheet_minh": true,
-                                                                        "componentState": 0,
-                                                                        "uiPath": 0
+                                                                        "componentState": "default",
+                                                                        "uiPath": "workbench.inspector.text_editor.options.line_start"
                                                                     },
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_start",
                                                                     "visible": true
@@ -1825,7 +1825,7 @@
                                                                     "objectName": "textEditorSurfaceEmpty",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "uiPath": 0
+                                                                        "uiPath": "workbench.inspector.text_editor.options.line_to"
                                                                     },
                                                                     "text": "to",
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_to",
@@ -1862,8 +1862,8 @@
                                                                         "_q_spinbox_lineedit": "",
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                         "_q_stylesheet_minh": true,
-                                                                        "componentState": 0,
-                                                                        "uiPath": 0
+                                                                        "componentState": "default",
+                                                                        "uiPath": "workbench.inspector.text_editor.options.line_end"
                                                                     },
                                                                     "uiPath": "workbench.inspector.text_editor.options.line_end",
                                                                     "visible": true
@@ -1879,7 +1879,7 @@
                                                             "objectName": "",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.options.line_range"
                                                             },
                                                             "uiPath": "workbench.inspector.text_editor.options.line_range",
                                                             "visible": true
@@ -1899,8 +1899,8 @@
                                                             "objectName": "",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "componentState": 0,
-                                                                "uiPath": 0
+                                                                "componentState": "default",
+                                                                "uiPath": "workbench.inspector.text_editor.options.strip_ansi"
                                                             },
                                                             "text": "Strip ANSI escape codes",
                                                             "uiPath": "workbench.inspector.text_editor.options.strip_ansi",
@@ -1919,14 +1919,14 @@
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                         "activationPriority": 10,
-                                                        "componentState": 0,
+                                                        "componentState": "default",
                                                         "defaultSize": 300,
                                                         "minSize": 280,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "action_options",
+                                                        "panelPosition": "right",
+                                                        "persistentName": "Action Options",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.inspector.text_editor.options"
                                                     },
                                                     "uiPath": "workbench.inspector.text_editor.options",
                                                     "visible": true
@@ -1946,7 +1946,7 @@
                                                             "objectName": "sectionLabel",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.title"
                                                             },
                                                             "text": "WORKSPACE STATE",
                                                             "uiPath": "workbench.inspector.text_editor.context.title",
@@ -1965,7 +1965,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "detail lens: Dashboard",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -1984,7 +1984,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "focused surface: Editor",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2003,7 +2003,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "document: scratch.txt",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2022,7 +2022,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "3 lines | 16 chars",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2041,7 +2041,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "limits: doc 200000 | clipboard 100000 | preview 12000",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2060,7 +2060,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "Ln 1, Col 1",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2079,7 +2079,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "selection: none",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2098,7 +2098,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "visible rows: 1-3",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2117,7 +2117,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "scroll: 0/2",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2136,7 +2136,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.context.line"
                                                             },
                                                             "text": "active action: none / default",
                                                             "uiPath": "workbench.inspector.text_editor.context.line",
@@ -2155,14 +2155,14 @@
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                         "activationPriority": 20,
-                                                        "componentState": 0,
+                                                        "componentState": "success",
                                                         "defaultSize": 300,
                                                         "minSize": 280,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "workspace_state",
+                                                        "panelPosition": "right",
+                                                        "persistentName": "Workspace State",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.inspector.text_editor.context"
                                                     },
                                                     "uiPath": "workbench.inspector.text_editor.context",
                                                     "visible": true
@@ -2182,7 +2182,7 @@
                                                             "objectName": "sectionLabel",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.result.title"
                                                             },
                                                             "text": "LAST RESULT",
                                                             "uiPath": "workbench.inspector.text_editor.result.title",
@@ -2201,7 +2201,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.result.line"
                                                             },
                                                             "text": "action: fixtures.run_all",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
@@ -2220,7 +2220,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.result.line"
                                                             },
                                                             "text": "kind: fixture_suite",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
@@ -2239,7 +2239,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.result.line"
                                                             },
                                                             "text": "summary: PASS all fixtures: 5/5",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
@@ -2258,7 +2258,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.result.line"
                                                             },
                                                             "text": "fixture: PASS all fixtures: 5/5",
                                                             "uiPath": "workbench.inspector.text_editor.result.line",
@@ -2277,14 +2277,14 @@
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                         "activationPriority": 30,
-                                                        "componentState": 0,
+                                                        "componentState": "success",
                                                         "defaultSize": 300,
                                                         "minSize": 280,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "last_result",
+                                                        "panelPosition": "right",
+                                                        "persistentName": "Last Result",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.inspector.text_editor.result"
                                                     },
                                                     "uiPath": "workbench.inspector.text_editor.result",
                                                     "visible": true
@@ -2304,7 +2304,7 @@
                                                             "objectName": "sectionLabel",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.receipts.title"
                                                             },
                                                             "text": "RECEIPT",
                                                             "uiPath": "workbench.inspector.text_editor.receipts.title",
@@ -2323,7 +2323,7 @@
                                                             "objectName": "textEditorSurfaceEmpty",
                                                             "properties": {
                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                "uiPath": 0
+                                                                "uiPath": "workbench.inspector.text_editor.receipts.line"
                                                             },
                                                             "text": "PASS all fixtures: 5/5\nPASS copy_plain_selection\nPASS copy_markdown_rust_block\nPASS copy_prompt_block_source\nPASS clean_basic_receipt\nPASS line_range_clamps",
                                                             "uiPath": "workbench.inspector.text_editor.receipts.line",
@@ -2342,14 +2342,14 @@
                                                     "properties": {
                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                         "activationPriority": 40,
-                                                        "componentState": 0,
+                                                        "componentState": "success",
                                                         "defaultSize": 300,
                                                         "minSize": 280,
-                                                        "panelKey": 0,
-                                                        "panelPosition": 0,
-                                                        "persistentName": 0,
+                                                        "panelKey": "receipt",
+                                                        "panelPosition": "right",
+                                                        "persistentName": "Receipt",
                                                         "startsOpen": true,
-                                                        "uiPath": 0
+                                                        "uiPath": "workbench.inspector.text_editor.receipts"
                                                     },
                                                     "uiPath": "workbench.inspector.text_editor.receipts",
                                                     "visible": true
@@ -2436,7 +2436,7 @@
                     "objectName": "rightContext",
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                        "workspace": 0
+                        "workspace": "text_editor"
                     },
                     "visible": true,
                     "workspace": "text_editor"

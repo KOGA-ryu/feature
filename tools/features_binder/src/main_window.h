@@ -31,6 +31,7 @@ public:
     void setSettingsMode(bool enabled);
     void setSettingsFeature(const QString &featureName);
     void openTextEditorCommandPalette();
+    void runTextEditorCleanupPreviewProof();
 
 private:
     enum class WorkspaceKind {

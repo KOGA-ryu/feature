@@ -177,6 +177,29 @@ void setPreviewText(QPlainTextEdit *edit, const QString &text, int limit) {
     }
 }
 
+void setCleanupPreviewProperties(
+    QPlainTextEdit *actual,
+    QPlainTextEdit *receipt,
+    bool active,
+    const QString &actionId = QString(),
+    int changeCount = 0,
+    int warningCount = 0) {
+    if (actual) {
+        actual->setProperty("previewMode", active ? "cleanup_before_after" : "output");
+        actual->setProperty("cleanupActionId", active ? actionId : QString("none"));
+        actual->setProperty("cleanupChangeCount", active ? changeCount : 0);
+        actual->setProperty("cleanupWarningCount", active ? warningCount : 0);
+        actual->setProperty("cleanupBeforeLabel", active ? QString("BEFORE") : QString());
+        actual->setProperty("cleanupAfterLabel", active ? QString("AFTER") : QString());
+    }
+    if (receipt) {
+        receipt->setProperty("receiptMode", active ? "cleanup_receipt" : "receipt");
+        receipt->setProperty("receiptActionId", active ? actionId : QString("none"));
+        receipt->setProperty("receiptChangeCount", active ? changeCount : 0);
+        receipt->setProperty("receiptWarningCount", active ? warningCount : 0);
+    }
+}
+
 QSpinBox *makeTextEditorSpinBox(int value, int maximum, const QString &uiPath) {
     auto *spin = new QSpinBox;
     spin->setMinimum(0);
@@ -247,6 +270,9 @@ public:
         });
         connect(controller_, &TextEditorWorkspaceController::commandPaletteRequested, this, [this]() {
             showCommandPalette();
+        });
+        connect(controller_, &TextEditorWorkspaceController::cleanupPreviewProofRequested, this, [this]() {
+            runCleanupPreviewProof();
         });
 
         controller_->setActionInventory(
@@ -732,6 +758,7 @@ private:
             const QString message = QString("Document is over action limit: %1 / %2 chars")
                 .arg(documentText.size())
                 .arg(dex_ui::text_editor_content_limits::max_document_chars);
+            setCleanupPreviewProperties(actual_, expected_, false);
             setPreviewText(expected_, "content limit", dex_ui::text_editor_content_limits::max_receipt_preview_chars);
             setPreviewText(actual_, message, dex_ui::text_editor_content_limits::max_output_preview_chars);
             fixtureStatus_->setText(message);
@@ -757,7 +784,7 @@ private:
         if (result.selection.valid) {
             applySelection(result.selection);
         }
-        renderRustResult(actionId, result);
+        renderRustResult(actionId, result, documentText);
         rebuildActionButtons();
         renderCommandPaletteResults();
         updateEditorStatus();
@@ -779,6 +806,7 @@ private:
                 std::max(0, fixture.input.startLine),
                 std::max(0, fixture.input.endLine),
                 fixture.input.stripAnsiEscapeCodes);
+            setCleanupPreviewProperties(actual_, expected_, false);
             setPreviewText(expected_, fixture.expectedClipboardText, dex_ui::text_editor_content_limits::max_output_preview_chars);
             actual_->clear();
             fixtureStatus_->setText("Fixture loaded: " + fixture.fixtureId);
@@ -797,6 +825,17 @@ private:
 
     void runAllFixtures() {
         renderFixtureSuiteResult(DexTextActions::runAllTextActionFixtures());
+    }
+
+    void runCleanupPreviewProof() {
+        const QString dirtyText = QString("one  \ntwo\t\n") + QChar(0x1b) + "[31mred" + QChar(0x1b) + "[0m";
+        {
+            const QSignalBlocker blockEditor(editor_);
+            editor_->setPlainText(dirtyText);
+        }
+        controller_->setActionInput("text", "features_binder_cleanup_preview", 0, 0, true);
+        refreshLineControls();
+        executeAction("text.clean_basic");
     }
 
     DexTextActions::TextActionProofInput currentInput() const {
@@ -871,9 +910,13 @@ private:
         editor_->setTextCursor(cursor);
     }
 
-    void renderRustResult(const QString &requestedActionId, const DexTextEditorRust::ActionResult &result) {
+    void renderRustResult(
+        const QString &requestedActionId,
+        const DexTextEditorRust::ActionResult &result,
+        const QString &documentTextBeforeAction) {
         const QString resultActionId = result.actionId.isEmpty() ? requestedActionId : result.actionId;
         if (!result.ok) {
+            setCleanupPreviewProperties(actual_, expected_, false);
             setPreviewText(expected_, "runner error", dex_ui::text_editor_content_limits::max_receipt_preview_chars);
             setPreviewText(actual_, result.error, dex_ui::text_editor_content_limits::max_output_preview_chars);
             fixtureStatus_->setText(result.displayText.isEmpty() ? result.error : result.displayText);
@@ -897,8 +940,20 @@ private:
             QGuiApplication::clipboard()->setText(result.clipboardText);
         }
 
-        const QString outputText = result.hasClipboardText ? result.clipboardText : result.displayText;
+        const bool cleanupPreview = DexTextEditorUi::isCleanupActionId(resultActionId)
+            && result.kind == "clipboard_transform"
+            && result.hasClipboardText;
+        const QString outputText = cleanupPreview
+            ? DexTextEditorUi::cleanupPreviewText(documentTextBeforeAction, result.clipboardText)
+            : (result.hasClipboardText ? result.clipboardText : result.displayText);
         const QString receiptSummary = resultReceiptText(result);
+        setCleanupPreviewProperties(
+            actual_,
+            expected_,
+            cleanupPreview,
+            resultActionId,
+            result.receipt.changeCount,
+            result.receipt.warningCount);
         setPreviewText(actual_, outputText, dex_ui::text_editor_content_limits::max_output_preview_chars);
         setPreviewText(expected_, receiptSummary, dex_ui::text_editor_content_limits::max_receipt_preview_chars);
         const QString clipboardNote = result.hasClipboardText
@@ -930,6 +985,7 @@ private:
     }
 
     void renderResult(const DexTextActions::HostActionResult &result) {
+        setCleanupPreviewProperties(actual_, expected_, false);
         setPreviewText(actual_, result.clipboardText.isEmpty() ? result.displayText : result.clipboardText, dex_ui::text_editor_content_limits::max_output_preview_chars);
         setPreviewText(expected_, receiptText(result.receipt), dex_ui::text_editor_content_limits::max_receipt_preview_chars);
         fixtureStatus_->setText(result.actionId + " | " + result.kind + " | " + result.displayText);
@@ -939,6 +995,7 @@ private:
     }
 
     void renderFixtureResult(const DexTextActions::TextActionFixtureResult &result) {
+        setCleanupPreviewProperties(actual_, expected_, false);
         setPreviewText(expected_, result.expectedClipboardText, dex_ui::text_editor_content_limits::max_output_preview_chars);
         setPreviewText(actual_, result.actualClipboardText, dex_ui::text_editor_content_limits::max_output_preview_chars);
         fixtureStatus_->setText(result.summary);
@@ -954,6 +1011,7 @@ private:
     }
 
     void renderFixtureSuiteResult(const DexTextActions::TextActionFixtureSuiteResult &suite) {
+        setCleanupPreviewProperties(actual_, expected_, false);
         setPreviewText(expected_, "fixture suite", dex_ui::text_editor_content_limits::max_output_preview_chars);
         setPreviewText(actual_, fixtureSummaryText(suite), dex_ui::text_editor_content_limits::max_output_preview_chars);
         fixtureStatus_->setText(suite.summary);

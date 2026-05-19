@@ -156,6 +156,10 @@ void TextEditorWorkspaceController::requestCommandPalette() {
     emit commandPaletteRequested();
 }
 
+void TextEditorWorkspaceController::requestCleanupPreviewProof() {
+    emit cleanupPreviewProofRequested();
+}
+
 QStringList requiredTextEditorUiPaths() {
     QStringList uiPaths = {
         "workbench.rail.text_editor.documents",

@@ -177,6 +177,11 @@ void DexHomeV2Window::openTextEditorCommandPalette() {
     textEditorWorkspace_->requestCommandPalette();
 }
 
+void DexHomeV2Window::runTextEditorCleanupPreviewProof() {
+    openTextEditorWorkspace();
+    textEditorWorkspace_->requestCleanupPreviewProof();
+}
+
 void DexHomeV2Window::setWorkspaceKind(WorkspaceKind workspaceKind) {
     workspaceKind_ = workspaceKind;
     settingsMode_ = workspaceKind_ == WorkspaceKind::Settings;

@@ -588,6 +588,18 @@ private slots:
         }));
     }
 
+    void textEditorCleanupPreviewLabelsBeforeAndAfter() {
+        const QString preview = DexTextEditorUi::cleanupPreviewText("one  \ntwo\t", "one\ntwo");
+
+        QVERIFY(DexTextEditorUi::isCleanupActionId("text.clean_basic"));
+        QVERIFY(DexTextEditorUi::isCleanupActionId("text.trim_trailing_whitespace"));
+        QVERIFY(!DexTextEditorUi::isCleanupActionId("text.copy_plain"));
+        QVERIFY(preview.contains("BEFORE (2 lines | 10 chars)"));
+        QVERIFY(preview.contains("AFTER (2 lines | 7 chars)"));
+        QVERIFY(preview.contains("one  "));
+        QVERIFY(preview.contains("one\ntwo"));
+    }
+
     void textEditorCommandPaletteSelectionSkipsDisabledActions() {
         QVector<DexTextActions::HostActionItem> actions =
             DexTextActions::renderHostActionItems("", {});

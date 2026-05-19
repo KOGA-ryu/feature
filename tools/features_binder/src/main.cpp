@@ -154,6 +154,7 @@ int main(int argc, char **argv) {
     const QCommandLineOption settingsFeatureOption("settings-feature", "Initial Settings feature, e.g. Project Spec.", "feature", "Project Spec");
     const QCommandLineOption uiTreeDumpOption("ui-tree-dump", "Save visible UI tree JSON and exit.", "path");
     const QCommandLineOption showCommandPaletteOption("show-command-palette", "Open the Text Editor command palette before capture.");
+    const QCommandLineOption runTextEditorCleanupProofOption("run-text-editor-cleanup-proof", "Run the Text Editor cleanup preview proof before capture.");
     parser.addOption(screenshotOption);
     parser.addOption(sizeOption);
     parser.addOption(hideRailOption);
@@ -172,6 +173,7 @@ int main(int argc, char **argv) {
     parser.addOption(settingsFeatureOption);
     parser.addOption(uiTreeDumpOption);
     parser.addOption(showCommandPaletteOption);
+    parser.addOption(runTextEditorCleanupProofOption);
     parser.process(app);
 
     const QString repoRoot = parser.isSet(repoRootOption)
@@ -215,6 +217,9 @@ int main(int argc, char **argv) {
     }
     if (parser.isSet(showCommandPaletteOption)) {
         window.openTextEditorCommandPalette();
+    }
+    if (parser.isSet(runTextEditorCleanupProofOption)) {
+        window.runTextEditorCleanupPreviewProof();
     }
     const QSize size = parseSize(parser.value(sizeOption));
     window.resize(size);

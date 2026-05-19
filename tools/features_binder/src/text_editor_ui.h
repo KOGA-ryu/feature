@@ -59,6 +59,8 @@ QStringList textEditorPanelUiPaths();
 QStringList commandPaletteCategoryFilters();
 QString commandPaletteCategoryFilterLabel(const QString &categoryFilter);
 QString normalizedCommandPaletteCategoryFilter(const QString &categoryFilter);
+bool isCleanupActionId(const QString &actionId);
+QString cleanupPreviewText(const QString &beforeText, const QString &afterText);
 QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(
     const QVector<DexTextActions::HostActionItem> &actions,
     const QString &query);

@@ -1366,6 +1366,10 @@
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
                                                                                                 "componentState": "empty",
+                                                                                                "receiptActionId": "none",
+                                                                                                "receiptChangeCount": 0,
+                                                                                                "receiptMode": "receipt",
+                                                                                                "receiptWarningCount": 0,
                                                                                                 "scrollsInternally": true,
                                                                                                 "uiPath": "workbench.fixture_bench.results.expected"
                                                                                             },
@@ -1440,7 +1444,13 @@
                                                                                             "objectName": "textEditorOutputPreview",
                                                                                             "properties": {
                                                                                                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                                "cleanupActionId": "none",
+                                                                                                "cleanupAfterLabel": "",
+                                                                                                "cleanupBeforeLabel": "",
+                                                                                                "cleanupChangeCount": 0,
+                                                                                                "cleanupWarningCount": 0,
                                                                                                 "componentState": "empty",
+                                                                                                "previewMode": "output",
                                                                                                 "scrollsInternally": true,
                                                                                                 "uiPath": "workbench.fixture_bench.results.actual"
                                                                                             },

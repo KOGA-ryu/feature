@@ -15,7 +15,9 @@ screenshots:
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/07_features_text_editor_1280x800.png
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/08_features_text_editor_900x700.png
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/09_features_text_editor_palette_1280x800.png
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/10_features_text_editor_cleanup_1280x800.png
 ui_tree:
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/07_features_text_editor_ui_tree.json
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/08_features_text_editor_ui_tree.json
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/09_features_text_editor_palette_ui_tree.json
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/10_features_text_editor_cleanup_ui_tree.json

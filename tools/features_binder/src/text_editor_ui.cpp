@@ -59,6 +59,14 @@ TextEditorPanelDescriptor descriptor(
     return record;
 }
 
+int previewLineCount(const QString &text) {
+    return text.isEmpty() ? 1 : text.count('\n') + 1;
+}
+
+QString previewFacts(const QString &text) {
+    return QString("%1 lines | %2 chars").arg(previewLineCount(text)).arg(text.size());
+}
+
 } // namespace
 
 UiTokens tokens(UiDensity density) {
@@ -193,6 +201,21 @@ QString commandPaletteCategoryFilterLabel(const QString &categoryFilter) {
 QString normalizedCommandPaletteCategoryFilter(const QString &categoryFilter) {
     const QString normalized = categoryFilter.trimmed().toLower();
     return commandPaletteCategoryFilters().contains(normalized) ? normalized : QString("all");
+}
+
+bool isCleanupActionId(const QString &actionId) {
+    static const QStringList cleanupActions = {
+        "text.trim_trailing_whitespace",
+        "text.clean_basic",
+        "text.normalize_line_endings",
+        "text.strip_ansi_escape_codes",
+    };
+    return cleanupActions.contains(actionId);
+}
+
+QString cleanupPreviewText(const QString &beforeText, const QString &afterText) {
+    return QString("BEFORE (%1)\n%2\n\nAFTER (%3)\n%4")
+        .arg(previewFacts(beforeText), beforeText, previewFacts(afterText), afterText);
 }
 
 QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(

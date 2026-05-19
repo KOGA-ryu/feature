@@ -23,6 +23,8 @@ rm -f \
   "$OUT/08_features_text_editor_ui_tree.json" \
   "$OUT/09_features_text_editor_palette_1280x800.png" \
   "$OUT/09_features_text_editor_palette_ui_tree.json" \
+  "$OUT/10_features_text_editor_cleanup_1280x800.png" \
+  "$OUT/10_features_text_editor_cleanup_ui_tree.json" \
   "$OUT/manifest.txt"
 
 cmake -S "$ROOT" -B "$BUILD"
@@ -52,6 +54,7 @@ capture "06_features_settings_full_1280x4200" --size 1280x4200 --settings
 capture "07_features_text_editor_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor" --ui-tree-dump "$OUT/07_features_text_editor_ui_tree.json"
 capture "08_features_text_editor_900x700" --size 900x700 --no-settings --worker organizer --tab "Text Editor" --ui-tree-dump "$OUT/08_features_text_editor_ui_tree.json"
 capture "09_features_text_editor_palette_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor" --show-command-palette --ui-tree-dump "$OUT/09_features_text_editor_palette_ui_tree.json"
+capture "10_features_text_editor_cleanup_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor" --run-text-editor-cleanup-proof --ui-tree-dump "$OUT/10_features_text_editor_cleanup_ui_tree.json"
 
 check_png_size() {
   local file="$1"
@@ -75,9 +78,11 @@ check_png_size "$OUT/06_features_settings_full_1280x4200.png" 1280 4200
 check_png_size "$OUT/07_features_text_editor_1280x800.png" 1280 800
 check_png_size "$OUT/08_features_text_editor_900x700.png" 900 700
 check_png_size "$OUT/09_features_text_editor_palette_1280x800.png" 1280 800
+check_png_size "$OUT/10_features_text_editor_cleanup_1280x800.png" 1280 800
 test -s "$OUT/07_features_text_editor_ui_tree.json"
 test -s "$OUT/08_features_text_editor_ui_tree.json"
 test -s "$OUT/09_features_text_editor_palette_ui_tree.json"
+test -s "$OUT/10_features_text_editor_cleanup_ui_tree.json"
 
 check_text_editor_tree() {
   local tree="$1"
@@ -174,6 +179,7 @@ PY
 
 check_text_editor_tree "$OUT/07_features_text_editor_ui_tree.json" 3 2
 check_text_editor_tree "$OUT/08_features_text_editor_ui_tree.json" 2 3
+check_text_editor_tree "$OUT/10_features_text_editor_cleanup_ui_tree.json" 3 2
 
 python3 - "$OUT/09_features_text_editor_palette_ui_tree.json" <<'PY'
 import json
@@ -262,6 +268,48 @@ if len(nodes) < 4:
     raise SystemExit("command palette tree is unexpectedly sparse")
 PY
 
+python3 - "$OUT/10_features_text_editor_cleanup_ui_tree.json" <<'PY'
+import json
+import sys
+
+tree = json.load(open(sys.argv[1]))
+nodes = {}
+
+def walk(node):
+    ui_path = node.get("uiPath", "")
+    if ui_path:
+        nodes[ui_path] = node
+    for child in node.get("children", []):
+        walk(child)
+
+walk(tree)
+actual = nodes.get("workbench.fixture_bench.results.actual")
+receipt = nodes.get("workbench.fixture_bench.results.expected")
+status = nodes.get("workbench.fixture_bench.runner.status")
+if not actual or not receipt or not status:
+    raise SystemExit("cleanup proof missing result panes or status")
+actual_props = actual.get("properties", {})
+receipt_props = receipt.get("properties", {})
+if actual_props.get("previewMode") != "cleanup_before_after":
+    raise SystemExit(f"actual pane did not enter cleanup preview mode: {actual_props}")
+if actual_props.get("cleanupActionId") != "text.clean_basic":
+    raise SystemExit(f"actual pane cleanup action mismatch: {actual_props}")
+if actual_props.get("cleanupBeforeLabel") != "BEFORE" or actual_props.get("cleanupAfterLabel") != "AFTER":
+    raise SystemExit(f"cleanup preview labels missing: {actual_props}")
+if int(actual_props.get("cleanupChangeCount", 0)) <= 0:
+    raise SystemExit(f"cleanup change count did not prove changes: {actual_props}")
+if int(actual_props.get("cleanupWarningCount", -1)) < 0:
+    raise SystemExit(f"cleanup warning count missing: {actual_props}")
+if receipt_props.get("receiptMode") != "cleanup_receipt":
+    raise SystemExit(f"receipt pane did not enter cleanup receipt mode: {receipt_props}")
+if receipt_props.get("receiptActionId") != "text.clean_basic":
+    raise SystemExit(f"receipt pane cleanup action mismatch: {receipt_props}")
+if receipt_props.get("receiptChangeCount") != actual_props.get("cleanupChangeCount"):
+    raise SystemExit(f"receipt/change proof mismatch: {receipt_props} vs {actual_props}")
+if "text.clean_basic" not in status.get("text", ""):
+    raise SystemExit(f"cleanup status missing action id: {status}")
+PY
+
 grep -q '"project_id": "features"' "$ROOT/data/projects.json"
 grep -q '"path": "/Users/kogaryu/dev/features"' "$ROOT/data/projects.json"
 grep -q '"total": 48' "$ROOT/data/projects.json"
@@ -288,10 +336,12 @@ $OUT/06_features_settings_full_1280x4200.png
 $OUT/07_features_text_editor_1280x800.png
 $OUT/08_features_text_editor_900x700.png
 $OUT/09_features_text_editor_palette_1280x800.png
+$OUT/10_features_text_editor_cleanup_1280x800.png
 ui_tree:
 $OUT/07_features_text_editor_ui_tree.json
 $OUT/08_features_text_editor_ui_tree.json
 $OUT/09_features_text_editor_palette_ui_tree.json
+$OUT/10_features_text_editor_cleanup_ui_tree.json
 MANIFEST
 
 echo "proof written to $OUT"

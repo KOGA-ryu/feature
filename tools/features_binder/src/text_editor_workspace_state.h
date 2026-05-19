@@ -79,6 +79,7 @@ public:
         const QString &componentState);
     void setFixtureStatus(const QString &fixtureStatus, const QString &componentState);
     void requestCommandPalette();
+    void requestCleanupPreviewProof();
 
 signals:
     void actionInputChanged();
@@ -86,6 +87,7 @@ signals:
     void resultStateChanged();
     void workspaceStateChanged();
     void commandPaletteRequested();
+    void cleanupPreviewProofRequested();
 
 private:
     TextEditorWorkspaceState state_;

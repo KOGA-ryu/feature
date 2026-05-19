@@ -322,6 +322,15 @@ private:
         commandPaletteQuery_->installEventFilter(this);
         layout->addWidget(commandPaletteQuery_);
 
+        auto *filters = new QWidget;
+        filters->setObjectName("textEditorCommandPaletteFilters");
+        filters->setProperty("uiPath", "workbench.palette.filters");
+        commandPaletteFiltersLayout_ = new QHBoxLayout(filters);
+        commandPaletteFiltersLayout_->setContentsMargins(0, 0, 0, 0);
+        commandPaletteFiltersLayout_->setSpacing(dex_ui::text_editor_metrics::dense_gap);
+        layout->addWidget(filters);
+        renderCommandPaletteFilters();
+
         auto *results = new QWidget;
         results->setObjectName("textEditorCommandPaletteResults");
         results->setProperty("uiPath", "workbench.palette.section.all");
@@ -342,6 +351,34 @@ private:
         });
 
         return palette;
+    }
+
+    void renderCommandPaletteFilters() {
+        if (!commandPaletteFiltersLayout_) {
+            return;
+        }
+        clearTextEditorLayout(commandPaletteFiltersLayout_);
+        paletteCategoryFilter_ = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(paletteCategoryFilter_);
+        for (const QString &filter : DexTextEditorUi::commandPaletteCategoryFilters()) {
+            auto *button = new QPushButton(DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
+            button->setObjectName("textEditorCommandPaletteFilter");
+            button->setProperty("uiPath", "workbench.palette.filter." + filter);
+            button->setProperty("categoryFilter", filter);
+            button->setProperty("componentState", filter == paletteCategoryFilter_ ? "selected" : "default");
+            button->setAccessibleName("Text Editor palette filter, " + DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
+            button->setFixedHeight(22);
+            button->setMinimumWidth(0);
+            button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+            button->setCheckable(true);
+            button->setChecked(filter == paletteCategoryFilter_);
+            connect(button, &QPushButton::clicked, this, [this, filter]() {
+                paletteCategoryFilter_ = filter;
+                paletteSelectedIndex_ = -1;
+                renderCommandPaletteResults();
+            });
+            commandPaletteFiltersLayout_->addWidget(button);
+        }
+        commandPaletteFiltersLayout_->addStretch(1);
     }
 
     QFrame *buildActionStrip() {
@@ -515,8 +552,13 @@ private:
             return;
         }
         clearTextEditorLayout(commandPaletteResultsLayout_);
+        renderCommandPaletteFilters();
+        paletteCategoryFilter_ = DexTextEditorUi::normalizedCommandPaletteCategoryFilter(paletteCategoryFilter_);
         paletteMatches_ =
-            DexTextEditorUi::filterCommandPaletteActions(availableActions(), commandPaletteQuery_ ? commandPaletteQuery_->text() : QString());
+            DexTextEditorUi::filterCommandPaletteActionsForCategory(
+                availableActions(),
+                commandPaletteQuery_ ? commandPaletteQuery_->text() : QString(),
+                paletteCategoryFilter_);
         paletteSelectedIndex_ = DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, 0);
         updatePaletteProofProperties();
         bool sawDisabled = false;
@@ -547,10 +589,12 @@ private:
         }
         if (commandPaletteEmpty_) {
             if (paletteMatches_.isEmpty()) {
-                commandPaletteEmpty_->setText("No Text Editor command matches");
+                commandPaletteEmpty_->setText(
+                    DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_) + ": no Text Editor command matches");
                 setComponentState(commandPaletteEmpty_, "empty");
             } else {
-                commandPaletteEmpty_->setText(QString("%1 command%2%3")
+                commandPaletteEmpty_->setText(QString("%1: %2 command%3%4")
+                    .arg(DexTextEditorUi::commandPaletteCategoryFilterLabel(paletteCategoryFilter_))
                     .arg(paletteMatches_.size())
                     .arg(paletteMatches_.size() == 1 ? "" : "s")
                     .arg(sawDisabled ? " | disabled commands preserved" : ""));
@@ -571,6 +615,8 @@ private:
             DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_));
         commandPalette_->setProperty("selectedRowIndex", paletteSelectedIndex_);
         commandPalette_->setProperty("resultCount", paletteMatches_.size());
+        commandPalette_->setProperty("activeCategoryFilter", paletteCategoryFilter_);
+        commandPalette_->setProperty("categoryFilterCount", DexTextEditorUi::commandPaletteCategoryFilters().size());
     }
 
     void movePaletteSelection(int direction) {
@@ -998,6 +1044,7 @@ private:
     QFrame *commandPalette_ = nullptr;
     QLineEdit *commandPaletteQuery_ = nullptr;
     QLabel *commandPaletteEmpty_ = nullptr;
+    QHBoxLayout *commandPaletteFiltersLayout_ = nullptr;
     QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
     QVector<DexTextActions::HostActionItem> paletteMatches_;
     int paletteSelectedIndex_ = -1;
@@ -1007,6 +1054,7 @@ private:
     QString actionInventorySource_ = "C++ fixture fallback";
     QString activeActionId_;
     QString activeActionState_ = "default";
+    QString paletteCategoryFilter_ = "all";
 };
 
 QFrame *makeContextPanel(const QString &title, const QStringList &lines, const QString &uiPath, const QString &state = "empty") {

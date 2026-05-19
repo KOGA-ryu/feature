@@ -227,6 +227,154 @@
                                                                         {
                                                                             "children": [
                                                                                 {
+                                                                                    "accessibleName": "Text Editor palette filter, All",
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QPushButton",
+                                                                                    "componentState": "selected",
+                                                                                    "enabled": true,
+                                                                                    "geometry": {
+                                                                                        "height": 26,
+                                                                                        "width": 29,
+                                                                                        "x": 0,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorCommandPaletteFilter",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "_q_stylesheet_maxh": true,
+                                                                                        "_q_stylesheet_minh": true,
+                                                                                        "categoryFilter": "all",
+                                                                                        "componentState": "selected",
+                                                                                        "uiPath": "workbench.palette.filter.all"
+                                                                                    },
+                                                                                    "text": "All",
+                                                                                    "uiPath": "workbench.palette.filter.all",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "accessibleName": "Text Editor palette filter, Clipboard",
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QPushButton",
+                                                                                    "componentState": "default",
+                                                                                    "enabled": true,
+                                                                                    "geometry": {
+                                                                                        "height": 26,
+                                                                                        "width": 66,
+                                                                                        "x": 33,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorCommandPaletteFilter",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "_q_stylesheet_maxh": true,
+                                                                                        "_q_stylesheet_minh": true,
+                                                                                        "categoryFilter": "clipboard",
+                                                                                        "componentState": "default",
+                                                                                        "uiPath": "workbench.palette.filter.clipboard"
+                                                                                    },
+                                                                                    "text": "Clipboard",
+                                                                                    "uiPath": "workbench.palette.filter.clipboard",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "accessibleName": "Text Editor palette filter, Selection",
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QPushButton",
+                                                                                    "componentState": "default",
+                                                                                    "enabled": true,
+                                                                                    "geometry": {
+                                                                                        "height": 26,
+                                                                                        "width": 64,
+                                                                                        "x": 103,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorCommandPaletteFilter",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "_q_stylesheet_maxh": true,
+                                                                                        "_q_stylesheet_minh": true,
+                                                                                        "categoryFilter": "selection",
+                                                                                        "componentState": "default",
+                                                                                        "uiPath": "workbench.palette.filter.selection"
+                                                                                    },
+                                                                                    "text": "Selection",
+                                                                                    "uiPath": "workbench.palette.filter.selection",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "accessibleName": "Text Editor palette filter, Lines",
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QPushButton",
+                                                                                    "componentState": "default",
+                                                                                    "enabled": true,
+                                                                                    "geometry": {
+                                                                                        "height": 26,
+                                                                                        "width": 44,
+                                                                                        "x": 171,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorCommandPaletteFilter",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "_q_stylesheet_maxh": true,
+                                                                                        "_q_stylesheet_minh": true,
+                                                                                        "categoryFilter": "lines",
+                                                                                        "componentState": "default",
+                                                                                        "uiPath": "workbench.palette.filter.lines"
+                                                                                    },
+                                                                                    "text": "Lines",
+                                                                                    "uiPath": "workbench.palette.filter.lines",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "accessibleName": "Text Editor palette filter, Cleanup",
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QPushButton",
+                                                                                    "componentState": "default",
+                                                                                    "enabled": true,
+                                                                                    "geometry": {
+                                                                                        "height": 26,
+                                                                                        "width": 59,
+                                                                                        "x": 219,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorCommandPaletteFilter",
+                                                                                    "properties": {
+                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                        "_q_stylesheet_maxh": true,
+                                                                                        "_q_stylesheet_minh": true,
+                                                                                        "categoryFilter": "cleanup",
+                                                                                        "componentState": "default",
+                                                                                        "uiPath": "workbench.palette.filter.cleanup"
+                                                                                    },
+                                                                                    "text": "Cleanup",
+                                                                                    "uiPath": "workbench.palette.filter.cleanup",
+                                                                                    "visible": true
+                                                                                }
+                                                                            ],
+                                                                            "className": "QWidget",
+                                                                            "geometry": {
+                                                                                "height": 26,
+                                                                                "width": 640,
+                                                                                "x": 13,
+                                                                                "y": 76
+                                                                            },
+                                                                            "objectName": "textEditorCommandPaletteFilters",
+                                                                            "properties": {
+                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                                "uiPath": "workbench.palette.filters"
+                                                                            },
+                                                                            "uiPath": "workbench.palette.filters",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
                                                                                     "accessibleName": "Copy Plain, clipboard, Ctrl+C, enabled",
                                                                                     "children": [
                                                                                     ],
@@ -573,7 +721,7 @@
                                                                                 "height": 392,
                                                                                 "width": 640,
                                                                                 "x": 13,
-                                                                                "y": 76
+                                                                                "y": 110
                                                                             },
                                                                             "objectName": "textEditorCommandPaletteResults",
                                                                             "properties": {
@@ -592,7 +740,7 @@
                                                                                 "height": 14,
                                                                                 "width": 640,
                                                                                 "x": 13,
-                                                                                "y": 476
+                                                                                "y": 510
                                                                             },
                                                                             "objectName": "textEditorSurfaceEmpty",
                                                                             "properties": {
@@ -600,7 +748,7 @@
                                                                                 "componentState": "default",
                                                                                 "uiPath": "workbench.palette.empty_state"
                                                                             },
-                                                                            "text": "11 commands",
+                                                                            "text": "All: 11 commands",
                                                                             "uiPath": "workbench.palette.empty_state",
                                                                             "visible": true
                                                                         }
@@ -608,7 +756,7 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "open",
                                                                     "geometry": {
-                                                                        "height": 503,
+                                                                        "height": 537,
                                                                         "width": 666,
                                                                         "x": 12,
                                                                         "y": 12
@@ -616,6 +764,8 @@
                                                                     "objectName": "textEditorCommandPalette",
                                                                     "properties": {
                                                                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                                                        "activeCategoryFilter": "all",
+                                                                        "categoryFilterCount": 5,
                                                                         "componentState": "open",
                                                                         "focusedSurface": "Palette",
                                                                         "paletteOpen": true,
@@ -786,7 +936,7 @@
                                                                         "height": 64,
                                                                         "width": 666,
                                                                         "x": 12,
-                                                                        "y": 523
+                                                                        "y": 557
                                                                     },
                                                                     "objectName": "textEditorActionStrip",
                                                                     "properties": {
@@ -968,7 +1118,7 @@
                                                                         "height": 362,
                                                                         "width": 666,
                                                                         "x": 12,
-                                                                        "y": 595
+                                                                        "y": 629
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
@@ -1340,7 +1490,7 @@
                                                                         "height": 460,
                                                                         "width": 666,
                                                                         "x": 12,
-                                                                        "y": 965
+                                                                        "y": 999
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
@@ -1354,7 +1504,7 @@
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 1437,
+                                                                "height": 1471,
                                                                 "width": 690,
                                                                 "x": 0,
                                                                 "y": 0

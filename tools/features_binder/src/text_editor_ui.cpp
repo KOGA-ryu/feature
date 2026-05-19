@@ -35,6 +35,11 @@ bool commandMatches(const DexTextActions::HostActionItem &action, const QString 
         || action.tooltip.toLower().contains(normalized);
 }
 
+bool categoryMatches(const DexTextActions::HostActionItem &action, const QString &categoryFilter) {
+    const QString normalized = normalizedCommandPaletteCategoryFilter(categoryFilter);
+    return normalized == "all" || action.category == normalized;
+}
+
 TextEditorPanelDescriptor descriptor(
     const QString &key,
     const QString &persistentName,
@@ -161,12 +166,50 @@ QStringList textEditorPanelUiPaths() {
     return uiPaths;
 }
 
+QStringList commandPaletteCategoryFilters() {
+    return {"all", "clipboard", "selection", "lines", "cleanup"};
+}
+
+QString commandPaletteCategoryFilterLabel(const QString &categoryFilter) {
+    const QString normalized = normalizedCommandPaletteCategoryFilter(categoryFilter);
+    if (normalized == "all") {
+        return "All";
+    }
+    if (normalized == "clipboard") {
+        return "Clipboard";
+    }
+    if (normalized == "selection") {
+        return "Selection";
+    }
+    if (normalized == "lines") {
+        return "Lines";
+    }
+    if (normalized == "cleanup") {
+        return "Cleanup";
+    }
+    return normalized;
+}
+
+QString normalizedCommandPaletteCategoryFilter(const QString &categoryFilter) {
+    const QString normalized = categoryFilter.trimmed().toLower();
+    return commandPaletteCategoryFilters().contains(normalized) ? normalized : QString("all");
+}
+
 QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(
     const QVector<DexTextActions::HostActionItem> &actions,
     const QString &query) {
+    return filterCommandPaletteActionsForCategory(actions, query, "all");
+}
+
+QVector<DexTextActions::HostActionItem> filterCommandPaletteActionsForCategory(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    const QString &query,
+    const QString &categoryFilter) {
     QVector<DexTextActions::HostActionItem> matches;
     for (const DexTextActions::HostActionItem &action : actions) {
-        if (action.placements.contains("command_palette") && commandMatches(action, query)) {
+        if (action.placements.contains("command_palette")
+            && categoryMatches(action, categoryFilter)
+            && commandMatches(action, query)) {
             matches.push_back(action);
         }
     }

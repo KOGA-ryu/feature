@@ -56,9 +56,16 @@ QString panelPositionName(PanelPosition position);
 QVector<TextEditorPanelDescriptor> textEditorPanelDescriptors();
 QStringList textEditorPanelKeys();
 QStringList textEditorPanelUiPaths();
+QStringList commandPaletteCategoryFilters();
+QString commandPaletteCategoryFilterLabel(const QString &categoryFilter);
+QString normalizedCommandPaletteCategoryFilter(const QString &categoryFilter);
 QVector<DexTextActions::HostActionItem> filterCommandPaletteActions(
     const QVector<DexTextActions::HostActionItem> &actions,
     const QString &query);
+QVector<DexTextActions::HostActionItem> filterCommandPaletteActionsForCategory(
+    const QVector<DexTextActions::HostActionItem> &actions,
+    const QString &query,
+    const QString &categoryFilter);
 int firstEnabledCommandPaletteIndex(const QVector<DexTextActions::HostActionItem> &actions);
 int moveCommandPaletteSelection(
     const QVector<DexTextActions::HostActionItem> &actions,

@@ -199,6 +199,12 @@ walk(tree)
 for ui_path in (
     "workbench.palette",
     "workbench.palette.search.input",
+    "workbench.palette.filters",
+    "workbench.palette.filter.all",
+    "workbench.palette.filter.clipboard",
+    "workbench.palette.filter.selection",
+    "workbench.palette.filter.lines",
+    "workbench.palette.filter.cleanup",
     "workbench.palette.section.all",
     "workbench.palette.empty_state",
 ):
@@ -216,6 +222,19 @@ if props.get("selectedActionId") in ("", "none", None):
     raise SystemExit(f"palette selectedActionId is missing: {props}")
 if int(props.get("selectedRowIndex", -1)) < 0:
     raise SystemExit(f"palette selectedRowIndex is missing: {props}")
+if props.get("activeCategoryFilter") != "all":
+    raise SystemExit(f"palette activeCategoryFilter changed: {props}")
+if int(props.get("categoryFilterCount", 0)) < 5:
+    raise SystemExit(f"palette categoryFilterCount is too small: {props}")
+for filter_path, expected_state in (
+    ("workbench.palette.filter.all", "selected"),
+    ("workbench.palette.filter.cleanup", "default"),
+):
+    node = nodes[filter_path]
+    if node.get("componentState") != expected_state:
+        raise SystemExit(f"{filter_path} state changed: {node}")
+    if node.get("properties", {}).get("categoryFilter") != filter_path.rsplit(".", 1)[-1]:
+        raise SystemExit(f"{filter_path} missing categoryFilter property: {node}")
 if not selected_rows:
     raise SystemExit("command palette has no selected command row")
 selected = selected_rows[0]

@@ -501,6 +501,12 @@ private slots:
         QVERIFY(paths.contains("workbench.toolbar.primary"));
         QVERIFY(paths.contains("workbench.palette"));
         QVERIFY(paths.contains("workbench.palette.search.input"));
+        QVERIFY(paths.contains("workbench.palette.filters"));
+        QVERIFY(paths.contains("workbench.palette.filter.all"));
+        QVERIFY(paths.contains("workbench.palette.filter.clipboard"));
+        QVERIFY(paths.contains("workbench.palette.filter.selection"));
+        QVERIFY(paths.contains("workbench.palette.filter.lines"));
+        QVERIFY(paths.contains("workbench.palette.filter.cleanup"));
         QVERIFY(paths.contains("workbench.palette.section.all"));
         QVERIFY(paths.contains("workbench.palette.empty_state"));
         QVERIFY(paths.contains("workbench.editor.surface.document"));
@@ -552,6 +558,34 @@ private slots:
         QVERIFY(cleanIt != matches.end());
         QVERIFY(!cleanIt->enabled);
         QCOMPARE(cleanIt->disabledReason, QString("document and input text are empty"));
+    }
+
+    void textEditorCommandPaletteCategoryFiltersAreStable() {
+        QCOMPARE(
+            DexTextEditorUi::commandPaletteCategoryFilters(),
+            QStringList({"all", "clipboard", "selection", "lines", "cleanup"}));
+        QCOMPARE(DexTextEditorUi::commandPaletteCategoryFilterLabel("cleanup"), QString("Cleanup"));
+        QCOMPARE(DexTextEditorUi::normalizedCommandPaletteCategoryFilter(" Clipboard "), QString("clipboard"));
+        QCOMPARE(DexTextEditorUi::normalizedCommandPaletteCategoryFilter("unknown"), QString("all"));
+    }
+
+    void textEditorCommandPaletteCategoryFilteringNarrowsCleanupActions() {
+        const QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("alpha\nbeta", {});
+        const QVector<DexTextActions::HostActionItem> cleanupMatches =
+            DexTextEditorUi::filterCommandPaletteActionsForCategory(actions, "", "cleanup");
+        const QVector<DexTextActions::HostActionItem> clipboardMatches =
+            DexTextEditorUi::filterCommandPaletteActionsForCategory(actions, "", "clipboard");
+
+        QVERIFY(!cleanupMatches.isEmpty());
+        QVERIFY(!clipboardMatches.isEmpty());
+        for (const DexTextActions::HostActionItem &action : cleanupMatches) {
+            QCOMPARE(action.category, QString("cleanup"));
+            QVERIFY(action.placements.contains("command_palette"));
+        }
+        QVERIFY(std::none_of(cleanupMatches.begin(), cleanupMatches.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.category == "clipboard";
+        }));
     }
 
     void textEditorCommandPaletteSelectionSkipsDisabledActions() {

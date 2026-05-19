@@ -149,6 +149,25 @@ QString textEditorWorkbenchQss() {
             padding: 2px 8px;
             font-size: 12px;
         }
+        QWidget#textEditorCommandPaletteFilters {
+            background: transparent;
+        }
+        QPushButton#textEditorCommandPaletteFilter {
+            background: #f7f9fb;
+            color: #364451;
+            border: 1px solid #d8dee5;
+            border-radius: %7px;
+            min-height: 22px;
+            max-height: 22px;
+            padding: 1px 7px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        QPushButton#textEditorCommandPaletteFilter[componentState="selected"] {
+            background: #e7f0f8;
+            border-color: #7d98b3;
+            color: #16324a;
+        }
         QPushButton#textEditorCommandPaletteRow {
             background: #ffffff;
             color: #1f2933;

@@ -145,8 +145,8 @@ QString textEditorWorkbenchQss() {
             color: #151b23;
             border: 1px solid #c8d0d8;
             border-radius: 5px;
-            min-height: 28px;
-            padding: 2px 8px;
+            min-height: 24px;
+            padding: 1px 7px;
             font-size: 12px;
         }
         QWidget#textEditorCommandPaletteFilters {
@@ -157,9 +157,9 @@ QString textEditorWorkbenchQss() {
             color: #364451;
             border: 1px solid #d8dee5;
             border-radius: %7px;
-            min-height: 22px;
-            max-height: 22px;
-            padding: 1px 7px;
+            min-height: 18px;
+            max-height: 18px;
+            padding: 0px 6px;
             font-size: 11px;
             font-weight: 600;
         }
@@ -173,9 +173,9 @@ QString textEditorWorkbenchQss() {
             color: #1f2933;
             border: 1px solid #d8dee5;
             border-radius: %7px;
-            min-height: 26px;
-            max-height: 26px;
-            padding: 2px 8px;
+            min-height: 18px;
+            max-height: 18px;
+            padding: 0px 7px;
             text-align: left;
             font-size: 11px;
             font-weight: 600;
@@ -199,9 +199,9 @@ QString textEditorWorkbenchQss() {
             color: #1f2933;
             border: 1px solid %5;
             border-radius: %7px;
-            min-height: 24px;
-            max-height: 24px;
-            padding: 1px 7px;
+            min-height: 18px;
+            max-height: 18px;
+            padding: 0px 6px;
             font-size: 11px;
             font-weight: 600;
             text-align: center;

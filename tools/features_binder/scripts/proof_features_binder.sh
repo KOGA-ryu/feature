@@ -136,6 +136,8 @@ for ui_path, geometry, _label in buttons:
         raise SystemExit(f"{ui_path} has negative geometry: {geometry}")
     if geometry.get("x", 0) + geometry.get("width", 0) > toolbar.get("width", 0):
         raise SystemExit(f"{ui_path} overflows toolbar width: {geometry} > {toolbar}")
+    if geometry.get("height", 999) > 24:
+        raise SystemExit(f"{ui_path} is outside compact toolbar height envelope: {geometry}")
 workspace = geometries.get("workbench.editor.workspace", {})
 scroll = geometries.get("workbench.editor.scroll", {})
 if scroll and workspace and workspace.get("width", 0) > scroll.get("width", 0):
@@ -235,6 +237,8 @@ for filter_path, expected_state in (
         raise SystemExit(f"{filter_path} state changed: {node}")
     if node.get("properties", {}).get("categoryFilter") != filter_path.rsplit(".", 1)[-1]:
         raise SystemExit(f"{filter_path} missing categoryFilter property: {node}")
+    if node.get("geometry", {}).get("height", 999) > 24:
+        raise SystemExit(f"{filter_path} is outside compact filter height envelope: {node}")
 if not selected_rows:
     raise SystemExit("command palette has no selected command row")
 selected = selected_rows[0]
@@ -250,6 +254,8 @@ if "[" + selected_props.get("category", "") + "]" not in selected.get("text", ""
     raise SystemExit(f"selected row text does not include category: {selected}")
 if not selected.get("accessibleName"):
     raise SystemExit(f"selected row missing accessibleName: {selected}")
+if selected.get("geometry", {}).get("height", 999) > 24:
+    raise SystemExit(f"selected palette row is outside compact row height envelope: {selected}")
 if disabled_rows and "disabledReason" not in disabled_rows[0].get("properties", {}):
     raise SystemExit(f"disabled row missing disabledReason: {disabled_rows[0]}")
 if len(nodes) < 4:

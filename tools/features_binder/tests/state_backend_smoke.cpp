@@ -484,9 +484,9 @@ private slots:
         const DexTextEditorUi::UiTokens compactTokens = DexTextEditorUi::tokens(DexTextEditorUi::UiDensity::Compact);
         const DexTextEditorUi::UiTokens comfortableTokens = DexTextEditorUi::tokens(DexTextEditorUi::UiDensity::Comfortable);
 
-        QCOMPARE(defaultTokens.toolbarButtonHeight, 24);
+        QCOMPARE(defaultTokens.toolbarButtonHeight, 20);
         QCOMPARE(defaultTokens.buttonRadius, 4);
-        QCOMPARE(defaultTokens.panelPaddingDense, 6);
+        QCOMPARE(defaultTokens.panelPaddingDense, 4);
         QVERIFY(compactTokens.regionGap < defaultTokens.regionGap);
         QVERIFY(comfortableTokens.regionGap > defaultTokens.regionGap);
     }

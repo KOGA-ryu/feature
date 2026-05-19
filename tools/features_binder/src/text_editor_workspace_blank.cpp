@@ -366,7 +366,7 @@ private:
             button->setProperty("categoryFilter", filter);
             button->setProperty("componentState", filter == paletteCategoryFilter_ ? "selected" : "default");
             button->setAccessibleName("Text Editor palette filter, " + DexTextEditorUi::commandPaletteCategoryFilterLabel(filter));
-            button->setFixedHeight(22);
+            button->setFixedHeight(20);
             button->setMinimumWidth(0);
             button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
             button->setCheckable(true);

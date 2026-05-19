@@ -589,6 +589,10 @@ private:
         if (!commandPalette_) {
             return;
         }
+        QWidget *host = window();
+        if (host && commandPalette_->parentWidget() != host) {
+            commandPalette_->setParent(host);
+        }
         commandPalette_->setVisible(true);
         setComponentState(commandPalette_, "open");
         commandPalette_->raise();
@@ -637,18 +641,22 @@ private:
         if (!commandPalette_) {
             return;
         }
-        const int paletteWidth = std::min(560, std::max(320, width() - (dex_ui::text_editor_metrics::section_gap * 2)));
+        QWidget *host = commandPalette_->parentWidget() ? commandPalette_->parentWidget() : this;
+        const int hostWidth = std::max(1, host->width());
+        const int hostHeight = std::max(1, host->height());
+        const int paletteWidth = std::min(560, std::max(320, hostWidth - (dex_ui::text_editor_metrics::section_gap * 2)));
         commandPalette_->setFixedWidth(paletteWidth);
         commandPalette_->adjustSize();
         const int paletteHeight = std::min(commandPalette_->sizeHint().height(), 360);
         commandPalette_->setFixedHeight(paletteHeight);
-        const int x = std::max(0, (width() - paletteWidth) / 2);
-        const int y = std::max(dex_ui::text_editor_metrics::section_gap, (height() - paletteHeight) / 3);
+        const int x = std::max(0, (hostWidth - paletteWidth) / 2);
+        const int y = std::max(dex_ui::text_editor_metrics::section_gap, hostHeight / 10);
         commandPalette_->move(x, y);
         commandPalette_->setProperty("popoutX", x);
         commandPalette_->setProperty("popoutY", y);
         commandPalette_->setProperty("popoutWidth", paletteWidth);
         commandPalette_->setProperty("popoutHeight", paletteHeight);
+        commandPalette_->setProperty("positionAnchor", host == window() ? "main_window" : "workspace");
     }
 
     void executeAction(const QString &actionId) {

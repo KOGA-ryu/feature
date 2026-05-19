@@ -21,9 +21,9 @@ void DexHomeV2Window::buildToolbar() {
     toolbar->setIconSize(QSize(16, 16));
     addToolBar(Qt::TopToolBarArea, toolbar);
 
-    auto *appLabel = new QLabel("Dex Home");
-    appLabel->setObjectName("chromeTitle");
-    toolbar->addWidget(appLabel);
+    chromeTitleLabel_ = new QLabel("Dex Home");
+    chromeTitleLabel_->setObjectName("chromeTitle");
+    toolbar->addWidget(chromeTitleLabel_);
 
     chromeLocationLabel_ = new QLabel;
     chromeLocationLabel_->setObjectName("chromeLocation");

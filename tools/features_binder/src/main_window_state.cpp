@@ -178,10 +178,22 @@ void DexHomeV2Window::refreshViews() {
     }
     if (chromeLocationLabel_) {
         if (workspaceKind_ == WorkspaceKind::TextEditor) {
-            chromeLocationLabel_->setText(QString("Text Editor / Blank Workspace / %1").arg(selectedDetailLens_));
+            if (chromeTitleLabel_) {
+                chromeTitleLabel_->clear();
+                chromeTitleLabel_->setMaximumWidth(0);
+                chromeTitleLabel_->setVisible(false);
+            }
+            chromeLocationLabel_->setVisible(false);
+            chromeLocationLabel_->clear();
             body_->relayoutSheets();
             return;
         }
+        if (chromeTitleLabel_) {
+            chromeTitleLabel_->setMaximumWidth(16777215);
+            chromeTitleLabel_->setText("Dex Home");
+            chromeTitleLabel_->setVisible(true);
+        }
+        chromeLocationLabel_->setVisible(true);
         QString projectName = selectedProjectId_.isEmpty() ? QString("No project") : selectedProjectId_;
         if (const auto *project = DexProjects::findProjectById(registryProjectsForState(state_), selectedProjectId_)) {
             projectName = DexProjects::displayName(*project);

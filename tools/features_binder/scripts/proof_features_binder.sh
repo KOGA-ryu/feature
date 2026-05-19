@@ -113,9 +113,13 @@ buttons = []
 geometries = {}
 nodes = {}
 palette_paths = []
+visible_text = []
 
 def walk(node):
     ui_path = node.get("uiPath", "")
+    text = node.get("text", "")
+    if text:
+        visible_text.append(text)
     if ui_path.startswith("workbench.toolbar.primary"):
         buttons.append((ui_path, node.get("geometry", {}), node.get("text", "")))
     if ui_path.startswith("workbench.palette"):
@@ -131,6 +135,9 @@ if buttons:
     raise SystemExit(f"text tool toolbar buttons still render: {buttons}")
 if palette_paths:
     raise SystemExit(f"hotkey palette should be hidden in default captures: {palette_paths}")
+for forbidden_text in ("Dex Home", "Text Editor / Blank Workspace"):
+    if any(forbidden_text in text for text in visible_text):
+        raise SystemExit(f"redundant chrome label still visible in Text Editor capture: {forbidden_text}")
 workspace = geometries.get("workbench.editor.workspace", {})
 scroll = geometries.get("workbench.editor.scroll", {})
 if scroll and workspace and workspace.get("width", 0) > scroll.get("width", 0):
@@ -244,9 +251,11 @@ results_geometry = nodes["workbench.palette.results"].get("geometry", {})
 if results_geometry.get("y", 0) <= search_geometry.get("y", 0):
     raise SystemExit(f"palette results are not below search: search={search_geometry} results={results_geometry}")
 root_geometry = palette.get("geometry", {})
-workspace_geometry = nodes.get("workbench.editor.workspace", {}).get("geometry", {})
-if workspace_geometry and abs((root_geometry.get("width", 0) / 2 + root_geometry.get("x", 0)) - (workspace_geometry.get("width", 0) / 2)) > 32:
-    raise SystemExit(f"palette popout is not centered in workspace: palette={root_geometry} workspace={workspace_geometry}")
+window_geometry = tree.get("geometry", {})
+if window_geometry and abs((root_geometry.get("width", 0) / 2 + root_geometry.get("x", 0)) - (window_geometry.get("width", 0) / 2)) > 32:
+    raise SystemExit(f"palette popout is not centered in main window: palette={root_geometry} window={window_geometry}")
+if props.get("positionAnchor") != "main_window":
+    raise SystemExit(f"palette popout is not anchored to main window: {props}")
 selected = selected_rows[0]
 selected_props = selected.get("properties", {})
 for key in ("actionId", "actionLabel", "displayText", "category", "iconName", "hotkeyLabel", "disabledReason", "paletteRole", "paletteActionIndex", "paletteActionEnabled", "accessibleLabel"):

@@ -8,7 +8,7 @@
                     "className": "QLabel",
                     "geometry": {
                         "height": 37,
-                        "width": 90,
+                        "width": 0,
                         "x": 0,
                         "y": 0
                     },
@@ -16,7 +16,7 @@
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
                     },
-                    "text": "Dex Home",
+                    "text": "",
                     "visible": true
                 },
                 {
@@ -25,15 +25,15 @@
                     "className": "QLabel",
                     "geometry": {
                         "height": 37,
-                        "width": 263,
-                        "x": 98,
+                        "width": 17,
+                        "x": 8,
                         "y": 0
                     },
                     "objectName": "chromeLocation",
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
                     },
-                    "text": "Text Editor / Blank Workspace / Dashboard",
+                    "text": "",
                     "visible": true
                 },
                 {
@@ -42,8 +42,8 @@
                     "className": "QWidget",
                     "geometry": {
                         "height": 37,
-                        "width": 633,
-                        "x": 369,
+                        "width": 969,
+                        "x": 33,
                         "y": 0
                     },
                     "objectName": "",

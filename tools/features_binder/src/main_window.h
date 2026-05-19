@@ -95,6 +95,7 @@ private:
     LedgerView *ledger_ = nullptr;
     DetailLensRail *detailLensRail_ = nullptr;
     RightContextPanel *rightContext_ = nullptr;
+    QLabel *chromeTitleLabel_ = nullptr;
     QLabel *chromeLocationLabel_ = nullptr;
     QToolButton *railToggle_ = nullptr;
     QToolButton *bottomToggle_ = nullptr;

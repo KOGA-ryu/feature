@@ -8,7 +8,7 @@
                     "className": "QLabel",
                     "geometry": {
                         "height": 37,
-                        "width": 90,
+                        "width": 0,
                         "x": 0,
                         "y": 0
                     },
@@ -16,7 +16,7 @@
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
                     },
-                    "text": "Dex Home",
+                    "text": "",
                     "visible": true
                 },
                 {
@@ -25,15 +25,15 @@
                     "className": "QLabel",
                     "geometry": {
                         "height": 37,
-                        "width": 263,
-                        "x": 98,
+                        "width": 17,
+                        "x": 8,
                         "y": 0
                     },
                     "objectName": "chromeLocation",
                     "properties": {
                         "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
                     },
-                    "text": "Text Editor / Blank Workspace / Dashboard",
+                    "text": "",
                     "visible": true
                 },
                 {
@@ -42,8 +42,8 @@
                     "className": "QWidget",
                     "geometry": {
                         "height": 37,
-                        "width": 633,
-                        "x": 369,
+                        "width": 969,
+                        "x": 33,
                         "y": 0
                     },
                     "objectName": "",
@@ -653,641 +653,6 @@
                                                                         "uiPath": "workbench.fixture_bench"
                                                                     },
                                                                     "uiPath": "workbench.fixture_bench",
-                                                                    "visible": true
-                                                                },
-                                                                {
-                                                                    "children": [
-                                                                        {
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QLineEdit",
-                                                                            "geometry": {
-                                                                                "height": 32,
-                                                                                "width": 560,
-                                                                                "x": 0,
-                                                                                "y": 0
-                                                                            },
-                                                                            "objectName": "textEditorCommandPaletteInput",
-                                                                            "placeholderText": "Search actions",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "uiPath": "workbench.palette.search.input"
-                                                                            },
-                                                                            "text": "",
-                                                                            "uiPath": "workbench.palette.search.input",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "children": [
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Copy Plain  [clipboard]  Ctrl+C",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 0
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Copy Plain, clipboard, Ctrl+C, enabled",
-                                                                                        "actionId": "text.copy_plain",
-                                                                                        "actionLabel": "Copy Plain",
-                                                                                        "category": "clipboard",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Copy Plain  [clipboard]  Ctrl+C",
-                                                                                        "hotkeyLabel": "Ctrl+C",
-                                                                                        "iconName": "copy",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 0,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.copy_plain"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.copy_plain",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Copy Markdown Block  [clipboard]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 22
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Copy Markdown Block, clipboard, enabled",
-                                                                                        "actionId": "text.copy_markdown_block",
-                                                                                        "actionLabel": "Copy Markdown Block",
-                                                                                        "category": "clipboard",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Copy Markdown Block  [clipboard]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "clipboard-copy",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 1,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.copy_markdown_block"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.copy_markdown_block",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Copy Prompt Block  [clipboard]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 44
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Copy Prompt Block, clipboard, enabled",
-                                                                                        "actionId": "text.copy_prompt_block",
-                                                                                        "actionLabel": "Copy Prompt Block",
-                                                                                        "category": "clipboard",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Copy Prompt Block  [clipboard]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "clipboard-copy",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 2,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.copy_prompt_block"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.copy_prompt_block",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Copy Code Fence  [clipboard]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 66
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Copy Code Fence, clipboard, enabled",
-                                                                                        "actionId": "text.copy_code_fence",
-                                                                                        "actionLabel": "Copy Code Fence",
-                                                                                        "category": "clipboard",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Copy Code Fence  [clipboard]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "braces",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 3,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.copy_code_fence"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.copy_code_fence",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Select All  [selection]  Ctrl+A",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 88
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Select All, selection, Ctrl+A, enabled",
-                                                                                        "actionId": "text.select_all",
-                                                                                        "actionLabel": "Select All",
-                                                                                        "category": "selection",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Select All  [selection]  Ctrl+A",
-                                                                                        "hotkeyLabel": "Ctrl+A",
-                                                                                        "iconName": "scan-text",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 4,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.select_all"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.select_all",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Current Line Text  [lines]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "selected",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 110
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Current Line Text, lines, enabled",
-                                                                                        "actionId": "text.current_line_text",
-                                                                                        "actionLabel": "Current Line Text",
-                                                                                        "category": "lines",
-                                                                                        "componentState": "selected",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Current Line Text  [lines]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "text-cursor-input",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 5,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.current_line_text"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.current_line_text",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Line Range Text  [lines]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 132
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Line Range Text, lines, enabled",
-                                                                                        "actionId": "text.line_range_text",
-                                                                                        "actionLabel": "Line Range Text",
-                                                                                        "category": "lines",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Line Range Text  [lines]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "rows-3",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 6,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.line_range_text"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.line_range_text",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Trim Trailing Whitespace  [cleanup]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 154
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Trim Trailing Whitespace, cleanup, enabled",
-                                                                                        "actionId": "text.trim_trailing_whitespace",
-                                                                                        "actionLabel": "Trim Trailing Whitespace",
-                                                                                        "category": "cleanup",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Trim Trailing Whitespace  [cleanup]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "eraser",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 7,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.trim_trailing_whitespace"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.trim_trailing_whitespace",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Clean Basic  [cleanup]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 176
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Clean Basic, cleanup, enabled",
-                                                                                        "actionId": "text.clean_basic",
-                                                                                        "actionLabel": "Clean Basic",
-                                                                                        "category": "cleanup",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Clean Basic  [cleanup]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "wand-sparkles",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 8,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.clean_basic"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.clean_basic",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Normalize Line Endings  [cleanup]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 198
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Normalize Line Endings, cleanup, enabled",
-                                                                                        "actionId": "text.normalize_line_endings",
-                                                                                        "actionLabel": "Normalize Line Endings",
-                                                                                        "category": "cleanup",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Normalize Line Endings  [cleanup]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "pilcrow",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 9,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.normalize_line_endings"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.normalize_line_endings",
-                                                                                    "visible": true
-                                                                                },
-                                                                                {
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "children": [
-                                                                                            ],
-                                                                                            "className": "QLabel",
-                                                                                            "geometry": {
-                                                                                                "height": 22,
-                                                                                                "width": 546,
-                                                                                                "x": 7,
-                                                                                                "y": 0
-                                                                                            },
-                                                                                            "objectName": "textEditorCommandPaletteRowText",
-                                                                                            "properties": {
-                                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                                "paletteRole": "menuitem_label"
-                                                                                            },
-                                                                                            "text": "Strip ANSI Escape Codes  [cleanup]",
-                                                                                            "visible": true
-                                                                                        }
-                                                                                    ],
-                                                                                    "className": "QFrame",
-                                                                                    "componentState": "default",
-                                                                                    "geometry": {
-                                                                                        "height": 22,
-                                                                                        "width": 560,
-                                                                                        "x": 0,
-                                                                                        "y": 220
-                                                                                    },
-                                                                                    "objectName": "textEditorCommandPaletteRow",
-                                                                                    "properties": {
-                                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                        "_q_stylesheet_maxh": true,
-                                                                                        "_q_stylesheet_minh": true,
-                                                                                        "accessibleLabel": "Strip ANSI Escape Codes, cleanup, enabled",
-                                                                                        "actionId": "text.strip_ansi_escape_codes",
-                                                                                        "actionLabel": "Strip ANSI Escape Codes",
-                                                                                        "category": "cleanup",
-                                                                                        "componentState": "default",
-                                                                                        "disabledReason": "",
-                                                                                        "displayText": "Strip ANSI Escape Codes  [cleanup]",
-                                                                                        "hotkeyLabel": "",
-                                                                                        "iconName": "eraser",
-                                                                                        "paletteActionEnabled": true,
-                                                                                        "paletteActionIndex": 10,
-                                                                                        "paletteRole": "menuitem",
-                                                                                        "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes"
-                                                                                    },
-                                                                                    "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes",
-                                                                                    "visible": true
-                                                                                }
-                                                                            ],
-                                                                            "className": "QFrame",
-                                                                            "geometry": {
-                                                                                "height": 242,
-                                                                                "width": 560,
-                                                                                "x": 0,
-                                                                                "y": 32
-                                                                            },
-                                                                            "objectName": "textEditorCommandPaletteResults",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": "workbench.palette.results"
-                                                                            },
-                                                                            "uiPath": "workbench.palette.results",
-                                                                            "visible": true
-                                                                        }
-                                                                    ],
-                                                                    "className": "QFrame",
-                                                                    "componentState": "open",
-                                                                    "geometry": {
-                                                                        "height": 274,
-                                                                        "width": 560,
-                                                                        "x": 74,
-                                                                        "y": 155
-                                                                    },
-                                                                    "objectName": "textEditorCommandPalette",
-                                                                    "properties": {
-                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": "open",
-                                                                        "disabledRowsPreserved": false,
-                                                                        "focusedSurface": "Palette",
-                                                                        "hasFrameBorder": false,
-                                                                        "hasLauncherButton": false,
-                                                                        "hasTitle": false,
-                                                                        "hotkeyOnly": true,
-                                                                        "paletteOpen": true,
-                                                                        "popout": true,
-                                                                        "popoutHeight": 274,
-                                                                        "popoutWidth": 560,
-                                                                        "popoutX": 74,
-                                                                        "popoutY": 155,
-                                                                        "resultCount": 11,
-                                                                        "selectedActionId": "text.current_line_text",
-                                                                        "selectedRowIndex": 5,
-                                                                        "uiPath": "workbench.palette"
-                                                                    },
-                                                                    "uiPath": "workbench.palette",
                                                                     "visible": true
                                                                 }
                                                             ],
@@ -2794,6 +2159,1278 @@
             "properties": {
                 "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
             },
+            "visible": true
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                    ],
+                    "className": "QLineEdit",
+                    "geometry": {
+                        "height": 32,
+                        "width": 560,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "objectName": "textEditorCommandPaletteInput",
+                    "placeholderText": "Search actions",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "uiPath": "workbench.palette.search.input"
+                    },
+                    "text": "",
+                    "uiPath": "workbench.palette.search.input",
+                    "visible": true
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Plain  [clipboard]  Ctrl+C",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 0
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Plain, clipboard, Ctrl+C, enabled",
+                                "actionId": "text.copy_plain",
+                                "actionLabel": "Copy Plain",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Plain  [clipboard]  Ctrl+C",
+                                "hotkeyLabel": "Ctrl+C",
+                                "iconName": "copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 0,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_plain"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_plain",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Markdown Block  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 22
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Markdown Block, clipboard, enabled",
+                                "actionId": "text.copy_markdown_block",
+                                "actionLabel": "Copy Markdown Block",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Markdown Block  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "clipboard-copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 1,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_markdown_block"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_markdown_block",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Prompt Block  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 44
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Prompt Block, clipboard, enabled",
+                                "actionId": "text.copy_prompt_block",
+                                "actionLabel": "Copy Prompt Block",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Prompt Block  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "clipboard-copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 2,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_prompt_block"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_prompt_block",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Code Fence  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 66
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Code Fence, clipboard, enabled",
+                                "actionId": "text.copy_code_fence",
+                                "actionLabel": "Copy Code Fence",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Code Fence  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "braces",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 3,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_code_fence"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_code_fence",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Select All  [selection]  Ctrl+A",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 88
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Select All, selection, Ctrl+A, enabled",
+                                "actionId": "text.select_all",
+                                "actionLabel": "Select All",
+                                "category": "selection",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Select All  [selection]  Ctrl+A",
+                                "hotkeyLabel": "Ctrl+A",
+                                "iconName": "scan-text",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 4,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.select_all"
+                            },
+                            "uiPath": "workbench.palette.results.action.select_all",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Current Line Text  [lines]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "selected",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 110
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Current Line Text, lines, enabled",
+                                "actionId": "text.current_line_text",
+                                "actionLabel": "Current Line Text",
+                                "category": "lines",
+                                "componentState": "selected",
+                                "disabledReason": "",
+                                "displayText": "Current Line Text  [lines]",
+                                "hotkeyLabel": "",
+                                "iconName": "text-cursor-input",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 5,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.current_line_text"
+                            },
+                            "uiPath": "workbench.palette.results.action.current_line_text",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Line Range Text  [lines]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 132
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Line Range Text, lines, enabled",
+                                "actionId": "text.line_range_text",
+                                "actionLabel": "Line Range Text",
+                                "category": "lines",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Line Range Text  [lines]",
+                                "hotkeyLabel": "",
+                                "iconName": "rows-3",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 6,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.line_range_text"
+                            },
+                            "uiPath": "workbench.palette.results.action.line_range_text",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Trim Trailing Whitespace  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 154
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Trim Trailing Whitespace, cleanup, enabled",
+                                "actionId": "text.trim_trailing_whitespace",
+                                "actionLabel": "Trim Trailing Whitespace",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Trim Trailing Whitespace  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "eraser",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 7,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.trim_trailing_whitespace"
+                            },
+                            "uiPath": "workbench.palette.results.action.trim_trailing_whitespace",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Clean Basic  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 176
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Clean Basic, cleanup, enabled",
+                                "actionId": "text.clean_basic",
+                                "actionLabel": "Clean Basic",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Clean Basic  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "wand-sparkles",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 8,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.clean_basic"
+                            },
+                            "uiPath": "workbench.palette.results.action.clean_basic",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Normalize Line Endings  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 198
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Normalize Line Endings, cleanup, enabled",
+                                "actionId": "text.normalize_line_endings",
+                                "actionLabel": "Normalize Line Endings",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Normalize Line Endings  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "pilcrow",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 9,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.normalize_line_endings"
+                            },
+                            "uiPath": "workbench.palette.results.action.normalize_line_endings",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Strip ANSI Escape Codes  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 220
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Strip ANSI Escape Codes, cleanup, enabled",
+                                "actionId": "text.strip_ansi_escape_codes",
+                                "actionLabel": "Strip ANSI Escape Codes",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Strip ANSI Escape Codes  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "eraser",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 10,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes"
+                            },
+                            "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes",
+                            "visible": true
+                        }
+                    ],
+                    "className": "QFrame",
+                    "geometry": {
+                        "height": 242,
+                        "width": 560,
+                        "x": 0,
+                        "y": 32
+                    },
+                    "objectName": "textEditorCommandPaletteResults",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "uiPath": "workbench.palette.results"
+                    },
+                    "uiPath": "workbench.palette.results",
+                    "visible": true
+                }
+            ],
+            "className": "QFrame",
+            "componentState": "open",
+            "geometry": {
+                "height": 274,
+                "width": 560,
+                "x": 360,
+                "y": 80
+            },
+            "objectName": "textEditorCommandPalette",
+            "properties": {
+                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                "componentState": "open",
+                "disabledRowsPreserved": false,
+                "focusedSurface": "Palette",
+                "hasFrameBorder": false,
+                "hasLauncherButton": false,
+                "hasTitle": false,
+                "hotkeyOnly": true,
+                "paletteOpen": true,
+                "popout": true,
+                "popoutHeight": 274,
+                "popoutWidth": 560,
+                "popoutX": 360,
+                "popoutY": 80,
+                "positionAnchor": "main_window",
+                "resultCount": 11,
+                "selectedActionId": "text.current_line_text",
+                "selectedRowIndex": 5,
+                "uiPath": "workbench.palette"
+            },
+            "uiPath": "workbench.palette",
+            "visible": true
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                    ],
+                    "className": "QLineEdit",
+                    "geometry": {
+                        "height": 32,
+                        "width": 560,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "objectName": "textEditorCommandPaletteInput",
+                    "placeholderText": "Search actions",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "_q_stylesheet_minh": true,
+                        "uiPath": "workbench.palette.search.input"
+                    },
+                    "text": "",
+                    "uiPath": "workbench.palette.search.input",
+                    "visible": true
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Plain  [clipboard]  Ctrl+C",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 0
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Plain, clipboard, Ctrl+C, enabled",
+                                "actionId": "text.copy_plain",
+                                "actionLabel": "Copy Plain",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Plain  [clipboard]  Ctrl+C",
+                                "hotkeyLabel": "Ctrl+C",
+                                "iconName": "copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 0,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_plain"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_plain",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Markdown Block  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 22
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Markdown Block, clipboard, enabled",
+                                "actionId": "text.copy_markdown_block",
+                                "actionLabel": "Copy Markdown Block",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Markdown Block  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "clipboard-copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 1,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_markdown_block"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_markdown_block",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Prompt Block  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 44
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Prompt Block, clipboard, enabled",
+                                "actionId": "text.copy_prompt_block",
+                                "actionLabel": "Copy Prompt Block",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Prompt Block  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "clipboard-copy",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 2,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_prompt_block"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_prompt_block",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Copy Code Fence  [clipboard]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 66
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Copy Code Fence, clipboard, enabled",
+                                "actionId": "text.copy_code_fence",
+                                "actionLabel": "Copy Code Fence",
+                                "category": "clipboard",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Copy Code Fence  [clipboard]",
+                                "hotkeyLabel": "",
+                                "iconName": "braces",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 3,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.copy_code_fence"
+                            },
+                            "uiPath": "workbench.palette.results.action.copy_code_fence",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Select All  [selection]  Ctrl+A",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 88
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Select All, selection, Ctrl+A, enabled",
+                                "actionId": "text.select_all",
+                                "actionLabel": "Select All",
+                                "category": "selection",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Select All  [selection]  Ctrl+A",
+                                "hotkeyLabel": "Ctrl+A",
+                                "iconName": "scan-text",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 4,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.select_all"
+                            },
+                            "uiPath": "workbench.palette.results.action.select_all",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Current Line Text  [lines]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "selected",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 110
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Current Line Text, lines, enabled",
+                                "actionId": "text.current_line_text",
+                                "actionLabel": "Current Line Text",
+                                "category": "lines",
+                                "componentState": "selected",
+                                "disabledReason": "",
+                                "displayText": "Current Line Text  [lines]",
+                                "hotkeyLabel": "",
+                                "iconName": "text-cursor-input",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 5,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.current_line_text"
+                            },
+                            "uiPath": "workbench.palette.results.action.current_line_text",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Line Range Text  [lines]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 132
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Line Range Text, lines, enabled",
+                                "actionId": "text.line_range_text",
+                                "actionLabel": "Line Range Text",
+                                "category": "lines",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Line Range Text  [lines]",
+                                "hotkeyLabel": "",
+                                "iconName": "rows-3",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 6,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.line_range_text"
+                            },
+                            "uiPath": "workbench.palette.results.action.line_range_text",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Trim Trailing Whitespace  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 154
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Trim Trailing Whitespace, cleanup, enabled",
+                                "actionId": "text.trim_trailing_whitespace",
+                                "actionLabel": "Trim Trailing Whitespace",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Trim Trailing Whitespace  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "eraser",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 7,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.trim_trailing_whitespace"
+                            },
+                            "uiPath": "workbench.palette.results.action.trim_trailing_whitespace",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Clean Basic  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 176
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Clean Basic, cleanup, enabled",
+                                "actionId": "text.clean_basic",
+                                "actionLabel": "Clean Basic",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Clean Basic  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "wand-sparkles",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 8,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.clean_basic"
+                            },
+                            "uiPath": "workbench.palette.results.action.clean_basic",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Normalize Line Endings  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 198
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Normalize Line Endings, cleanup, enabled",
+                                "actionId": "text.normalize_line_endings",
+                                "actionLabel": "Normalize Line Endings",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Normalize Line Endings  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "pilcrow",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 9,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.normalize_line_endings"
+                            },
+                            "uiPath": "workbench.palette.results.action.normalize_line_endings",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 546,
+                                        "x": 7,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorCommandPaletteRowText",
+                                    "properties": {
+                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                        "paletteRole": "menuitem_label"
+                                    },
+                                    "text": "Strip ANSI Escape Codes  [cleanup]",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "componentState": "default",
+                            "geometry": {
+                                "height": 22,
+                                "width": 560,
+                                "x": 0,
+                                "y": 220
+                            },
+                            "objectName": "textEditorCommandPaletteRow",
+                            "properties": {
+                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                                "_q_stylesheet_maxh": true,
+                                "_q_stylesheet_minh": true,
+                                "accessibleLabel": "Strip ANSI Escape Codes, cleanup, enabled",
+                                "actionId": "text.strip_ansi_escape_codes",
+                                "actionLabel": "Strip ANSI Escape Codes",
+                                "category": "cleanup",
+                                "componentState": "default",
+                                "disabledReason": "",
+                                "displayText": "Strip ANSI Escape Codes  [cleanup]",
+                                "hotkeyLabel": "",
+                                "iconName": "eraser",
+                                "paletteActionEnabled": true,
+                                "paletteActionIndex": 10,
+                                "paletteRole": "menuitem",
+                                "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes"
+                            },
+                            "uiPath": "workbench.palette.results.action.strip_ansi_escape_codes",
+                            "visible": true
+                        }
+                    ],
+                    "className": "QFrame",
+                    "geometry": {
+                        "height": 242,
+                        "width": 560,
+                        "x": 0,
+                        "y": 32
+                    },
+                    "objectName": "textEditorCommandPaletteResults",
+                    "properties": {
+                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                        "uiPath": "workbench.palette.results"
+                    },
+                    "uiPath": "workbench.palette.results",
+                    "visible": true
+                }
+            ],
+            "className": "QFrame",
+            "componentState": "open",
+            "geometry": {
+                "height": 274,
+                "width": 560,
+                "x": 360,
+                "y": 80
+            },
+            "objectName": "textEditorCommandPalette",
+            "properties": {
+                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
+                "componentState": "open",
+                "disabledRowsPreserved": false,
+                "focusedSurface": "Palette",
+                "hasFrameBorder": false,
+                "hasLauncherButton": false,
+                "hasTitle": false,
+                "hotkeyOnly": true,
+                "paletteOpen": true,
+                "popout": true,
+                "popoutHeight": 274,
+                "popoutWidth": 560,
+                "popoutX": 360,
+                "popoutY": 80,
+                "positionAnchor": "main_window",
+                "resultCount": 11,
+                "selectedActionId": "text.current_line_text",
+                "selectedRowIndex": 5,
+                "uiPath": "workbench.palette"
+            },
+            "uiPath": "workbench.palette",
             "visible": true
         }
     ],

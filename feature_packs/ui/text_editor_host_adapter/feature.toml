@@ -14,4 +14,4 @@ updated_at = "2026-05-18T00:00:00Z"
 items = ["editor_state", "text_action_records", "text_action_input", "host_profile"]
 
 [outputs]
-items = ["host_action_items", "host_action_result", "clipboard_receipt_summary"]
+items = ["host_action_items", "host_action_result", "clipboard_payload_metadata", "clipboard_receipt_summary"]

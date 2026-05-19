@@ -168,11 +168,21 @@ items and action results:
 ```text
 HostActionItem
 HostActionResult
+ClipboardPayloadMetadata
 ClipboardReceiptSummary
 ```
 
 Framework-specific hosts should consume those shapes instead of reinterpreting
 raw action records independently.
+
+For clipboard payload actions, `HostActionResult` keeps two layers separate:
+
+- `clipboard_text`: exact string a real host may write to the OS clipboard
+- `payload_metadata`: selected-text/full-document policy evidence for display,
+  logging, and contract tests
+
+The neutral host adapter must not call clipboard APIs. Qt, egui, terminal, web,
+or another real host decides whether to write `clipboard_text`.
 
 ## Disabled Actions
 

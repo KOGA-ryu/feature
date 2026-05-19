@@ -1,0 +1,1701 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                    ],
+                    "className": "QLabel",
+                    "geometry": {
+                        "height": 37,
+                        "width": 90,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "objectName": "chromeTitle",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QLabel",
+                    "geometry": {
+                        "height": 37,
+                        "width": 263,
+                        "x": 98,
+                        "y": 0
+                    },
+                    "objectName": "chromeLocation",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QWidget",
+                    "geometry": {
+                        "height": 37,
+                        "width": 253,
+                        "x": 369,
+                        "y": 0
+                    },
+                    "objectName": "",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QToolButton",
+                    "geometry": {
+                        "height": 29,
+                        "width": 51,
+                        "x": 630,
+                        "y": 4
+                    },
+                    "objectName": "",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QToolButton",
+                    "geometry": {
+                        "height": 29,
+                        "width": 59,
+                        "x": 689,
+                        "y": 4
+                    },
+                    "objectName": "",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QToolButton",
+                    "geometry": {
+                        "height": 29,
+                        "width": 61,
+                        "x": 756,
+                        "y": 4
+                    },
+                    "objectName": "",
+                    "visible": true
+                },
+                {
+                    "children": [
+                    ],
+                    "className": "QToolButton",
+                    "geometry": {
+                        "height": 29,
+                        "width": 75,
+                        "x": 825,
+                        "y": 4
+                    },
+                    "objectName": "",
+                    "visible": true
+                }
+            ],
+            "className": "QToolBar",
+            "geometry": {
+                "height": 37,
+                "width": 900,
+                "x": 0,
+                "y": 0
+            },
+            "objectName": "",
+            "visible": true
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                            ],
+                            "className": "QWidget",
+                            "geometry": {
+                                "height": 0,
+                                "width": 328,
+                                "x": 10,
+                                "y": 0
+                            },
+                            "objectName": "",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 13,
+                                                                                "y": 9
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.copy_plain",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 105,
+                                                                                "y": 9
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.copy_markdown_block",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 13,
+                                                                                "y": 43
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.copy_prompt_block",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 105,
+                                                                                "y": 43
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.copy_code_fence",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 13,
+                                                                                "y": 76
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.select_all",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QPushButton",
+                                                                            "componentState": "default",
+                                                                            "geometry": {
+                                                                                "height": 38,
+                                                                                "width": 84,
+                                                                                "x": 105,
+                                                                                "y": 76
+                                                                            },
+                                                                            "objectName": "textEditorActionButton",
+                                                                            "uiPath": "workbench.toolbar.primary.clean_basic",
+                                                                            "visible": true
+                                                                        }
+                                                                    ],
+                                                                    "className": "QFrame",
+                                                                    "componentState": "default",
+                                                                    "geometry": {
+                                                                        "height": 114,
+                                                                        "width": 286,
+                                                                        "x": 12,
+                                                                        "y": 12
+                                                                    },
+                                                                    "objectName": "textEditorActionStrip",
+                                                                    "uiPath": "workbench.toolbar.primary",
+                                                                    "visible": true
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 40,
+                                                                                                "width": 147,
+                                                                                                "x": 16,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorSurfaceTitle",
+                                                                                            "uiPath": "workbench.editor.tabs.active_document.label",
+                                                                                            "visible": true
+                                                                                        }
+                                                                                    ],
+                                                                                    "className": "QFrame",
+                                                                                    "componentState": "active",
+                                                                                    "geometry": {
+                                                                                        "height": 41,
+                                                                                        "width": 176,
+                                                                                        "x": 0,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorDocumentTab",
+                                                                                    "uiPath": "workbench.editor.tabs.active_document",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QLabel",
+                                                                                    "geometry": {
+                                                                                        "height": 41,
+                                                                                        "width": 121,
+                                                                                        "x": 163,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorSurfaceEmpty",
+                                                                                    "uiPath": "workbench.editor.status.summary",
+                                                                                    "visible": true
+                                                                                }
+                                                                            ],
+                                                                            "className": "QFrame",
+                                                                            "geometry": {
+                                                                                "height": 42,
+                                                                                "width": 284,
+                                                                                "x": 1,
+                                                                                "y": 1
+                                                                            },
+                                                                            "objectName": "textEditorDocumentHeader",
+                                                                            "uiPath": "workbench.editor.tabs",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QWidget",
+                                                                                    "geometry": {
+                                                                                        "height": 260,
+                                                                                        "width": 260,
+                                                                                        "x": 12,
+                                                                                        "y": 10
+                                                                                    },
+                                                                                    "objectName": "qt_scrollarea_viewport",
+                                                                                    "visible": true
+                                                                                }
+                                                                            ],
+                                                                            "className": "QPlainTextEdit",
+                                                                            "componentState": "focused",
+                                                                            "geometry": {
+                                                                                "height": 280,
+                                                                                "width": 284,
+                                                                                "x": 1,
+                                                                                "y": 43
+                                                                            },
+                                                                            "objectName": "textEditorDocumentEditor",
+                                                                            "uiPath": "workbench.editor.surface.text",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QLabel",
+                                                                            "componentState": "empty",
+                                                                            "geometry": {
+                                                                                "height": 21,
+                                                                                "width": 284,
+                                                                                "x": 1,
+                                                                                "y": 323
+                                                                            },
+                                                                            "objectName": "textEditorMonoLabel",
+                                                                            "uiPath": "workbench.editor.status.cursor_position",
+                                                                            "visible": true
+                                                                        }
+                                                                    ],
+                                                                    "className": "QFrame",
+                                                                    "componentState": "default",
+                                                                    "geometry": {
+                                                                        "height": 353,
+                                                                        "width": 286,
+                                                                        "x": 12,
+                                                                        "y": 134
+                                                                    },
+                                                                    "objectName": "textEditorBlankSurface",
+                                                                    "uiPath": "workbench.editor.surface.document",
+                                                                    "visible": true
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QLabel",
+                                                                                    "geometry": {
+                                                                                        "height": 14,
+                                                                                        "width": 234,
+                                                                                        "x": 13,
+                                                                                        "y": 9
+                                                                                    },
+                                                                                    "objectName": "textEditorSurfaceTitle",
+                                                                                    "uiPath": "workbench.fixture_bench.runner.title",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QComboBox",
+                                                                                            "geometry": {
+                                                                                                "height": 32,
+                                                                                                "width": 234,
+                                                                                                "x": 0,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "",
+                                                                                            "visible": true
+                                                                                        }
+                                                                                    ],
+                                                                                    "className": "QWidget",
+                                                                                    "geometry": {
+                                                                                        "height": 32,
+                                                                                        "width": 234,
+                                                                                        "x": 13,
+                                                                                        "y": 31
+                                                                                    },
+                                                                                    "objectName": "",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QPushButton",
+                                                                                            "componentState": "default",
+                                                                                            "geometry": {
+                                                                                                "height": 38,
+                                                                                                "width": 234,
+                                                                                                "x": 0,
+                                                                                                "y": 0
+                                                                                            },
+                                                                                            "objectName": "textEditorActionButton",
+                                                                                            "uiPath": "workbench.fixture_bench.runner.load",
+                                                                                            "visible": true
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QPushButton",
+                                                                                            "componentState": "default",
+                                                                                            "geometry": {
+                                                                                                "height": 38,
+                                                                                                "width": 234,
+                                                                                                "x": 0,
+                                                                                                "y": 46
+                                                                                            },
+                                                                                            "objectName": "textEditorActionButton",
+                                                                                            "uiPath": "workbench.fixture_bench.runner.run",
+                                                                                            "visible": true
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QPushButton",
+                                                                                            "componentState": "default",
+                                                                                            "geometry": {
+                                                                                                "height": 38,
+                                                                                                "width": 234,
+                                                                                                "x": 0,
+                                                                                                "y": 92
+                                                                                            },
+                                                                                            "objectName": "textEditorActionButton",
+                                                                                            "uiPath": "workbench.fixture_bench.runner.run_all",
+                                                                                            "visible": true
+                                                                                        }
+                                                                                    ],
+                                                                                    "className": "QWidget",
+                                                                                    "geometry": {
+                                                                                        "height": 130,
+                                                                                        "width": 234,
+                                                                                        "x": 13,
+                                                                                        "y": 71
+                                                                                    },
+                                                                                    "objectName": "",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                    ],
+                                                                                    "className": "QLabel",
+                                                                                    "componentState": "success",
+                                                                                    "geometry": {
+                                                                                        "height": 15,
+                                                                                        "width": 234,
+                                                                                        "x": 13,
+                                                                                        "y": 209
+                                                                                    },
+                                                                                    "objectName": "textEditorSurfaceEmpty",
+                                                                                    "uiPath": "workbench.fixture_bench.runner.status",
+                                                                                    "visible": true
+                                                                                }
+                                                                            ],
+                                                                            "className": "QFrame",
+                                                                            "componentState": "empty",
+                                                                            "geometry": {
+                                                                                "height": 233,
+                                                                                "width": 260,
+                                                                                "x": 13,
+                                                                                "y": 13
+                                                                            },
+                                                                            "objectName": "textEditorFixturePanel",
+                                                                            "uiPath": "workbench.fixture_bench.runner",
+                                                                            "visible": true
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 14,
+                                                                                                "width": 100,
+                                                                                                "x": 13,
+                                                                                                "y": 9
+                                                                                            },
+                                                                                            "objectName": "textEditorSurfaceTitle",
+                                                                                            "uiPath": "workbench.fixture_bench.results.expected_panel.title",
+                                                                                            "visible": true
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "children": [
+                                                                                                    ],
+                                                                                                    "className": "QWidget",
+                                                                                                    "geometry": {
+                                                                                                        "height": 170,
+                                                                                                        "width": 74,
+                                                                                                        "x": 13,
+                                                                                                        "y": 11
+                                                                                                    },
+                                                                                                    "objectName": "qt_scrollarea_viewport",
+                                                                                                    "visible": true
+                                                                                                }
+                                                                                            ],
+                                                                                            "className": "QPlainTextEdit",
+                                                                                            "componentState": "empty",
+                                                                                            "geometry": {
+                                                                                                "height": 192,
+                                                                                                "width": 100,
+                                                                                                "x": 13,
+                                                                                                "y": 31
+                                                                                            },
+                                                                                            "objectName": "textEditorOutputPreview",
+                                                                                            "uiPath": "workbench.fixture_bench.results.expected",
+                                                                                            "visible": true
+                                                                                        }
+                                                                                    ],
+                                                                                    "className": "QFrame",
+                                                                                    "componentState": "empty",
+                                                                                    "geometry": {
+                                                                                        "height": 232,
+                                                                                        "width": 126,
+                                                                                        "x": 0,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorFixturePanel",
+                                                                                    "uiPath": "workbench.fixture_bench.results.expected_panel",
+                                                                                    "visible": true
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [
+                                                                                            ],
+                                                                                            "className": "QLabel",
+                                                                                            "geometry": {
+                                                                                                "height": 14,
+                                                                                                "width": 100,
+                                                                                                "x": 13,
+                                                                                                "y": 9
+                                                                                            },
+                                                                                            "objectName": "textEditorSurfaceTitle",
+                                                                                            "uiPath": "workbench.fixture_bench.results.actual_panel.title",
+                                                                                            "visible": true
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "children": [
+                                                                                                    ],
+                                                                                                    "className": "QWidget",
+                                                                                                    "geometry": {
+                                                                                                        "height": 170,
+                                                                                                        "width": 56,
+                                                                                                        "x": 13,
+                                                                                                        "y": 11
+                                                                                                    },
+                                                                                                    "objectName": "qt_scrollarea_viewport",
+                                                                                                    "visible": true
+                                                                                                },
+                                                                                                {
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "children": [
+                                                                                                            ],
+                                                                                                            "className": "QScrollBar",
+                                                                                                            "geometry": {
+                                                                                                                "height": 170,
+                                                                                                                "width": 18,
+                                                                                                                "x": 0,
+                                                                                                                "y": 0
+                                                                                                            },
+                                                                                                            "objectName": "",
+                                                                                                            "visible": true
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "className": "QWidget",
+                                                                                                    "geometry": {
+                                                                                                        "height": 170,
+                                                                                                        "width": 18,
+                                                                                                        "x": 69,
+                                                                                                        "y": 11
+                                                                                                    },
+                                                                                                    "objectName": "qt_scrollarea_vcontainer",
+                                                                                                    "visible": true
+                                                                                                }
+                                                                                            ],
+                                                                                            "className": "QPlainTextEdit",
+                                                                                            "componentState": "empty",
+                                                                                            "geometry": {
+                                                                                                "height": 192,
+                                                                                                "width": 100,
+                                                                                                "x": 13,
+                                                                                                "y": 31
+                                                                                            },
+                                                                                            "objectName": "textEditorOutputPreview",
+                                                                                            "uiPath": "workbench.fixture_bench.results.actual",
+                                                                                            "visible": true
+                                                                                        }
+                                                                                    ],
+                                                                                    "className": "QFrame",
+                                                                                    "componentState": "empty",
+                                                                                    "geometry": {
+                                                                                        "height": 232,
+                                                                                        "width": 126,
+                                                                                        "x": 134,
+                                                                                        "y": 0
+                                                                                    },
+                                                                                    "objectName": "textEditorFixturePanel",
+                                                                                    "uiPath": "workbench.fixture_bench.results.actual_panel",
+                                                                                    "visible": true
+                                                                                }
+                                                                            ],
+                                                                            "className": "QWidget",
+                                                                            "geometry": {
+                                                                                "height": 232,
+                                                                                "width": 260,
+                                                                                "x": 13,
+                                                                                "y": 254
+                                                                            },
+                                                                            "objectName": "",
+                                                                            "uiPath": "workbench.fixture_bench.results",
+                                                                            "visible": true
+                                                                        }
+                                                                    ],
+                                                                    "className": "QFrame",
+                                                                    "componentState": "empty",
+                                                                    "geometry": {
+                                                                        "height": 499,
+                                                                        "width": 286,
+                                                                        "x": 12,
+                                                                        "y": 495
+                                                                    },
+                                                                    "objectName": "textEditorFixtureShelf",
+                                                                    "uiPath": "workbench.fixture_bench",
+                                                                    "visible": true
+                                                                }
+                                                            ],
+                                                            "className": "QWidget",
+                                                            "geometry": {
+                                                                "height": 1006,
+                                                                "width": 310,
+                                                                "x": 0,
+                                                                "y": 0
+                                                            },
+                                                            "objectName": "textEditorBlankBody",
+                                                            "uiPath": "workbench.editor.workspace",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QWidget",
+                                                    "geometry": {
+                                                        "height": 663,
+                                                        "width": 310,
+                                                        "x": 0,
+                                                        "y": 0
+                                                    },
+                                                    "objectName": "qt_scrollarea_viewport",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QScrollBar",
+                                                            "geometry": {
+                                                                "height": 663,
+                                                                "width": 18,
+                                                                "x": 0,
+                                                                "y": 0
+                                                            },
+                                                            "objectName": "",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QWidget",
+                                                    "geometry": {
+                                                        "height": 663,
+                                                        "width": 18,
+                                                        "x": 310,
+                                                        "y": 0
+                                                    },
+                                                    "objectName": "qt_scrollarea_vcontainer",
+                                                    "visible": true
+                                                }
+                                            ],
+                                            "className": "QScrollArea",
+                                            "geometry": {
+                                                "height": 663,
+                                                "width": 328,
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            "objectName": "textEditorWorkspaceScroll",
+                                            "uiPath": "workbench.editor.scroll",
+                                            "visible": true
+                                        }
+                                    ],
+                                    "className": "QWidget",
+                                    "geometry": {
+                                        "height": 663,
+                                        "width": 328,
+                                        "x": 0,
+                                        "y": 0
+                                    },
+                                    "objectName": "textEditorWorkbenchPage",
+                                    "uiPath": "workbench.text_editor",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QStackedWidget",
+                            "geometry": {
+                                "height": 663,
+                                "width": 328,
+                                "x": 10,
+                                "y": 0
+                            },
+                            "objectName": "",
+                            "visible": true
+                        }
+                    ],
+                    "className": "QWidget",
+                    "geometry": {
+                        "height": 663,
+                        "width": 348,
+                        "x": 198,
+                        "y": 0
+                    },
+                    "objectName": "centerLedger",
+                    "visible": true
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                    ],
+                                                    "className": "QLabel",
+                                                    "geometry": {
+                                                        "height": 18,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 0
+                                                    },
+                                                    "objectName": "sectionLabel",
+                                                    "uiPath": "workbench.rail.text_editor.title",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                    ],
+                                                    "className": "QLabel",
+                                                    "geometry": {
+                                                        "height": 15,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 26
+                                                    },
+                                                    "objectName": "mutedLabel",
+                                                    "uiPath": "workbench.rail.text_editor.empty_state",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "textEditorBucketTitle",
+                                                            "uiPath": "workbench.rail.text_editor.documents.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 29
+                                                            },
+                                                            "objectName": "textEditorBucketNote",
+                                                            "uiPath": "workbench.rail.text_editor.documents.empty_state",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "geometry": {
+                                                        "height": 54,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 49
+                                                    },
+                                                    "objectName": "textEditorRailBucket",
+                                                    "uiPath": "workbench.rail.text_editor.documents",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "textEditorBucketTitle",
+                                                            "uiPath": "workbench.rail.text_editor.clipboard.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 29
+                                                            },
+                                                            "objectName": "textEditorBucketNote",
+                                                            "uiPath": "workbench.rail.text_editor.clipboard.empty_state",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "geometry": {
+                                                        "height": 54,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 111
+                                                    },
+                                                    "objectName": "textEditorRailBucket",
+                                                    "uiPath": "workbench.rail.text_editor.clipboard",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "textEditorBucketTitle",
+                                                            "uiPath": "workbench.rail.text_editor.drafts.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 29
+                                                            },
+                                                            "objectName": "textEditorBucketNote",
+                                                            "uiPath": "workbench.rail.text_editor.drafts.empty_state",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "geometry": {
+                                                        "height": 54,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 173
+                                                    },
+                                                    "objectName": "textEditorRailBucket",
+                                                    "uiPath": "workbench.rail.text_editor.drafts",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "textEditorBucketTitle",
+                                                            "uiPath": "workbench.rail.text_editor.fixtures.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 16,
+                                                                "width": 160,
+                                                                "x": 13,
+                                                                "y": 29
+                                                            },
+                                                            "objectName": "textEditorBucketNote",
+                                                            "uiPath": "workbench.rail.text_editor.fixtures.empty_state",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "geometry": {
+                                                        "height": 54,
+                                                        "width": 186,
+                                                        "x": 0,
+                                                        "y": 235
+                                                    },
+                                                    "objectName": "textEditorRailBucket",
+                                                    "uiPath": "workbench.rail.text_editor.fixtures",
+                                                    "visible": true
+                                                }
+                                            ],
+                                            "className": "QWidget",
+                                            "geometry": {
+                                                "height": 601,
+                                                "width": 186,
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            "objectName": "projectRailBody",
+                                            "visible": true,
+                                            "workspace": "text_editor"
+                                        }
+                                    ],
+                                    "className": "QWidget",
+                                    "geometry": {
+                                        "height": 601,
+                                        "width": 186,
+                                        "x": 0,
+                                        "y": 0
+                                    },
+                                    "objectName": "qt_scrollarea_viewport",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QScrollArea",
+                            "geometry": {
+                                "height": 601,
+                                "width": 186,
+                                "x": 10,
+                                "y": 12
+                            },
+                            "objectName": "",
+                            "visible": true
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 14,
+                                        "width": 14,
+                                        "x": 13,
+                                        "y": 9
+                                    },
+                                    "objectName": "",
+                                    "visible": true
+                                },
+                                {
+                                    "children": [
+                                    ],
+                                    "className": "QLabel",
+                                    "geometry": {
+                                        "height": 22,
+                                        "width": 140,
+                                        "x": 35,
+                                        "y": 5
+                                    },
+                                    "objectName": "",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QFrame",
+                            "geometry": {
+                                "height": 32,
+                                "width": 186,
+                                "x": 10,
+                                "y": 621
+                            },
+                            "objectName": "settingsRow",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        }
+                    ],
+                    "className": "QFrame",
+                    "geometry": {
+                        "height": 663,
+                        "width": 208,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "objectName": "projectRail",
+                    "visible": true,
+                    "workspace": "text_editor"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 24
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 62
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 100
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 138
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 176
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 33,
+                                "width": 46,
+                                "x": 4,
+                                "y": 214
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        },
+                        {
+                            "children": [
+                            ],
+                            "className": "QPushButton",
+                            "geometry": {
+                                "height": 32,
+                                "width": 46,
+                                "x": 4,
+                                "y": 252
+                            },
+                            "objectName": "detailLensTab",
+                            "visible": true,
+                            "workspace": "text_editor"
+                        }
+                    ],
+                    "className": "QFrame",
+                    "geometry": {
+                        "height": 663,
+                        "width": 54,
+                        "x": 536,
+                        "y": 0
+                    },
+                    "objectName": "detailLensRail",
+                    "visible": true,
+                    "workspace": "text_editor"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 18,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "sectionLabel",
+                                                            "uiPath": "workbench.inspector.text_editor.options.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 35
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.options.source_label",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLineEdit",
+                                                            "geometry": {
+                                                                "height": 32,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 57
+                                                            },
+                                                            "objectName": "",
+                                                            "uiPath": "workbench.inspector.text_editor.options.source",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 97
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.options.language_label",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLineEdit",
+                                                            "geometry": {
+                                                                "height": 32,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 119
+                                                            },
+                                                            "objectName": "",
+                                                            "uiPath": "workbench.inspector.text_editor.options.language",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 159
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.options.line_range_label",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QLineEdit",
+                                                                            "geometry": {
+                                                                                "height": 31,
+                                                                                "width": 33,
+                                                                                "x": 8,
+                                                                                "y": 3
+                                                                            },
+                                                                            "objectName": "qt_spinbox_lineedit",
+                                                                            "visible": true
+                                                                        }
+                                                                    ],
+                                                                    "className": "QSpinBox",
+                                                                    "componentState": "default",
+                                                                    "geometry": {
+                                                                        "height": 37,
+                                                                        "width": 67,
+                                                                        "x": 0,
+                                                                        "y": 0
+                                                                    },
+                                                                    "objectName": "",
+                                                                    "uiPath": "workbench.inspector.text_editor.options.line_start",
+                                                                    "visible": true
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                    ],
+                                                                    "className": "QLabel",
+                                                                    "geometry": {
+                                                                        "height": 37,
+                                                                        "width": 85,
+                                                                        "x": 75,
+                                                                        "y": 0
+                                                                    },
+                                                                    "objectName": "textEditorSurfaceEmpty",
+                                                                    "uiPath": "workbench.inspector.text_editor.options.line_to",
+                                                                    "visible": true
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                            ],
+                                                                            "className": "QLineEdit",
+                                                                            "geometry": {
+                                                                                "height": 31,
+                                                                                "width": 33,
+                                                                                "x": 8,
+                                                                                "y": 3
+                                                                            },
+                                                                            "objectName": "qt_spinbox_lineedit",
+                                                                            "visible": true
+                                                                        }
+                                                                    ],
+                                                                    "className": "QSpinBox",
+                                                                    "componentState": "default",
+                                                                    "geometry": {
+                                                                        "height": 37,
+                                                                        "width": 67,
+                                                                        "x": 168,
+                                                                        "y": 0
+                                                                    },
+                                                                    "objectName": "",
+                                                                    "uiPath": "workbench.inspector.text_editor.options.line_end",
+                                                                    "visible": true
+                                                                }
+                                                            ],
+                                                            "className": "QWidget",
+                                                            "geometry": {
+                                                                "height": 37,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 181
+                                                            },
+                                                            "objectName": "",
+                                                            "uiPath": "workbench.inspector.text_editor.options.line_range",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QCheckBox",
+                                                            "componentState": "default",
+                                                            "geometry": {
+                                                                "height": 19,
+                                                                "width": 235,
+                                                                "x": 13,
+                                                                "y": 226
+                                                            },
+                                                            "objectName": "",
+                                                            "uiPath": "workbench.inspector.text_editor.options.strip_ansi",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "componentState": "default",
+                                                    "geometry": {
+                                                        "height": 254,
+                                                        "width": 261,
+                                                        "x": 0,
+                                                        "y": 0
+                                                    },
+                                                    "objectName": "textEditorContextPanel",
+                                                    "uiPath": "workbench.inspector.text_editor.options",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 18,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "sectionLabel",
+                                                            "uiPath": "workbench.inspector.text_editor.context.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 35
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 57
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 79
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 101
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 28,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 123
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 159
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 181
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.context.line",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "componentState": "success",
+                                                    "geometry": {
+                                                        "height": 204,
+                                                        "width": 261,
+                                                        "x": 0,
+                                                        "y": 262
+                                                    },
+                                                    "objectName": "textEditorContextPanel",
+                                                    "uiPath": "workbench.inspector.text_editor.context",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 18,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "sectionLabel",
+                                                            "uiPath": "workbench.inspector.text_editor.result.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 35
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.result.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 57
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.result.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 79
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.result.line",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 14,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 101
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.result.line",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "componentState": "success",
+                                                    "geometry": {
+                                                        "height": 124,
+                                                        "width": 261,
+                                                        "x": 0,
+                                                        "y": 474
+                                                    },
+                                                    "objectName": "textEditorContextPanel",
+                                                    "uiPath": "workbench.inspector.text_editor.result",
+                                                    "visible": true
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 18,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 9
+                                                            },
+                                                            "objectName": "sectionLabel",
+                                                            "uiPath": "workbench.inspector.text_editor.receipts.title",
+                                                            "visible": true
+                                                        },
+                                                        {
+                                                            "children": [
+                                                            ],
+                                                            "className": "QLabel",
+                                                            "geometry": {
+                                                                "height": 84,
+                                                                "width": 233,
+                                                                "x": 15,
+                                                                "y": 35
+                                                            },
+                                                            "objectName": "textEditorSurfaceEmpty",
+                                                            "uiPath": "workbench.inspector.text_editor.receipts.line",
+                                                            "visible": true
+                                                        }
+                                                    ],
+                                                    "className": "QFrame",
+                                                    "componentState": "success",
+                                                    "geometry": {
+                                                        "height": 128,
+                                                        "width": 261,
+                                                        "x": 0,
+                                                        "y": 606
+                                                    },
+                                                    "objectName": "textEditorContextPanel",
+                                                    "uiPath": "workbench.inspector.text_editor.receipts",
+                                                    "visible": true
+                                                }
+                                            ],
+                                            "className": "QWidget",
+                                            "geometry": {
+                                                "height": 734,
+                                                "width": 261,
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            "objectName": "",
+                                            "visible": true
+                                        }
+                                    ],
+                                    "className": "QWidget",
+                                    "geometry": {
+                                        "height": 641,
+                                        "width": 261,
+                                        "x": 0,
+                                        "y": 0
+                                    },
+                                    "objectName": "qt_scrollarea_viewport",
+                                    "visible": true
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                            ],
+                                            "className": "QScrollBar",
+                                            "geometry": {
+                                                "height": 641,
+                                                "width": 18,
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            "objectName": "",
+                                            "visible": true
+                                        }
+                                    ],
+                                    "className": "QWidget",
+                                    "geometry": {
+                                        "height": 641,
+                                        "width": 18,
+                                        "x": 261,
+                                        "y": 0
+                                    },
+                                    "objectName": "qt_scrollarea_vcontainer",
+                                    "visible": true
+                                }
+                            ],
+                            "className": "QScrollArea",
+                            "geometry": {
+                                "height": 641,
+                                "width": 279,
+                                "x": 11,
+                                "y": 12
+                            },
+                            "objectName": "",
+                            "visible": true
+                        }
+                    ],
+                    "className": "QFrame",
+                    "geometry": {
+                        "height": 663,
+                        "width": 300,
+                        "x": 600,
+                        "y": 0
+                    },
+                    "objectName": "rightContext",
+                    "visible": true,
+                    "workspace": "text_editor"
+                }
+            ],
+            "className": "QWidget",
+            "geometry": {
+                "height": 663,
+                "width": 900,
+                "x": 0,
+                "y": 37
+            },
+            "objectName": "rootSurface",
+            "visible": true
+        }
+    ],
+    "className": "QMainWindow",
+    "geometry": {
+        "height": 700,
+        "width": 900,
+        "x": 2,
+        "y": 2
+    },
+    "objectName": "",
+    "visible": true
+}

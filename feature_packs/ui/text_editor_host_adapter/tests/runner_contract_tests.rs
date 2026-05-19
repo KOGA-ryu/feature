@@ -36,8 +36,41 @@ fn runner_executes_copy_plain_with_selected_text() {
     }));
 
     assert_eq!(response["ok"], true);
-    assert_eq!(response["result"]["kind"], "text");
+    assert_eq!(response["result"]["kind"], "clipboard_payload");
     assert_eq!(response["result"]["clipboard_text"], "beta");
+    assert_eq!(
+        response["result"]["payload_metadata"]["export_policy"],
+        "selected_or_full_document"
+    );
+    assert_eq!(
+        response["result"]["payload_metadata"]["used_selection"],
+        true
+    );
+}
+
+#[test]
+fn runner_executes_copy_plain_with_full_document_policy() {
+    let response = run_runner(json!({
+        "action_id": "text.copy_plain",
+        "document_text": "alpha\nbeta",
+        "selection": {
+            "anchor": {"line": 0, "column": 0},
+            "caret": {"line": 0, "column": 5}
+        },
+        "input": {"selection_export_policy": "full_document"}
+    }));
+
+    assert_eq!(response["ok"], true);
+    assert_eq!(response["result"]["kind"], "clipboard_payload");
+    assert_eq!(response["result"]["clipboard_text"], "alpha\nbeta");
+    assert_eq!(
+        response["result"]["payload_metadata"]["export_policy"],
+        "full_document"
+    );
+    assert_eq!(
+        response["result"]["payload_metadata"]["used_selection"],
+        false
+    );
 }
 
 #[test]

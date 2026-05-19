@@ -9,6 +9,7 @@
   "outputs": [
     "host_action_items",
     "host_action_result",
+    "clipboard_payload_metadata",
     "clipboard_receipt_summary"
   ]
 }

@@ -32,7 +32,12 @@ Qt, egui, terminal, and web adapters on the same placement vocabulary.
 Qt, egui, terminal, and web hosts should render these action records instead of
 inventing local labels, icons, tooltips, shortcuts, or behavior.
 
-Clipboard policy actions return `ClipboardTransformResult` through
+`text.copy_plain` returns `TextActionOutput::ClipboardPayload`. The payload text
+is still exact text by default, but the action output also carries the selection
+export policy and metadata that explains whether selected text or the full
+document was used.
+
+Cleanup policy actions return `ClipboardTransformResult` through
 `TextActionOutput::ClipboardTransform`, preserving cleanup receipts for hosts and
 future agent calls.
 

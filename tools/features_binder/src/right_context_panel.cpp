@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QSizePolicy>
 #include <QStyle>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -22,9 +23,15 @@
 namespace {
 
 void setContextWorkspace(QFrame *context, const char *workspace) {
-    context->setFixedWidth(QString::fromLatin1(workspace) == "text_editor"
-            ? dex_ui::text_editor_metrics::inspector_width
-            : dex_ui::metrics::right_context_width);
+    if (QString::fromLatin1(workspace) == "text_editor") {
+        context->setMinimumWidth(dex_ui::text_editor_metrics::inspector_width_min);
+        context->setMaximumWidth(dex_ui::text_editor_metrics::inspector_width);
+        context->resize(dex_ui::text_editor_metrics::inspector_width, context->height());
+        context->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    } else {
+        context->setFixedWidth(dex_ui::metrics::right_context_width);
+        context->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+    }
     context->setProperty("workspace", workspace);
     context->style()->unpolish(context);
     context->style()->polish(context);

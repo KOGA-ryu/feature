@@ -158,6 +158,52 @@ Why this exists:
 If a helper changes text, the caller should be able to explain what changed.
 ```
 
+## Clipboard Payload V1
+
+Plain exact copy now has a first-class payload shape:
+
+```text
+ClipboardPayload:
+  text
+  metadata
+  receipt
+
+ClipboardPayloadMetadata:
+  payload_kind
+  export_policy
+  used_selection
+  fallback_to_full_document
+  selection?
+  line_range?
+  source_path?
+  language?
+  character_count
+  line_count
+  first_line_indent?
+```
+
+Default export policy:
+
+```text
+selected_or_full_document
+```
+
+That means exact copy uses selected text when a selection exists and falls back
+to the full document when there is no selection. The fallback is not implicit in
+tests or host code; payload metadata records `used_selection` and
+`fallback_to_full_document`.
+
+Explicit export policies:
+
+- `selection_only`: exports selected text only; no selection produces empty text
+  without falling back.
+- `full_document`: exports the full document even when a selection exists.
+- `selected_or_full_document`: default exact-copy behavior.
+
+Host adapters may expose `clipboard_text` for real OS clipboard writes, but the
+write still happens only in host/UI code. Headless crates produce payloads and
+receipts only.
+
 ## User Access Pattern
 
 - toolbar: Copy Plain, Copy Markdown, Copy Prompt

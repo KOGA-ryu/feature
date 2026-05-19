@@ -16,3 +16,4 @@ screenshots:
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/08_features_text_editor_900x700.png
 ui_tree:
 /Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/07_features_text_editor_ui_tree.json
+/Users/kogaryu/dev/features/tools/features_binder/proof_reference/final_current/08_features_text_editor_ui_tree.json

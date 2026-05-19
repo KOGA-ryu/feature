@@ -1,7 +1,8 @@
 use feature_core::{FeatureLabResult, FeatureManifest, parse_feature_manifest};
 use serde::{Deserialize, Serialize};
 use text_editor_clipboard::{
-    CleanBasicPolicy, ClipboardTransformResult, clean_basic, copy_code_fence,
+    CleanBasicPolicy, ClipboardPayload, ClipboardTransformResult, SelectionExportPolicy,
+    clean_basic, copy_code_fence, copy_exact_payload_with_policy,
     normalize_line_endings_with_report, strip_ansi_escape_codes_with_report,
 };
 use text_editor_plain::{EditorCommand, TextEditorPlain, trim_trailing_whitespace_text};
@@ -159,6 +160,7 @@ pub struct TextActionInput {
     pub start_line: Option<usize>,
     pub end_line: Option<usize>,
     pub text: Option<String>,
+    pub selection_export_policy: Option<SelectionExportPolicy>,
     pub strip_ansi_escape_codes: Option<bool>,
 }
 
@@ -173,6 +175,7 @@ impl TextActionInput {
 pub enum TextActionOutput {
     None,
     Text(String),
+    ClipboardPayload(ClipboardPayload),
     ClipboardTransform(ClipboardTransformResult),
     Disabled { action_id: String, reason: String },
 }
@@ -370,7 +373,9 @@ pub fn execute_text_action(
     }
 
     match action_id {
-        TextActionId::CopyPlain => TextActionOutput::Text(editor.copy_plain()),
+        TextActionId::CopyPlain => TextActionOutput::ClipboardPayload(
+            copy_exact_payload_with_policy(editor, selection_export_policy(&input)),
+        ),
         TextActionId::CopyMarkdownBlock => {
             TextActionOutput::Text(editor.copy_markdown_block(input.language.as_deref()))
         }
@@ -429,6 +434,12 @@ pub fn documentation_preview() -> &'static str {
 
 pub fn sample_fixture() -> &'static str {
     include_str!("../fixtures/sample_actions.json")
+}
+
+fn selection_export_policy(input: &TextActionInput) -> SelectionExportPolicy {
+    input
+        .selection_export_policy
+        .unwrap_or(SelectionExportPolicy::SelectedOrFullDocument)
 }
 
 fn input_text_or_selected_text(editor: &TextEditorPlain, input: &TextActionInput) -> String {

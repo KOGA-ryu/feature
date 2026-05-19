@@ -4,7 +4,7 @@ use text_editor_actions::{
     TextEnabledRule, TextHostPlacement, TextUndoBehavior, action_record, all_text_actions,
     execute_text_action, parse_text_action_id, sample_fixture,
 };
-use text_editor_clipboard::ClipboardChangeId;
+use text_editor_clipboard::{ClipboardChangeId, ClipboardPayloadKind, SelectionExportPolicy};
 use text_editor_plain::{EditorCommand, EditorPosition, EditorSelection, TextEditorPlain};
 
 #[test]
@@ -26,6 +26,7 @@ fn feature_manifest_matches_contract() {
             "text_action_records",
             "text_action_output",
             "enabled_state",
+            "clipboard_payload",
             "clipboard_transform_result"
         ]
     );
@@ -128,14 +129,26 @@ fn copy_actions_return_exact_helper_outputs_without_mutation() {
     let selection = editor.selection();
     let text = editor.text().to_owned();
 
-    assert_eq!(
-        execute_text_action(
-            &mut editor,
-            TextActionId::CopyPlain,
-            TextActionInput::empty()
-        ),
-        TextActionOutput::Text("two".into())
+    let output = execute_text_action(
+        &mut editor,
+        TextActionId::CopyPlain,
+        TextActionInput::empty(),
     );
+    let TextActionOutput::ClipboardPayload(payload) = output else {
+        panic!("copy plain should return clipboard payload");
+    };
+    assert_eq!(payload.text, "two");
+    assert_eq!(payload.receipt.text, "two");
+    assert_eq!(
+        payload.metadata.payload_kind,
+        ClipboardPayloadKind::ExactText
+    );
+    assert_eq!(
+        payload.metadata.export_policy,
+        SelectionExportPolicy::SelectedOrFullDocument
+    );
+    assert!(payload.metadata.used_selection);
+    assert!(!payload.metadata.fallback_to_full_document);
     assert_eq!(
         execute_text_action(
             &mut editor,
@@ -161,6 +174,35 @@ fn copy_actions_return_exact_helper_outputs_without_mutation() {
 
     assert_eq!(editor.text(), text);
     assert_eq!(editor.selection(), selection);
+}
+
+#[test]
+fn copy_plain_selection_export_policy_is_explicit() {
+    let mut editor = TextEditorPlain::from_text("one\ntwo".into());
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 0, column: 0 },
+        caret: EditorPosition { line: 0, column: 3 },
+    }));
+
+    let output = execute_text_action(
+        &mut editor,
+        TextActionId::CopyPlain,
+        TextActionInput {
+            selection_export_policy: Some(SelectionExportPolicy::FullDocument),
+            ..TextActionInput::empty()
+        },
+    );
+    let TextActionOutput::ClipboardPayload(payload) = output else {
+        panic!("copy plain should return clipboard payload");
+    };
+
+    assert_eq!(payload.text, "one\ntwo");
+    assert_eq!(
+        payload.metadata.export_policy,
+        SelectionExportPolicy::FullDocument
+    );
+    assert!(!payload.metadata.used_selection);
+    assert_eq!(payload.metadata.selection, None);
 }
 
 #[test]

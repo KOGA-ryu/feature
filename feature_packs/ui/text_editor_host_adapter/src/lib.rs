@@ -5,7 +5,8 @@ use text_editor_actions::{
     TextEnabledRule, TextHostPlacement, TextUndoBehavior, all_text_actions, execute_text_action,
 };
 use text_editor_clipboard::{
-    ClipboardChange, ClipboardTransformResult, ClipboardWarning, ClipboardWarningSeverity,
+    ClipboardChange, ClipboardPayload, ClipboardPayloadMetadata, ClipboardTransformResult,
+    ClipboardWarning, ClipboardWarningSeverity,
 };
 use text_editor_plain::TextEditorPlain;
 
@@ -42,6 +43,7 @@ pub struct HostActionItem {
 pub enum HostActionResultKind {
     None,
     Text,
+    ClipboardPayload,
     ClipboardTransform,
     Disabled,
 }
@@ -71,6 +73,8 @@ pub struct HostActionResult {
     pub kind: HostActionResultKind,
     pub display_text: String,
     pub clipboard_text: Option<String>,
+    pub clipboard_payload: Option<ClipboardPayload>,
+    pub payload_metadata: Option<ClipboardPayloadMetadata>,
     pub receipt_summary: Option<ClipboardReceiptSummary>,
     pub warnings: Vec<String>,
 }
@@ -139,6 +143,8 @@ pub fn host_result_from_output(
             kind: HostActionResultKind::None,
             display_text: "Action completed.".to_owned(),
             clipboard_text: None,
+            clipboard_payload: None,
+            payload_metadata: None,
             receipt_summary: None,
             warnings: Vec::new(),
         },
@@ -147,9 +153,25 @@ pub fn host_result_from_output(
             kind: HostActionResultKind::Text,
             display_text: "Text output ready.".to_owned(),
             clipboard_text: Some(text),
+            clipboard_payload: None,
+            payload_metadata: None,
             receipt_summary: None,
             warnings: Vec::new(),
         },
+        TextActionOutput::ClipboardPayload(payload) => {
+            let receipt_summary = ClipboardReceiptSummary::from_transform(&payload.receipt);
+            let warnings = receipt_summary.warnings.clone();
+            HostActionResult {
+                action_id,
+                kind: HostActionResultKind::ClipboardPayload,
+                display_text: "Clipboard payload ready.".to_owned(),
+                clipboard_text: Some(payload.text.clone()),
+                payload_metadata: Some(payload.metadata.clone()),
+                receipt_summary: Some(receipt_summary),
+                clipboard_payload: Some(payload),
+                warnings,
+            }
+        }
         TextActionOutput::ClipboardTransform(result) => {
             let receipt_summary = ClipboardReceiptSummary::from_transform(&result);
             let display_text = transform_display_text(&receipt_summary);
@@ -159,6 +181,8 @@ pub fn host_result_from_output(
                 kind: HostActionResultKind::ClipboardTransform,
                 display_text,
                 clipboard_text: Some(result.text),
+                clipboard_payload: None,
+                payload_metadata: None,
                 receipt_summary: Some(receipt_summary),
                 warnings,
             }
@@ -168,6 +192,8 @@ pub fn host_result_from_output(
             kind: HostActionResultKind::Disabled,
             display_text: format!("Action disabled: {reason}"),
             clipboard_text: None,
+            clipboard_payload: None,
+            payload_metadata: None,
             receipt_summary: None,
             warnings: vec![reason],
         },

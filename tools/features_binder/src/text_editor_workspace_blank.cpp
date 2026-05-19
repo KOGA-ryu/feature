@@ -498,10 +498,7 @@ private:
         if (available < 520) {
             return 2;
         }
-        if (available < 760) {
-            return 3;
-        }
-        return 4;
+        return 3;
     }
 
     int actionStripHeight(int columns, int actionCount) const {

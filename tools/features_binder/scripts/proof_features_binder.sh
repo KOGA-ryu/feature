@@ -20,6 +20,7 @@ rm -f \
   "$OUT/07_features_text_editor_1280x800.png" \
   "$OUT/07_features_text_editor_ui_tree.json" \
   "$OUT/08_features_text_editor_900x700.png" \
+  "$OUT/08_features_text_editor_ui_tree.json" \
   "$OUT/manifest.txt"
 
 cmake -S "$ROOT" -B "$BUILD"
@@ -47,7 +48,7 @@ capture "04_features_settings_1280x800" --size 1280x800 --settings
 capture "05_features_profile_900x700" --size 900x700 --worker stager --tab Profile
 capture "06_features_settings_full_1280x4200" --size 1280x4200 --settings
 capture "07_features_text_editor_1280x800" --size 1280x800 --no-settings --worker organizer --tab "Text Editor" --ui-tree-dump "$OUT/07_features_text_editor_ui_tree.json"
-capture "08_features_text_editor_900x700" --size 900x700 --no-settings --worker organizer --tab "Text Editor"
+capture "08_features_text_editor_900x700" --size 900x700 --no-settings --worker organizer --tab "Text Editor" --ui-tree-dump "$OUT/08_features_text_editor_ui_tree.json"
 
 check_png_size() {
   local file="$1"
@@ -71,13 +72,66 @@ check_png_size "$OUT/06_features_settings_full_1280x4200.png" 1280 4200
 check_png_size "$OUT/07_features_text_editor_1280x800.png" 1280 800
 check_png_size "$OUT/08_features_text_editor_900x700.png" 900 700
 test -s "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.rail.text_editor.documents' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.toolbar.primary' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.editor.surface.document' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.inspector.text_editor.options' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.fixture_bench.results.expected' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q 'workbench.fixture_bench.results.actual' "$OUT/07_features_text_editor_ui_tree.json"
-grep -q '"workspace": "text_editor"' "$OUT/07_features_text_editor_ui_tree.json"
+test -s "$OUT/08_features_text_editor_ui_tree.json"
+
+check_text_editor_tree() {
+  local tree="$1"
+  local expected_columns="$2"
+  local expected_rows="$3"
+  grep -q 'workbench.rail.text_editor.documents' "$tree"
+  grep -q 'workbench.toolbar.primary' "$tree"
+  grep -q 'workbench.editor.surface.document' "$tree"
+  grep -q 'workbench.editor.surface.text' "$tree"
+  grep -q 'workbench.inspector.text_editor.options' "$tree"
+  grep -q 'workbench.inspector.text_editor.context' "$tree"
+  grep -q 'workbench.inspector.text_editor.receipts' "$tree"
+  grep -q 'workbench.fixture_bench.results.expected' "$tree"
+  grep -q 'workbench.fixture_bench.results.actual' "$tree"
+  grep -q '"workspace": "text_editor"' "$tree"
+  ! grep -q 'workbench.rail.repo' "$tree"
+  ! grep -q 'workbench.rail.agent' "$tree"
+  ! grep -q 'workbench.inspector.repo' "$tree"
+  ! grep -q 'workbench.inspector.agent' "$tree"
+  python3 - "$tree" "$expected_columns" "$expected_rows" <<'PY'
+import json
+import sys
+
+path, expected_columns, expected_rows = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+tree = json.load(open(path))
+buttons = []
+geometries = {}
+
+def walk(node):
+    ui_path = node.get("uiPath", "")
+    if ui_path.startswith("workbench.toolbar.primary.") and ui_path != "workbench.toolbar.primary":
+        buttons.append((ui_path, node.get("geometry", {})))
+    if ui_path:
+        geometries[ui_path] = node.get("geometry", {})
+    for child in node.get("children", []):
+        walk(child)
+
+walk(tree)
+if len(buttons) != 6:
+    raise SystemExit(f"expected 6 primary toolbar actions, saw {len(buttons)}")
+columns = len({button[1].get("x") for button in buttons})
+rows = len({button[1].get("y") for button in buttons})
+if columns != expected_columns or rows != expected_rows:
+    raise SystemExit(f"toolbar grid mismatch: expected {expected_columns}x{expected_rows}, saw {columns}x{rows}")
+toolbar = geometries.get("workbench.toolbar.primary", {})
+for ui_path, geometry in buttons:
+    if geometry.get("x", 0) < 0 or geometry.get("y", 0) < 0:
+        raise SystemExit(f"{ui_path} has negative geometry: {geometry}")
+    if geometry.get("x", 0) + geometry.get("width", 0) > toolbar.get("width", 0):
+        raise SystemExit(f"{ui_path} overflows toolbar width: {geometry} > {toolbar}")
+workspace = geometries.get("workbench.editor.workspace", {})
+scroll = geometries.get("workbench.editor.scroll", {})
+if scroll and workspace and workspace.get("width", 0) > scroll.get("width", 0):
+    raise SystemExit(f"workspace width exceeds scroll viewport: {workspace} > {scroll}")
+PY
+}
+
+check_text_editor_tree "$OUT/07_features_text_editor_ui_tree.json" 3 2
+check_text_editor_tree "$OUT/08_features_text_editor_ui_tree.json" 2 3
 
 grep -q '"project_id": "features"' "$ROOT/data/projects.json"
 grep -q '"path": "/Users/kogaryu/dev/features"' "$ROOT/data/projects.json"
@@ -106,6 +160,7 @@ $OUT/07_features_text_editor_1280x800.png
 $OUT/08_features_text_editor_900x700.png
 ui_tree:
 $OUT/07_features_text_editor_ui_tree.json
+$OUT/08_features_text_editor_ui_tree.json
 MANIFEST
 
 echo "proof written to $OUT"

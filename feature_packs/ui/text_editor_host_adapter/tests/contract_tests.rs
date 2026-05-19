@@ -3,8 +3,8 @@ use text_editor_actions::{
     TextActionId, TextActionInput, TextActionOutput, TextHostPlacement, execute_text_action,
 };
 use text_editor_clipboard::{
-    ClipboardChange, ClipboardChangeId, ClipboardTransformResult, ClipboardWarning,
-    ClipboardWarningId, ClipboardWarningSeverity,
+    ClipboardChange, ClipboardChangeId, ClipboardPayloadKind, ClipboardTransformResult,
+    ClipboardWarning, ClipboardWarningId, ClipboardWarningSeverity, SelectionExportPolicy,
 };
 use text_editor_host_adapter::{
     FEATURE_ID, HostActionResultKind, TextHostProfile, execute_host_action,
@@ -36,6 +36,7 @@ fn feature_manifest_matches_contract() {
         vec![
             "host_action_items",
             "host_action_result",
+            "clipboard_payload_metadata",
             "clipboard_receipt_summary"
         ]
     );
@@ -161,10 +162,51 @@ fn text_outputs_become_host_clipboard_payloads_without_side_effects() {
         TextActionInput::empty(),
     );
 
-    assert_eq!(result.kind, HostActionResultKind::Text);
+    assert_eq!(result.kind, HostActionResultKind::ClipboardPayload);
     assert_eq!(result.clipboard_text.as_deref(), Some("hello"));
-    assert_eq!(result.receipt_summary, None);
+    let metadata = result
+        .payload_metadata
+        .expect("payload metadata should exist");
+    assert_eq!(metadata.payload_kind, ClipboardPayloadKind::ExactText);
+    assert_eq!(
+        metadata.export_policy,
+        SelectionExportPolicy::SelectedOrFullDocument
+    );
+    assert!(metadata.fallback_to_full_document);
+    assert_eq!(
+        result
+            .receipt_summary
+            .expect("receipt should exist")
+            .change_count,
+        0
+    );
     assert_eq!(editor.text(), before);
+}
+
+#[test]
+fn host_result_exposes_selection_export_policy_metadata_without_owning_clipboard() {
+    let mut editor = TextEditorPlain::from_text("alpha\nbeta".into());
+    let result = execute_host_action(
+        &mut editor,
+        TextActionId::CopyPlain,
+        TextActionInput {
+            selection_export_policy: Some(SelectionExportPolicy::FullDocument),
+            ..TextActionInput::empty()
+        },
+    );
+
+    assert_eq!(result.kind, HostActionResultKind::ClipboardPayload);
+    assert_eq!(result.clipboard_text.as_deref(), Some("alpha\nbeta"));
+    let metadata = result
+        .payload_metadata
+        .expect("payload metadata should exist");
+    assert_eq!(metadata.export_policy, SelectionExportPolicy::FullDocument);
+    assert!(!metadata.used_selection);
+    assert!(!metadata.fallback_to_full_document);
+    assert_eq!(
+        result.clipboard_payload.expect("payload should exist").text,
+        "alpha\nbeta"
+    );
 }
 
 #[test]

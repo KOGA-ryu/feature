@@ -43,6 +43,7 @@ struct text_editor_metrics {
     static constexpr int button_radius = 6;
     static constexpr int rail_width = 208;
     static constexpr int inspector_width = 300;
+    static constexpr int inspector_width_min = 280;
     static constexpr int rail_bucket_height = 54;
     static constexpr int toolbar_button_height = 30;
     static constexpr int action_strip_height = 120;

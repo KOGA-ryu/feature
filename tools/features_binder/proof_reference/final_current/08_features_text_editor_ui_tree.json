@@ -186,123 +186,6 @@
                                                                     "children": [
                                                                         {
                                                                             "children": [
-                                                                            ],
-                                                                            "className": "QLabel",
-                                                                            "geometry": {
-                                                                                "height": 15,
-                                                                                "width": 268,
-                                                                                "x": 11,
-                                                                                "y": 11
-                                                                            },
-                                                                            "objectName": "textEditorSurfaceTitle",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": "workbench.palette.title"
-                                                                            },
-                                                                            "text": "TEXT TOOLS",
-                                                                            "uiPath": "workbench.palette.title",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QLineEdit",
-                                                                            "geometry": {
-                                                                                "height": 32,
-                                                                                "width": 268,
-                                                                                "x": 11,
-                                                                                "y": 32
-                                                                            },
-                                                                            "objectName": "textEditorCommandPaletteInput",
-                                                                            "placeholderText": "Search dropdown actions",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "uiPath": "workbench.palette.search.input"
-                                                                            },
-                                                                            "text": "",
-                                                                            "uiPath": "workbench.palette.search.input",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "Text Editor actions dropdown",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QToolButton",
-                                                                            "componentState": "closed",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 22,
-                                                                                "width": 152,
-                                                                                "x": 11,
-                                                                                "y": 70
-                                                                            },
-                                                                            "objectName": "textEditorCommandDropdownButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "_q_stylesheet_minw": true,
-                                                                                "componentState": "closed",
-                                                                                "dropdownOnlyActions": true,
-                                                                                "resultCount": 11,
-                                                                                "selectedActionId": "text.current_line_text",
-                                                                                "uiPath": "workbench.palette.dropdown"
-                                                                            },
-                                                                            "text": "Actions (11) v",
-                                                                            "uiPath": "workbench.palette.dropdown",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QLabel",
-                                                                            "componentState": "default",
-                                                                            "geometry": {
-                                                                                "height": 14,
-                                                                                "width": 268,
-                                                                                "x": 11,
-                                                                                "y": 98
-                                                                            },
-                                                                            "objectName": "textEditorSurfaceEmpty",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.palette.empty_state"
-                                                                            },
-                                                                            "text": "Dropdown: 11 actions",
-                                                                            "uiPath": "workbench.palette.empty_state",
-                                                                            "visible": true
-                                                                        }
-                                                                    ],
-                                                                    "className": "QFrame",
-                                                                    "componentState": "closed",
-                                                                    "geometry": {
-                                                                        "height": 123,
-                                                                        "width": 290,
-                                                                        "x": 10,
-                                                                        "y": 10
-                                                                    },
-                                                                    "objectName": "textEditorCommandPalette",
-                                                                    "properties": {
-                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": "closed",
-                                                                        "dropdownMenuVisible": false,
-                                                                        "dropdownOnlyActions": true,
-                                                                        "focusedSurface": "Editor",
-                                                                        "paletteOpen": false,
-                                                                        "resultCount": 11,
-                                                                        "selectedActionId": "text.current_line_text",
-                                                                        "selectedRowIndex": 5,
-                                                                        "uiPath": "workbench.palette"
-                                                                    },
-                                                                    "uiPath": "workbench.palette",
-                                                                    "visible": true
-                                                                },
-                                                                {
-                                                                    "children": [
-                                                                        {
-                                                                            "children": [
                                                                                 {
                                                                                     "children": [
                                                                                         {
@@ -470,7 +353,7 @@
                                                                         "height": 358,
                                                                         "width": 290,
                                                                         "x": 10,
-                                                                        "y": 139
+                                                                        "y": 10
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
@@ -793,7 +676,7 @@
                                                                         "height": 332,
                                                                         "width": 290,
                                                                         "x": 10,
-                                                                        "y": 503
+                                                                        "y": 374
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
@@ -807,7 +690,7 @@
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 845,
+                                                                "height": 716,
                                                                 "width": 310,
                                                                 "x": 0,
                                                                 "y": 0

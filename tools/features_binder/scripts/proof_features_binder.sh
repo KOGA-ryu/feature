@@ -89,7 +89,6 @@ check_text_editor_tree() {
   local expected_columns="$2"
   local expected_rows="$3"
   grep -q 'workbench.rail.text_editor.documents' "$tree"
-  grep -q 'workbench.palette.dropdown' "$tree"
   grep -q 'workbench.editor.surface.document' "$tree"
   grep -q 'workbench.editor.surface.text' "$tree"
   grep -q 'workbench.inspector.text_editor.options' "$tree"
@@ -113,11 +112,14 @@ tree = json.load(open(path))
 buttons = []
 geometries = {}
 nodes = {}
+palette_paths = []
 
 def walk(node):
     ui_path = node.get("uiPath", "")
     if ui_path.startswith("workbench.toolbar.primary"):
         buttons.append((ui_path, node.get("geometry", {}), node.get("text", "")))
+    if ui_path.startswith("workbench.palette"):
+        palette_paths.append(ui_path)
     if ui_path:
         geometries[ui_path] = node.get("geometry", {})
         nodes[ui_path] = node
@@ -127,16 +129,8 @@ def walk(node):
 walk(tree)
 if buttons:
     raise SystemExit(f"text tool toolbar buttons still render: {buttons}")
-dropdown = nodes.get("workbench.palette.dropdown")
-if not dropdown:
-    raise SystemExit("missing sole Text Editor action dropdown")
-if dropdown.get("className") != "QToolButton":
-    raise SystemExit(f"action dropdown is not a QToolButton: {dropdown}")
-if dropdown.get("geometry", {}).get("height", 999) > 26:
-    raise SystemExit(f"action dropdown is outside compact height envelope: {dropdown}")
-props = dropdown.get("properties", {})
-if props.get("dropdownOnlyActions") is not True:
-    raise SystemExit(f"action dropdown missing dropdown-only proof property: {props}")
+if palette_paths:
+    raise SystemExit(f"hotkey palette should be hidden in default captures: {palette_paths}")
 workspace = geometries.get("workbench.editor.workspace", {})
 scroll = geometries.get("workbench.editor.scroll", {})
 if scroll and workspace and workspace.get("width", 0) > scroll.get("width", 0):
@@ -183,12 +177,15 @@ tree = json.load(open(sys.argv[1]))
 nodes = {}
 selected_rows = []
 disabled_rows = []
+palette_buttons = []
 
 def walk(node):
     ui_path = node.get("uiPath", "")
     if ui_path:
         nodes[ui_path] = node
-    if ui_path.startswith("workbench.palette.dropdown.menu.action."):
+    if ui_path.startswith("workbench.palette") and node.get("className") in ("QPushButton", "QToolButton"):
+        palette_buttons.append(node)
+    if ui_path.startswith("workbench.palette.results.action."):
         state = node.get("componentState", "")
         if state == "selected":
             selected_rows.append(node)
@@ -201,9 +198,7 @@ walk(tree)
 for ui_path in (
     "workbench.palette",
     "workbench.palette.search.input",
-    "workbench.palette.dropdown",
-    "workbench.palette.dropdown.menu",
-    "workbench.palette.empty_state",
+    "workbench.palette.results",
 ):
     if ui_path not in nodes:
         raise SystemExit(f"missing command palette uiPath: {ui_path}")
@@ -219,31 +214,46 @@ if props.get("selectedActionId") in ("", "none", None):
     raise SystemExit(f"palette selectedActionId is missing: {props}")
 if int(props.get("selectedRowIndex", -1)) < 0:
     raise SystemExit(f"palette selectedRowIndex is missing: {props}")
-if props.get("dropdownOnlyActions") is not True:
-    raise SystemExit(f"palette is not marked dropdown-only: {props}")
-if props.get("dropdownMenuVisible") is not True:
-    raise SystemExit(f"palette dropdown menu is not visible in proof: {props}")
-dropdown = nodes["workbench.palette.dropdown"]
-dropdown_props = dropdown.get("properties", {})
-if dropdown.get("className") != "QToolButton":
-    raise SystemExit(f"palette action dropdown is not a QToolButton: {dropdown}")
-if dropdown_props.get("dropdownOnlyActions") is not True:
-    raise SystemExit(f"palette action dropdown missing dropdown-only property: {dropdown_props}")
-if dropdown.get("geometry", {}).get("height", 999) > 26:
-    raise SystemExit(f"palette action dropdown is outside compact height envelope: {dropdown}")
+if props.get("hotkeyOnly") is not True:
+    raise SystemExit(f"palette is not marked hotkey-only: {props}")
+if props.get("popout") is not True:
+    raise SystemExit(f"palette is not marked as a popout: {props}")
+if props.get("hasLauncherButton") is not False:
+    raise SystemExit(f"palette still reports a launcher button: {props}")
+if props.get("hasTitle") is not False:
+    raise SystemExit(f"palette still reports a title: {props}")
+if props.get("hasFrameBorder") is not False:
+    raise SystemExit(f"palette still reports a frame border: {props}")
+if palette_buttons:
+    raise SystemExit(f"palette contains button widgets: {palette_buttons}")
 if any(path.startswith("workbench.palette.filter.") for path in nodes):
     raise SystemExit("palette still renders filter pill/dropdown paths")
+if any(path.startswith("workbench.palette.dropdown") for path in nodes):
+    raise SystemExit("palette still renders dropdown launcher/menu paths")
 if any(path.startswith("workbench.toolbar.primary") for path in nodes):
     raise SystemExit("text tool toolbar still renders")
 if not selected_rows:
-    raise SystemExit("dropdown menu has no selected command row")
+    raise SystemExit("palette has no selected command row")
+palette_children = palette.get("children", [])
+if len(palette_children) < 2:
+    raise SystemExit(f"palette does not expose search plus results: {palette}")
+if palette_children[0].get("uiPath") != "workbench.palette.search.input":
+    raise SystemExit(f"palette first visible child is not search input: {palette_children[0]}")
+search_geometry = nodes["workbench.palette.search.input"].get("geometry", {})
+results_geometry = nodes["workbench.palette.results"].get("geometry", {})
+if results_geometry.get("y", 0) <= search_geometry.get("y", 0):
+    raise SystemExit(f"palette results are not below search: search={search_geometry} results={results_geometry}")
+root_geometry = palette.get("geometry", {})
+workspace_geometry = nodes.get("workbench.editor.workspace", {}).get("geometry", {})
+if workspace_geometry and abs((root_geometry.get("width", 0) / 2 + root_geometry.get("x", 0)) - (workspace_geometry.get("width", 0) / 2)) > 32:
+    raise SystemExit(f"palette popout is not centered in workspace: palette={root_geometry} workspace={workspace_geometry}")
 selected = selected_rows[0]
 selected_props = selected.get("properties", {})
-for key in ("actionId", "actionLabel", "displayText", "category", "iconName", "hotkeyLabel", "disabledReason", "dropdownRole", "dropdownActionIndex", "dropdownActionEnabled", "accessibleLabel"):
+for key in ("actionId", "actionLabel", "displayText", "category", "iconName", "hotkeyLabel", "disabledReason", "paletteRole", "paletteActionIndex", "paletteActionEnabled", "accessibleLabel"):
     if key not in selected_props:
-        raise SystemExit(f"selected dropdown row missing {key}: {selected_props}")
-if selected_props.get("dropdownRole") != "menuitem":
-    raise SystemExit(f"selected dropdown row is not a menuitem: {selected_props}")
+        raise SystemExit(f"selected palette row missing {key}: {selected_props}")
+if selected_props.get("paletteRole") != "menuitem":
+    raise SystemExit(f"selected palette row is not a menuitem: {selected_props}")
 if selected_props.get("actionId") != props.get("selectedActionId"):
     raise SystemExit(f"selected row/action proof mismatch: {selected_props} vs {props}")
 display_text = selected_props.get("displayText", "")
@@ -254,7 +264,7 @@ if "[" + selected_props.get("category", "") + "]" not in display_text:
 if not selected_props.get("accessibleLabel"):
     raise SystemExit(f"selected row missing accessibleName: {selected}")
 if selected.get("className") != "QFrame":
-    raise SystemExit(f"selected dropdown row is not a QFrame menu row: {selected}")
+    raise SystemExit(f"selected palette row is not a QFrame menu row: {selected}")
 if selected.get("geometry", {}).get("height", 999) > 24:
     raise SystemExit(f"selected palette row is outside compact row height envelope: {selected}")
 if disabled_rows and "disabledReason" not in disabled_rows[0].get("properties", {}):

@@ -500,9 +500,7 @@ private slots:
         QVERIFY(paths.contains("workbench.rail.text_editor.fixtures"));
         QVERIFY(paths.contains("workbench.palette"));
         QVERIFY(paths.contains("workbench.palette.search.input"));
-        QVERIFY(paths.contains("workbench.palette.dropdown"));
-        QVERIFY(paths.contains("workbench.palette.dropdown.menu"));
-        QVERIFY(paths.contains("workbench.palette.empty_state"));
+        QVERIFY(paths.contains("workbench.palette.results"));
         QVERIFY(paths.contains("workbench.editor.surface.document"));
         QVERIFY(paths.contains("workbench.editor.surface.text"));
         QVERIFY(paths.contains("workbench.editor.snapshot"));

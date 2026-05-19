@@ -12,7 +12,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPlainTextEdit>
-#include <QPushButton>
+#include <QResizeEvent>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QShortcut>
@@ -23,7 +23,6 @@
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTimer>
-#include <QToolButton>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -38,7 +37,6 @@
 
 namespace {
 
-using DexTextEditorUi::makeActionButton;
 using DexTextEditorUi::makeOutputBox;
 using DexTextEditorUi::makeOutputPanel;
 using DexTextEditorUi::makePanel;
@@ -48,18 +46,6 @@ using DexTextEditorUi::setUiPath;
 
 QString actionPathSuffix(const QString &actionId) {
     return actionId.startsWith("text.") ? actionId.mid(5) : actionId;
-}
-
-bool isPrimaryToolbarAction(const QString &actionId) {
-    static const QStringList primaryActions = {
-        "text.copy_plain",
-        "text.copy_prompt_block",
-        "text.copy_markdown_block",
-        "text.copy_code_fence",
-        "text.clean_basic",
-        "text.select_all",
-    };
-    return primaryActions.contains(actionId);
 }
 
 QLineEdit *makeTextEditorLineEdit(const QString &value, const QString &uiPath) {
@@ -239,9 +225,9 @@ public:
             dex_ui::text_editor_metrics::panel_padding);
         bodyLayout->setSpacing(dex_ui::text_editor_metrics::region_gap);
 
-        bodyLayout->addWidget(buildCommandPalette());
         bodyLayout->addWidget(buildDocumentSurface(), 1);
         bodyLayout->addWidget(buildFixtureShelf());
+        buildCommandPalette();
 
         auto *paletteShortcut = new QShortcut(QKeySequence("Ctrl+Shift+P"), this);
         connect(paletteShortcut, &QShortcut::activated, this, [this]() {
@@ -289,12 +275,17 @@ public:
     }
 
 private:
+    void resizeEvent(QResizeEvent *event) override {
+        QWidget::resizeEvent(event);
+        positionCommandPalette();
+    }
+
     bool eventFilter(QObject *watched, QEvent *event) override {
         if (watched == commandPaletteQuery_ && event->type() == QEvent::KeyPress) {
             auto *keyEvent = static_cast<QKeyEvent *>(event);
             switch (keyEvent->key()) {
             case Qt::Key_Escape:
-                hideCommandPaletteMenu();
+                hideCommandPalette();
                 return true;
             case Qt::Key_Down:
                 movePaletteSelection(1);
@@ -311,21 +302,21 @@ private:
             }
         }
         auto *widget = qobject_cast<QWidget *>(watched);
-        if (widget && widget->property("dropdownActionIndex").isValid()) {
+        if (widget && widget->property("paletteActionIndex").isValid()) {
             if (event->type() == QEvent::Enter) {
-                const int index = widget->property("dropdownActionIndex").toInt();
+                const int index = widget->property("paletteActionIndex").toInt();
                 if (index >= 0 && index < paletteMatches_.size() && paletteMatches_.at(index).enabled) {
                     paletteSelectedIndex_ = index;
-                    updateDropdownRowStates();
+                    updatePaletteRowStates();
                     updatePaletteProofProperties();
                 }
                 return false;
             }
             if (event->type() == QEvent::MouseButtonRelease) {
                 const QString actionId = widget->property("actionId").toString();
-                const bool enabled = widget->property("dropdownActionEnabled").toBool();
+                const bool enabled = widget->property("paletteActionEnabled").toBool();
                 if (enabled && !actionId.isEmpty()) {
-                    hideCommandPaletteMenu();
+                    hideCommandPalette();
                     executeAction(actionId);
                     return true;
                 }
@@ -337,57 +328,35 @@ private:
     QFrame *buildCommandPalette() {
         auto *palette = makePanel("textEditorCommandPalette", "workbench.palette");
         commandPalette_ = palette;
+        commandPalette_->setParent(this);
+        commandPalette_->setFixedWidth(560);
+        commandPalette_->setMaximumHeight(360);
+        commandPalette_->setVisible(false);
         setComponentState(palette, "closed");
 
         auto *layout = new QVBoxLayout(palette);
-        layout->setContentsMargins(
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding,
-            dex_ui::text_editor_metrics::panel_padding);
-        layout->setSpacing(dex_ui::text_editor_metrics::region_gap);
-        layout->addWidget(makeTextEditorLabel("TEXT TOOLS", "textEditorSurfaceTitle", "workbench.palette.title"));
+        layout->setContentsMargins(0, 0, 0, 0);
+        layout->setSpacing(0);
 
         commandPaletteQuery_ = new QLineEdit;
         commandPaletteQuery_->setObjectName("textEditorCommandPaletteInput");
         commandPaletteQuery_->setProperty("uiPath", "workbench.palette.search.input");
-        commandPaletteQuery_->setPlaceholderText("Search dropdown actions");
+        commandPaletteQuery_->setPlaceholderText("Search actions");
         commandPaletteQuery_->installEventFilter(this);
         layout->addWidget(commandPaletteQuery_);
 
-        commandDropdownButton_ = new QToolButton;
-        commandDropdownButton_->setObjectName("textEditorCommandDropdownButton");
-        commandDropdownButton_->setProperty("uiPath", "workbench.palette.dropdown");
-        commandDropdownButton_->setProperty("componentState", "closed");
-        commandDropdownButton_->setFixedHeight(22);
-        commandDropdownButton_->setFixedWidth(152);
-        commandDropdownButton_->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        commandDropdownButton_->setToolButtonStyle(Qt::ToolButtonTextOnly);
-        commandDropdownButton_->setPopupMode(QToolButton::DelayedPopup);
-        commandDropdownButton_->setText("Actions v");
-        layout->addWidget(commandDropdownButton_);
-
-        commandDropdownMenu_ = makePanel("textEditorCommandDropdownMenu", "workbench.palette.dropdown.menu");
-        commandDropdownMenu_->setVisible(false);
-        commandPaletteResultsLayout_ = new QVBoxLayout(commandDropdownMenu_);
+        commandPaletteResults_ = makePanel("textEditorCommandPaletteResults", "workbench.palette.results");
+        commandPaletteResultsLayout_ = new QVBoxLayout(commandPaletteResults_);
         commandPaletteResultsLayout_->setContentsMargins(0, 0, 0, 0);
         commandPaletteResultsLayout_->setSpacing(0);
-        layout->addWidget(commandDropdownMenu_);
+        layout->addWidget(commandPaletteResults_);
 
-        commandPaletteEmpty_ = makeTextEditorLabel(
-            "Open the dropdown to run a Text Editor action.",
-            "textEditorSurfaceEmpty",
-            "workbench.palette.empty_state");
-        layout->addWidget(commandPaletteEmpty_);
-
-        connect(commandDropdownButton_, &QToolButton::clicked, this, [this]() {
-            toggleCommandPaletteMenu();
-        });
         connect(commandPaletteQuery_, &QLineEdit::textChanged, this, [this]() {
             paletteSelectedIndex_ = -1;
             renderCommandPaletteResults();
         });
         renderCommandPaletteResults();
+        positionCommandPalette();
 
         return palette;
     }
@@ -540,9 +509,9 @@ private:
         for (int index = 0; index < paletteMatches_.size(); ++index) {
             const DexTextActions::HostActionItem &action = paletteMatches_.at(index);
             const bool isSelected = index == paletteSelectedIndex_;
-            const QString uiPath = QString("workbench.palette.dropdown.menu.action.%1").arg(actionPathSuffix(action.actionId));
+            const QString uiPath = QString("workbench.palette.results.action.%1").arg(actionPathSuffix(action.actionId));
             const QString displayText = DexTextEditorUi::commandPaletteRowText(action);
-            auto *row = makePanel("textEditorCommandDropdownRow", uiPath);
+            auto *row = makePanel("textEditorCommandPaletteRow", uiPath);
             row->setProperty("actionId", action.actionId);
             row->setProperty("actionLabel", action.label);
             row->setProperty("displayText", displayText);
@@ -550,9 +519,9 @@ private:
             row->setProperty("iconName", action.icon);
             row->setProperty("hotkeyLabel", action.hotkeyLabel);
             row->setProperty("disabledReason", action.disabledReason);
-            row->setProperty("dropdownRole", "menuitem");
-            row->setProperty("dropdownActionIndex", index);
-            row->setProperty("dropdownActionEnabled", action.enabled);
+            row->setProperty("paletteRole", "menuitem");
+            row->setProperty("paletteActionIndex", index);
+            row->setProperty("paletteActionEnabled", action.enabled);
             row->setProperty("componentState", action.enabled ? (isSelected ? "selected" : "default") : "disabled");
             const QString accessibleName = DexTextEditorUi::commandPaletteAccessibleName(action);
             row->setAccessibleName(accessibleName);
@@ -569,33 +538,23 @@ private:
             rowLayout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
             auto *label = makeTextEditorLabel(
                 displayText,
-                "textEditorCommandDropdownRowText");
-            label->setProperty("dropdownRole", "menuitem_label");
+                "textEditorCommandPaletteRowText");
+            label->setProperty("paletteRole", "menuitem_label");
             label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
             rowLayout->addWidget(label, 1);
             sawDisabled = sawDisabled || !action.enabled;
             commandPaletteResultsLayout_->addWidget(row);
         }
-        if (commandPaletteEmpty_) {
-            if (paletteMatches_.isEmpty()) {
-                commandPaletteEmpty_->setText("Dropdown: no Text Editor action matches");
-                setComponentState(commandPaletteEmpty_, "empty");
-            } else {
-                commandPaletteEmpty_->setText(QString("Dropdown: %1 action%2%3")
-                    .arg(paletteMatches_.size())
-                    .arg(paletteMatches_.size() == 1 ? "" : "s")
-                    .arg(sawDisabled ? " | disabled actions preserved" : ""));
-                setComponentState(commandPaletteEmpty_, sawDisabled ? QString("disabled") : QString("default"));
-            }
-        }
-        updateDropdownButtonState();
+        commandPalette_->setProperty("disabledRowsPreserved", sawDisabled);
+        updatePaletteProofProperties();
+        positionCommandPalette();
     }
 
     void updatePaletteProofProperties() {
         if (!commandPalette_) {
             return;
         }
-        const bool isOpen = commandDropdownMenu_ && !commandDropdownMenu_->isHidden();
+        const bool isOpen = !commandPalette_->isHidden();
         commandPalette_->setProperty("paletteOpen", isOpen);
         commandPalette_->setProperty("focusedSurface", isOpen ? "Palette" : "Editor");
         commandPalette_->setProperty(
@@ -603,15 +562,17 @@ private:
             DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_));
         commandPalette_->setProperty("selectedRowIndex", paletteSelectedIndex_);
         commandPalette_->setProperty("resultCount", paletteMatches_.size());
-        commandPalette_->setProperty("dropdownOnlyActions", true);
-        commandPalette_->setProperty("dropdownMenuVisible", isOpen);
+        commandPalette_->setProperty("hotkeyOnly", true);
+        commandPalette_->setProperty("popout", true);
+        commandPalette_->setProperty("hasLauncherButton", false);
+        commandPalette_->setProperty("hasTitle", false);
+        commandPalette_->setProperty("hasFrameBorder", false);
     }
 
     void movePaletteSelection(int direction) {
         paletteSelectedIndex_ =
             DexTextEditorUi::moveCommandPaletteSelection(paletteMatches_, paletteSelectedIndex_, direction);
-        updateDropdownRowStates();
-        updateDropdownButtonState();
+        updatePaletteRowStates();
         updatePaletteProofProperties();
     }
 
@@ -620,7 +581,7 @@ private:
         if (actionId == "none") {
             return;
         }
-        hideCommandPaletteMenu();
+        hideCommandPalette();
         executeAction(actionId);
     }
 
@@ -628,10 +589,10 @@ private:
         if (!commandPalette_) {
             return;
         }
-        if (commandDropdownMenu_) {
-            commandDropdownMenu_->setVisible(true);
-        }
+        commandPalette_->setVisible(true);
         setComponentState(commandPalette_, "open");
+        commandPalette_->raise();
+        positionCommandPalette();
         controller_->setFocusedSurface("Palette");
         renderCommandPaletteResults();
         updatePaletteProofProperties();
@@ -641,62 +602,53 @@ private:
         }
     }
 
-    void hideCommandPaletteMenu() {
+    void hideCommandPalette() {
         if (!commandPalette_) {
             return;
         }
-        if (commandDropdownMenu_) {
-            commandDropdownMenu_->setVisible(false);
-        }
+        commandPalette_->setVisible(false);
         setComponentState(commandPalette_, "closed");
         controller_->setFocusedSurface("Editor");
-        updateDropdownButtonState();
         updatePaletteProofProperties();
         if (editor_) {
             editor_->setFocus();
         }
     }
 
-    void toggleCommandPaletteMenu() {
-        if (commandDropdownMenu_ && !commandDropdownMenu_->isHidden()) {
-            hideCommandPaletteMenu();
-            return;
-        }
-        showCommandPalette();
-    }
-
-    void updateDropdownButtonState() {
-        if (!commandDropdownButton_) {
-            return;
-        }
-        const bool isOpen = commandDropdownMenu_ && !commandDropdownMenu_->isHidden();
-        const QString selectedActionId = DexTextEditorUi::commandPaletteSelectedActionId(paletteMatches_, paletteSelectedIndex_);
-        commandDropdownButton_->setText(QString("Actions (%1) v").arg(paletteMatches_.size()));
-        commandDropdownButton_->setProperty("componentState", isOpen ? "open" : "closed");
-        commandDropdownButton_->setProperty("selectedActionId", selectedActionId);
-        commandDropdownButton_->setProperty("resultCount", paletteMatches_.size());
-        commandDropdownButton_->setProperty("dropdownOnlyActions", true);
-        commandDropdownButton_->setAccessibleName("Text Editor actions dropdown");
-        commandDropdownButton_->style()->unpolish(commandDropdownButton_);
-        commandDropdownButton_->style()->polish(commandDropdownButton_);
-    }
-
-    void updateDropdownRowStates() {
+    void updatePaletteRowStates() {
         if (!commandPaletteResultsLayout_) {
             return;
         }
         for (int i = 0; i < commandPaletteResultsLayout_->count(); ++i) {
             QWidget *widget = commandPaletteResultsLayout_->itemAt(i)->widget();
-            if (!widget || !widget->property("dropdownActionIndex").isValid()) {
+            if (!widget || !widget->property("paletteActionIndex").isValid()) {
                 continue;
             }
-            const int index = widget->property("dropdownActionIndex").toInt();
-            const bool enabled = widget->property("dropdownActionEnabled").toBool();
+            const int index = widget->property("paletteActionIndex").toInt();
+            const bool enabled = widget->property("paletteActionEnabled").toBool();
             const QString state = enabled
                 ? (index == paletteSelectedIndex_ ? QString("selected") : QString("default"))
                 : QString("disabled");
             setComponentState(widget, state);
         }
+    }
+
+    void positionCommandPalette() {
+        if (!commandPalette_) {
+            return;
+        }
+        const int paletteWidth = std::min(560, std::max(320, width() - (dex_ui::text_editor_metrics::section_gap * 2)));
+        commandPalette_->setFixedWidth(paletteWidth);
+        commandPalette_->adjustSize();
+        const int paletteHeight = std::min(commandPalette_->sizeHint().height(), 360);
+        commandPalette_->setFixedHeight(paletteHeight);
+        const int x = std::max(0, (width() - paletteWidth) / 2);
+        const int y = std::max(dex_ui::text_editor_metrics::section_gap, (height() - paletteHeight) / 3);
+        commandPalette_->move(x, y);
+        commandPalette_->setProperty("popoutX", x);
+        commandPalette_->setProperty("popoutY", y);
+        commandPalette_->setProperty("popoutWidth", paletteWidth);
+        commandPalette_->setProperty("popoutHeight", paletteHeight);
     }
 
     void executeAction(const QString &actionId) {
@@ -1044,9 +996,7 @@ private:
     QLabel *fixtureStatus_ = nullptr;
     QFrame *commandPalette_ = nullptr;
     QLineEdit *commandPaletteQuery_ = nullptr;
-    QLabel *commandPaletteEmpty_ = nullptr;
-    QToolButton *commandDropdownButton_ = nullptr;
-    QFrame *commandDropdownMenu_ = nullptr;
+    QFrame *commandPaletteResults_ = nullptr;
     QVBoxLayout *commandPaletteResultsLayout_ = nullptr;
     QVector<DexTextActions::HostActionItem> paletteMatches_;
     int paletteSelectedIndex_ = -1;

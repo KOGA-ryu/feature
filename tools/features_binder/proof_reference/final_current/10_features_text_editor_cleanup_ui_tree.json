@@ -186,123 +186,6 @@
                                                                     "children": [
                                                                         {
                                                                             "children": [
-                                                                            ],
-                                                                            "className": "QLabel",
-                                                                            "geometry": {
-                                                                                "height": 15,
-                                                                                "width": 648,
-                                                                                "x": 11,
-                                                                                "y": 11
-                                                                            },
-                                                                            "objectName": "textEditorSurfaceTitle",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "uiPath": "workbench.palette.title"
-                                                                            },
-                                                                            "text": "TEXT TOOLS",
-                                                                            "uiPath": "workbench.palette.title",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QLineEdit",
-                                                                            "geometry": {
-                                                                                "height": 32,
-                                                                                "width": 648,
-                                                                                "x": 11,
-                                                                                "y": 32
-                                                                            },
-                                                                            "objectName": "textEditorCommandPaletteInput",
-                                                                            "placeholderText": "Search dropdown actions",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "uiPath": "workbench.palette.search.input"
-                                                                            },
-                                                                            "text": "",
-                                                                            "uiPath": "workbench.palette.search.input",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "accessibleName": "Text Editor actions dropdown",
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QToolButton",
-                                                                            "componentState": "closed",
-                                                                            "enabled": true,
-                                                                            "geometry": {
-                                                                                "height": 22,
-                                                                                "width": 152,
-                                                                                "x": 11,
-                                                                                "y": 70
-                                                                            },
-                                                                            "objectName": "textEditorCommandDropdownButton",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "_q_stylesheet_maxh": true,
-                                                                                "_q_stylesheet_minh": true,
-                                                                                "_q_stylesheet_minw": true,
-                                                                                "componentState": "closed",
-                                                                                "dropdownOnlyActions": true,
-                                                                                "resultCount": 11,
-                                                                                "selectedActionId": "text.current_line_text",
-                                                                                "uiPath": "workbench.palette.dropdown"
-                                                                            },
-                                                                            "text": "Actions (11) v",
-                                                                            "uiPath": "workbench.palette.dropdown",
-                                                                            "visible": true
-                                                                        },
-                                                                        {
-                                                                            "children": [
-                                                                            ],
-                                                                            "className": "QLabel",
-                                                                            "componentState": "default",
-                                                                            "geometry": {
-                                                                                "height": 14,
-                                                                                "width": 648,
-                                                                                "x": 11,
-                                                                                "y": 98
-                                                                            },
-                                                                            "objectName": "textEditorSurfaceEmpty",
-                                                                            "properties": {
-                                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                                "componentState": "default",
-                                                                                "uiPath": "workbench.palette.empty_state"
-                                                                            },
-                                                                            "text": "Dropdown: 11 actions",
-                                                                            "uiPath": "workbench.palette.empty_state",
-                                                                            "visible": true
-                                                                        }
-                                                                    ],
-                                                                    "className": "QFrame",
-                                                                    "componentState": "closed",
-                                                                    "geometry": {
-                                                                        "height": 123,
-                                                                        "width": 670,
-                                                                        "x": 10,
-                                                                        "y": 10
-                                                                    },
-                                                                    "objectName": "textEditorCommandPalette",
-                                                                    "properties": {
-                                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0",
-                                                                        "componentState": "closed",
-                                                                        "dropdownMenuVisible": false,
-                                                                        "dropdownOnlyActions": true,
-                                                                        "focusedSurface": "Editor",
-                                                                        "paletteOpen": false,
-                                                                        "resultCount": 11,
-                                                                        "selectedActionId": "text.current_line_text",
-                                                                        "selectedRowIndex": 5,
-                                                                        "uiPath": "workbench.palette"
-                                                                    },
-                                                                    "uiPath": "workbench.palette",
-                                                                    "visible": true
-                                                                },
-                                                                {
-                                                                    "children": [
-                                                                        {
-                                                                            "children": [
                                                                                 {
                                                                                     "children": [
                                                                                         {
@@ -348,7 +231,7 @@
                                                                                     "className": "QLabel",
                                                                                     "geometry": {
                                                                                         "height": 41,
-                                                                                        "width": 492,
+                                                                                        "width": 510,
                                                                                         "x": 176,
                                                                                         "y": 0
                                                                                     },
@@ -365,7 +248,7 @@
                                                                             "className": "QFrame",
                                                                             "geometry": {
                                                                                 "height": 42,
-                                                                                "width": 668,
+                                                                                "width": 686,
                                                                                 "x": 1,
                                                                                 "y": 1
                                                                             },
@@ -384,8 +267,8 @@
                                                                                     ],
                                                                                     "className": "QWidget",
                                                                                     "geometry": {
-                                                                                        "height": 260,
-                                                                                        "width": 644,
+                                                                                        "height": 285,
+                                                                                        "width": 662,
                                                                                         "x": 12,
                                                                                         "y": 10
                                                                                     },
@@ -396,8 +279,8 @@
                                                                             "className": "QPlainTextEdit",
                                                                             "componentState": "focused",
                                                                             "geometry": {
-                                                                                "height": 280,
-                                                                                "width": 668,
+                                                                                "height": 305,
+                                                                                "width": 686,
                                                                                 "x": 1,
                                                                                 "y": 43
                                                                             },
@@ -419,9 +302,9 @@
                                                                             "componentState": "empty",
                                                                             "geometry": {
                                                                                 "height": 17,
-                                                                                "width": 668,
+                                                                                "width": 686,
                                                                                 "x": 1,
-                                                                                "y": 323
+                                                                                "y": 348
                                                                             },
                                                                             "objectName": "textEditorMonoLabel",
                                                                             "properties": {
@@ -440,9 +323,9 @@
                                                                             "componentState": "empty",
                                                                             "geometry": {
                                                                                 "height": 13,
-                                                                                "width": 668,
+                                                                                "width": 686,
                                                                                 "x": 1,
-                                                                                "y": 340
+                                                                                "y": 365
                                                                             },
                                                                             "objectName": "textEditorMonoLabel",
                                                                             "properties": {
@@ -467,10 +350,10 @@
                                                                     "className": "QFrame",
                                                                     "componentState": "default",
                                                                     "geometry": {
-                                                                        "height": 358,
-                                                                        "width": 670,
+                                                                        "height": 383,
+                                                                        "width": 688,
                                                                         "x": 10,
-                                                                        "y": 139
+                                                                        "y": 10
                                                                     },
                                                                     "objectName": "textEditorBlankSurface",
                                                                     "properties": {
@@ -491,7 +374,7 @@
                                                                                     "className": "QLabel",
                                                                                     "geometry": {
                                                                                         "height": 14,
-                                                                                        "width": 626,
+                                                                                        "width": 644,
                                                                                         "x": 11,
                                                                                         "y": 5
                                                                                     },
@@ -512,7 +395,7 @@
                                                                                             "className": "QComboBox",
                                                                                             "geometry": {
                                                                                                 "height": 32,
-                                                                                                "width": 626,
+                                                                                                "width": 644,
                                                                                                 "x": 0,
                                                                                                 "y": 0
                                                                                             },
@@ -527,7 +410,7 @@
                                                                                     "className": "QWidget",
                                                                                     "geometry": {
                                                                                         "height": 32,
-                                                                                        "width": 626,
+                                                                                        "width": 644,
                                                                                         "x": 11,
                                                                                         "y": 25
                                                                                     },
@@ -544,7 +427,7 @@
                                                                                     "componentState": "success",
                                                                                     "geometry": {
                                                                                         "height": 14,
-                                                                                        "width": 626,
+                                                                                        "width": 644,
                                                                                         "x": 11,
                                                                                         "y": 63
                                                                                     },
@@ -563,7 +446,7 @@
                                                                             "componentState": "empty",
                                                                             "geometry": {
                                                                                 "height": 82,
-                                                                                "width": 648,
+                                                                                "width": 666,
                                                                                 "x": 11,
                                                                                 "y": 11
                                                                             },
@@ -586,7 +469,7 @@
                                                                                             "className": "QLabel",
                                                                                             "geometry": {
                                                                                                 "height": 14,
-                                                                                                "width": 299,
+                                                                                                "width": 308,
                                                                                                 "x": 11,
                                                                                                 "y": 5
                                                                                             },
@@ -607,7 +490,7 @@
                                                                                                     "className": "QWidget",
                                                                                                     "geometry": {
                                                                                                         "height": 170,
-                                                                                                        "width": 273,
+                                                                                                        "width": 282,
                                                                                                         "x": 13,
                                                                                                         "y": 11
                                                                                                     },
@@ -619,7 +502,7 @@
                                                                                             "componentState": "empty",
                                                                                             "geometry": {
                                                                                                 "height": 192,
-                                                                                                "width": 299,
+                                                                                                "width": 308,
                                                                                                 "x": 11,
                                                                                                 "y": 25
                                                                                             },
@@ -644,7 +527,7 @@
                                                                                     "componentState": "empty",
                                                                                     "geometry": {
                                                                                         "height": 222,
-                                                                                        "width": 321,
+                                                                                        "width": 330,
                                                                                         "x": 0,
                                                                                         "y": 0
                                                                                     },
@@ -665,7 +548,7 @@
                                                                                             "className": "QLabel",
                                                                                             "geometry": {
                                                                                                 "height": 14,
-                                                                                                "width": 299,
+                                                                                                "width": 308,
                                                                                                 "x": 11,
                                                                                                 "y": 5
                                                                                             },
@@ -686,7 +569,7 @@
                                                                                                     "className": "QWidget",
                                                                                                     "geometry": {
                                                                                                         "height": 170,
-                                                                                                        "width": 273,
+                                                                                                        "width": 282,
                                                                                                         "x": 13,
                                                                                                         "y": 11
                                                                                                     },
@@ -698,7 +581,7 @@
                                                                                             "componentState": "empty",
                                                                                             "geometry": {
                                                                                                 "height": 192,
-                                                                                                "width": 299,
+                                                                                                "width": 308,
                                                                                                 "x": 11,
                                                                                                 "y": 25
                                                                                             },
@@ -725,8 +608,8 @@
                                                                                     "componentState": "empty",
                                                                                     "geometry": {
                                                                                         "height": 222,
-                                                                                        "width": 321,
-                                                                                        "x": 327,
+                                                                                        "width": 330,
+                                                                                        "x": 336,
                                                                                         "y": 0
                                                                                     },
                                                                                     "objectName": "textEditorFixturePanel",
@@ -742,7 +625,7 @@
                                                                             "className": "QWidget",
                                                                             "geometry": {
                                                                                 "height": 222,
-                                                                                "width": 648,
+                                                                                "width": 666,
                                                                                 "x": 11,
                                                                                 "y": 99
                                                                             },
@@ -759,9 +642,9 @@
                                                                     "componentState": "empty",
                                                                     "geometry": {
                                                                         "height": 332,
-                                                                        "width": 670,
+                                                                        "width": 688,
                                                                         "x": 10,
-                                                                        "y": 503
+                                                                        "y": 399
                                                                     },
                                                                     "objectName": "textEditorFixtureShelf",
                                                                     "properties": {
@@ -775,8 +658,8 @@
                                                             ],
                                                             "className": "QWidget",
                                                             "geometry": {
-                                                                "height": 845,
-                                                                "width": 690,
+                                                                "height": 741,
+                                                                "width": 708,
                                                                 "x": 0,
                                                                 "y": 0
                                                             },
@@ -792,43 +675,11 @@
                                                     "className": "QWidget",
                                                     "geometry": {
                                                         "height": 741,
-                                                        "width": 690,
+                                                        "width": 708,
                                                         "x": 0,
                                                         "y": 0
                                                     },
                                                     "objectName": "qt_scrollarea_viewport",
-                                                    "visible": true
-                                                },
-                                                {
-                                                    "children": [
-                                                        {
-                                                            "children": [
-                                                            ],
-                                                            "className": "QScrollBar",
-                                                            "geometry": {
-                                                                "height": 741,
-                                                                "width": 18,
-                                                                "x": 0,
-                                                                "y": 0
-                                                            },
-                                                            "objectName": "",
-                                                            "properties": {
-                                                                "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
-                                                            },
-                                                            "visible": true
-                                                        }
-                                                    ],
-                                                    "className": "QWidget",
-                                                    "geometry": {
-                                                        "height": 741,
-                                                        "width": 18,
-                                                        "x": 690,
-                                                        "y": 0
-                                                    },
-                                                    "objectName": "qt_scrollarea_vcontainer",
-                                                    "properties": {
-                                                        "_q_styleSheetWidgetFont": "Helvetica Neue,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0"
-                                                    },
                                                     "visible": true
                                                 }
                                             ],

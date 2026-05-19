@@ -53,6 +53,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -73,6 +74,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -93,6 +95,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -113,6 +116,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -223,6 +227,7 @@
                                                                         {
                                                                             "children": [
                                                                                 {
+                                                                                    "accessibleName": "Copy Plain, clipboard, Ctrl+C, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -240,16 +245,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.copy_plain",
+                                                                                        "actionLabel": "Copy Plain",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "selected",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "Ctrl+C",
+                                                                                        "iconName": "copy",
                                                                                         "uiPath": "workbench.palette.action.copy_plain"
                                                                                     },
-                                                                                    "text": "Copy Plain",
+                                                                                    "text": "Copy Plain  [clipboard]  Ctrl+C",
                                                                                     "uiPath": "workbench.palette.action.copy_plain",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Copy Markdown Block, clipboard, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -267,16 +276,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.copy_markdown_block",
+                                                                                        "actionLabel": "Copy Markdown Block",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "clipboard-copy",
                                                                                         "uiPath": "workbench.palette.action.copy_markdown_block"
                                                                                     },
-                                                                                    "text": "Copy Markdown Block",
+                                                                                    "text": "Copy Markdown Block  [clipboard]",
                                                                                     "uiPath": "workbench.palette.action.copy_markdown_block",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Copy Prompt Block, clipboard, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -294,16 +307,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.copy_prompt_block",
+                                                                                        "actionLabel": "Copy Prompt Block",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "clipboard-copy",
                                                                                         "uiPath": "workbench.palette.action.copy_prompt_block"
                                                                                     },
-                                                                                    "text": "Copy Prompt Block",
+                                                                                    "text": "Copy Prompt Block  [clipboard]",
                                                                                     "uiPath": "workbench.palette.action.copy_prompt_block",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Copy Code Fence, clipboard, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -321,16 +338,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.copy_code_fence",
+                                                                                        "actionLabel": "Copy Code Fence",
                                                                                         "category": "clipboard",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "braces",
                                                                                         "uiPath": "workbench.palette.action.copy_code_fence"
                                                                                     },
-                                                                                    "text": "Copy Code Fence",
+                                                                                    "text": "Copy Code Fence  [clipboard]",
                                                                                     "uiPath": "workbench.palette.action.copy_code_fence",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Select All, selection, Ctrl+A, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -348,16 +369,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.select_all",
+                                                                                        "actionLabel": "Select All",
                                                                                         "category": "selection",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "Ctrl+A",
+                                                                                        "iconName": "scan-text",
                                                                                         "uiPath": "workbench.palette.action.select_all"
                                                                                     },
-                                                                                    "text": "Select All",
+                                                                                    "text": "Select All  [selection]  Ctrl+A",
                                                                                     "uiPath": "workbench.palette.action.select_all",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Current Line Text, lines, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -375,16 +400,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.current_line_text",
+                                                                                        "actionLabel": "Current Line Text",
                                                                                         "category": "lines",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "text-cursor-input",
                                                                                         "uiPath": "workbench.palette.action.current_line_text"
                                                                                     },
-                                                                                    "text": "Current Line Text",
+                                                                                    "text": "Current Line Text  [lines]",
                                                                                     "uiPath": "workbench.palette.action.current_line_text",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Line Range Text, lines, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -402,16 +431,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.line_range_text",
+                                                                                        "actionLabel": "Line Range Text",
                                                                                         "category": "lines",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "rows-3",
                                                                                         "uiPath": "workbench.palette.action.line_range_text"
                                                                                     },
-                                                                                    "text": "Line Range Text",
+                                                                                    "text": "Line Range Text  [lines]",
                                                                                     "uiPath": "workbench.palette.action.line_range_text",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Trim Trailing Whitespace, cleanup, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -429,16 +462,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.trim_trailing_whitespace",
+                                                                                        "actionLabel": "Trim Trailing Whitespace",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "eraser",
                                                                                         "uiPath": "workbench.palette.action.trim_trailing_whitespace"
                                                                                     },
-                                                                                    "text": "Trim Trailing Whitespace",
+                                                                                    "text": "Trim Trailing Whitespace  [cleanup]",
                                                                                     "uiPath": "workbench.palette.action.trim_trailing_whitespace",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Clean Basic, cleanup, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -456,16 +493,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.clean_basic",
+                                                                                        "actionLabel": "Clean Basic",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "wand-sparkles",
                                                                                         "uiPath": "workbench.palette.action.clean_basic"
                                                                                     },
-                                                                                    "text": "Clean Basic",
+                                                                                    "text": "Clean Basic  [cleanup]",
                                                                                     "uiPath": "workbench.palette.action.clean_basic",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Normalize Line Endings, cleanup, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -483,16 +524,20 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.normalize_line_endings",
+                                                                                        "actionLabel": "Normalize Line Endings",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "pilcrow",
                                                                                         "uiPath": "workbench.palette.action.normalize_line_endings"
                                                                                     },
-                                                                                    "text": "Normalize Line Endings",
+                                                                                    "text": "Normalize Line Endings  [cleanup]",
                                                                                     "uiPath": "workbench.palette.action.normalize_line_endings",
                                                                                     "visible": true
                                                                                 },
                                                                                 {
+                                                                                    "accessibleName": "Strip ANSI Escape Codes, cleanup, enabled",
                                                                                     "children": [
                                                                                     ],
                                                                                     "className": "QPushButton",
@@ -510,12 +555,15 @@
                                                                                         "_q_stylesheet_maxh": true,
                                                                                         "_q_stylesheet_minh": true,
                                                                                         "actionId": "text.strip_ansi_escape_codes",
+                                                                                        "actionLabel": "Strip ANSI Escape Codes",
                                                                                         "category": "cleanup",
                                                                                         "componentState": "default",
+                                                                                        "disabledReason": "",
                                                                                         "hotkeyLabel": "",
+                                                                                        "iconName": "eraser",
                                                                                         "uiPath": "workbench.palette.action.strip_ansi_escape_codes"
                                                                                     },
-                                                                                    "text": "Strip ANSI Escape Codes",
+                                                                                    "text": "Strip ANSI Escape Codes  [cleanup]",
                                                                                     "uiPath": "workbench.palette.action.strip_ansi_escape_codes",
                                                                                     "visible": true
                                                                                 }
@@ -582,6 +630,7 @@
                                                                 {
                                                                     "children": [
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -606,6 +655,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -630,6 +680,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -654,6 +705,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -678,6 +730,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -702,6 +755,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -984,6 +1038,7 @@
                                                                                 {
                                                                                     "children": [
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -1008,6 +1063,7 @@
                                                                                             "visible": true
                                                                                         },
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -1032,6 +1088,7 @@
                                                                                             "visible": true
                                                                                         },
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -1824,6 +1881,7 @@
                 {
                     "children": [
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1849,6 +1907,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1874,6 +1933,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1899,6 +1959,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1924,6 +1985,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1949,6 +2011,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1974,6 +2037,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -2254,6 +2318,7 @@
                                                             "visible": true
                                                         },
                                                         {
+                                                            "accessibleName": "",
                                                             "children": [
                                                             ],
                                                             "className": "QCheckBox",

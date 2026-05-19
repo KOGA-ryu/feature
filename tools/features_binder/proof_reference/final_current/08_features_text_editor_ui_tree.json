@@ -53,6 +53,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -73,6 +74,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -93,6 +95,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -113,6 +116,7 @@
                     "visible": true
                 },
                 {
+                    "accessibleName": "",
                     "children": [
                     ],
                     "className": "QToolButton",
@@ -181,6 +185,7 @@
                                                                 {
                                                                     "children": [
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -205,6 +210,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -229,6 +235,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -253,6 +260,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -277,6 +285,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -301,6 +310,7 @@
                                                                             "visible": true
                                                                         },
                                                                         {
+                                                                            "accessibleName": "",
                                                                             "children": [
                                                                             ],
                                                                             "className": "QPushButton",
@@ -583,6 +593,7 @@
                                                                                 {
                                                                                     "children": [
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -607,6 +618,7 @@
                                                                                             "visible": true
                                                                                         },
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -631,6 +643,7 @@
                                                                                             "visible": true
                                                                                         },
                                                                                         {
+                                                                                            "accessibleName": "",
                                                                                             "children": [
                                                                                             ],
                                                                                             "className": "QPushButton",
@@ -1455,6 +1468,7 @@
                 {
                     "children": [
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1480,6 +1494,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1505,6 +1520,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1530,6 +1546,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1555,6 +1572,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1580,6 +1598,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1605,6 +1624,7 @@
                             "workspace": "text_editor"
                         },
                         {
+                            "accessibleName": "",
                             "children": [
                             ],
                             "className": "QPushButton",
@@ -1885,6 +1905,7 @@
                                                             "visible": true
                                                         },
                                                         {
+                                                            "accessibleName": "",
                                                             "children": [
                                                             ],
                                                             "className": "QCheckBox",

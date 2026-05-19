@@ -524,12 +524,16 @@ private:
             const DexTextActions::HostActionItem &action = paletteMatches_.at(index);
             const bool isSelected = index == paletteSelectedIndex_;
             const QString uiPath = QString("workbench.palette.action.%1").arg(actionPathSuffix(action.actionId));
-            auto *button = makeActionButton(action.label, uiPath);
+            auto *button = makeActionButton(DexTextEditorUi::commandPaletteRowText(action), uiPath);
             button->setObjectName("textEditorCommandPaletteRow");
             button->setProperty("actionId", action.actionId);
+            button->setProperty("actionLabel", action.label);
             button->setProperty("category", action.category);
+            button->setProperty("iconName", action.icon);
             button->setProperty("hotkeyLabel", action.hotkeyLabel);
+            button->setProperty("disabledReason", action.disabledReason);
             button->setProperty("componentState", action.enabled ? (isSelected ? "selected" : "default") : "disabled");
+            button->setAccessibleName(DexTextEditorUi::commandPaletteAccessibleName(action));
             button->setEnabled(action.enabled);
             sawDisabled = sawDisabled || !action.enabled;
             button->setToolTip(action.hotkeyLabel.isEmpty()

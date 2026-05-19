@@ -592,6 +592,42 @@ private slots:
         QCOMPARE(DexTextEditorUi::commandPaletteSelectedActionId(actions, 0), QString("none"));
     }
 
+    void textEditorCommandPaletteRowTextCarriesActionMetadata() {
+        QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("alpha", {});
+        const auto copyIt = std::find_if(actions.begin(), actions.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.actionId == "text.copy_plain";
+        });
+        QVERIFY(copyIt != actions.end());
+
+        const QString rowText = DexTextEditorUi::commandPaletteRowText(*copyIt);
+        QVERIFY(rowText.contains(copyIt->label));
+        QVERIFY(rowText.contains("[" + copyIt->category + "]"));
+        QVERIFY(rowText.contains(copyIt->hotkeyLabel));
+
+        const QString accessibleName = DexTextEditorUi::commandPaletteAccessibleName(*copyIt);
+        QVERIFY(accessibleName.contains(copyIt->label));
+        QVERIFY(accessibleName.contains(copyIt->category));
+        QVERIFY(accessibleName.contains("enabled"));
+    }
+
+    void textEditorCommandPaletteDisabledRowTextCarriesReason() {
+        QVector<DexTextActions::HostActionItem> actions =
+            DexTextActions::renderHostActionItems("", {});
+        const auto cleanIt = std::find_if(actions.begin(), actions.end(), [](const DexTextActions::HostActionItem &action) {
+            return action.actionId == "text.clean_basic";
+        });
+        QVERIFY(cleanIt != actions.end());
+        QVERIFY(!cleanIt->enabled);
+
+        const QString rowText = DexTextEditorUi::commandPaletteRowText(*cleanIt);
+        QVERIFY(rowText.contains("disabled"));
+
+        const QString accessibleName = DexTextEditorUi::commandPaletteAccessibleName(*cleanIt);
+        QVERIFY(accessibleName.contains("disabled"));
+        QVERIFY(accessibleName.contains(cleanIt->disabledReason));
+    }
+
     void textEditorSnapshotNormalizesBounds() {
         DexTextEditorWorkspace::TextEditorWorkspaceController controller;
         DexTextEditorWorkspace::TextEditorDisplaySnapshot snapshot;

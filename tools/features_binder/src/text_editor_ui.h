@@ -67,6 +67,8 @@ int moveCommandPaletteSelection(
 QString commandPaletteSelectedActionId(
     const QVector<DexTextActions::HostActionItem> &actions,
     int selectedIndex);
+QString commandPaletteRowText(const DexTextActions::HostActionItem &action);
+QString commandPaletteAccessibleName(const DexTextActions::HostActionItem &action);
 
 void setUiPath(QWidget *widget, const QString &uiPath);
 void setComponentState(QWidget *widget, const QString &state);

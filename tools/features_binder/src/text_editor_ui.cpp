@@ -219,6 +219,33 @@ QString commandPaletteSelectedActionId(
     return actions.at(selectedIndex).actionId;
 }
 
+QString commandPaletteRowText(const DexTextActions::HostActionItem &action) {
+    QStringList parts;
+    parts << action.label;
+    parts << "[" + action.category + "]";
+    if (!action.hotkeyLabel.isEmpty()) {
+        parts << action.hotkeyLabel;
+    }
+    if (!action.enabled) {
+        parts << "disabled";
+    }
+    return parts.join("  ");
+}
+
+QString commandPaletteAccessibleName(const DexTextActions::HostActionItem &action) {
+    QStringList parts;
+    parts << action.label;
+    parts << action.category;
+    if (!action.hotkeyLabel.isEmpty()) {
+        parts << action.hotkeyLabel;
+    }
+    parts << (action.enabled ? QString("enabled") : QString("disabled"));
+    if (!action.enabled && !action.disabledReason.isEmpty()) {
+        parts << action.disabledReason;
+    }
+    return parts.join(", ");
+}
+
 void setUiPath(QWidget *widget, const QString &uiPath) {
     widget->setProperty("uiPath", uiPath);
 }

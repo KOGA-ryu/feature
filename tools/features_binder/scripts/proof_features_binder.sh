@@ -218,6 +218,21 @@ if int(props.get("selectedRowIndex", -1)) < 0:
     raise SystemExit(f"palette selectedRowIndex is missing: {props}")
 if not selected_rows:
     raise SystemExit("command palette has no selected command row")
+selected = selected_rows[0]
+selected_props = selected.get("properties", {})
+for key in ("actionId", "actionLabel", "category", "iconName", "hotkeyLabel", "disabledReason"):
+    if key not in selected_props:
+        raise SystemExit(f"selected palette row missing {key}: {selected_props}")
+if selected_props.get("actionId") != props.get("selectedActionId"):
+    raise SystemExit(f"selected row/action proof mismatch: {selected_props} vs {props}")
+if selected_props.get("actionLabel") not in selected.get("text", ""):
+    raise SystemExit(f"selected row text does not include action label: {selected}")
+if "[" + selected_props.get("category", "") + "]" not in selected.get("text", ""):
+    raise SystemExit(f"selected row text does not include category: {selected}")
+if not selected.get("accessibleName"):
+    raise SystemExit(f"selected row missing accessibleName: {selected}")
+if disabled_rows and "disabledReason" not in disabled_rows[0].get("properties", {}):
+    raise SystemExit(f"disabled row missing disabledReason: {disabled_rows[0]}")
 if len(nodes) < 4:
     raise SystemExit("command palette tree is unexpectedly sparse")
 PY

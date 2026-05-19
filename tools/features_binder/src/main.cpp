@@ -82,6 +82,7 @@ QJsonObject dumpWidgetTree(QWidget *widget) {
     if (auto *button = qobject_cast<QAbstractButton *>(widget)) {
         node.insert("text", button->text());
         node.insert("enabled", button->isEnabled());
+        node.insert("accessibleName", button->accessibleName());
     } else if (auto *label = qobject_cast<QLabel *>(widget)) {
         node.insert("text", label->text());
     } else if (auto *lineEdit = qobject_cast<QLineEdit *>(widget)) {

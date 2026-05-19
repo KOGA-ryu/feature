@@ -56,6 +56,9 @@ void polishWorkspaceWidget(QWidget *widget, const char *workspace) {
 }
 
 void setRailWorkspace(QFrame *rail, QWidget *railBody, QFrame *settingsRow, const char *workspace) {
+    rail->setFixedWidth(QString::fromLatin1(workspace) == "text_editor"
+            ? dex_ui::text_editor_metrics::rail_width
+            : dex_ui::metrics::rail_width);
     rail->setProperty("workspace", workspace);
     rail->style()->unpolish(rail);
     rail->style()->polish(rail);
@@ -67,11 +70,15 @@ QFrame *makeTextEditorBucket(const QString &title, const QString &note, const QS
     auto *bucket = new QFrame;
     bucket->setObjectName("textEditorRailBucket");
     bucket->setProperty("uiPath", uiPath);
-    bucket->setMinimumHeight(54);
+    bucket->setMinimumHeight(dex_ui::text_editor_metrics::rail_bucket_height);
 
     auto *layout = new QVBoxLayout(bucket);
-    layout->setContentsMargins(12, 7, 12, 7);
-    layout->setSpacing(2);
+    layout->setContentsMargins(
+        dex_ui::text_editor_metrics::panel_padding,
+        dex_ui::text_editor_metrics::panel_padding_dense,
+        dex_ui::text_editor_metrics::panel_padding,
+        dex_ui::text_editor_metrics::panel_padding_dense);
+    layout->setSpacing(dex_ui::text_editor_metrics::dense_gap);
 
     auto *titleLabel = makeLabel(title, "textEditorBucketTitle");
     titleLabel->setProperty("uiPath", uiPath + ".title");

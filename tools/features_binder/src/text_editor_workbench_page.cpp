@@ -9,7 +9,7 @@
 
 namespace DexTextEditorPages {
 
-QWidget *buildTextEditorWorkbenchPage() {
+QWidget *buildTextEditorWorkbenchPage(DexTextEditorWorkspace::TextEditorWorkspaceController *textEditorWorkspace) {
     auto *page = new QWidget;
     page->setObjectName("textEditorWorkbenchPage");
     page->setProperty("uiPath", "workbench.text_editor");
@@ -24,7 +24,7 @@ QWidget *buildTextEditorWorkbenchPage() {
     scroll->setFrameShape(QFrame::NoFrame);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    scroll->setWidget(DexTextEditorWorkspace::buildBlankWorkspaceBody());
+    scroll->setWidget(DexTextEditorWorkspace::buildBlankWorkspaceBody(textEditorWorkspace));
     layout->addWidget(scroll, 1);
     return page;
 }

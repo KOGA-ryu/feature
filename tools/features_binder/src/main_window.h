@@ -6,6 +6,7 @@
 #include "app_state.h"
 #include "repo_binder_template.h"
 #include "rust_cockpit_backend.h"
+#include "text_editor_workspace_state.h"
 
 class DetailLensRail;
 class QLabel;
@@ -86,6 +87,7 @@ private:
     QString selectedSettingsFeature_ = "Project Spec";
     QString selectedTopTab_ = "Profile";
     QString selectedDetailLens_ = "Dashboard";
+    DexTextEditorWorkspace::TextEditorWorkspaceController *textEditorWorkspace_ = nullptr;
     SheetStackBody *body_ = nullptr;
     ProjectRail *projectRail_ = nullptr;
     LedgerView *ledger_ = nullptr;

@@ -1,7 +1,9 @@
 use feature_core::parse_feature_manifest;
 use text_editor_clipboard::{
-    CleanBasicPolicy, ClipboardChangeId, ClipboardWarningId, ClipboardWarningSeverity, FEATURE_ID,
-    clean_basic, copy_code_fence, copy_exact, copy_markdown_block, copy_prompt_block,
+    CleanBasicPolicy, ClipboardChangeId, ClipboardLineRange, ClipboardPayloadKind,
+    ClipboardWarningId, ClipboardWarningSeverity, FEATURE_ID, SelectionExportPolicy, clean_basic,
+    copy_clean_payload_with_policy, copy_code_fence, copy_exact, copy_exact_payload,
+    copy_exact_payload_with_policy, copy_markdown_block, copy_prompt_block,
     normalize_line_endings_with_report, sample_fixture, strip_ansi_escape_codes_with_report,
     trim_trailing_whitespace_with_report,
 };
@@ -18,11 +20,22 @@ fn feature_manifest_matches_contract() {
     assert_eq!(manifest.status.to_string(), "tested");
     assert_eq!(
         manifest.inputs.items,
-        vec!["document_text", "selection", "clipboard_policy"]
+        vec![
+            "document_text",
+            "selection",
+            "clipboard_policy",
+            "selection_export_policy"
+        ]
     );
     assert_eq!(
         manifest.outputs.items,
-        vec!["clipboard_text", "transform_changes", "transform_warnings"]
+        vec![
+            "clipboard_text",
+            "clipboard_payload",
+            "payload_metadata",
+            "transform_changes",
+            "transform_warnings"
+        ]
     );
 }
 
@@ -31,6 +44,10 @@ fn sample_fixture_is_valid_json() {
     let value: serde_json::Value =
         serde_json::from_str(sample_fixture()).expect("fixture should be valid json");
     assert_eq!(value["source"].as_str(), Some("notes/session.md"));
+    assert_eq!(
+        value["default_export_policy"].as_str(),
+        Some("selected_or_full_document")
+    );
 }
 
 #[test]
@@ -49,6 +66,128 @@ fn exact_copy_returns_selected_or_all_text_with_empty_receipt() {
     assert_eq!(result.text, "beta");
     assert!(result.changes.is_empty());
     assert!(result.warnings.is_empty());
+}
+
+#[test]
+fn exact_payload_defaults_to_selected_or_full_document_policy() {
+    let mut editor = TextEditorPlain::from_text("alpha\n    beta\ngamma".into());
+
+    let full_payload = copy_exact_payload(&editor);
+    assert_eq!(full_payload.text, "alpha\n    beta\ngamma");
+    assert_eq!(full_payload.receipt.text, full_payload.text);
+    assert!(full_payload.receipt.changes.is_empty());
+    assert_eq!(
+        full_payload.metadata.payload_kind,
+        ClipboardPayloadKind::ExactText
+    );
+    assert_eq!(
+        full_payload.metadata.export_policy,
+        SelectionExportPolicy::SelectedOrFullDocument
+    );
+    assert!(!full_payload.metadata.used_selection);
+    assert!(full_payload.metadata.fallback_to_full_document);
+    assert_eq!(
+        full_payload.metadata.line_range,
+        Some(ClipboardLineRange {
+            start_line: 0,
+            end_line: 2,
+        })
+    );
+
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 1, column: 4 },
+        caret: EditorPosition { line: 1, column: 8 },
+    }));
+    let selected_payload = copy_exact_payload(&editor);
+
+    assert_eq!(selected_payload.text, "beta");
+    assert!(selected_payload.metadata.used_selection);
+    assert!(!selected_payload.metadata.fallback_to_full_document);
+    assert_eq!(
+        selected_payload.metadata.selection,
+        Some(editor.selection())
+    );
+    assert_eq!(
+        selected_payload.metadata.line_range,
+        Some(ClipboardLineRange {
+            start_line: 1,
+            end_line: 1,
+        })
+    );
+    assert_eq!(editor.text(), "alpha\n    beta\ngamma");
+}
+
+#[test]
+fn selection_export_policy_can_require_selection_or_full_document() {
+    let mut editor = TextEditorPlain::from_text("alpha\nbeta".into());
+
+    let selection_only =
+        copy_exact_payload_with_policy(&editor, SelectionExportPolicy::SelectionOnly);
+    assert_eq!(selection_only.text, "");
+    assert!(!selection_only.metadata.used_selection);
+    assert!(!selection_only.metadata.fallback_to_full_document);
+    assert_eq!(selection_only.metadata.line_range, None);
+
+    editor.apply(EditorCommand::SetSelection(EditorSelection {
+        anchor: EditorPosition { line: 0, column: 1 },
+        caret: EditorPosition { line: 0, column: 4 },
+    }));
+    let full_document =
+        copy_exact_payload_with_policy(&editor, SelectionExportPolicy::FullDocument);
+
+    assert_eq!(full_document.text, "alpha\nbeta");
+    assert!(!full_document.metadata.used_selection);
+    assert_eq!(full_document.metadata.selection, None);
+    assert_eq!(
+        full_document.metadata.line_range,
+        Some(ClipboardLineRange {
+            start_line: 0,
+            end_line: 1,
+        })
+    );
+    assert_eq!(editor.selected_text().as_deref(), Some("lph"));
+}
+
+#[test]
+fn cleaned_payload_preserves_transform_receipts_and_metadata() {
+    let mut editor = TextEditorPlain::from_text("    alpha  \n\u{1b}[31mbeta\u{1b}[0m\t".into());
+    editor.apply(EditorCommand::SelectAll);
+    let before = editor.text().to_owned();
+
+    let payload = copy_clean_payload_with_policy(
+        &editor,
+        SelectionExportPolicy::SelectedOrFullDocument,
+        CleanBasicPolicy {
+            normalize_line_endings: true,
+            trim_trailing_whitespace: true,
+            strip_ansi_escape_codes: true,
+        },
+    );
+    let change_ids: Vec<ClipboardChangeId> = payload
+        .receipt
+        .changes
+        .iter()
+        .map(|change| change.change_id)
+        .collect();
+
+    assert_eq!(payload.text, "    alpha\nbeta");
+    assert_eq!(payload.receipt.text, payload.text);
+    assert_eq!(
+        payload.metadata.payload_kind,
+        ClipboardPayloadKind::CleanedText
+    );
+    assert!(payload.metadata.used_selection);
+    assert_eq!(payload.metadata.character_count, 14);
+    assert_eq!(payload.metadata.line_count, 2);
+    assert_eq!(payload.metadata.first_line_indent.as_deref(), Some("    "));
+    assert_eq!(
+        change_ids,
+        vec![
+            ClipboardChangeId::StrippedAnsiEscapeCodes,
+            ClipboardChangeId::TrimmedTrailingWhitespace,
+        ]
+    );
+    assert_eq!(editor.text(), before);
 }
 
 #[test]

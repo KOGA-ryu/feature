@@ -1,6 +1,8 @@
 {
   "source": "notes/session.md",
   "language": "rust",
+  "default_export_policy": "selected_or_full_document",
+  "payload_kind": "exact_text",
   "input": "alpha  \\r\\n\\u001b[31mbeta\\u001b[0m\\t\\n",
   "expected_clean": "alpha\nbeta\n"
 }

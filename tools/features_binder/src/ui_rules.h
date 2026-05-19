@@ -34,10 +34,22 @@ struct metrics {
 
 struct text_editor_metrics {
     static constexpr int base_grid = 8;
+    static constexpr int dense_gap = 4;
+    static constexpr int region_gap = 8;
+    static constexpr int section_gap = 16;
+    static constexpr int panel_padding = 12;
+    static constexpr int panel_padding_dense = 8;
     static constexpr int panel_radius = 8;
     static constexpr int button_radius = 6;
-    static constexpr int action_strip_height = 156;
+    static constexpr int rail_width = 208;
+    static constexpr int inspector_width = 300;
+    static constexpr int rail_bucket_height = 54;
+    static constexpr int toolbar_button_height = 30;
+    static constexpr int action_strip_height = 66;
+    static constexpr int document_min_height = 320;
     static constexpr int fixture_shelf_height = 250;
+    static constexpr int fixture_result_min_height = 144;
+    static constexpr int document_tab_height = 42;
 };
 
 struct colors {

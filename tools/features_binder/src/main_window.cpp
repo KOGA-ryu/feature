@@ -30,6 +30,7 @@ DexHomeV2Window::DexHomeV2Window(QString repoRoot, QString binaryPath, QString p
       binderTemplateDirPath_(resolveBinderTemplateDirPath(projectRegistryPath_)),
       proofReceiptPath_(resolveProofReceiptPath(std::move(proofReceiptPath))),
       promotionReportPath_(resolvePromotionReportPath()) {
+    textEditorWorkspace_ = new DexTextEditorWorkspace::TextEditorWorkspaceController(this);
     setWindowTitle("Dex Home v2");
     setMinimumSize(kMinWidth, kMinHeight);
     resize(kDesignWidth, kDesignHeight);

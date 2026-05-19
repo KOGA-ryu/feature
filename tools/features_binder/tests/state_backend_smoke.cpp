@@ -16,6 +16,7 @@
 #include "repo_binder_template.h"
 #include "settings_shortcuts_model.h"
 #include "text_action_proof_model.h"
+#include "text_editor_rust_action_client.h"
 
 class StateBackendSmoke final : public QObject {
     Q_OBJECT
@@ -274,6 +275,52 @@ private slots:
         QCOMPARE(copyIt->hotkeyLabel, QString("Ctrl+C"));
         QVERIFY(copyIt->enabled);
         QVERIFY(copyIt->disabledReason.isEmpty());
+    }
+
+    void parsesTextEditorRustRunnerResponses() {
+        const QByteArray payload = R"({
+            "ok": true,
+            "result": {
+                "action_id": "text.clean_basic",
+                "kind": "clipboard_transform",
+                "display_text": "Clipboard text ready. 2 changes, 0 warnings.",
+                "clipboard_text": "clean",
+                "receipt_summary": {
+                    "change_count": 2,
+                    "warning_count": 0,
+                    "changes": ["normalized_line_endings: 1", "trimmed_trailing_whitespace: 1"],
+                    "warnings": []
+                },
+                "warnings": []
+            },
+            "editor_text": "dirty",
+            "selection": {
+                "anchor": {"line": 0, "column": 0},
+                "caret": {"line": 0, "column": 5}
+            }
+        })";
+
+        const DexTextEditorRust::ActionResult result =
+            DexTextEditorRust::parseActionRunnerResponse(payload);
+
+        QVERIFY(result.ok);
+        QCOMPARE(result.actionId, QString("text.clean_basic"));
+        QCOMPARE(result.kind, QString("clipboard_transform"));
+        QVERIFY(result.hasClipboardText);
+        QCOMPARE(result.clipboardText, QString("clean"));
+        QCOMPARE(result.receipt.changeCount, 2);
+        QCOMPARE(result.receipt.changes.size(), 2);
+        QVERIFY(result.selection.valid);
+        QCOMPARE(result.selection.caret.column, 5);
+    }
+
+    void malformedTextEditorRustRunnerResponseIsUnavailable() {
+        const DexTextEditorRust::ActionResult result =
+            DexTextEditorRust::parseActionRunnerResponse("not json");
+
+        QVERIFY(!result.ok);
+        QVERIFY(result.error.contains("malformed runner json"));
+        QVERIFY(!result.hasClipboardText);
     }
 
     void repoBinderPromotesTextEditorAsMainSubject() {

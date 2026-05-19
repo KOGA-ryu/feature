@@ -22,6 +22,9 @@
 namespace {
 
 void setContextWorkspace(QFrame *context, const char *workspace) {
+    context->setFixedWidth(QString::fromLatin1(workspace) == "text_editor"
+            ? dex_ui::text_editor_metrics::inspector_width
+            : dex_ui::metrics::right_context_width);
     context->setProperty("workspace", workspace);
     context->style()->unpolish(context);
     context->style()->polish(context);
@@ -121,10 +124,10 @@ void RightContextPanel::setAgentState(
     contentLayout_->addStretch(1);
 }
 
-void RightContextPanel::setTextEditorState(const QString &selectedDetailLens) {
+void RightContextPanel::setTextEditorState(DexTextEditorWorkspace::TextEditorWorkspaceController *textEditorWorkspace) {
     setContextWorkspace(this, "text_editor");
     clearLayout(contentLayout_);
-    DexTextEditorWorkspace::addBlankWorkspaceContext(contentLayout_, selectedDetailLens);
+    DexTextEditorWorkspace::addBlankWorkspaceContext(contentLayout_, textEditorWorkspace);
     contentLayout_->addStretch(1);
 }
 

@@ -2,9 +2,11 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+FEATURES_ROOT="$(cd "$ROOT/../.." && pwd)"
 BUILD="$ROOT/build"
 APP="$BUILD/dex_home_v2"
 OUT="$ROOT/proof_reference/final_current"
+RUNNER="$FEATURES_ROOT/target/debug/text_editor_action_runner"
 
 mkdir -p "$OUT"
 rm -f \
@@ -20,8 +22,10 @@ rm -f \
   "$OUT/manifest.txt"
 
 cmake -S "$ROOT" -B "$BUILD"
+cargo build --manifest-path "$FEATURES_ROOT/Cargo.toml" -p text_editor_host_adapter --bin text_editor_action_runner
 cmake --build "$BUILD"
 ctest --test-dir "$BUILD" --output-on-failure
+export TEXT_EDITOR_ACTION_RUNNER="$RUNNER"
 
 capture() {
   local name="$1"

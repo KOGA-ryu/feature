@@ -137,11 +137,13 @@ void DexHomeV2Window::refreshViews() {
         if (!detailLensTabsFor(selectedTopTab_, true).contains(selectedDetailLens_)) {
             selectedDetailLens_ = "Dashboard";
         }
+        textEditorWorkspace_->setDetailLens(selectedDetailLens_);
         projectRail_->setTextEditorState();
         detailLensRail_->setTextEditorState(selectedDetailLens_);
         selectedDetailLens_ = detailLensRail_->currentLens();
-        ledger_->setTextEditorWorkspaceState();
-        rightContext_->setTextEditorState(selectedDetailLens_);
+        textEditorWorkspace_->setDetailLens(selectedDetailLens_);
+        ledger_->setTextEditorWorkspaceState(textEditorWorkspace_);
+        rightContext_->setTextEditorState(textEditorWorkspace_);
     } else if (workspaceKind_ == WorkspaceKind::Settings) {
         projectRail_->setSettingsState(state_, selectedProjectId_);
         ledger_->setSettingsState(

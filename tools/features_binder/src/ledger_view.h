@@ -22,6 +22,7 @@
 #include "repo_binder_pages.h"
 #include "project_registry_spec_page.h"
 #include "text_editor_workbench_page.h"
+#include "text_editor_workspace_state.h"
 #include "ui_rules.h"
 
 class LedgerView final : public QWidget {
@@ -110,7 +111,7 @@ public:
         }
     }
 
-    void setTextEditorWorkspaceState() {
+    void setTextEditorWorkspaceState(DexTextEditorWorkspace::TextEditorWorkspaceController *textEditorWorkspace) {
         clearLayout(tabLayout_);
         currentTabs_.clear();
         delete tabGroup_;
@@ -121,7 +122,7 @@ public:
             pages_->removeWidget(page);
             page->deleteLater();
         }
-        pages_->addWidget(DexTextEditorPages::buildTextEditorWorkbenchPage());
+        pages_->addWidget(DexTextEditorPages::buildTextEditorWorkbenchPage(textEditorWorkspace));
         pages_->setCurrentIndex(0);
         currentTab_ = "Text Editor";
     }

@@ -203,6 +203,38 @@ QString textEditorWorkbenchQss() {
             font-size: 11px;
             background: transparent;
         }
+        QPlainTextEdit#textEditorDocumentEditor,
+        QPlainTextEdit#textEditorOutputPreview {
+            background: #ffffff;
+            color: #161b22;
+            border: 0;
+            padding: 10px 12px;
+            font-family: "Menlo", "Monaco", "Courier New", monospace;
+            font-size: 12px;
+            selection-background-color: #cfe2ff;
+            selection-color: #111827;
+        }
+        QPlainTextEdit#textEditorOutputPreview {
+            border: 1px solid #d7dde4;
+            border-radius: 5px;
+            background: #fbfcfd;
+        }
+        QWidget#textEditorBlankBody QLineEdit,
+        QWidget#textEditorBlankBody QSpinBox,
+        QWidget#textEditorBlankBody QComboBox {
+            background: #ffffff;
+            color: #1f2933;
+            border: 1px solid #cbd3db;
+            border-radius: 5px;
+            min-height: 26px;
+            padding: 2px 7px;
+            font-size: 11px;
+        }
+        QWidget#textEditorBlankBody QCheckBox {
+            color: #2f3b47;
+            font-size: 11px;
+            background: transparent;
+        }
         QFrame#textEditorFixturePanel,
         QFrame#textEditorContextPanel {
             background: #ffffff;

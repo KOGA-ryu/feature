@@ -7,7 +7,9 @@ class QWidget;
 
 namespace DexTextEditorWorkspace {
 
-QWidget *buildBlankWorkspaceBody();
-void addBlankWorkspaceContext(QVBoxLayout *layout, const QString &detailLens);
+class TextEditorWorkspaceController;
+
+QWidget *buildBlankWorkspaceBody(TextEditorWorkspaceController *controller);
+void addBlankWorkspaceContext(QVBoxLayout *layout, TextEditorWorkspaceController *controller);
 
 } // namespace DexTextEditorWorkspace

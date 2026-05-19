@@ -30,6 +30,9 @@ Use this order when filling the docs out together:
 - [x] Detail personal text editor reference image dissection.
 - [x] Detail text editor surface grammar sheet.
 - [x] Detail full UI layout spec sheet.
+- [x] Detail Zed event/runtime architecture reference.
+- [x] Detail Zed clipboard/selection/movement/input reference.
+- [x] Detail Zed UI-mounted learning notes.
 - [ ] Detail fixture runner behavior.
 - [ ] Detail fixture catalog structure.
 - [ ] Detail expected vs actual review display.
@@ -39,14 +42,22 @@ Use this order when filling the docs out together:
 - [ ] Detail terminal text helper actions.
 - [ ] Detail prompt/AI helper actions.
 - [ ] Detail selection helper actions.
+- [ ] Detail future selection collection object.
 - [ ] Detail line helper actions.
 - [ ] Detail navigation helper actions.
+- [ ] Detail word/subword movement policy.
 - [ ] Detail search/replace actions.
 - [ ] Detail markdown formatting actions.
 - [ ] Detail draft/file state actions.
 - [ ] Detail validation and cleanup actions.
 - [ ] Detail undo/redo policy.
 - [ ] Detail text model and Unicode policy.
+- [ ] Detail Zed-style coordinate maps: buffer, inlay, fold, tab, visual.
+- [ ] Detail clipboard payload metadata policy.
+- [ ] Detail mutating text transaction result policy.
+- [ ] Detail long-line fixture and benchmark policy.
+- [ ] Detail future multi-cursor transaction policy.
+- [ ] Detail future render pipeline proof policy.
 - [ ] Detail empty/error/disabled action behavior.
 - [ ] Detail security, secrets, and redaction policy.
 - [ ] Detail accessibility and keyboard-only behavior.
@@ -303,6 +314,82 @@ Proof later:
 - Exact text output regions scroll instead of eliding.
 - The command palette, inspector, fixture bench, and receipts use shared
   `ui_path` names.
+
+## Completed Detail: Zed Event And Runtime Architecture
+
+The Zed teardown lives in `48_zed_event_runtime_architecture.md`.
+
+Why this exists:
+
+The Text Editor workspace needs a runtime grammar before more actions, fixtures,
+sidecars, and AI helpers are added. Zed gives us mature names for the same
+problems: app state, typed entities, action dispatch, subscriptions, async
+tasks, render invalidation, and workspace-owned panels.
+
+Borrowed rules:
+
+- Commands start as action IDs, not buttons.
+- State changes go through one state/update path before surfaces refresh.
+- Typed events are separate from persistent state.
+- Async work returns result/receipt data before UI state changes.
+- Sidecars belong to the active workspace, not the whole app globally.
+- Host rendering consumes action/state metadata instead of owning behavior.
+
+What not to do:
+
+- Do not copy GPUI internals into Qt.
+- Do not build a full entity/runtime system before the Text Editor needs it.
+- Do not let Qt widgets become command owners.
+- Do not start rope, LSP, custom rendering, or multi-buffer work from this
+  reference.
+
+Proof later:
+
+- Toolbar, menus, palette, and hotkeys all route through action IDs.
+- Text Editor sidecars render from Text Editor state only.
+- Fixture runs emit receipts instead of mutating random panels.
+- Async helper slices update state through a single workspace refresh route.
+
+## Completed Detail: Zed UI-Mounted Learning Notes
+
+The teaching companion lives in `49_zed_ui_mounted_learning_notes.md`.
+
+Why this exists:
+
+The Zed teardown explains a mature runtime shape, but runtime notes can become
+too abstract if they are not tied to visible UI. The learning notes force every
+borrowed Zed idea to answer: what surface does the user see, click, edit, wait
+on, or trust?
+
+Mounted lessons:
+
+- `App` maps to one active workspace truth.
+- `Entity<T>` maps to named Text Editor state objects.
+- `Context::notify()` maps to update state, then refresh surfaces.
+- Typed events map to receipts and fixture results.
+- Actions map to toolbar, menu, palette, context, hotkey, and test entry
+  points.
+- Focused dispatch maps to visible focus ownership.
+- Subscriptions map to explicit listener ownership.
+- Async tasks map to running/result/receipt states.
+- Render flow maps to state-to-surface proof.
+- Workspace/panel/dock maps to scoped sidecars.
+- Display-map and long-line lessons map to exact text surface proof.
+
+What not to do:
+
+- Do not teach runtime ideas without tying them to a UI surface.
+- Do not create invisible architecture that has no surface, action, state,
+  event, receipt, or proof requirement.
+- Do not let Zed vocabulary justify copying GPUI internals into Qt.
+
+Proof later:
+
+- New Text Editor controls identify their `ui_path`.
+- New callable behavior identifies its action ID.
+- New persistent facts identify the owning state object.
+- New one-time results identify their receipt/event shape.
+- Sidecar proof screenshots show the active workspace owns sidecar content.
 
 ## Acceptance For This Detail Pass
 

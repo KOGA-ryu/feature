@@ -10,6 +10,10 @@
 class QVBoxLayout;
 class QWidget;
 
+namespace DexTextEditorWorkspace {
+class TextEditorWorkspaceController;
+}
+
 class RightContextPanel final : public QFrame {
 public:
     RightContextPanel(
@@ -35,7 +39,7 @@ public:
         const QString &selectedWorkerId,
         const QString &selectedTopTab,
         const QString &selectedDetailLens);
-    void setTextEditorState(const QString &selectedDetailLens);
+    void setTextEditorState(DexTextEditorWorkspace::TextEditorWorkspaceController *textEditorWorkspace);
     void setSettingsState(
         const CockpitState &state,
         const QString &selectedProjectId,

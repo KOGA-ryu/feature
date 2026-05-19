@@ -9,6 +9,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Test)
 
 get_filename_component(DEX_HOME_FINAL_ROOT "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
+get_filename_component(DEX_FEATURES_REPO_ROOT "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
 set(DEX_COCKPIT_CORE_BIN "${DEX_HOME_FINAL_ROOT}/rust/target/debug/dex-cockpit-core")
 
 add_executable(dex_home_v2
@@ -84,6 +85,8 @@ add_executable(dex_home_v2
     src/settings_text_actions_page.cpp
     src/sheet_stack_body.cpp
     src/text_editor_workbench_page.cpp
+    src/text_editor_rust_action_client.cpp
+    src/text_editor_workspace_state.cpp
     src/text_editor_workspace_blank.cpp
     src/text_action_proof_model.cpp
     src/text_action_proof_panel.cpp
@@ -100,6 +103,9 @@ add_executable(dex_home_v2
 )
 
 target_link_libraries(dex_home_v2 PRIVATE Qt6::Widgets)
+target_compile_definitions(dex_home_v2 PRIVATE
+    DEX_FEATURES_REPO_ROOT="${DEX_FEATURES_REPO_ROOT}"
+)
 
 add_executable(dex_home_v2_smoke
     src/binder_navigation.cpp
@@ -113,6 +119,8 @@ add_executable(dex_home_v2_smoke
     src/repo_binder_template_default.cpp
     src/repo_binder_template_store.cpp
     src/settings_shortcuts_model.cpp
+    src/text_editor_rust_action_client.cpp
+    src/text_editor_workspace_state.cpp
     src/text_action_proof_model.cpp
     tests/state_backend_smoke.cpp
 )
@@ -120,6 +128,7 @@ add_executable(dex_home_v2_smoke
 target_compile_definitions(dex_home_v2_smoke PRIVATE
     DEX_COCKPIT_CORE_BIN="${DEX_COCKPIT_CORE_BIN}"
     DEX_HOME_V2_SOURCE_DIR="${CMAKE_CURRENT_LIST_DIR}"
+    DEX_FEATURES_REPO_ROOT="${DEX_FEATURES_REPO_ROOT}"
 )
 
 target_include_directories(dex_home_v2_smoke PRIVATE src)

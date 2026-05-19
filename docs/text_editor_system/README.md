@@ -148,3 +148,7 @@ library must remain host-agnostic.
 - `46_personal_text_editor_reference_dissection.md` for the reference screenshot
   anatomy.
 - `47_text_editor_surface_grammar_sheet.md` for per-surface styling grammar.
+- `48_zed_event_runtime_architecture.md` for the Zed-derived event/runtime
+  reference model and what we should borrow.
+- `49_zed_ui_mounted_learning_notes.md` for teaching Zed runtime ideas through
+  visible Text Editor UI surfaces.
